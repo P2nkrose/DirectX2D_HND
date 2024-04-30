@@ -5,3 +5,5 @@ float floor(float f)
 {
 	return (float)((int)f);
 }
+
+

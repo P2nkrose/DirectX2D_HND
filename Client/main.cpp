@@ -4,12 +4,31 @@
 #include "framework.h"
 #include "Client.h"
 
-#include <StaticLib\\staticlib_func.h>
-#pragma comment(lib, "StaticLib\\StaticLib_D.lib")
+//#include <StaticLib\\staticlib_func.h>
+//#pragma comment(lib, "StaticLib\\StaticLib_D.lib")
 
+// ifdef 를 이용해서 받아오는 것으로 바꿈
+#ifdef _DEBUG
+#pragma comment(lib, "StaticLib//StaticLib_D.lib")
+#else
+#pragma comment(lib, "StaticLib//StaticLib.lib")
+#endif
+
+
+// DLL 암시적 링크
+#include <DynamicLib/Dll_Func.h>
+#ifdef _DEBUG
+#pragma comment(lib, "DynamicLib//DynamicLib_D.lib")
+#else
+#pragma comment(lib, "DynamicLib//DynamicLib.lib")
+#endif
 
 // 전역 변수:
 HINSTANCE g_hInst = nullptr;
+
+// float 자료형의 주소를 받아오는 포인터 함수 만들기
+typedef float (*Dll_Func)(float);
+
 
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
@@ -23,10 +42,20 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_ LPWSTR    lpCmdLine,
                      _In_ int       nCmdShow)
 {
-
+    // 정적 라이브러리
     // test
-    int i = Pow(2, 10);
+    //int i = Pow(2, 10);
 
+    // 동적 라이브러리
+    HMODULE library = LoadLibrary(L"DynamicLib_D.dll");
+
+    Dll_Func pFunc = nullptr;
+
+    pFunc = (Dll_Func)GetProcAddress(library, "floor");
+
+    float f = pFunc(58.45f);
+
+    FreeLibrary(library);
 
     g_hInst = hInstance;    // 인스턴스 핸들을 전역 변수에 저장합니다.
 
