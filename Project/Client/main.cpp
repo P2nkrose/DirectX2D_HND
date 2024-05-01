@@ -4,59 +4,30 @@
 #include "framework.h"
 #include "Client.h"
 
-//#include <StaticLib\\staticlib_func.h>
-//#pragma comment(lib, "StaticLib\\StaticLib_D.lib")
-
-// ifdef 를 이용해서 받아오는 것으로 바꿈
 #ifdef _DEBUG
-#pragma comment(lib, "StaticLib//StaticLib_D.lib")
+#pragma comment(lib, "Engine\\Engine_D")
 #else
-#pragma comment(lib, "StaticLib//StaticLib.lib")
+#pragma comment(lib, "Engine\\Engine")
 #endif
 
+#include <Engine\\global.h>
+#include <Engine\\qEngine.h>
 
-// DLL 암시적 링크
-#include <DynamicLib/Dll_Func.h>
-#ifdef _DEBUG
-#pragma comment(lib, "DynamicLib//DynamicLib_D.lib")
-#else
-#pragma comment(lib, "DynamicLib//DynamicLib.lib")
-#endif
+
 
 // 전역 변수:
 HINSTANCE g_hInst = nullptr;
 
-// float 자료형의 주소를 받아오는 포인터 함수 만들기
-typedef float (*Dll_Func)(float);
 
-
-
-// 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
-BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
-                     _In_opt_ HINSTANCE hPrevInstance,
-                     _In_ LPWSTR    lpCmdLine,
-                     _In_ int       nCmdShow)
+    _In_opt_ HINSTANCE hPrevInstance,
+    _In_ LPWSTR    lpCmdLine,
+    _In_ int       nCmdShow)
 {
-    // 정적 라이브러리
-    // test
-    //int i = Pow(2, 10);
-
-    // 동적 라이브러리
-    HMODULE library = LoadLibrary(L"DynamicLib_D.dll");
-
-    Dll_Func pFunc = nullptr;
-
-    pFunc = (Dll_Func)GetProcAddress(library, "floor");
-
-    float f = pFunc(58.45f);
-
-    FreeLibrary(library);
-
     g_hInst = hInstance;    // 인스턴스 핸들을 전역 변수에 저장합니다.
 
     MyRegisterClass(hInstance);
@@ -72,24 +43,34 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     ShowWindow(hWnd, nCmdShow);
     UpdateWindow(hWnd);
 
-    // 애플리케이션 초기화를 수행합니다:
-    if (!InitInstance (hInstance, nCmdShow))
+    // qEngine 객체 초기화
+    if (FAILED(qEngine::GetInst()->Init(hWnd, POINT{1600, 900})))
     {
-        return FALSE;
+        MessageBox(nullptr, L"qEngine 초기화 실패", L"엔진 초기화 실패", MB_OK);
+        return 0;
     }
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
-
     MSG msg = {};
 
-    // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
+    while (true)
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            if(msg.message == WM_QUIT)
+                break;
+
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+            {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+            }
         }
+        else
+        {
+            qEngine::GetInst()->Progress();
+        }
+        
     }
 
     return (int) msg.wParam;
@@ -116,7 +97,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_CLIENT));
     wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground  = (HBRUSH)(COLOR_WINDOW+1);
-    wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_CLIENT);
+    wcex.lpszMenuName   = nullptr;//MAKEINTRESOURCEW(IDC_CLIENT);
     wcex.lpszClassName  = L"MyWindowClass";
     wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
