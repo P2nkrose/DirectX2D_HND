@@ -42,4 +42,10 @@ void qEngine::ChangeWindowScale(UINT _Width, UINT _Height)
 
 void qEngine::Progress()
 {
+	qDevice::GetInst()->Clear();
+
+
+
+
+	qDevice::GetInst()->Present();
 }
