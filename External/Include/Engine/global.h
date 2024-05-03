@@ -2,6 +2,19 @@
 
 
 #include <Windows.h>
+#include <string>
+using std::string;
+using std::wstring;
+
+#include <vector>
+using std::vector;
+
+#include <list>
+using std::list;
+
+#include <map>
+using std::map;
+using std::make_pair;
 
 #include <d3d11.h>
 #include <d3dcompiler.h>
@@ -17,3 +30,4 @@ using namespace DirectX::SimpleMath;
 
 #include "singleton.h"
 #include "define.h"
+#include "struct.h"

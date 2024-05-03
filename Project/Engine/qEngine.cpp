@@ -2,6 +2,7 @@
 #include "qEngine.h"
 
 #include "qDevice.h"
+#include "Temp.h"
 
 qEngine::qEngine()
 	: m_hWnd(nullptr)
@@ -11,6 +12,7 @@ qEngine::qEngine()
 
 qEngine::~qEngine()
 {
+	TempRelease();
 }
 
 int qEngine::Init(HWND _wnd, POINT _ptResolution)
@@ -25,8 +27,22 @@ int qEngine::Init(HWND _wnd, POINT _ptResolution)
 		return E_FAIL;
 	}
 
+	TempInit();
+
 	return S_OK;
 }
+
+void qEngine::Progress()
+{
+	TempTick();
+	
+	qDevice::GetInst()->Clear();
+
+	TempRender();
+
+	qDevice::GetInst()->Present();
+}
+
 
 void qEngine::ChangeWindowScale(UINT _Width, UINT _Height)
 {
@@ -37,15 +53,4 @@ void qEngine::ChangeWindowScale(UINT _Width, UINT _Height)
 	RECT rt = { 0, 0, _Width, _Height };
 	AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, bMenu);
 	SetWindowPos(m_hWnd, nullptr, 0, 0, rt.right - rt.left, rt.bottom - rt.top, 0);
-}
-
-
-void qEngine::Progress()
-{
-	qDevice::GetInst()->Clear();
-
-
-
-
-	qDevice::GetInst()->Present();
 }

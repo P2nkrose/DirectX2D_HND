@@ -160,8 +160,17 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="pch.h" />
     <ClInclude Include="qDevice.h" />
     <ClInclude Include="qEngine.h" />
+    <ClInclude Include="qKeyMgr.h" />
+    <ClInclude Include="qPathMgr.h" />
+    <ClInclude Include="qTaskMgr.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="qTimeMgr.h" />
     <ClInclude Include="SimpleMath.h" />
     <ClInclude Include="singleton.h" />
+    <ClInclude Include="struct.h" />
+    <ClInclude Include="Temp.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp" />
@@ -173,9 +182,25 @@ call EngineHeaderCopy.bat</Command>
     </ClCompile>
     <ClCompile Include="qDevice.cpp" />
     <ClCompile Include="qEngine.cpp" />
+    <ClCompile Include="qKeyMgr.cpp" />
+    <ClCompile Include="qPathMgr.cpp" />
+    <ClCompile Include="qTaskMgr.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="qTimeMgr.cpp" />
+    <ClCompile Include="Temp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="test.fx">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

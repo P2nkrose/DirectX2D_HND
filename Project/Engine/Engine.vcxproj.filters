@@ -16,6 +16,24 @@
     <Filter Include="Module">
       <UniqueIdentifier>{ecb30820-9e6e-49ff-9fc5-5c1e9fee03fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="HLSL">
+      <UniqueIdentifier>{6c075f64-5db0-4cb9-861d-72f3f4ddb2e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Manager">
+      <UniqueIdentifier>{e3991554-dc53-4f3e-86e1-97c246adb0d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Manager\01. PathMgr">
+      <UniqueIdentifier>{ef5f394b-b5cd-4c67-9b15-f156912e2297}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Manager\02. TimeMgr">
+      <UniqueIdentifier>{3e14cb63-9866-4961-887a-47264f74dbad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Manager\03. KeyMgr">
+      <UniqueIdentifier>{eee3427c-f3d7-40db-a373-bc896cc27109}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Manager\TaskMgr">
+      <UniqueIdentifier>{3ccef5f2-8118-4039-b84d-8dbb082b4c09}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -42,6 +60,22 @@
     <ClInclude Include="SimpleMath.h">
       <Filter>Module</Filter>
     </ClInclude>
+    <ClInclude Include="qPathMgr.h">
+      <Filter>04. Manager\01. PathMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="qTimeMgr.h">
+      <Filter>04. Manager\02. TimeMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="qKeyMgr.h">
+      <Filter>04. Manager\03. KeyMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="qTaskMgr.h">
+      <Filter>04. Manager\TaskMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="struct.h">
+      <Filter>01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Temp.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -56,10 +90,28 @@
     <ClCompile Include="qDevice.cpp">
       <Filter>03. Device</Filter>
     </ClCompile>
+    <ClCompile Include="qPathMgr.cpp">
+      <Filter>04. Manager\01. PathMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="qTimeMgr.cpp">
+      <Filter>04. Manager\02. TimeMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="qKeyMgr.cpp">
+      <Filter>04. Manager\03. KeyMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="qTaskMgr.cpp">
+      <Filter>04. Manager\TaskMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Temp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
       <Filter>Module</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="test.fx">
+      <Filter>HLSL</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
