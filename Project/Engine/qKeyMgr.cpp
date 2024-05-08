@@ -34,7 +34,7 @@ qKeyMgr::~qKeyMgr()
 
 }
 
-void qKeyMgr::init()
+void qKeyMgr::Init()
 {
 	for (int i = 0; i < (int)KEY::KEY_END; ++i)
 	{
@@ -49,7 +49,7 @@ void qKeyMgr::init()
 
 
 
-void qKeyMgr::tick()
+void qKeyMgr::Tick()
 {
 	// MainWindow 가 포커싱 상태이다.
 	if (qEngine::GetInst()->GetMainWnd() == GetFocus())

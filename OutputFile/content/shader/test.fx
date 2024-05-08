@@ -12,7 +12,7 @@ struct VTX_IN
 
 struct VTX_OUT
 {
-    float3 vPosition : SV_Position;
+    float4 vPosition : SV_Position;
     float4 vColor : COLOR;
 };
 

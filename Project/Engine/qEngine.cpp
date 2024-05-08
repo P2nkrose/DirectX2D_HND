@@ -3,6 +3,8 @@
 
 #include "qDevice.h"
 #include "qPathMgr.h"
+#include "qKeyMgr.h"
+#include "qTimeMgr.h"
 #include "Temp.h"
 
 qEngine::qEngine()
@@ -28,7 +30,11 @@ int qEngine::Init(HWND _wnd, POINT _ptResolution)
 		return E_FAIL;
 	}
 
+	// Manager ÃÊ±âÈ­
 	qPathMgr::GetInst()->Init();
+	qKeyMgr::GetInst()->Init();
+	qTimeMgr::GetInst()->Init();
+
 
 	if (FAILED(TempInit()))
 	{
@@ -41,8 +47,13 @@ int qEngine::Init(HWND _wnd, POINT _ptResolution)
 
 void qEngine::Progress()
 {
+	// Manager
+	qKeyMgr::GetInst()->Tick();
+	qTimeMgr::GetInst()->Tick();
+
 	TempTick();
 	
+	// Render
 	qDevice::GetInst()->Clear();
 
 	TempRender();

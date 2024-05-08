@@ -3,6 +3,8 @@
 
 #include "qDevice.h"
 #include "qPathMgr.h"
+#include "qKeyMgr.h"
+#include "qTimeMgr.h"
 
 // Vertex Buffer 버텍스 버퍼
 ID3D11Buffer* g_VB = nullptr;
@@ -40,8 +42,11 @@ int TempInit()
 
 	tVtxBufferDesc.ByteWidth = sizeof(Vtx) * 3;				// 버텍스버퍼데스크의 크기
 	tVtxBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;	// 버텍스버퍼의 용도
-	tVtxBufferDesc.Usage = D3D11_USAGE_DEFAULT;
-	tVtxBufferDesc.CPUAccessFlags = 0;
+
+	// Vertex Buffer가 생성된 이후에도 데이터 쓰기가 가능하도록 설정
+	tVtxBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
+	tVtxBufferDesc.CPUAccessFlags = D3D10_CPU_ACCESS_WRITE;
+
 	tVtxBufferDesc.MiscFlags = 0;
 	tVtxBufferDesc.StructureByteStride = 0;
 
@@ -54,11 +59,12 @@ int TempInit()
 		return E_FAIL;
 	}
 
-	wstring strShaderPath = qPathMgr::GetInst()->GetContentPath();
 
 	// ===================
 	//  Vertex Shader 생성
 	// ===================
+	wstring strShaderPath = qPathMgr::GetInst()->GetContentPath();
+
 
 	HRESULT hr = D3DCompileFromFile((strShaderPath + L"shader\\test.fx").c_str()
 								    , nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
@@ -140,19 +146,44 @@ int TempInit()
 	
 
 	DEVICE->CreateInputLayout(Element, 2, g_VSBlob->GetBufferPointer(), g_VSBlob->GetBufferSize(), &g_Layout);
-
+	 
 	return S_OK;
 }
 
 void TempTick()
 {
+	float dt = qTimeMgr::GetInst()->GetDeltaTime();
+
+	if (qKeyMgr::GetInst()->GetKeyState(KEY::LEFT) == KEY_STATE::PRESSED)
+	{
+		for (int i = 0; i < 3; ++i)
+		{
+			g_Vtx[i].vPos.x -= dt * 1.f;
+		}
+	}
+
+	if (qKeyMgr::GetInst()->GetKeyState(KEY::RIGHT) == KEY_STATE::PRESSED)
+	{
+		for (int i = 0; i < 3; ++i)
+		{
+			g_Vtx[i].vPos.x += dt * 1.f;
+		}
+	}
+
+	// 전역변수에 있는 정점 데이터를 버텍스버퍼로 쓰기
+	D3D11_MAPPED_SUBRESOURCE tMapSub = {};
+	CONTEXT->Map(g_VB, 0, D3D11_MAP::D3D11_MAP_WRITE_DISCARD, 0, &tMapSub);
+
+	memcpy(tMapSub.pData, g_Vtx, sizeof(Vtx) * 3);
+
+	CONTEXT->Unmap(g_VB, 0);
 }
 
 void TempRender()
 {
 	UINT stride = sizeof(Vtx);
 	UINT offset = 0;
-	CONTEXT->IAGetVertexBuffers(0, 1, &g_VB, &stride, &offset);
+	CONTEXT->IASetVertexBuffers(0, 1, &g_VB, &stride, &offset);
 	CONTEXT->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);	// 3개의 점을 하나의 삼각형으로 해석
 	CONTEXT->IASetInputLayout(g_Layout);
 

@@ -12,7 +12,7 @@ qTaskMgr::qTaskMgr()
 qTaskMgr::~qTaskMgr()
 {}
 
-void qTaskMgr::tick()
+void qTaskMgr::Tick()
 {
 	ClearGC();
 

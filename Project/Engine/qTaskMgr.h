@@ -9,7 +9,7 @@ private:
 	vector<CObj*>	m_GC; // Garbage Collector;
 
 public:
-	void tick();
+	void Tick();
 	void AddTask(const tTask& _Task) { m_vecTask.push_back(_Task); }
 
 private:

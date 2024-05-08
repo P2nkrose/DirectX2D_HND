@@ -4,13 +4,16 @@
 qDevice::qDevice()
 	: m_Device(nullptr)
 	, m_Context(nullptr)
-	, m_SwapChain(nullptr)
+	, m_SwapChain(nullptr) 
 	, m_RTTex(nullptr)
 	, m_DSTex(nullptr)
 	, m_BSState(nullptr)
 	, m_DSState(nullptr)
 	, m_Sampler(nullptr)
 	, m_RSState(nullptr)
+	, m_DSView(nullptr)
+	, m_RTView(nullptr)
+	, m_hWnd(nullptr)
 {
 
 }
@@ -86,7 +89,18 @@ int qDevice::Init(HWND _hWnd, UINT _Width, UINT _Height)
 
 
 	// ViewPort 설정
+	// 출력시킬 화면 윈도우 영역을 설정
+	D3D11_VIEWPORT viewport = {};
 
+	viewport.TopLeftX = 0;
+	viewport.TopLeftY = 0;
+	viewport.Width = m_vResolution.x;
+	viewport.Height = m_vResolution.y;
+
+	viewport.MinDepth = 0;
+	viewport.MaxDepth = 1.f;
+
+	CONTEXT->RSSetViewports(1, &viewport);
 
 
 	return S_OK;
