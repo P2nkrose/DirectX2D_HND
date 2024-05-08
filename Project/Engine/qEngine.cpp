@@ -2,6 +2,7 @@
 #include "qEngine.h"
 
 #include "qDevice.h"
+#include "qPathMgr.h"
 #include "Temp.h"
 
 qEngine::qEngine()
@@ -27,7 +28,13 @@ int qEngine::Init(HWND _wnd, POINT _ptResolution)
 		return E_FAIL;
 	}
 
-	TempInit();
+	qPathMgr::GetInst()->Init();
+
+	if (FAILED(TempInit()))
+	{
+		MessageBox(nullptr, L"TempInit 실패", L"qEngine 초기화 실패", MB_OK);
+		return E_FAIL;
+	}
 
 	return S_OK;
 }

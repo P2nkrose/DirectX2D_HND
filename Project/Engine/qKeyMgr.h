@@ -38,7 +38,7 @@ struct tKeyInfo
 	bool		bPressed;	// 지금 눌려있는지
 };
 
-class qKeyMgr
+class qKeyMgr : public qSingleton<qKeyMgr>
 {
 	SINGLE(qKeyMgr);
 private:

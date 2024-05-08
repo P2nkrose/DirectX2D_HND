@@ -11,7 +11,7 @@ qPathMgr::~qPathMgr()
 {
 }
 
-void qPathMgr::init()
+void qPathMgr::Init()
 {
 	// 실행경로를 얻어낸다
 	wchar_t szBuffer[256] = {};

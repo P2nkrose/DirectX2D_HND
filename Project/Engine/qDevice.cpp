@@ -85,6 +85,10 @@ int qDevice::Init(HWND _hWnd, UINT _Width, UINT _Height)
 	m_Context->OMSetRenderTargets(1, &m_RTView, m_DSView);
 
 
+	// ViewPort ¼³Á¤
+
+
+
 	return S_OK;
 }
 

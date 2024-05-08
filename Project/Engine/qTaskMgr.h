@@ -1,7 +1,7 @@
 #pragma once
 
 
-class qTaskMgr
+class qTaskMgr : public qSingleton<qTaskMgr>
 {
 	SINGLE(qTaskMgr)
 private:

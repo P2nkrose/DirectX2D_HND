@@ -1,7 +1,7 @@
 #pragma once
 
 
-class qTimeMgr
+class qTimeMgr : public qSingleton<qTimeMgr>
 {
 	SINGLE(qTimeMgr)
 private:
