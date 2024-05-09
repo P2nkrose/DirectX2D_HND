@@ -6,6 +6,10 @@
 #include "qKeyMgr.h"
 #include "qTimeMgr.h"
 
+
+tTransform g_ObjTrans = {};
+
+
 // Vertex Buffer 버텍스 버퍼
 ComPtr<ID3D11Buffer>	g_VB = nullptr;
 
@@ -29,8 +33,18 @@ ComPtr<ID3DBlob>				g_ErrBlob = nullptr;
 // 레이아웃 (InputLayout)
 ComPtr<ID3D11InputLayout>		g_Layout = nullptr;
 
+
+// 상수 버퍼 (Constant Buffer)
+ComPtr<ID3D11Buffer>			g_CB = nullptr;
+
+
+
+
+
 int TempInit()
 {
+	g_ObjTrans.Scale = Vec4(1.2f, 1.2f, 1.2f, 1.f);
+
 	// 버텍스 버퍼 생성
 	// 0 --- 1
 	// |  \  |
@@ -53,9 +67,9 @@ int TempInit()
 	tVtxBufferDesc.ByteWidth = sizeof(Vtx) * 4;				// 버텍스버퍼데스크의 크기
 	tVtxBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;	// 버텍스버퍼의 용도
 
-	// Vertex Buffer가 생성된 이후에도 데이터 쓰기가 가능하도록 설정
-	tVtxBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
-	tVtxBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	// Vertex Buffer는 변동없이 그대로 값을 가져가게끔 Default 설정
+	tVtxBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+	tVtxBufferDesc.CPUAccessFlags = 0;
 
 	tVtxBufferDesc.MiscFlags = 0;
 	tVtxBufferDesc.StructureByteStride = 0;
@@ -95,6 +109,25 @@ int TempInit()
 		MessageBox(nullptr, L"IndexBuffer 생성 실패", L"Temp 초기화 실패", MB_OK);
 		return E_FAIL;
 	}
+
+	// ====================
+	//   상수 Buffer 생성
+	// ====================
+
+	D3D11_BUFFER_DESC tCBDesc = {};
+
+	tCBDesc.ByteWidth = sizeof(tTransform);
+	tCBDesc.Usage = D3D11_USAGE_DYNAMIC;
+	tCBDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	tCBDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+
+	if (FAILED(DEVICE->CreateBuffer(&tCBDesc, nullptr, g_CB.GetAddressOf())))
+	{
+		MessageBox(nullptr, L"ConstantBuffer 생성 실패", L"Temp 초기화 실패", MB_OK);
+		return E_FAIL;
+	}
+
+
 
 	// ===================
 	//  Vertex Shader 생성
@@ -197,27 +230,33 @@ void TempTick()
 
 	if (qKeyMgr::GetInst()->GetKeyState(KEY::LEFT) == KEY_STATE::PRESSED)
 	{
-		for (int i = 0; i < 4; ++i)
-		{
-			g_Vtx[i].vPos.x -= dt * 1.f;
-		}
+		g_ObjTrans.Pos.x -= dt * 1.f;
 	}
 
 	if (qKeyMgr::GetInst()->GetKeyState(KEY::RIGHT) == KEY_STATE::PRESSED)
 	{
-		for (int i = 0; i < 4; ++i)
-		{
-			g_Vtx[i].vPos.x += dt * 1.f;
-		}
+		g_ObjTrans.Pos.x += dt * 1.f;
 	}
+
+	if (qKeyMgr::GetInst()->GetKeyState(KEY::UP) == KEY_STATE::PRESSED)
+	{
+		g_ObjTrans.Pos.y += dt * 1.f;
+	}
+
+	if (qKeyMgr::GetInst()->GetKeyState(KEY::DOWN) == KEY_STATE::PRESSED)
+	{
+		g_ObjTrans.Pos.y -= dt * 1.f;
+	}
+
+
 
 	// 전역변수에 있는 정점 데이터를 버텍스버퍼로 쓰기
 	D3D11_MAPPED_SUBRESOURCE tMapSub = {};
-	CONTEXT->Map(g_VB.Get(), 0, D3D11_MAP::D3D11_MAP_WRITE_DISCARD, 0, &tMapSub);
+	CONTEXT->Map(g_CB.Get(), 0, D3D11_MAP::D3D11_MAP_WRITE_DISCARD, 0, &tMapSub);
 
-	memcpy(tMapSub.pData, g_Vtx, sizeof(Vtx) * 4);
+	memcpy(tMapSub.pData, &g_ObjTrans, sizeof(tTransform));
 
-	CONTEXT->Unmap(g_VB.Get(), 0);
+	CONTEXT->Unmap(g_CB.Get(), 0);
 }
 
 void TempRender()
@@ -228,6 +267,10 @@ void TempRender()
 	CONTEXT->IASetIndexBuffer(g_IB.Get(), DXGI_FORMAT_R32_UINT, 0);
 	CONTEXT->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);	// 3개의 점을 하나의 삼각형으로 해석
 	CONTEXT->IASetInputLayout(g_Layout.Get());
+
+	// 상수버퍼 바인딩, b0 레지스터에, Vertex Shader 시점에, g_CB 에 있는 값이 0번 레지스터에 바인딩 될 예정
+	CONTEXT->VSSetConstantBuffers(0, 1, g_CB.GetAddressOf());
+
 
 	CONTEXT->VSSetShader(g_VS.Get(), nullptr, 0);
 	CONTEXT->PSSetShader(g_PS.Get(), nullptr, 0);
