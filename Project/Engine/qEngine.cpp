@@ -6,6 +6,8 @@
 #include "qKeyMgr.h"
 #include "qTimeMgr.h"
 #include "qAssetMgr.h"
+#include "qLevelMgr.h"
+
 #include "Temp.h"
 
 qEngine::qEngine()
@@ -36,6 +38,7 @@ int qEngine::Init(HWND _wnd, POINT _ptResolution)
 	qKeyMgr::GetInst()->Init();
 	qTimeMgr::GetInst()->Init();
 	qAssetMgr::GetInst()->Init();
+	qLevelMgr::GetInst()->Init();
 
 
 	if (FAILED(TempInit()))
@@ -53,11 +56,13 @@ void qEngine::Progress()
 	qKeyMgr::GetInst()->Tick();
 	qTimeMgr::GetInst()->Tick();
 
+	qLevelMgr::GetInst()->Progress();
 	TempTick();
 	
 	// Render
 	qDevice::GetInst()->Clear();
 
+	qLevelMgr::GetInst()->Render();
 	TempRender();
 
 	qDevice::GetInst()->Present();

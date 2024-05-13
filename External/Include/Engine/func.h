@@ -1,6 +1,17 @@
 #pragma once
 
 
+template<typename T, int _Size>
+void Delete_Array(T(&_arr)[_Size])
+{
+	for (int i = 0; i < _Size; ++i)
+	{
+		if (nullptr != _arr[i])
+			delete _arr[i];
+	}
+}
+
+
 template<typename T>
 void Delete_Vec(vector<T*>& _vec)
 {
@@ -25,25 +36,33 @@ void Delete_Map(map<T1, T2>& _map)
 }
 
 
+// º¯¼ö ÅÛÇÃ¸´
+template<typename T1, typename T2>
+constexpr bool IsSame = false;
+template<typename T1>
+constexpr bool IsSame<T1, T1> = true;
+
+
+
 #include "assets.h"
 template<typename T>
 ASSET_TYPE GetAssetType()
 {
-	if (typeid(T).hash_code() == typeid(qMesh).hash_code())
+	if constexpr (IsSame<T, qMesh>)
 		return ASSET_TYPE::MESH;
-	//if (typeid(T).hash_code() == typeid(qMeshData).hash_code())
+	//if constexpr (IsSame<T, qMeshData>)
 	//	return ASSET_TYPE::MESH_DATA;
-	//if (typeid(T).hash_code() == typeid(qMaterial).hash_code())
+	//if constexpr (IsSame<T, qMaterial>)
 	//	return ASSET_TYPE::MATERIAL;
-	//if (typeid(T).hash_code() == typeid(qPrefab).hash_code())
+	//if constexpr (IsSame<T, qPrefab>)
 	//	return ASSET_TYPE::PREFAB;
-	//if (typeid(T).hash_code() == typeid(qTexture).hash_code())
+	//if constexpr (IsSame<T, qTexture>)
 	//	return ASSET_TYPE::TEXTURE;
-	//if (typeid(T).hash_code() == typeid(qSound).hash_code())
+	//if constexpr (IsSame<T, qSound>)
 	//	return ASSET_TYPE::SOUND;
-	if (typeid(T).hash_code() == typeid(qGraphicShader).hash_code())
+	if constexpr (IsSame<T, qGraphicShader>)
 		return ASSET_TYPE::GRAPHIC_SHADER;
-	if (typeid(T).hash_code() == typeid(qComputeShader).hash_code())
+	if constexpr (IsSame<T, qComputeShader>)
 		return ASSET_TYPE::COMPUTE_SHADER;
 
 }
