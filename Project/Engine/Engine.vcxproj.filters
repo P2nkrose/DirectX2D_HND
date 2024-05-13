@@ -67,11 +67,17 @@
     <Filter Include="05. Asset\06. Sound">
       <UniqueIdentifier>{0098e869-7544-4f37-b402-ed241be3fd19}</UniqueIdentifier>
     </Filter>
-    <Filter Include="05. Asset\08. ComputeShader">
-      <UniqueIdentifier>{ae7e1bad-51f8-404a-a6dd-6aa6153ee77e}</UniqueIdentifier>
+    <Filter Include="03. Device\ConstBuffer">
+      <UniqueIdentifier>{3f098039-3c22-4374-972d-dc52b2f7d7f3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="05. Asset\07. GraphicShader">
+    <Filter Include="05. Asset\07. Shader">
+      <UniqueIdentifier>{df7abf6f-d65e-47ab-8e12-372cc2c68310}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Asset\07. Shader\01. GraphicShader">
       <UniqueIdentifier>{d1aff048-6895-4b48-b7fe-3a4e41a5c7d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Asset\07. Shader\02. ComputeShader">
+      <UniqueIdentifier>{ae7e1bad-51f8-404a-a6dd-6aa6153ee77e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +136,21 @@
     <ClInclude Include="qMesh.h">
       <Filter>05. Asset\01. Mesh</Filter>
     </ClInclude>
+    <ClInclude Include="qConstBuffer.h">
+      <Filter>03. Device\ConstBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="qShader.h">
+      <Filter>05. Asset\07. Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="assets.h">
+      <Filter>01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="qGraphicShader.h">
+      <Filter>05. Asset\07. Shader\01. GraphicShader</Filter>
+    </ClInclude>
+    <ClInclude Include="qComputeShadere.h">
+      <Filter>05. Asset\07. Shader\02. ComputeShader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -168,6 +189,18 @@
     </ClCompile>
     <ClCompile Include="qMesh.cpp">
       <Filter>05. Asset\01. Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="qConstBuffer.cpp">
+      <Filter>03. Device\ConstBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="qShader.cpp">
+      <Filter>05. Asset\07. Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="qGraphicShader.cpp">
+      <Filter>05. Asset\07. Shader\01. GraphicShader</Filter>
+    </ClCompile>
+    <ClCompile Include="qComputeShadere.cpp">
+      <Filter>05. Asset\07. Shader\02. ComputeShader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

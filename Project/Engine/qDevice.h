@@ -2,6 +2,7 @@
 
 // DirectX 관련 기능을 담당
 // GPU 제어
+class qConstBuffer;
 
 class qDevice : public qSingleton<qDevice>
 {
@@ -17,9 +18,12 @@ public:
 	ID3D11Device* GetDevice() { return m_Device.Get(); }
 	ID3D11DeviceContext* GetContext() { return m_Context.Get(); }
 
+	qConstBuffer* GetConstBuffer(CB_TYPE _Type) { return m_arrCB[(UINT)_Type]; }
+
 private:
 	int CreateSwapChain();
 	int CreateView();
+	int CreateConstBuffer();
 
 
 private:
@@ -42,5 +46,8 @@ private:
 	ComPtr<ID3D11DepthStencilState>		m_DSState;		// 깊이 스텐실 테스트 중에 텍스처 리소스에 액세스함
 	ComPtr<ID3D11SamplerState>			m_Sampler;		// 샘플러 상태 인터페이스에는 텍스처 샘플 작업에서 참조하기 위해 파이프라인 의 셰이더 단계에 바인딩할 수 있는 샘플러 상태에 대한 설명
 	ComPtr<ID3D11RasterizerState>		m_RSState;
+
+
+	qConstBuffer*						m_arrCB[(UINT)CB_TYPE::END];
 };
 

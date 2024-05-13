@@ -1,12 +1,21 @@
 #include "pch.h"
 #include "qDevice.h"
 
+#include "qConstBuffer.h"
+
 qDevice::qDevice()
+	: m_hWnd(nullptr)
+	, m_arrCB{}
 {
 }
 
 qDevice::~qDevice()
 {
+	for (UINT i = 0; i < (UINT)CB_TYPE::END; ++i)
+	{
+		if (nullptr != m_arrCB[i])
+			delete m_arrCB[i];
+	}
 }
 
 int qDevice::Init(HWND _hWnd, UINT _Width, UINT _Height)
@@ -67,6 +76,14 @@ int qDevice::Init(HWND _hWnd, UINT _Width, UINT _Height)
 	viewport.MaxDepth = 1.f;
 
 	CONTEXT->RSSetViewports(1, &viewport);
+
+	if (FAILED(CreateConstBuffer()))
+	{
+		MessageBox(nullptr, L"상수버퍼 생성 실패", L"장치 초기화 실패", MB_OK);
+		return E_FAIL;
+	}
+
+
 
 
 	return S_OK;
@@ -177,6 +194,25 @@ int qDevice::CreateView()
 	// DepthStencilView
 	// ShaderResourceView
 	// UnorderedAccessView
+
+
+	return S_OK;
+}
+
+int qDevice::CreateConstBuffer()
+{
+	qConstBuffer* qCB = nullptr;
+
+	// 상수버퍼 생성
+	qCB = new qConstBuffer;
+	
+	if(FAILED(qCB->Create(CB_TYPE::TRANSFORM, sizeof(tTransform))))
+	{
+		MessageBox(nullptr, L"상수버퍼 생성 실패", L"View 생성 실패", MB_OK);
+		return E_FAIL;
+	}
+
+	m_arrCB[(UINT)CB_TYPE::TRANSFORM] = qCB;
 
 
 	return S_OK;
