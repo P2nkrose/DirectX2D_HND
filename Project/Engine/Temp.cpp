@@ -6,18 +6,13 @@
 #include "qKeyMgr.h"
 #include "qTimeMgr.h"
 
+#include "qEntity.h"
+#include "qMesh.h"
 
 tTransform g_ObjTrans = {};
 
+qMesh* g_Mesh = nullptr;
 
-// Vertex Buffer 버텍스 버퍼
-ComPtr<ID3D11Buffer>	g_VB = nullptr;
-
-// 인덱스 버퍼
-ComPtr<ID3D11Buffer>	g_IB = nullptr;
-
-Vtx		g_Vtx[4] = {};
-UINT	g_Idx[6] = {};
 
 
 // 버텍스 쉐이더 (Vertex Shader) 제작
@@ -45,70 +40,38 @@ int TempInit()
 {
 	g_ObjTrans.Scale = Vec4(1.2f, 1.2f, 1.2f, 1.f);
 
-	// 버텍스 버퍼 생성
+	// RectMesh 생성
 	// 0 --- 1
 	// |  \  |
 	// 3 --- 2
-	g_Vtx[0].vPos = Vec3(-0.5f, 0.5f, 0.f);
-	g_Vtx[0].vColor = Vec4(1.f, 0.f, 0.f, 1.f);
-
-	g_Vtx[1].vPos = Vec3(0.5f, 0.5f, 0.f);
-	g_Vtx[1].vColor = Vec4(0.f, 1.f, 0.f, 1.f);
-
-	g_Vtx[2].vPos = Vec3(0.5f, -0.5f, 0.f);
-	g_Vtx[2].vColor = Vec4(0.f, 0.f, 1.f, 1.f);
-
-	g_Vtx[3].vPos = Vec3(-0.5f, -0.5f, 0.f);
-	g_Vtx[3].vColor = Vec4(1.f, 0.f, 0.f, 1.f);
 
 
-	D3D11_BUFFER_DESC tVtxBufferDesc = {};
+	// Vertex
+	Vtx arrVtx[4] = {};
 
-	tVtxBufferDesc.ByteWidth = sizeof(Vtx) * 4;				// 버텍스버퍼데스크의 크기
-	tVtxBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;	// 버텍스버퍼의 용도
+	arrVtx[0].vPos = Vec3(-0.5f, 0.5f, 0.f);
+	arrVtx[0].vColor = Vec4(1.f, 0.f, 0.f, 1.f);
 
-	// Vertex Buffer는 변동없이 그대로 값을 가져가게끔 Default 설정
-	tVtxBufferDesc.Usage = D3D11_USAGE_DEFAULT;
-	tVtxBufferDesc.CPUAccessFlags = 0;
+	arrVtx[1].vPos = Vec3(0.5f, 0.5f, 0.f);
+	arrVtx[1].vColor = Vec4(0.f, 1.f, 0.f, 1.f);
 
-	tVtxBufferDesc.MiscFlags = 0;
-	tVtxBufferDesc.StructureByteStride = 0;
+	arrVtx[2].vPos = Vec3(0.5f, -0.5f, 0.f);
+	arrVtx[2].vColor = Vec4(0.f, 0.f, 1.f, 1.f);
 
-	D3D11_SUBRESOURCE_DATA tSub = {};
-	tSub.pSysMem = g_Vtx;
+	arrVtx[3].vPos = Vec3(-0.5f, -0.5f, 0.f);
+	arrVtx[3].vColor = Vec4(1.f, 0.f, 0.f, 1.f);
 
-	if (FAILED(DEVICE->CreateBuffer(&tVtxBufferDesc, &tSub, g_VB.GetAddressOf())))
-	{
-		MessageBox(nullptr, L"VertexBuffer 생성 실패", L"Temp 초기화 실패", MB_OK);
-		return E_FAIL;
-	}
+	// Index 버퍼 생성
+	UINT arrIdx[6] = {};
+	arrIdx[0] = 0;		arrIdx[1] = 1;		arrIdx[2] = 2;
+	arrIdx[3] = 0;		arrIdx[4] = 2;		arrIdx[5] = 3;
 
-	// ====================
-	//   Index Buffer 생성
-	// ====================
+	g_Mesh = new qMesh;
+	g_Mesh->Create(arrVtx, 4, arrIdx, 6);
 
-	g_Idx[0] = 0;		g_Idx[1] = 1;		g_Idx[2] = 2;
-	g_Idx[3] = 0;		g_Idx[4] = 2;		g_Idx[5] = 3;
+		
 
-	D3D11_BUFFER_DESC IdxBufferDesc = {};
 
-	IdxBufferDesc.ByteWidth = sizeof(UINT) * 6;
-	IdxBufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
-
-	// Index 버퍼가 생성된 이후에 데이터가 변경될 일이 없다.
-	IdxBufferDesc.Usage = D3D11_USAGE_DEFAULT;
-	IdxBufferDesc.CPUAccessFlags = 0;
-
-	IdxBufferDesc.MiscFlags = 0;
-	IdxBufferDesc.StructureByteStride = 0;
-
-	tSub.pSysMem = g_Idx;
-
-	if (FAILED(DEVICE->CreateBuffer(&IdxBufferDesc, &tSub, g_IB.GetAddressOf())))
-	{
-		MessageBox(nullptr, L"IndexBuffer 생성 실패", L"Temp 초기화 실패", MB_OK);
-		return E_FAIL;
-	}
 
 	// ====================
 	//   상수 Buffer 생성
@@ -261,10 +224,6 @@ void TempTick()
 
 void TempRender()
 {
-	UINT stride = sizeof(Vtx);
-	UINT offset = 0;
-	CONTEXT->IASetVertexBuffers(0, 1, g_VB.GetAddressOf(), &stride, &offset);
-	CONTEXT->IASetIndexBuffer(g_IB.Get(), DXGI_FORMAT_R32_UINT, 0);
 	CONTEXT->IASetPrimitiveTopology(D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST);	// 3개의 점을 하나의 삼각형으로 해석
 	CONTEXT->IASetInputLayout(g_Layout.Get());
 
@@ -275,12 +234,11 @@ void TempRender()
 	CONTEXT->VSSetShader(g_VS.Get(), nullptr, 0);
 	CONTEXT->PSSetShader(g_PS.Get(), nullptr, 0);
 
-	//CONTEXT->Draw(6, 0);
-	CONTEXT->DrawIndexed(6, 0, 0);
+	g_Mesh->render();
 }
 
 void TempRelease()
 {
-	
+	delete g_Mesh;
 }
 

@@ -34,6 +34,45 @@
     <Filter Include="04. Manager\TaskMgr">
       <UniqueIdentifier>{3ccef5f2-8118-4039-b84d-8dbb082b4c09}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05. Asset">
+      <UniqueIdentifier>{f1562645-56e0-4c17-ace0-ebdcda5d1abb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. GameObject">
+      <UniqueIdentifier>{cfd7d4b3-ffdd-4424-9220-6da93b3144e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07. Component">
+      <UniqueIdentifier>{cbb391ec-23a9-4c3e-86a5-1d42c1912830}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Manager\04. LevelMgr">
+      <UniqueIdentifier>{51ee27bc-cb97-46e0-a012-2cc210a8c129}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Manager\05. AssetMgr">
+      <UniqueIdentifier>{88441ef4-ea3c-4318-ac1d-538a9be670e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Asset\01. Mesh">
+      <UniqueIdentifier>{738a548c-3f70-4467-bc63-41ee4a523c43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Asset\02. MeshData">
+      <UniqueIdentifier>{e2f0335a-9c64-47a8-9d94-a659bda50fd3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Asset\03. Material">
+      <UniqueIdentifier>{1742450d-a9a3-4e7f-8b68-cebad85a8861}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Asset\04. Prefab">
+      <UniqueIdentifier>{a16a1f9b-438e-45f8-983b-ed90efb271b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Asset\05. Texture">
+      <UniqueIdentifier>{36435925-90e1-474b-818a-4cc8fa406cab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Asset\06. Sound">
+      <UniqueIdentifier>{0098e869-7544-4f37-b402-ed241be3fd19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Asset\08. ComputeShader">
+      <UniqueIdentifier>{ae7e1bad-51f8-404a-a6dd-6aa6153ee77e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Asset\07. GraphicShader">
+      <UniqueIdentifier>{d1aff048-6895-4b48-b7fe-3a4e41a5c7d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -76,6 +115,21 @@
       <Filter>01. Header</Filter>
     </ClInclude>
     <ClInclude Include="Temp.h" />
+    <ClInclude Include="qEntity.h">
+      <Filter>Module</Filter>
+    </ClInclude>
+    <ClInclude Include="qAsset.h">
+      <Filter>05. Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="qAssetMgr.h">
+      <Filter>04. Manager\05. AssetMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="enum.h">
+      <Filter>01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="qMesh.h">
+      <Filter>05. Asset\01. Mesh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -103,6 +157,18 @@
       <Filter>04. Manager\TaskMgr</Filter>
     </ClCompile>
     <ClCompile Include="Temp.cpp" />
+    <ClCompile Include="qEntity.cpp">
+      <Filter>Module</Filter>
+    </ClCompile>
+    <ClCompile Include="qAsset.cpp">
+      <Filter>05. Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="qAssetMgr.cpp">
+      <Filter>04. Manager\05. AssetMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="qMesh.cpp">
+      <Filter>05. Asset\01. Mesh</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">

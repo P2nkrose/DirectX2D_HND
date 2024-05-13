@@ -38,4 +38,5 @@ using std::make_pair;
 
 #include "singleton.h"
 #include "define.h"
+#include "enum.h"
 #include "struct.h"
