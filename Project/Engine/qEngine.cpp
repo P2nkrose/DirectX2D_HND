@@ -5,6 +5,7 @@
 #include "qPathMgr.h"
 #include "qKeyMgr.h"
 #include "qTimeMgr.h"
+#include "qAssetMgr.h"
 #include "Temp.h"
 
 qEngine::qEngine()
@@ -34,6 +35,7 @@ int qEngine::Init(HWND _wnd, POINT _ptResolution)
 	qPathMgr::GetInst()->Init();
 	qKeyMgr::GetInst()->Init();
 	qTimeMgr::GetInst()->Init();
+	qAssetMgr::GetInst()->Init();
 
 
 	if (FAILED(TempInit()))

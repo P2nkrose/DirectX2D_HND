@@ -160,11 +160,12 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="define.h" />
     <ClInclude Include="enum.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="func.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="qAsset.h" />
     <ClInclude Include="qAssetMgr.h" />
-    <ClInclude Include="qComputeShadere.h" />
+    <ClInclude Include="qComputeShader.h" />
     <ClInclude Include="qConstBuffer.h" />
     <ClInclude Include="qDevice.h" />
     <ClInclude Include="qEngine.h" />
@@ -194,7 +195,7 @@ call EngineHeaderCopy.bat</Command>
     </ClCompile>
     <ClCompile Include="qAsset.cpp" />
     <ClCompile Include="qAssetMgr.cpp" />
-    <ClCompile Include="qComputeShadere.cpp" />
+    <ClCompile Include="qComputeShader.cpp" />
     <ClCompile Include="qConstBuffer.cpp" />
     <ClCompile Include="qDevice.cpp" />
     <ClCompile Include="qEngine.cpp" />

@@ -148,8 +148,11 @@
     <ClInclude Include="qGraphicShader.h">
       <Filter>05. Asset\07. Shader\01. GraphicShader</Filter>
     </ClInclude>
-    <ClInclude Include="qComputeShadere.h">
+    <ClInclude Include="qComputeShader.h">
       <Filter>05. Asset\07. Shader\02. ComputeShader</Filter>
+    </ClInclude>
+    <ClInclude Include="func.h">
+      <Filter>01. Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -199,7 +202,7 @@
     <ClCompile Include="qGraphicShader.cpp">
       <Filter>05. Asset\07. Shader\01. GraphicShader</Filter>
     </ClCompile>
-    <ClCompile Include="qComputeShadere.cpp">
+    <ClCompile Include="qComputeShader.cpp">
       <Filter>05. Asset\07. Shader\02. ComputeShader</Filter>
     </ClCompile>
   </ItemGroup>
