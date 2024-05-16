@@ -168,6 +168,7 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="func.h" />
     <ClInclude Include="global.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Ptr.h" />
     <ClInclude Include="qAsset.h" />
     <ClInclude Include="qAssetMgr.h" />
     <ClInclude Include="qComponent.h" />

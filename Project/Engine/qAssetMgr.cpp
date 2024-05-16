@@ -8,15 +8,12 @@ qAssetMgr::qAssetMgr()
 
 qAssetMgr::~qAssetMgr()
 {
-	for (UINT i = 0; i < (UINT)ASSET_TYPE::END; ++i)
-	{
-		Delete_Map(m_mapAsset[i]);
-	}
+
 }
 
 void qAssetMgr::Init()
 {
-	qMesh* pMesh = nullptr;
+	Ptr<qMesh> pMesh = nullptr;
 
 	// RectMesh 积己
 	// 0 --- 1
@@ -49,16 +46,16 @@ void qAssetMgr::Init()
 	AddAsset(L"RectMesh", pMesh);
 
 	// 溅捞歹 积己
-	qGraphicShader* pShader = nullptr;
+	Ptr<qGraphicShader> pShader = nullptr;
 	pShader = new qGraphicShader;
 	pShader->CreateVertexShader(L"shader\\test.fx", "VS_Test");
 	pShader->CreatePixelShader(L"shader\\test.fx", "PS_Test");
 	AddAsset(L"TestShader", pShader);
 }
 
-qAsset* qAssetMgr::FindAsset(ASSET_TYPE _Type, const wstring& _Key)
+Ptr<qAsset> qAssetMgr::FindAsset(ASSET_TYPE _Type, const wstring& _Key)
 {
-	map<wstring, qAsset*>::iterator iter = m_mapAsset[(UINT)_Type].find(_Key);
+	map<wstring, Ptr<qAsset>>::iterator iter = m_mapAsset[(UINT)_Type].find(_Key);
 
 	if (iter == m_mapAsset[(UINT)_Type].end())
 	{

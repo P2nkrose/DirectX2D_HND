@@ -10,6 +10,7 @@ qLayer::qLayer(int _LayerIdx)
 
 qLayer::~qLayer()
 {
+	Delete_Vec(m_Parents);
 }
 
 void qLayer::Begin()

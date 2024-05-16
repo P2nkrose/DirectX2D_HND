@@ -226,6 +226,9 @@
     <ClInclude Include="qMeshRender.h">
       <Filter>08. Component\RenderComponent\01. MeshRender</Filter>
     </ClInclude>
+    <ClInclude Include="Ptr.h">
+      <Filter>06. Asset</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
