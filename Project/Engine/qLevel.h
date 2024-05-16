@@ -2,6 +2,7 @@
 #include "qEntity.h"
 
 class qLayer;
+class qGameObject;
 
 class qLevel : public qEntity
 {
@@ -11,12 +12,16 @@ public:
 	~qLevel();
 
 public:
+	void Begin();
 	void Tick();
 	void FinalTick();
 	void Render();
 
+public:
+	void AddObject(int LayerIdx, qGameObject* _Object);
+
 
 private:
-	qLayer* m_Layer[MAX_LAYER];
+	qLayer*		m_Layer[MAX_LAYER];
 };
 

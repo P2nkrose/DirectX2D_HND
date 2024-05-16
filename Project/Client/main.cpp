@@ -14,61 +14,6 @@
 #include <Engine\\qEngine.h>
 
 
-template<typename T>
-class MyPtr
-{
-private:
-    T*  ptr;
-
-
-public:
-    T* Get() { return ptr; }
-    T** GetAddressOf() { return &ptr; }
-
-    // Conversion
-    operator T* ()
-    {
-        return ptr;
-    }
-
-    //void operator = (T* _ptr)
-    //{
-    //    ptr->Release();
-
-    //    ptr = _ptr;
-
-    //    ptr->AddRef();
-    //}
-
-public:
-    MyPtr()
-        : ptr(nullptr)
-    {
-    }
-
-    ~MyPtr()
-    {
-        // ptr->Release();
-    }
-};
-
-
-class qTest
-{
-private:
-    int     i;
-    float   f;
-    char    c;
-    short   s;
-
-public:
-    operator int()   { return i; }
-    operator float() { return f; }
-    operator char()  { return c; }
-    operator short() { return s; }
-
-};
-
 
 // 전역 변수:
 HINSTANCE g_hInst = nullptr;
@@ -83,16 +28,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     _In_ LPWSTR    lpCmdLine,
     _In_ int       nCmdShow)
 {
-
-
-    MyPtr<int> myptr;
-
-    int* pInt = myptr;
-
-    qTest t;
-    int a = t;
-    float f = t;
-
 
 
     g_hInst = hInstance;    // 인스턴스 핸들을 전역 변수에 저장합니다.

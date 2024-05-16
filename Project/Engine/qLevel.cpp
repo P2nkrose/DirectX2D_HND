@@ -8,13 +8,21 @@ qLevel::qLevel()
 {
 	for (int i = 0; i < MAX_LAYER; ++i)
 	{
-		m_Layer[i] = new qLayer;
+		m_Layer[i] = new qLayer(i);
 	}
 }
 
 qLevel::~qLevel()
 {
 	Delete_Array(m_Layer);
+}
+
+void qLevel::Begin()
+{
+	for (int i = 0; i < MAX_LAYER; ++i)
+	{
+		m_Layer[i]->Begin();
+	}
 }
 
 void qLevel::Tick()
@@ -39,4 +47,9 @@ void qLevel::Render()
 	{
 		m_Layer[i]->Render();
 	}
+}
+
+void qLevel::AddObject(int LayerIdx, qGameObject* _Object)
+{
+	m_Layer[LayerIdx]->AddObject(_Object);
 }

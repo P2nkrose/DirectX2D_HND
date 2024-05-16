@@ -82,6 +82,48 @@
     <Filter Include="05. Level">
       <UniqueIdentifier>{f25fe03a-98d6-417e-9afe-93603162b85a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="08. Component\01. Transform">
+      <UniqueIdentifier>{6d3a4d0d-541b-45ab-bf19-6af1b126a817}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08. Component\02. Collider2D">
+      <UniqueIdentifier>{45e051d8-edbf-4a0b-b70b-baef282c1876}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08. Component\03. Collider3D">
+      <UniqueIdentifier>{a0fb8b3c-c015-4bc6-802e-09242fa13ae7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08. Component\04. Animator2D">
+      <UniqueIdentifier>{a15c471f-5b92-4c5c-b9f4-4d35de60cd3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08. Component\05. Animator3D">
+      <UniqueIdentifier>{0c51033f-1870-4aa5-8fbc-8d87efe9e8fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08. Component\06. RigidBody">
+      <UniqueIdentifier>{19a16b50-341c-498a-b2c5-acd6df143a9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08. Component\07. Camera">
+      <UniqueIdentifier>{2a205460-dd5d-4d5b-be32-6b3732d17c65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08. Component\RenderComponent">
+      <UniqueIdentifier>{519d3178-2a7d-4e89-912e-dada15757b8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08. Component\RenderComponent\01. MeshRender">
+      <UniqueIdentifier>{e0c21257-382d-4a66-b3b2-77148ea2ecc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08. Component\RenderComponent\02. TileMap">
+      <UniqueIdentifier>{d85d8a15-a1ff-4756-89fb-0cf0dee253d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08. Component\RenderComponent\03. ParticleSystem">
+      <UniqueIdentifier>{b97cdf5a-8799-4d0c-9b0e-e7434ec0aafe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08. Component\RenderComponent\04. Decal">
+      <UniqueIdentifier>{1095aa69-fe34-4927-aedc-4730dade805c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08. Component\RenderComponent\05. SkyBox">
+      <UniqueIdentifier>{fc00d235-2376-412e-a8bc-3e66ca1a5e41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08. Component\RenderComponent\06. LandScape">
+      <UniqueIdentifier>{0ad125ba-f467-4dbd-bc2a-84e881261706}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -169,6 +211,21 @@
     <ClInclude Include="..\..\..\TeacherSVN\Project\Engine\qTaskMgr.h">
       <Filter>04. Manager\TaskMgr</Filter>
     </ClInclude>
+    <ClInclude Include="qComponent.h">
+      <Filter>08. Component</Filter>
+    </ClInclude>
+    <ClInclude Include="components.h">
+      <Filter>01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="qTransform.h">
+      <Filter>08. Component\01. Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="qRenderComponent.h">
+      <Filter>08. Component\RenderComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="qMeshRender.h">
+      <Filter>08. Component\RenderComponent\01. MeshRender</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -231,6 +288,18 @@
     </ClCompile>
     <ClCompile Include="..\..\..\TeacherSVN\Project\Engine\qTaskMgr.cpp">
       <Filter>04. Manager\TaskMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="qComponent.cpp">
+      <Filter>08. Component</Filter>
+    </ClCompile>
+    <ClCompile Include="qTransform.cpp">
+      <Filter>08. Component\01. Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="qRenderComponent.cpp">
+      <Filter>08. Component\RenderComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="qMeshRender.cpp">
+      <Filter>08. Component\RenderComponent\01. MeshRender</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -3,12 +3,21 @@
 
 #include "qGameObject.h"
 
-qLayer::qLayer()
+qLayer::qLayer(int _LayerIdx)
+	: m_LayerIdx(_LayerIdx)
 {
 }
 
 qLayer::~qLayer()
 {
+}
+
+void qLayer::Begin()
+{
+	for (size_t i = 0; i < m_Parents.size(); ++i)
+	{
+		m_Parents[i]->Tick();
+	}
 }
 
 void qLayer::Tick()

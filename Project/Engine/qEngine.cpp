@@ -18,7 +18,7 @@ qEngine::qEngine()
 
 qEngine::~qEngine()
 {
-	TempRelease();
+
 }
 
 int qEngine::Init(HWND _wnd, POINT _ptResolution)
@@ -41,11 +41,6 @@ int qEngine::Init(HWND _wnd, POINT _ptResolution)
 	qLevelMgr::GetInst()->Init();
 
 
-	if (FAILED(TempInit()))
-	{
-		MessageBox(nullptr, L"TempInit 실패", L"qEngine 초기화 실패", MB_OK);
-		return E_FAIL;
-	}
 
 	return S_OK;
 }
@@ -55,16 +50,12 @@ void qEngine::Progress()
 	// Manager
 	qKeyMgr::GetInst()->Tick();
 	qTimeMgr::GetInst()->Tick();
-
 	qLevelMgr::GetInst()->Progress();
-	TempTick();
+
 	
 	// Render
 	qDevice::GetInst()->Clear();
-
 	qLevelMgr::GetInst()->Render();
-	TempRender();
-
 	qDevice::GetInst()->Present();
 }
 

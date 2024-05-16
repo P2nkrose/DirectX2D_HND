@@ -36,33 +36,25 @@ void Delete_Map(map<T1, T2>& _map)
 }
 
 
-// º¯¼ö ÅÛÇÃ¸´
-template<typename T1, typename T2>
-constexpr bool IsSame = false;
-template<typename T1>
-constexpr bool IsSame<T1, T1> = true;
-
-
-
 #include "assets.h"
 template<typename T>
 ASSET_TYPE GetAssetType()
 {
-	if constexpr (IsSame<T, qMesh>)
+	if constexpr (std::is_same_v<T, qMesh>)
 		return ASSET_TYPE::MESH;
-	//if constexpr (IsSame<T, qMeshData>)
+	//if constexpr (std::is_same_v<T, qMeshData>)
 	//	return ASSET_TYPE::MESH_DATA;
-	//if constexpr (IsSame<T, qMaterial>)
+	//if constexpr (std::is_same_v<T, qMaterial>)
 	//	return ASSET_TYPE::MATERIAL;
-	//if constexpr (IsSame<T, qPrefab>)
+	//if constexpr (std::is_same_v<T, qPrefab>)
 	//	return ASSET_TYPE::PREFAB;
-	//if constexpr (IsSame<T, qTexture>)
+	//if constexpr (std::is_same_v<T, qTexture>)
 	//	return ASSET_TYPE::TEXTURE;
-	//if constexpr (IsSame<T, qSound>)
+	//if constexpr (std::is_same_v<T, qSound>)
 	//	return ASSET_TYPE::SOUND;
-	if constexpr (IsSame<T, qGraphicShader>)
+	if constexpr (std::is_same_v<T, qGraphicShader>)
 		return ASSET_TYPE::GRAPHIC_SHADER;
-	if constexpr (IsSame<T, qComputeShader>)
+	if constexpr (std::is_same_v<T, qComputeShader>)
 		return ASSET_TYPE::COMPUTE_SHADER;
 
 }
