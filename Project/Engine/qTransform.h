@@ -27,8 +27,10 @@ public:
 
 
 private:
-	Vec3	m_RelativePos;
-	Vec3	m_RelativeScale;
-	Vec3	m_RelativeRotation;
+	Vec3		m_RelativePos;
+	Vec3		m_RelativeScale;
+	Vec3		m_RelativeRotation;
+
+	Matrix		m_matWorld;		// 이동, 크기, 회전
 };
 
