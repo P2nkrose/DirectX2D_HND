@@ -35,11 +35,10 @@ void qTransform::Binding()
 	// GPU 에 행렬 데이터를 전달하는 과정에서 발생하는 전치를 미리 예상해서 전치를 하거나
 	// HLSL 에서 행렬 변수를 선언할 때 row_major 를 붙여주어야 한다.
 	
-	tTransform trans = {};
-	trans.matWorld = m_matWorld;
+	g_Trans.matWorld = m_matWorld;
 
 	qConstBuffer* pTransformCB = qDevice::GetInst()->GetConstBuffer(CB_TYPE::TRANSFORM);
 
-	pTransformCB->SetData(&trans);
+	pTransformCB->SetData(&g_Trans);
 	pTransformCB->Binding();
 }

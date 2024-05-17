@@ -15,10 +15,11 @@ public:
 	void Begin();
 	void Tick();
 	void FinalTick();
-	void Render();
+
 
 public:
 	void AddObject(qGameObject* _Object) { m_Parents.push_back(_Object); }
+	const vector<qGameObject*>& GetParentObjects() { return m_Parents; }
 
 private:
 	vector<qGameObject*>	m_Parents;

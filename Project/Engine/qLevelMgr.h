@@ -9,7 +9,9 @@ class qLevelMgr : public qSingleton<qLevelMgr>
 public:
 	void Init();
 	void Progress();
-	void Render();
+
+public:
+	qLevel* GetCurrentLevel() { return m_CurLevel; }
 
 private:
 	qLevel*		m_CurLevel;

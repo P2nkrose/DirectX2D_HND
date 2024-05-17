@@ -7,6 +7,7 @@
 #include "qTimeMgr.h"
 #include "qAssetMgr.h"
 #include "qLevelMgr.h"
+#include "qRenderMgr.h"
 
 #include "Temp.h"
 
@@ -39,7 +40,7 @@ int qEngine::Init(HWND _wnd, POINT _ptResolution)
 	qTimeMgr::GetInst()->Init();
 	qAssetMgr::GetInst()->Init();
 	qLevelMgr::GetInst()->Init();
-
+	qRenderMgr::GetInst()->Init();
 
 
 	return S_OK;
@@ -55,7 +56,7 @@ void qEngine::Progress()
 	
 	// Render
 	qDevice::GetInst()->Clear();
-	qLevelMgr::GetInst()->Render();
+	qRenderMgr::GetInst()->Tick();
 	qDevice::GetInst()->Present();
 }
 

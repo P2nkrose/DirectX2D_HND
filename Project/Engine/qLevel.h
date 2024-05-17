@@ -15,10 +15,10 @@ public:
 	void Begin();
 	void Tick();
 	void FinalTick();
-	void Render();
 
 public:
 	void AddObject(int LayerIdx, qGameObject* _Object);
+	qLayer* GetLayer(int _LayerIdx) { return m_Layer[_LayerIdx]; }
 
 
 private:

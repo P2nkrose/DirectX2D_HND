@@ -4,9 +4,7 @@
 #include "qTimeMgr.h"
 #include "qKeyMgr.h"
 
-#include "qTransform.h"
-#include "qComponent.h"
-#include "qRenderComponent.h"
+#include "components.h"
 
 qGameObject::qGameObject()
 	: m_arrCom{}
@@ -41,39 +39,44 @@ void qGameObject::AddComponent(qComponent* _Component)
 
 void qGameObject::Begin()
 {
+	for (UINT i = 0; i < (UINT)COMPONENT_TYPE::END; ++i)
+	{
+		if (nullptr == m_arrCom[i])
+			continue;
+
+		m_arrCom[i]->Begin();
+	}
 }
 
 void qGameObject::Tick()
 {
-	float dt = qTimeMgr::GetInst()->GetDeltaTime();
-
 	Vec3 vPos = Transform()->GetRelativePos();
 
-	if (qKeyMgr::GetInst()->GetKeyState(KEY::LEFT) == KEY_STATE::PRESSED)
+	if (KEY_PRESSED(KEY::LEFT))
 	{
-		vPos.x -= dt * 1.f;
+		vPos.x -= DT * 1.f;
 	}
 
-	if (qKeyMgr::GetInst()->GetKeyState(KEY::RIGHT) == KEY_STATE::PRESSED)
+	if (KEY_PRESSED(KEY::RIGHT))
 	{
-		vPos.x += dt * 1.f;
+		vPos.x += DT * 1.f;
 	}
 
-	if (qKeyMgr::GetInst()->GetKeyState(KEY::UP) == KEY_STATE::PRESSED)
+	if (KEY_PRESSED(KEY::UP))
 	{
-		vPos.y += dt * 1.f;
+		vPos.y += DT * 1.f;
 	}
 
-	if (qKeyMgr::GetInst()->GetKeyState(KEY::DOWN) == KEY_STATE::PRESSED)
+	if (KEY_PRESSED(KEY::DOWN))
 	{
-		vPos.y -= dt * 1.f;
+		vPos.y -= DT * 1.f;
 	}
 
 	if (qKeyMgr::GetInst()->GetKeyState(KEY::Z) == KEY_STATE::PRESSED)
 	{
 		Vec3 vRot = Transform()->GetRelativeRotation();
 
-		vRot.z += dt * XM_PI * 2.f;
+		vRot.z += DT * XM_PI * 2.f;
 
 		Transform()->SetRelativeRotation(vRot);
 	}

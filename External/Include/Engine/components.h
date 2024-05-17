@@ -6,7 +6,7 @@
 //#include "qAnimator2D.h"
 //#include "qAnimator3D.h"
 //#include "qRigidBody.h"
-//#include "qCamera.h"
+#include "qCamera.h"
 //#include "qStateMachine.h"
 
 #include "qMeshRender.h"

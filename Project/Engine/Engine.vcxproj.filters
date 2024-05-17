@@ -124,6 +124,9 @@
     <Filter Include="08. Component\RenderComponent\06. LandScape">
       <UniqueIdentifier>{0ad125ba-f467-4dbd-bc2a-84e881261706}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. Manager\06. RenderMgr">
+      <UniqueIdentifier>{3485bc40-610e-43ae-923a-c5a99b58e58d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -229,6 +232,12 @@
     <ClInclude Include="Ptr.h">
       <Filter>06. Asset</Filter>
     </ClInclude>
+    <ClInclude Include="qCamera.h">
+      <Filter>08. Component\07. Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="qRenderMgr.h">
+      <Filter>04. Manager\06. RenderMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -303,6 +312,15 @@
     </ClCompile>
     <ClCompile Include="qMeshRender.cpp">
       <Filter>08. Component\RenderComponent\01. MeshRender</Filter>
+    </ClCompile>
+    <ClCompile Include="qCamera.cpp">
+      <Filter>08. Component\07. Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="qRenderMgr.cpp">
+      <Filter>04. Manager\06. RenderMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="extern.cpp">
+      <Filter>01. Header</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

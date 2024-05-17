@@ -41,13 +41,6 @@ void qLevel::FinalTick()
 	}
 }
 
-void qLevel::Render()
-{
-	for (int i = 0; i < MAX_LAYER; ++i)
-	{
-		m_Layer[i]->Render();
-	}
-}
 
 void qLevel::AddObject(int LayerIdx, qGameObject* _Object)
 {
