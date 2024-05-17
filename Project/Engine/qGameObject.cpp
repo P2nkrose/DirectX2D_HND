@@ -69,6 +69,16 @@ void qGameObject::Tick()
 		vPos.y -= dt * 1.f;
 	}
 
+	if (qKeyMgr::GetInst()->GetKeyState(KEY::Z) == KEY_STATE::PRESSED)
+	{
+		Vec3 vRot = Transform()->GetRelativeRotation();
+
+		vRot.z += dt * XM_PI * 2.f;
+
+		Transform()->SetRelativeRotation(vRot);
+	}
+
+
 	Transform()->SetRelativePos(vPos);
 }
 
