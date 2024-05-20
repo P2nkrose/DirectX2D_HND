@@ -28,6 +28,24 @@ void qTransform::FinalTick()
 				  * XMMatrixRotationZ(m_RelativeRotation.z);
 
 	m_matWorld = matScale * matRot * matTranslation;
+
+
+	// 방향 벡터 계산
+	m_RelativeDir[DIR::RIGHT]	= Vec3(1.f, 0.f, 0.f);
+	m_RelativeDir[DIR::UP]		= Vec3(0.f, 1.f, 0.f);
+	m_RelativeDir[DIR::FRONT]	= Vec3(0.f, 0.f, 1.f);
+
+	// HLSL mul (방향벡터 곱해주기)
+	// w 를 1 로 확장
+	//XMVector3TransformCoord(m_RelativeDir[DIR::RIGHT], matRot);
+
+	// w 를 0으로 확장
+	for (int i = 0; i < 3; ++i)
+	{
+		m_RelativeDir[i] = XMVector3TransformNormal(m_RelativeDir[i], matRot);
+		m_RelativeDir[i].Normalize();
+	}
+
 }
 
 void qTransform::Binding()

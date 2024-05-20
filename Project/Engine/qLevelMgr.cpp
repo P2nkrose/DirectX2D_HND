@@ -35,6 +35,12 @@ void qLevelMgr::Init()
 	// 우선순위를 0 : Main Camera로 설정
 	CamObj->Camera()->SetPriority(0);
 
+	// 카메라 레이어 설정 (31번 레이어 제외 모든 레이어를 촬영)
+	// 31번 UI임
+	CamObj->Camera()->SetLayerAll();
+	CamObj->Camera()->SetLayer(31, false);
+
+
 	m_CurLevel->AddObject(0, CamObj);
 
 

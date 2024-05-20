@@ -50,39 +50,11 @@ void qGameObject::Begin()
 
 void qGameObject::Tick()
 {
-	Vec3 vPos = Transform()->GetRelativePos();
-
-	if (KEY_PRESSED(KEY::LEFT))
+	for (UINT i = 0; i < (UINT)COMPONENT_TYPE::END; ++i)
 	{
-		vPos.x -= DT * 1.f;
+		if (nullptr != m_arrCom[i])
+			m_arrCom[i]->Tick();
 	}
-
-	if (KEY_PRESSED(KEY::RIGHT))
-	{
-		vPos.x += DT * 1.f;
-	}
-
-	if (KEY_PRESSED(KEY::UP))
-	{
-		vPos.y += DT * 1.f;
-	}
-
-	if (KEY_PRESSED(KEY::DOWN))
-	{
-		vPos.y -= DT * 1.f;
-	}
-
-	if (qKeyMgr::GetInst()->GetKeyState(KEY::Z) == KEY_STATE::PRESSED)
-	{
-		Vec3 vRot = Transform()->GetRelativeRotation();
-
-		vRot.z += DT * XM_PI * 2.f;
-
-		Transform()->SetRelativeRotation(vRot);
-	}
-
-
-	Transform()->SetRelativePos(vPos);
 }
 
 void qGameObject::FinalTick()
