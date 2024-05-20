@@ -36,6 +36,9 @@ void qCamera::FinalTick()
 
 	// View 행렬을 계산한다.
 	// View 행렬은 World Space -> View Space 로 변경할때 사용하는 행렬
+
+
+
 }
 
 void qCamera::Render()

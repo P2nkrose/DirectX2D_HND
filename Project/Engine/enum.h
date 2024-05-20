@@ -43,3 +43,11 @@ enum class COMPONENT_TYPE
 
 	END,
 };
+
+
+enum DIR
+{
+	RIGHT,
+	UP,
+	FRONT,
+};

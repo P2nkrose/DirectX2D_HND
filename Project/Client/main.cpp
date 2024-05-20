@@ -51,7 +51,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UpdateWindow(hWnd);
 
     // qEngine 객체 초기화
-    if (FAILED(qEngine::GetInst()->Init(hWnd, POINT{1600, 900})))
+    if (FAILED(qEngine::GetInst()->Init(hWnd, POINT{1280, 768})))
     {
         MessageBox(nullptr, L"qEngine 초기화 실패", L"엔진 초기화 실패", MB_OK);
         return 0;
