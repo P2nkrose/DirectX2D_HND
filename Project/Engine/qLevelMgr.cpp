@@ -9,6 +9,8 @@
 #include "qAssetMgr.h"
 #include "assets.h"
 
+#include "qPlayerScript.h"
+
 qLevelMgr::qLevelMgr()
 	: m_CurLevel(nullptr)
 {
@@ -50,9 +52,10 @@ void qLevelMgr::Init()
 	pObject->SetName(L"Player");
 	pObject->AddComponent(new qTransform);
 	pObject->AddComponent(new qMeshRender);
+	pObject->AddComponent(new qPlayerScript);
 
-	pObject->Transform()->SetRelativePos(-0.5f, 0.5f, 0.f);
-	pObject->Transform()->SetRelativeScale(0.2f, 0.2f, 0.2f);
+	pObject->Transform()->SetRelativePos(0.f, 0.0f, 500.f);
+	pObject->Transform()->SetRelativeScale(200.f, 200.f, 1.f);
 	pObject->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
 	pObject->MeshRender()->SetShader(qAssetMgr::GetInst()->FindAsset<qGraphicShader>(L"TestShader"));
 

@@ -12,6 +12,7 @@ struct tTransform
 {
 	Matrix		matWorld;
 	Matrix		matView;
+	Matrix		matProj;
 };
 
 

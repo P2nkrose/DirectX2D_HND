@@ -55,6 +55,7 @@ void qTransform::Binding()
 	
 	g_Trans.matWorld = m_matWorld;
 
+
 	qConstBuffer* pTransformCB = qDevice::GetInst()->GetConstBuffer(CB_TYPE::TRANSFORM);
 
 	pTransformCB->SetData(&g_Trans);

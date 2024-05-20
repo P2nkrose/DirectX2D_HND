@@ -20,6 +20,9 @@ public:
 
 	qConstBuffer* GetConstBuffer(CB_TYPE _Type) { return m_arrCB[(UINT)_Type]; }
 
+public:
+	Vec2 GetResolution() { return m_vResolution; }
+
 private:
 	int CreateSwapChain();
 	int CreateView();

@@ -127,6 +127,12 @@
     <Filter Include="04. Manager\06. RenderMgr">
       <UniqueIdentifier>{3485bc40-610e-43ae-923a-c5a99b58e58d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="08. Component\Script">
+      <UniqueIdentifier>{60632b66-931b-4f9c-ad8a-451e4011454b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts">
+      <UniqueIdentifier>{85d51d25-b4b9-4721-b615-42c9e0367320}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -238,6 +244,12 @@
     <ClInclude Include="qRenderMgr.h">
       <Filter>04. Manager\06. RenderMgr</Filter>
     </ClInclude>
+    <ClInclude Include="qScript.h">
+      <Filter>08. Component\Script</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerScript.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -321,6 +333,12 @@
     </ClCompile>
     <ClCompile Include="extern.cpp">
       <Filter>01. Header</Filter>
+    </ClCompile>
+    <ClCompile Include="qScript.cpp">
+      <Filter>08. Component\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerScript.cpp">
+      <Filter>Scripts</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

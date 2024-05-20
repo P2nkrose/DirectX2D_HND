@@ -3,6 +3,7 @@
 
 class qComponent;
 class qRenderComponent;
+class qScript;
 
 #define GET_COMPONENT(Type, TYPE) class q##Type* Type() { return (q##Type*)GetComponent(COMPONENT_TYPE::TYPE); }
 
@@ -31,5 +32,7 @@ public:
 private:
 	qComponent*			m_arrCom[(UINT)COMPONENT_TYPE::END];
 	qRenderComponent*	m_RenderCom;
+
+	vector<qScript*>	m_vecScript;
 };
 

@@ -17,7 +17,7 @@ void qLayer::Begin()
 {
 	for (size_t i = 0; i < m_Parents.size(); ++i)
 	{
-		m_Parents[i]->Tick();
+		m_Parents[i]->Begin();
 	}
 }
 

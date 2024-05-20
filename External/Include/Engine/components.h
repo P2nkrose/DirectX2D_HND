@@ -14,3 +14,5 @@
 //#include "qDecal.h"
 //#include "qParticleSystem.h"
 //#include "qLandScape.h"
+
+#include "qScript.h"

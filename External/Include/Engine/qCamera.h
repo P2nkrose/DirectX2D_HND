@@ -29,7 +29,12 @@ private:
 	int			m_Priority;		// 우선순위
 	UINT		m_LayerCheck;	// 원하는 레이어만 카메라에 찍히도록 설정
 
+	float		m_Width;
+	float		m_Height;
+
+
 	Matrix		m_matView;
+	Matrix		m_matProj;
 	
 };
 
