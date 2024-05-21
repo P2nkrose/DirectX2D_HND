@@ -10,6 +10,7 @@
 #include "assets.h"
 
 #include "qPlayerScript.h"
+#include "qCameraMoveScript.h"
 
 qLevelMgr::qLevelMgr()
 	: m_CurLevel(nullptr)
@@ -33,6 +34,7 @@ void qLevelMgr::Init()
 	CamObj->SetName(L"MainCamera");
 	CamObj->AddComponent(new qTransform);
 	CamObj->AddComponent(new qCamera);
+	CamObj->AddComponent(new qCameraMoveScript);
 
 	// 우선순위를 0 : Main Camera로 설정
 	CamObj->Camera()->SetPriority(0);
@@ -41,6 +43,8 @@ void qLevelMgr::Init()
 	// 31번 UI임
 	CamObj->Camera()->SetLayerAll();
 	CamObj->Camera()->SetLayer(31, false);
+	//CamObj->Camera()->SetProjType(ORTHOGRAPHIC);
+	CamObj->Camera()->SetProjType(PERSPECTIVE);
 
 
 	m_CurLevel->AddObject(0, CamObj);
@@ -54,7 +58,7 @@ void qLevelMgr::Init()
 	pObject->AddComponent(new qMeshRender);
 	pObject->AddComponent(new qPlayerScript);
 
-	pObject->Transform()->SetRelativePos(0.f, 0.0f, 500.f);
+	pObject->Transform()->SetRelativePos(0.f, 0.0f, 100.f);
 	pObject->Transform()->SetRelativeScale(200.f, 200.f, 1.f);
 	pObject->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
 	pObject->MeshRender()->SetShader(qAssetMgr::GetInst()->FindAsset<qGraphicShader>(L"TestShader"));

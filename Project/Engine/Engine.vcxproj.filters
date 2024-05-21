@@ -133,6 +133,12 @@
     <Filter Include="Scripts">
       <UniqueIdentifier>{85d51d25-b4b9-4721-b615-42c9e0367320}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scripts\01. PlayerScript">
+      <UniqueIdentifier>{3dcf5a91-2d6f-462c-8349-bad69f3fc32f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\02. CameraMoveScript">
+      <UniqueIdentifier>{90bc1b27-1358-4022-a846-44ac873e33a0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -171,7 +177,6 @@
     <ClInclude Include="struct.h">
       <Filter>01. Header</Filter>
     </ClInclude>
-    <ClInclude Include="Temp.h" />
     <ClInclude Include="qEntity.h">
       <Filter>Module</Filter>
     </ClInclude>
@@ -248,7 +253,10 @@
       <Filter>08. Component\Script</Filter>
     </ClInclude>
     <ClInclude Include="qPlayerScript.h">
-      <Filter>Scripts</Filter>
+      <Filter>Scripts\01. PlayerScript</Filter>
+    </ClInclude>
+    <ClInclude Include="qCameraMoveScript.h">
+      <Filter>Scripts\02. CameraMoveScript</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -273,7 +281,6 @@
     <ClCompile Include="qKeyMgr.cpp">
       <Filter>04. Manager\03. KeyMgr</Filter>
     </ClCompile>
-    <ClCompile Include="Temp.cpp" />
     <ClCompile Include="qEntity.cpp">
       <Filter>Module</Filter>
     </ClCompile>
@@ -338,7 +345,10 @@
       <Filter>08. Component\Script</Filter>
     </ClCompile>
     <ClCompile Include="qPlayerScript.cpp">
-      <Filter>Scripts</Filter>
+      <Filter>Scripts\01. PlayerScript</Filter>
+    </ClCompile>
+    <ClCompile Include="qCameraMoveScript.cpp">
+      <Filter>Scripts\02. CameraMoveScript</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

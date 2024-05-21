@@ -9,7 +9,6 @@
 #include "qLevelMgr.h"
 #include "qRenderMgr.h"
 
-#include "Temp.h"
 
 qEngine::qEngine()
 	: m_hWnd(nullptr)

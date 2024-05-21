@@ -19,8 +19,11 @@ qCamera::qCamera()
 	: qComponent(COMPONENT_TYPE::CAMERA)
 	, m_Priority(-1)
 	, m_LayerCheck(0)
+	, m_ProjType(PROJ_TYPE::ORTHOGRAPHIC)
 	, m_Width(0)
 	, m_Height(0)
+	, m_Far(500.f)
+	, m_FOV(XM_PI / 2.f)
 {
 	Vec2 vResolution = qDevice::GetInst()->GetResolution();
 	m_Width = vResolution.x;
@@ -42,22 +45,6 @@ void qCamera::Begin()
 
 void qCamera::FinalTick()
 {
-	// 카메라 이동 Script 에서 동작하게 구현!
-	// =======================================
-
-	//Vec3 vWorldPos = Transform()->GetRelativePos();
-
-	//if (KEY_PRESSED(KEY::A))
-	//	vWorldPos.x -= DT * 1.f;
-	//if (KEY_PRESSED(KEY::D))
-	//	vWorldPos.x += DT * 1.f;
-
-	//Transform()->SetRelativePos(vWorldPos);
-
-	// =======================================
-
-
-
 	// View Space 란 카메라가 좌표계의 기준이 되는 좌표계
 	// 1. 카메라가 원점에 존재
 	// 2. 카메라가 바라보는 방향이 Z축
@@ -70,12 +57,22 @@ void qCamera::FinalTick()
 								  , -Transform()->GetRelativePos().z);
 
 	// Projection Space 투영 좌표계 (NDC)
-	// 1. 직교 투영 (Orthographic)
-	// 투영을 일직선으로
-	// 시야 범위를 NDC 로 압축
-	m_matProj = XMMatrixOrthographicLH(m_Width, m_Height, 1.f, 10000.f);
+	if (PROJ_TYPE::ORTHOGRAPHIC == m_ProjType)
+	{
+		// 1. 직교 투영 (Orthographic)
+		// 투영을 일직선으로
+		// 시야 범위를 NDC 로 압축
+		m_matProj = XMMatrixOrthographicLH(m_Width, m_Height, 1.f, 10000.f);
+	}
+	else
+	{
+		// 2. 원근 투영 (Perspective)
+		float AspectRatio = m_Width / m_Height;
+		m_matProj = XMMatrixPerspectiveFovLH(m_FOV, AspectRatio, 1.f, m_Far);
+	}
+	
 
-	// 2. 원근 투영 (Perspective)
+	
 
 
 }

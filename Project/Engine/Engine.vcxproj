@@ -172,6 +172,7 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="qAsset.h" />
     <ClInclude Include="qAssetMgr.h" />
     <ClInclude Include="qCamera.h" />
+    <ClInclude Include="qCameraMoveScript.h" />
     <ClInclude Include="qComponent.h" />
     <ClInclude Include="qComputeShader.h" />
     <ClInclude Include="qConstBuffer.h" />
@@ -197,7 +198,6 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="SimpleMath.h" />
     <ClInclude Include="singleton.h" />
     <ClInclude Include="struct.h" />
-    <ClInclude Include="Temp.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\TeacherSVN\Project\Engine\qTaskMgr.cpp">
@@ -215,6 +215,7 @@ call EngineHeaderCopy.bat</Command>
     <ClCompile Include="qAsset.cpp" />
     <ClCompile Include="qAssetMgr.cpp" />
     <ClCompile Include="qCamera.cpp" />
+    <ClCompile Include="qCameraMoveScript.cpp" />
     <ClCompile Include="qComponent.cpp" />
     <ClCompile Include="qComputeShader.cpp" />
     <ClCompile Include="qConstBuffer.cpp" />
@@ -237,7 +238,6 @@ call EngineHeaderCopy.bat</Command>
     <ClCompile Include="qShader.cpp" />
     <ClCompile Include="qTimeMgr.cpp" />
     <ClCompile Include="qTransform.cpp" />
-    <ClCompile Include="Temp.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl" />
