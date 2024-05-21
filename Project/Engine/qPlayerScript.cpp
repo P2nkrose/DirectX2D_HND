@@ -34,6 +34,13 @@ void qPlayerScript::Tick()
 		vPos.y -= DT * m_Speed;
 	}
 
+	if (KEY_PRESSED(KEY::Z))
+	{
+		Vec3 vRot = Transform()->GetRelativeRotation();
+		vRot.y += XM_PI * DT;
+		Transform()->SetRelativeRotation(vRot);
+	}
+
 
 	Transform()->SetRelativePos(vPos);
 }
