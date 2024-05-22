@@ -16,6 +16,12 @@ using namespace Microsoft::WRL;
 #pragma comment(lib, "d3d11")
 #pragma comment(lib, "d3dcompiler")
 
+
+// DirectxTex
+
+
+
+
 #include "SimpleMath.h"
 using namespace DirectX;
 using namespace DirectX::SimpleMath;

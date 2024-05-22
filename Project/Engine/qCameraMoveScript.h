@@ -12,6 +12,11 @@ public:
 
 
 private:
+	void OrthoGraphicMove();
+	void PerspectiveMove();
+
+
+private:
 	float		m_CamSpeed;
 };
 
