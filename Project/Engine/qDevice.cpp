@@ -26,7 +26,7 @@ int qDevice::Init(HWND _hWnd, UINT _Width, UINT _Height)
 	m_vResolution.x = (float)_Width;
 	m_vResolution.y = (float)_Height;
 
-	
+
 	// Device, Context 생성
 	UINT Flag = 0;
 
@@ -35,10 +35,10 @@ int qDevice::Init(HWND _hWnd, UINT _Width, UINT _Height)
 #endif
 
 	if (FAILED(D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE
-							   , nullptr, Flag
-							   , nullptr, 0
-							   , D3D11_SDK_VERSION
-							   , m_Device.GetAddressOf(), nullptr, m_Context.GetAddressOf())))
+		, nullptr, Flag
+		, nullptr, 0
+		, D3D11_SDK_VERSION
+		, m_Device.GetAddressOf(), nullptr, m_Context.GetAddressOf())))
 	{
 		MessageBox(nullptr, L"Device, Context 생성 실패", L"장치초기화 실패", MB_OK);
 		return E_FAIL;
@@ -83,7 +83,11 @@ int qDevice::Init(HWND _hWnd, UINT _Width, UINT _Height)
 		return E_FAIL;
 	}
 
-
+	if (FAILED(CreateRasterizeState()))
+	{
+		MessageBox(nullptr, L"레스터라이저 스테이트 생성 실패", L"장치 초기화 실패", MB_OK);
+		return E_FAIL;
+	}
 
 
 	return S_OK;
@@ -214,6 +218,31 @@ int qDevice::CreateConstBuffer()
 
 	m_arrCB[(UINT)CB_TYPE::TRANSFORM] = qCB;
 
+
+	return S_OK;
+}
+
+int qDevice::CreateRasterizeState()
+{
+	D3D11_RASTERIZER_DESC Desc = {};
+
+	// Cull Back
+	m_RSState[(UINT)RS_TYPE::CULL_BACK] = nullptr;
+
+	// Cull Front
+	Desc.CullMode = D3D11_CULL_FRONT;
+	Desc.FillMode = D3D11_FILL_SOLID;
+	DEVICE->CreateRasterizerState(&Desc, m_RSState[(UINT)RS_TYPE::CULL_FRONT].GetAddressOf());
+
+	// Cull None
+	Desc.CullMode = D3D11_CULL_NONE;
+	Desc.FillMode = D3D11_FILL_SOLID;
+	DEVICE->CreateRasterizerState(&Desc, m_RSState[(UINT)RS_TYPE::CULL_NONE].GetAddressOf());
+
+	// Wire Frame
+	Desc.CullMode = D3D11_CULL_NONE;
+	Desc.FillMode = D3D11_FILL_WIREFRAME;
+	DEVICE->CreateRasterizerState(&Desc, m_RSState[(UINT)RS_TYPE::WIRE_FRAME].GetAddressOf());
 
 	return S_OK;
 }

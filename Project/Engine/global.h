@@ -18,7 +18,13 @@ using namespace Microsoft::WRL;
 
 
 // DirectxTex
+#include <DirectxTex/DirectXTex.h>
 
+#ifdef _DEBUG
+#pragma comment(lib, "DirectxTex//DirectXTex_debug.lib")
+#else
+#pragma comment(lib, "DirectxTex//DirectXTex.lib")
+#endif
 
 
 

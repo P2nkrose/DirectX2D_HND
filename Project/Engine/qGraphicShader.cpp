@@ -7,6 +7,7 @@
 qGraphicShader::qGraphicShader()
 	: qShader(ASSET_TYPE::GRAPHIC_SHADER)
 	, m_Topolog(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
+	, m_RSType(RS_TYPE::CULL_BACK)
 {
 }
 
@@ -117,5 +118,7 @@ void qGraphicShader::Binding()
 
 	CONTEXT->VSSetShader(m_VS.Get(), nullptr, 0);
 	CONTEXT->PSSetShader(m_PS.Get(), nullptr, 0);
+
+	CONTEXT->RSSetState(qDevice::GetInst()->GetRSState(m_RSType));
 
 }

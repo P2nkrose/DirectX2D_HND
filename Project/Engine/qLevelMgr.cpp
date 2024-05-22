@@ -44,8 +44,8 @@ void qLevelMgr::Init()
 	CamObj->Camera()->SetLayerAll();
 	CamObj->Camera()->SetLayer(31, false);
 	CamObj->Camera()->SetFar(10000.f);
-	//CamObj->Camera()->SetProjType(ORTHOGRAPHIC);
-	CamObj->Camera()->SetProjType(PERSPECTIVE);
+	CamObj->Camera()->SetProjType(ORTHOGRAPHIC);
+	//CamObj->Camera()->SetProjType(PERSPECTIVE);
 
 
 	m_CurLevel->AddObject(0, CamObj);

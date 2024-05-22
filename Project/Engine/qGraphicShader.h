@@ -14,6 +14,11 @@ public:
 
 	virtual void Binding() override;
 
+
+public:
+	void SetRSType(RS_TYPE _Type) { m_RSType = _Type; }
+
+
 private:
 	// 버텍스 쉐이더 (Vertex Shader)
 	ComPtr<ID3DBlob>				m_VSBlob;
@@ -26,6 +31,8 @@ private:
 	ComPtr<ID3D11InputLayout>		m_Layout;
 
 	D3D11_PRIMITIVE_TOPOLOGY		m_Topolog;
+
+	RS_TYPE							m_RSType;
 
 
 };
