@@ -27,6 +27,10 @@ qLevelMgr::~qLevelMgr()
 
 void qLevelMgr::Init()
 {
+	// Texture 로딩
+	Ptr<qTexture> pTexture = qAssetMgr::GetInst()->Load<qTexture>(L"PlayerTex", L"texture\\Character.png");
+
+
 	m_CurLevel = new qLevel;
 
 	// 카메라 오브젝트

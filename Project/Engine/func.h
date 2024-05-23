@@ -48,8 +48,8 @@ ASSET_TYPE GetAssetType()
 	//	return ASSET_TYPE::MATERIAL;
 	//if constexpr (std::is_same_v<T, qPrefab>)
 	//	return ASSET_TYPE::PREFAB;
-	//if constexpr (std::is_same_v<T, qTexture>)
-	//	return ASSET_TYPE::TEXTURE;
+	if constexpr (std::is_same_v<T, qTexture>)
+		return ASSET_TYPE::TEXTURE;
 	//if constexpr (std::is_same_v<T, qSound>)
 	//	return ASSET_TYPE::SOUND;
 	if constexpr (std::is_same_v<T, qGraphicShader>)
