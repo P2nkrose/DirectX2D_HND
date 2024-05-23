@@ -65,3 +65,21 @@ Ptr<qAsset> qAssetMgr::FindAsset(ASSET_TYPE _Type, const wstring& _Key)
 
 	return iter->second;
 }
+
+Ptr<qTexture> qAssetMgr::CreateTexture(wstring _strKey, UINT _Width, UINT _Height
+									 , DXGI_FORMAT _Format, UINT _Flags, D3D11_USAGE _Usage)
+{
+	// 중복 키 검사
+	Ptr<qTexture> pTexture = FindAsset<qTexture>(_strKey);
+	assert(!pTexture.Get());
+
+	pTexture = new qTexture;
+	if (FAILED(pTexture->Create(_Width, _Height, _Format, _Flags, _Usage)))
+	{
+		MessageBox(nullptr, L"텍스쳐 생성 실패", L"텍스쳐 생성 실패", MB_OK);
+		return nullptr;
+	}
+
+	return pTexture;
+	
+}

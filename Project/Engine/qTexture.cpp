@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "qTexture.h"
 
+#include "qDevice.h"
+
 qTexture::qTexture()
 	: qAsset(ASSET_TYPE::TEXTURE)
 	, m_Desc{}
@@ -57,6 +59,15 @@ int qTexture::Load(const wstring& _FilePath)
 	}
 
 	// SystemMem(ScratchImage) -> GPU(Texture 2D)
+	CreateShaderResourceView( DEVICE
+							, m_Image.GetImages()
+							, m_Image.GetImageCount()
+							, m_Image.GetMetadata()
+							, m_SRV.GetAddressOf());
+
+	m_SRV->GetResource((ID3D11Resource**)m_Tex2D.GetAddressOf());
+
+	m_Tex2D->GetDesc(&m_Desc);
 
 	return S_OK;
 }
@@ -64,4 +75,60 @@ int qTexture::Load(const wstring& _FilePath)
 int qTexture::Save(const wstring& _FilePath)
 {
 	return 0;
+}
+
+int qTexture::Create(UINT _Width, UINT _Height, DXGI_FORMAT _PixelFormat, UINT _Flags, D3D11_USAGE _Usage)
+{
+	m_Desc.Width = _Width;		// Depth Stencil 텍스처는 Render Target 해상도와 반드시 일치해야 한다.
+	m_Desc.Height = _Height;
+	m_Desc.Format = _PixelFormat;
+	m_Desc.ArraySize = 1;
+	m_Desc.BindFlags = _Flags;
+
+	m_Desc.Usage = _Usage;		// System Memory 와의 연계 설정
+
+	if (D3D11_USAGE::D3D11_USAGE_DYNAMIC == _Usage)
+	{
+		m_Desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	}
+	else
+	{
+		m_Desc.CPUAccessFlags = 0;
+	}
+
+	m_Desc.MiscFlags = 0;
+	m_Desc.MipLevels = 1;		// 열화버전 이미지 추가 생성
+
+	m_Desc.SampleDesc.Count = 1;
+	m_Desc.SampleDesc.Quality = 0;
+
+	if (FAILED(DEVICE->CreateTexture2D(&m_Desc, nullptr, m_Tex2D.GetAddressOf())))
+	{
+		return E_FAIL;
+	}
+
+
+
+	// View 생성
+	if (m_Desc.BindFlags & D3D11_BIND_RENDER_TARGET)
+	{
+		DEVICE->CreateRenderTargetView(m_Tex2D.Get(), nullptr, m_RTV.GetAddressOf());
+	}
+
+	if (m_Desc.BindFlags & D3D11_BIND_DEPTH_STENCIL)
+	{
+		DEVICE->CreateDepthStencilView(m_Tex2D.Get(), nullptr, m_DSV.GetAddressOf());
+	}
+
+	if (m_Desc.BindFlags & D3D11_BIND_SHADER_RESOURCE)
+	{
+		DEVICE->CreateShaderResourceView(m_Tex2D.Get(), nullptr, m_SRV.GetAddressOf());
+	}
+
+	if (m_Desc.BindFlags & D3D11_BIND_UNORDERED_ACCESS)
+	{
+		DEVICE->CreateUnorderedAccessView(m_Tex2D.Get(), nullptr, m_UAV.GetAddressOf());
+	}
+
+	return S_OK;
 }

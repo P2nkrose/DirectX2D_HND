@@ -23,6 +23,11 @@ public:
 	template<typename T>
 	void AddAsset(const wstring& _Key, Ptr<T> _Asset);
 
+	// _Flags : D3D11_BIND_FLAG
+	Ptr<qTexture> CreateTexture(wstring _strKey, UINT _Width, UINT _Height
+							  , DXGI_FORMAT _Format, UINT _Flags
+							  , D3D11_USAGE _Usage = D3D11_USAGE::D3D11_USAGE_DEFAULT);
+
 private:
 	map<wstring, Ptr<qAsset>> m_mapAsset[(UINT)ASSET_TYPE::END];
 };

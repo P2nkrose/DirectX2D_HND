@@ -2,6 +2,7 @@
 #include "qDevice.h"
 
 #include "qConstBuffer.h"
+#include "qAssetMgr.h"
 
 qDevice::qDevice()
 	: m_hWnd(nullptr)
@@ -60,7 +61,7 @@ int qDevice::Init(HWND _hWnd, UINT _Width, UINT _Height)
 	}
 
 	// Output Merge State (출력 병합 단계)
-	m_Context->OMSetRenderTargets(1, m_RTView.GetAddressOf(), m_DSView.Get());
+	m_Context->OMSetRenderTargets(1, m_RTView.GetAddressOf(), m_DSTex->GetDSV().Get());
 
 
 	// ViewPort 설정
@@ -97,7 +98,7 @@ void qDevice::Clear()
 {
 	float color[4] = { 0.4f, 0.4f, 0.4f, 1.f };
 	m_Context->ClearRenderTargetView(m_RTView.Get(), color);
-	m_Context->ClearDepthStencilView(m_DSView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
+	m_Context->ClearDepthStencilView(m_DSTex->GetDSV().Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
 }
 
 int qDevice::CreateSwapChain()
@@ -149,32 +150,11 @@ int qDevice::CreateView()
 	//   RenderTarget Texture, DepthStencil Texture 를 생성시킨다.
 	// ===========================================================
 
-	// Swap Chain의 백버퍼 주소를 받아온다.
-	m_SwapChain->GetBuffer(0, _uuidof(ID3D11Texture2D), (void**)m_RTTex.GetAddressOf());
+	m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)m_RTTex.GetAddressOf());
 
-	// Depth Stencil Texture 생성
-	D3D11_TEXTURE2D_DESC Desc = {};
-
-	Desc.Width				= m_vResolution.x;	// DepthStencil 텍스쳐는 Render Target 해상도와 반드시 일치해야 한다.
-	Desc.Height				= m_vResolution.y;
-	Desc.Format				= DXGI_FORMAT_D24_UNORM_S8_UINT;	// Depth 24bit, Stencil 8bit
-	Desc.ArraySize			= 1;
-	Desc.BindFlags			= D3D11_BIND_DEPTH_STENCIL;
-
-	Desc.Usage				= D3D11_USAGE_DEFAULT;	// System Memory 와의 연계 설정
-	Desc.CPUAccessFlags		= 0;
-
-	Desc.MiscFlags			= 0;
-	Desc.MipLevels			= 1;		// 열화버전(낮은 해상도) 이미지 추가 생성
-
-	Desc.SampleDesc.Count	= 1;
-	Desc.SampleDesc.Quality = 0;
-
-	if (FAILED(m_Device->CreateTexture2D(&Desc, nullptr, m_DSTex.GetAddressOf())))
-	{
-		MessageBox(nullptr, L"DepthStencil 텍스쳐 생성 실패", L"View 생성 실패", MB_OK);
-		return E_FAIL;
-	}
+	m_DSTex = qAssetMgr::GetInst()->CreateTexture(L"DepthStencilTex"
+											, (UINT)m_vResolution.x, (UINT)m_vResolution.y
+											, DXGI_FORMAT_D24_UNORM_S8_UINT, D3D11_BIND_DEPTH_STENCIL);
 
 
 	// ===========================================
@@ -187,18 +167,11 @@ int qDevice::CreateView()
 		return E_FAIL;
 	}
 
-	if (FAILED(m_Device->CreateDepthStencilView(m_DSTex.Get(), nullptr, m_DSView.GetAddressOf())))
-	{
-		MessageBox(nullptr, L"DepthStencilView 생성 실패", L"View 생성 실패", MB_OK);
-		return E_FAIL;
-	}
-
 	// View에는 여러가지 종류가 있음
 	// RenderTargetView
 	// DepthStencilView
 	// ShaderResourceView
 	// UnorderedAccessView
-
 
 	return S_OK;
 }
