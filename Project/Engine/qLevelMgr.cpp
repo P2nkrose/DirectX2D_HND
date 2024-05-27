@@ -28,7 +28,7 @@ qLevelMgr::~qLevelMgr()
 void qLevelMgr::Init()
 {
 	// Texture ·Îµù
-	Ptr<qTexture> pTexture = qAssetMgr::GetInst()->Load<qTexture>(L"PlayerTex", L"texture\\Character.png");
+	Ptr<qTexture> pTexture = qAssetMgr::GetInst()->Load<qTexture>(L"PlayerTex", L"texture\\Idle_Left.bmp");
 	pTexture->Binding(0);
 
 	m_CurLevel = new qLevel;

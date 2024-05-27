@@ -2,17 +2,8 @@
 #ifndef _TEST
 #define _TEST
 
-cbuffer OBJECT_POS : register(b0)
-{
-    row_major matrix matWorld;
-    row_major matrix matView;
-    row_major matrix matProj;
-    
-}
+#include "value.fx"
 
-SamplerState g_sam_0 : register(s0);
-
-Texture2D g_tex_0 : register(t0);
 
 // Vertex Shader
 struct VTX_IN
@@ -52,9 +43,9 @@ VTX_OUT VS_Test(VTX_IN _in)
 
 float4 PS_Test(VTX_OUT _in) : SV_Target
 {
-    float4 vColor = g_tex_0.Sample(g_sam_0, _in.vUV);
+    float4 vColor = g_tex_0.Sample(g_sam_1, _in.vUV);
     vColor.a = 0.f;
-    return _in.vColor;
+    return vColor;
 }
 
 #endif

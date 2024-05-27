@@ -7,6 +7,7 @@
 qDevice::qDevice()
 	: m_hWnd(nullptr)
 	, m_arrCB{}
+	, m_Sampler{}
 {
 }
 
@@ -87,6 +88,12 @@ int qDevice::Init(HWND _hWnd, UINT _Width, UINT _Height)
 	if (FAILED(CreateRasterizeState()))
 	{
 		MessageBox(nullptr, L"레스터라이저 스테이트 생성 실패", L"장치 초기화 실패", MB_OK);
+		return E_FAIL;
+	}
+
+	if (FAILED(CreateSamplerState()))
+	{
+		MessageBox(nullptr, L"샘플러 스테이트 생성 실패", L"장치 초기화 실패", MB_OK);
 		return E_FAIL;
 	}
 
@@ -209,6 +216,47 @@ int qDevice::CreateRasterizeState()
 	Desc.CullMode = D3D11_CULL_NONE;
 	Desc.FillMode = D3D11_FILL_WIREFRAME;
 	DEVICE->CreateRasterizerState(&Desc, m_RSState[(UINT)RS_TYPE::WIRE_FRAME].GetAddressOf());
+
+	return S_OK;
+}
+
+int qDevice::CreateSamplerState()
+{
+	D3D11_SAMPLER_DESC Desc = {};
+
+	Desc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+	Desc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+	Desc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+	Desc.Filter = D3D11_FILTER_ANISOTROPIC; // 이방성 필터링
+
+	if (FAILED(DEVICE->CreateSamplerState(&Desc, m_Sampler[0].GetAddressOf())))
+	{
+		return E_FAIL;
+	}
+
+	Desc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+	Desc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+	Desc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+	Desc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT; // 포인트 필터링
+
+	if (FAILED(DEVICE->CreateSamplerState(&Desc, m_Sampler[1].GetAddressOf())))
+	{
+		return E_FAIL;
+	}
+
+	CONTEXT->VSSetSamplers(0, 1, m_Sampler[0].GetAddressOf());
+	CONTEXT->HSSetSamplers(0, 1, m_Sampler[0].GetAddressOf());
+	CONTEXT->DSSetSamplers(0, 1, m_Sampler[0].GetAddressOf());
+	CONTEXT->GSSetSamplers(0, 1, m_Sampler[0].GetAddressOf());
+	CONTEXT->PSSetSamplers(0, 1, m_Sampler[0].GetAddressOf());
+	CONTEXT->CSSetSamplers(0, 1, m_Sampler[0].GetAddressOf());
+
+	CONTEXT->VSSetSamplers(1, 1, m_Sampler[1].GetAddressOf());
+	CONTEXT->HSSetSamplers(1, 1, m_Sampler[1].GetAddressOf());
+	CONTEXT->DSSetSamplers(1, 1, m_Sampler[1].GetAddressOf());
+	CONTEXT->GSSetSamplers(1, 1, m_Sampler[1].GetAddressOf());
+	CONTEXT->PSSetSamplers(1, 1, m_Sampler[1].GetAddressOf());
+	CONTEXT->CSSetSamplers(1, 1, m_Sampler[1].GetAddressOf());
 
 	return S_OK;
 }

@@ -261,6 +261,9 @@
     <ClInclude Include="qTexture.h">
       <Filter>06. Asset\05. Texture</Filter>
     </ClInclude>
+    <ClInclude Include="qMaterial.h">
+      <Filter>06. Asset\03. Material</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -356,6 +359,9 @@
     <ClCompile Include="qTexture.cpp">
       <Filter>06. Asset\05. Texture</Filter>
     </ClCompile>
+    <ClCompile Include="qMaterial.cpp">
+      <Filter>06. Asset\03. Material</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -364,6 +370,9 @@
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="test.fx">
+      <Filter>HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="value.fx">
       <Filter>HLSL</Filter>
     </FxCompile>
   </ItemGroup>

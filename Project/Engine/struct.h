@@ -15,6 +15,13 @@ struct tTransform
 	Matrix		matView;
 	Matrix		matProj;
 };
-
-
 extern tTransform g_Trans;
+
+struct tMtrlConst
+{
+	//int;
+	//float;
+	//Vec2;
+	//Vec4;
+	//Matrix;
+};
