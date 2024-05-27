@@ -16,7 +16,6 @@ public:
 	~qAsset();
 
 	// Asset은 모든 Asset의 부모역할을 한다. 즉, 추상클래스이므로 순수가상함수 생성
-	virtual void Binding() = 0;
 	virtual qAsset* Clone() { return nullptr; }
 
 public:
@@ -37,8 +36,8 @@ private:
 			delete this;
 	}
 
-	virtual int Load(const wstring& _FilePath) { return S_OK; }
-	virtual int Save(const wstring& _FilePath) { return S_OK; }
+	virtual int Load(const wstring& _FilePath) PURE;
+	virtual int Save(const wstring& _FilePath) PURE;
 
 
 private:

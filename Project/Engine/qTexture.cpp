@@ -13,8 +13,10 @@ qTexture::~qTexture()
 {
 }
 
-void qTexture::Binding()
+
+void qTexture::Binding(UINT _RegisterNum)
 {
+	CONTEXT->PSSetShaderResources(_RegisterNum, 1, m_SRV.GetAddressOf());
 }
 
 int qTexture::Load(const wstring& _FilePath)
@@ -108,6 +110,35 @@ int qTexture::Create(UINT _Width, UINT _Height, DXGI_FORMAT _PixelFormat, UINT _
 	}
 
 
+
+	// View 持失
+	if (m_Desc.BindFlags & D3D11_BIND_RENDER_TARGET)
+	{
+		DEVICE->CreateRenderTargetView(m_Tex2D.Get(), nullptr, m_RTV.GetAddressOf());
+	}
+
+	if (m_Desc.BindFlags & D3D11_BIND_DEPTH_STENCIL)
+	{
+		DEVICE->CreateDepthStencilView(m_Tex2D.Get(), nullptr, m_DSV.GetAddressOf());
+	}
+
+	if (m_Desc.BindFlags & D3D11_BIND_SHADER_RESOURCE)
+	{
+		DEVICE->CreateShaderResourceView(m_Tex2D.Get(), nullptr, m_SRV.GetAddressOf());
+	}
+
+	if (m_Desc.BindFlags & D3D11_BIND_UNORDERED_ACCESS)
+	{
+		DEVICE->CreateUnorderedAccessView(m_Tex2D.Get(), nullptr, m_UAV.GetAddressOf());
+	}
+
+	return S_OK;
+}
+
+int qTexture::Create(ComPtr<ID3D11Texture2D> _Tex2D)
+{
+	m_Tex2D = _Tex2D;
+	m_Tex2D->GetDesc(&m_Desc);
 
 	// View 持失
 	if (m_Desc.BindFlags & D3D11_BIND_RENDER_TARGET)

@@ -28,6 +28,9 @@ public:
 							  , DXGI_FORMAT _Format, UINT _Flags
 							  , D3D11_USAGE _Usage = D3D11_USAGE::D3D11_USAGE_DEFAULT);
 
+	Ptr<qTexture> CreateTexture(wstring _strKey, ComPtr<ID3D11Texture2D> _Tex2D);
+
+
 private:
 	map<wstring, Ptr<qAsset>> m_mapAsset[(UINT)ASSET_TYPE::END];
 };

@@ -29,7 +29,7 @@ void qLevelMgr::Init()
 {
 	// Texture ·Îµù
 	Ptr<qTexture> pTexture = qAssetMgr::GetInst()->Load<qTexture>(L"PlayerTex", L"texture\\Character.png");
-
+	pTexture->Binding(0);
 
 	m_CurLevel = new qLevel;
 

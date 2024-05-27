@@ -61,7 +61,7 @@ int qDevice::Init(HWND _hWnd, UINT _Width, UINT _Height)
 	}
 
 	// Output Merge State (출력 병합 단계)
-	m_Context->OMSetRenderTargets(1, m_RTView.GetAddressOf(), m_DSTex->GetDSV().Get());
+	m_Context->OMSetRenderTargets(1, m_RTTex->GetRTV().GetAddressOf(), m_DSTex->GetDSV().Get());
 
 
 	// ViewPort 설정
@@ -97,7 +97,7 @@ int qDevice::Init(HWND _hWnd, UINT _Width, UINT _Height)
 void qDevice::Clear()
 {
 	float color[4] = { 0.4f, 0.4f, 0.4f, 1.f };
-	m_Context->ClearRenderTargetView(m_RTView.Get(), color);
+	m_Context->ClearRenderTargetView(m_RTTex->GetRTV().Get(), color);
 	m_Context->ClearDepthStencilView(m_DSTex->GetDSV().Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
 }
 
@@ -150,22 +150,15 @@ int qDevice::CreateView()
 	//   RenderTarget Texture, DepthStencil Texture 를 생성시킨다.
 	// ===========================================================
 
-	m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)m_RTTex.GetAddressOf());
+	// 스왚체인의 백버퍼의 주소를 받아온다.
+	ComPtr<ID3D11Texture2D> RenderTargetTex;
+	m_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)RenderTargetTex.GetAddressOf());
+	m_RTTex = qAssetMgr::GetInst()->CreateTexture(L"RenderTargetTex", RenderTargetTex);
 
+	// DepthStencil 텍스쳐 생성
 	m_DSTex = qAssetMgr::GetInst()->CreateTexture(L"DepthStencilTex"
 											, (UINT)m_vResolution.x, (UINT)m_vResolution.y
 											, DXGI_FORMAT_D24_UNORM_S8_UINT, D3D11_BIND_DEPTH_STENCIL);
-
-
-	// ===========================================
-	//    RenderTargetView, DepthStencilView 생성
-	// ===========================================
-
-	if (FAILED(m_Device->CreateRenderTargetView(m_RTTex.Get(), nullptr, m_RTView.GetAddressOf())))
-	{
-		MessageBox(nullptr, L"RenderTargetView 생성 실패", L"View 생성 실패", MB_OK);
-		return E_FAIL;
-	}
 
 	// View에는 여러가지 종류가 있음
 	// RenderTargetView

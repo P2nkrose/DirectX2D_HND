@@ -43,8 +43,8 @@ private:
 
 	ComPtr<IDXGISwapChain>				m_SwapChain;	// 렌더링된 이미지를 사용자에게 표시
 
-	ComPtr<ID3D11Texture2D>				m_RTTex;		// 랜더타겟 텍스처 텍스처 리소스의 속성을 가져옴
-	ComPtr<ID3D11RenderTargetView>		m_RTView;		// 리소스 데이터에 액세스하기 위한 렌더링 대상 뷰를 만듬
+	Ptr<qTexture>						m_RTTex;		// 랜더타겟 텍스처 텍스처 리소스의 속성을 가져옴
+														// 리소스 데이터에 액세스하기 위한 렌더링 대상 뷰를 만듬
 
 	Ptr<qTexture>						m_DSTex;		// 텍스처 리소스의 속성을 가져옴
 
