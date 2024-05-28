@@ -14,15 +14,15 @@ public:
 
 public:
 	void SetMesh(Ptr<qMesh> _Mesh) { m_Mesh = _Mesh; }
-	void SetShader(Ptr<qGraphicShader> _Shader) { m_Shader = _Shader; }
+	void SetMaterial(Ptr<qMaterial> _Mtrl) { m_Mtrl = _Mtrl; }
 
 	Ptr<qMesh> GetMesh() { return m_Mesh; }
-	Ptr<qGraphicShader> GetShader() { return m_Shader; }
+	Ptr<qMaterial> GetMaterial() { return m_Mtrl; }
 
 
 private:
 	Ptr<qMesh>					m_Mesh;
-	Ptr<qGraphicShader>			m_Shader;
+	Ptr<qMaterial>				m_Mtrl;
 };
 
 	

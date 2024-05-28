@@ -44,8 +44,8 @@ ASSET_TYPE GetAssetType()
 		return ASSET_TYPE::MESH;
 	//if constexpr (std::is_same_v<T, qMeshData>)
 	//	return ASSET_TYPE::MESH_DATA;
-	//if constexpr (std::is_same_v<T, qMaterial>)
-	//	return ASSET_TYPE::MATERIAL;
+	if constexpr (std::is_same_v<T, qMaterial>)
+		return ASSET_TYPE::MATERIAL;
 	//if constexpr (std::is_same_v<T, qPrefab>)
 	//	return ASSET_TYPE::PREFAB;
 	if constexpr (std::is_same_v<T, qTexture>)

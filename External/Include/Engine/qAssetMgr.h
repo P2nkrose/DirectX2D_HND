@@ -32,6 +32,15 @@ public:
 
 
 private:
+	void CreateEngineMesh();
+	void CreateEngineMaterial();
+	void CreateEngineTexture();
+	void CreateEngineGraphicShader();
+	void CreateEngineComputeShader();
+
+
+
+private:
 	map<wstring, Ptr<qAsset>> m_mapAsset[(UINT)ASSET_TYPE::END];
 };
 

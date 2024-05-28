@@ -36,14 +36,11 @@ void qPlayerScript::Tick()
 
 	if (KEY_PRESSED(KEY::Z))
 	{
-		Vec3 vScale = Transform()->GetRelativeScale();
-		vScale.x += DT * 100.f;
-		vScale.y += DT * 100.f;
-		Transform()->SetRelativeScale(vScale);
-
-		//Vec3 vRot = Transform()->GetRelativeRoatation();
-		//vRot.y += XM_PI * DT;
-		//Transform()->SetRelativeRotation(vRot);
+		MeshRender()->GetMaterial()->SetScalarParam(INT_0, 1);
+	}
+	else
+	{
+		MeshRender()->GetMaterial()->SetScalarParam(INT_0, 0);
 	}
 
 

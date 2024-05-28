@@ -362,6 +362,9 @@
     <ClCompile Include="qMaterial.cpp">
       <Filter>06. Asset\03. Material</Filter>
     </ClCompile>
+    <ClCompile Include="qAssetInit.cpp">
+      <Filter>04. Manager\05. AssetMgr</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -369,10 +372,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="test.fx">
+    <FxCompile Include="std2d.fx">
       <Filter>HLSL</Filter>
     </FxCompile>
     <FxCompile Include="value.fx">
+      <Filter>HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="func.fx">
       <Filter>HLSL</Filter>
     </FxCompile>
   </ItemGroup>

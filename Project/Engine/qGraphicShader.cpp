@@ -8,6 +8,8 @@ qGraphicShader::qGraphicShader()
 	: qShader(ASSET_TYPE::GRAPHIC_SHADER)
 	, m_Topolog(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
 	, m_RSType(RS_TYPE::CULL_BACK)
+	, m_DSType(DS_TYPE::LESS)
+	, m_BSType(BS_TYPE::DEFAULT)
 {
 }
 
@@ -128,5 +130,7 @@ void qGraphicShader::Binding()
 	CONTEXT->PSSetShader(m_PS.Get(), nullptr, 0);
 
 	CONTEXT->RSSetState(qDevice::GetInst()->GetRSState(m_RSType));
+	CONTEXT->OMSetDepthStencilState(qDevice::GetInst()->GetDSState(m_DSType), 0);
+	CONTEXT->OMSetBlendState(qDevice::GetInst()->GetBSState(m_BSType), nullptr, 0xffffffff);
 
 }

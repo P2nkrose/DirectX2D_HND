@@ -97,6 +97,18 @@ int qDevice::Init(HWND _hWnd, UINT _Width, UINT _Height)
 		return E_FAIL;
 	}
 
+	if (FAILED(CreateDepthStencilState()))
+	{
+		MessageBox(nullptr, L"DepthStencil 스테이트 생성 실패", L"장치 초기화 실패", MB_OK);
+		return E_FAIL;
+	}
+
+	if (FAILED(CreateBlendState()))
+	{
+		MessageBox(nullptr, L"Blend 스테이트 생성 실패", L"장치 초기화 실패", MB_OK);
+		return E_FAIL;
+	}
+
 
 	return S_OK;
 }
@@ -178,18 +190,29 @@ int qDevice::CreateView()
 
 int qDevice::CreateConstBuffer()
 {
-	qConstBuffer* qCB = nullptr;
+	qConstBuffer* pCB = nullptr;
 
-	// 상수버퍼 생성
-	qCB = new qConstBuffer;
+	// 월드, 뷰, 투영 행렬 전달
+	pCB = new qConstBuffer;
 	
-	if(FAILED(qCB->Create(CB_TYPE::TRANSFORM, sizeof(tTransform))))
+	if(FAILED(pCB->Create(CB_TYPE::TRANSFORM, sizeof(tTransform))))
 	{
 		MessageBox(nullptr, L"상수버퍼 생성 실패", L"View 생성 실패", MB_OK);
 		return E_FAIL;
 	}
 
-	m_arrCB[(UINT)CB_TYPE::TRANSFORM] = qCB;
+	m_arrCB[(UINT)CB_TYPE::TRANSFORM] = pCB;
+
+	pCB = new qConstBuffer;
+	if (FAILED(pCB->Create(CB_TYPE::MATERIAL, sizeof(tMtrlConst))))
+	{
+		MessageBox(nullptr, L"상수버퍼 생성 실패", L"초기화 실패", MB_OK);
+		return E_FAIL;
+	}
+
+	m_arrCB[(UINT)CB_TYPE::MATERIAL] = pCB;
+
+
 
 
 	return S_OK;
@@ -218,6 +241,123 @@ int qDevice::CreateRasterizeState()
 	DEVICE->CreateRasterizerState(&Desc, m_RSState[(UINT)RS_TYPE::WIRE_FRAME].GetAddressOf());
 
 	return S_OK;
+}
+
+int qDevice::CreateDepthStencilState()
+{
+	D3D11_DEPTH_STENCIL_DESC Desc = {};
+
+	// Less : 더 작은 깊이가 통과
+	m_DSState[(UINT)DS_TYPE::LESS] = nullptr;
+
+
+	// Less Equal : 깊이가 작거나 같으면 통과
+	Desc.DepthEnable = true;								// 깊이 판정을 진행
+	Desc.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;			// 깊이 판정 방식
+	Desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;		// 깊이 판정을 성공시 깊이 기록여부
+	Desc.StencilEnable = false;
+
+	if (FAILED(DEVICE->CreateDepthStencilState(&Desc, m_DSState[(UINT)DS_TYPE::LESS_EQUAL].GetAddressOf())))
+	{
+		return E_FAIL;
+	}
+
+
+	// Greater : 더 큰 깊이가 통과
+	Desc.DepthEnable = true;
+	Desc.DepthFunc = D3D11_COMPARISON_GREATER;
+	Desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+	Desc.StencilEnable = false;
+
+	if (FAILED(DEVICE->CreateDepthStencilState(&Desc, m_DSState[(UINT)DS_TYPE::GREATER].GetAddressOf())))
+	{
+		return E_FAIL;
+	}
+
+
+	// NO_TEST
+	Desc.DepthEnable = true;						// 깊이 판정은 하지만
+	Desc.DepthFunc = D3D11_COMPARISON_ALWAYS;		// 깊이에 상관없이 모두 투영을 통과시킨다
+	Desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+	Desc.StencilEnable = false;
+
+	if (FAILED(DEVICE->CreateDepthStencilState(&Desc, m_DSState[(UINT)DS_TYPE::NO_TEST].GetAddressOf())))
+	{
+		return E_FAIL;
+	}
+
+
+	// NO_TEST_NO_WRITE
+	Desc.DepthEnable = true;
+	Desc.DepthFunc = D3D11_COMPARISON_ALWAYS;				// 모두 통과시키지만
+	Desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;		// 자신의 깊이 기록을 하지 않는다
+	Desc.StencilEnable = false;
+
+	if (FAILED(DEVICE->CreateDepthStencilState(&Desc, m_DSState[(UINT)DS_TYPE::NO_TEST_NO_WRITE].GetAddressOf())))
+	{
+		return E_FAIL;
+	}
+
+	return S_OK;
+
+}
+
+int qDevice::CreateBlendState()
+{
+	D3D11_BLEND_DESC Desc = {};
+
+	// Default
+	m_BSState[(UINT)BS_TYPE::DEFAULT] = nullptr;
+
+
+	// AlphaBlend
+	Desc.AlphaToCoverageEnable = true;		// true로 하게되면 discard 처럼 알파값이 자동으로 깊이판정안함
+	Desc.IndependentBlendEnable = false;
+
+	Desc.RenderTarget[0].BlendEnable = true;
+	Desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+
+	// Src(Pixel RGB) * Alpha  +   Dest(RenderTarget RGB) * (1 - Alpha)
+	Desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+	Desc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;			// 계수
+	Desc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;		// 계수 (인버스)
+
+	Desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+	Desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+	Desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
+
+	if (FAILED(DEVICE->CreateBlendState(&Desc, m_BSState[(UINT)BS_TYPE::ALPHABLEND].GetAddressOf())))
+	{
+		return E_FAIL;
+	}
+
+
+
+
+	// ONE - ONE Blend
+	Desc.AlphaToCoverageEnable = false;
+	Desc.IndependentBlendEnable = false;
+
+	Desc.RenderTarget[0].BlendEnable = true;
+	Desc.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+	// Src(Pixel RGB) * 1  +  Dest(RenderTarget RGB) * 1
+	Desc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+	Desc.RenderTarget[0].SrcBlend = D3D11_BLEND_ONE; // 계수
+	Desc.RenderTarget[0].DestBlend = D3D11_BLEND_ONE; // 계수
+
+	Desc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+	Desc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+	Desc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ONE;
+
+	if (FAILED(DEVICE->CreateBlendState(&Desc, m_BSState[(UINT)BS_TYPE::ONE_ONE].GetAddressOf())))
+	{
+		return E_FAIL;
+	}
+
+	return S_OK;
+
 }
 
 int qDevice::CreateSamplerState()

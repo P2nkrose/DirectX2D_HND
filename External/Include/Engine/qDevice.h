@@ -23,6 +23,10 @@ public:
 	qConstBuffer* GetConstBuffer(CB_TYPE _Type) { return m_arrCB[(UINT)_Type]; }
 	ID3D11RasterizerState* GetRSState(RS_TYPE _Type) { return m_RSState[(UINT)_Type].Get(); }
 
+	ID3D11DepthStencilState* GetDSState(DS_TYPE _Type) { return m_DSState[(UINT)_Type].Get(); }
+	ID3D11BlendState* GetBSState(BS_TYPE _Type) { return m_BSState[(UINT)_Type].Get(); }
+
+
 public:
 	Vec2 GetResolution() { return m_vResolution; }
 
@@ -31,6 +35,10 @@ private:
 	int CreateView();
 	int CreateConstBuffer();
 	int CreateRasterizeState();
+
+	int CreateDepthStencilState();
+	int CreateBlendState();
+
 	int CreateSamplerState();
 
 
@@ -52,8 +60,8 @@ private:
 	ComPtr<ID3D11RasterizerState>		m_RSState[(UINT)RS_TYPE::END];	// 레스터라이져 타입을 정하기(컬링 정하기)
 	ComPtr<ID3D11SamplerState>			m_Sampler[2];	// 샘플러 상태 인터페이스에는 텍스처 샘플 작업에서 참조하기 위해 파이프라인 의 셰이더 단계에 바인딩할 수 있는 샘플러 상태에 대한 설명
 
-	ComPtr<ID3D11BlendState>			m_BSState;		// 혼합 상태 인터페이스는 출력 병합기에 바인딩할 수 있는 혼합 상태에 대한 설명을 포함
-	ComPtr<ID3D11DepthStencilState>		m_DSState;		// 깊이 스텐실 테스트 중에 텍스처 리소스에 액세스함
+	ComPtr<ID3D11DepthStencilState>		m_DSState[(UINT)DS_TYPE::END];		// 깊이 스텐실 테스트 중에 텍스처 리소스에 액세스함
+	ComPtr<ID3D11BlendState>			m_BSState[(UINT)BS_TYPE::END];		// 혼합 상태 인터페이스는 출력 병합기에 바인딩할 수 있는 혼합 상태에 대한 설명을 포함
 
 
 

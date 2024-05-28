@@ -27,9 +27,15 @@ qLevelMgr::~qLevelMgr()
 
 void qLevelMgr::Init()
 {
-	// Texture 로딩
-	Ptr<qTexture> pTexture = qAssetMgr::GetInst()->Load<qTexture>(L"PlayerTex", L"texture\\Idle_Left.bmp");
-	pTexture->Binding(0);
+	// Std2D Mtrl
+	Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
+	Ptr<qMaterial> pAlphaBlendMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DAlphaBlendMtrl");
+
+	Ptr<qTexture> pTexture = qAssetMgr::GetInst()->Load<qTexture>(L"PlayerTex", L"texture\\Character.png");
+
+
+	pAlphaBlendMtrl->SetTexParam(TEX_0, pTexture);
+	
 
 	m_CurLevel = new qLevel;
 
@@ -51,12 +57,15 @@ void qLevelMgr::Init()
 	CamObj->Camera()->SetProjType(ORTHOGRAPHIC);
 	//CamObj->Camera()->SetProjType(PERSPECTIVE);
 
-
 	m_CurLevel->AddObject(0, CamObj);
 
 
-	// 플레이어 오브젝트
+	// ------------------------------------------------
+
+
 	qGameObject* pObject = nullptr;
+
+	// 플레이어 오브젝트
 	pObject = new qGameObject;
 	pObject->SetName(L"Player");
 	pObject->AddComponent(new qTransform);
@@ -65,8 +74,27 @@ void qLevelMgr::Init()
 
 	pObject->Transform()->SetRelativePos(0.f, 0.0f, 100.f);
 	pObject->Transform()->SetRelativeScale(200.f, 200.f, 1.f);
+	
 	pObject->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	pObject->MeshRender()->SetShader(qAssetMgr::GetInst()->FindAsset<qGraphicShader>(L"TestShader"));
+	pObject->MeshRender()->SetMaterial(pAlphaBlendMtrl);
+
+	m_CurLevel->AddObject(0, pObject);
+
+
+
+
+	// 몬스터 오브젝트
+	pObject = new qGameObject;
+	pObject->SetName(L"Monster");
+	pObject->AddComponent(new qTransform);
+	pObject->AddComponent(new qMeshRender);
+
+
+	pObject->Transform()->SetRelativePos(100.f, 0.0f, 200.f);
+	pObject->Transform()->SetRelativeScale(200.f, 200.f, 1.f);
+
+	pObject->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pObject->MeshRender()->SetMaterial(pMtrl);
 
 	m_CurLevel->AddObject(0, pObject);
 
