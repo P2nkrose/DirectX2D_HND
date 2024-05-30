@@ -52,13 +52,47 @@ void qAssetMgr::CreateEngineMesh()
 	pMesh->Create(arrVtx, 4, arrIdx, 6);
 	AddAsset(L"RectMesh", pMesh);
 
-	// 쉐이더 생성
-	Ptr<qGraphicShader> pShader = nullptr;
-	pShader = new qGraphicShader;
-	pShader->CreateVertexShader(L"shader\\test.fx", "VS_Test");
-	pShader->CreatePixelShader(L"shader\\test.fx", "PS_Test");
-	pShader->SetRSType(RS_TYPE::CULL_NONE);
-	AddAsset(L"TestShader", pShader);
+
+	// CircleMesh
+	vector<Vtx> vecVtx;
+	vector<UINT> vecIdx;
+	Vtx v;
+
+	int Slice = 40;
+	float fTheta = XM_2PI / Slice;
+	float Radius = 0.5f;
+
+	// 중심점
+	v.vPos = Vec3(0.f, 0.f, 0.f);
+	v.vUV = Vec2(0.5f, 0.5f);
+	v.vColor = Vec4(1.f, 1.f, 1.f, 1.f);
+	vecVtx.push_back(v);
+
+	// 테두리
+	float Angle = 0.f;
+	for (int i = 0; i < Slice + 1; ++i)
+	{
+		v.vPos = Vec3(Radius * cosf(Angle), Radius * sinf(Angle), 0.f);
+		v.vUV = Vec2(v.vPos.x + 0.5f, -(v.vPos.y - 0.5f));
+		v.vColor = Vec4(1.f, 1.f, 1.f, 1.f);
+		vecVtx.push_back(v);
+
+		Angle += fTheta;
+	}
+
+
+	// 인덱스
+	for (int i = 0; i < Slice; ++i)
+	{
+		vecIdx.push_back(0);
+		vecIdx.push_back(i + 2);
+		vecIdx.push_back(i + 1);
+	}
+
+	pMesh = new qMesh;
+	pMesh->Create(vecVtx.data(), (UINT)vecVtx.size(), vecIdx.data(), (UINT)vecIdx.size());
+	AddAsset(L"CircleMesh", pMesh);
+
 }
 
 void qAssetMgr::CreateEngineTexture()
@@ -73,7 +107,10 @@ void qAssetMgr::CreateEngineGraphicShader()
 	pShader = new qGraphicShader;
 	pShader->CreateVertexShader(L"shader\\std2d.fx", "VS_Std2D");
 	pShader->CreatePixelShader(L"shader\\std2d.fx", "PS_Std2D");
+
 	pShader->SetRSType(RS_TYPE::CULL_NONE);
+	pShader->SetDSType(DS_TYPE::LESS);
+	pShader->SetBSType(BS_TYPE::DEFAULT);
 
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_MASKED);
 
@@ -83,7 +120,7 @@ void qAssetMgr::CreateEngineGraphicShader()
 	// Std2DAlphaBlend
 	pShader = new qGraphicShader;
 	pShader->CreateVertexShader(L"shader\\std2d.fx", "VS_Std2D");
-	pShader->CreatePixelShader(L"shader\\std2d.fx", "PS_Std2D");
+	pShader->CreatePixelShader(L"shader\\std2d.fx", "PS_Std2D_Alphablend");
 
 	pShader->SetRSType(RS_TYPE::CULL_NONE);
 	pShader->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
@@ -92,6 +129,21 @@ void qAssetMgr::CreateEngineGraphicShader()
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_TRANSPARENT);
 
 	AddAsset(L"Std2DAlphaBlendShader", pShader);
+
+
+	// DebugShapeShader
+	pShader = new qGraphicShader;
+	pShader->CreateVertexShader(L"shader\\debug.fx", "VS_DebugShape");
+	pShader->CreatePixelShader(L"shader\\debug.fx", "PS_DebugShape");
+
+	pShader->SetRSType(RS_TYPE::WIRE_FRAME);
+	//pShader->SetRSType(RS_TYPE::CULL_NONE);
+	pShader->SetDSType(DS_TYPE::LESS);
+	pShader->SetBSType(BS_TYPE::DEFAULT);
+
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_MASKED);
+
+	AddAsset(L"DebugShapeShader", pShader);
 
 }
 
@@ -113,4 +165,9 @@ void qAssetMgr::CreateEngineMaterial()
 	pMtrl = new qMaterial();
 	pMtrl->SetShader(FindAsset<qGraphicShader>(L"Std2DAlphaBlendShader"));
 	AddAsset(L"Std2DAlphaBlendMtrl", pMtrl);
+
+	// DebugShapeMtrl
+	pMtrl = new qMaterial();
+	pMtrl->SetShader(FindAsset<qGraphicShader>(L"DebugShapeShader"));
+	AddAsset(L"DebugShapeMtrl", pMtrl);
 }

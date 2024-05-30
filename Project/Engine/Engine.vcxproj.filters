@@ -365,6 +365,9 @@
     <ClCompile Include="qAssetInit.cpp">
       <Filter>04. Manager\05. AssetMgr</Filter>
     </ClCompile>
+    <ClCompile Include="func.cpp">
+      <Filter>01. Header</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -379,6 +382,9 @@
       <Filter>HLSL</Filter>
     </FxCompile>
     <FxCompile Include="func.fx">
+      <Filter>HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="debug.fx">
       <Filter>HLSL</Filter>
     </FxCompile>
   </ItemGroup>

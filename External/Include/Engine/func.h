@@ -1,6 +1,17 @@
 #pragma once
 
 
+void DrawDebugRect(Vec3 _Pos, Vec3 _Scale, Vec3 _Rot, Vec4 _Color, float _Life, bool _DepthTest);
+void DrawDebugRect(const Matrix& _matWorld, Vec4 _Color, float _Life, bool _DepthTest);
+
+//void DrawDebugCircle();
+//void DrawDebugLine();
+
+//void DrawDebugCube();
+//void DrawDebugSphere();
+
+
+
 template<typename T, int _Size>
 void Delete_Array(T(&_arr)[_Size])
 {

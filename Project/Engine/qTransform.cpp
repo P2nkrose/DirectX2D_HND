@@ -54,7 +54,8 @@ void qTransform::Binding()
 	// HLSL 에서 행렬 변수를 선언할 때 row_major 를 붙여주어야 한다.
 	
 	g_Trans.matWorld = m_matWorld;
-
+	g_Trans.matWV = g_Trans.matWorld * g_Trans.matView;
+	g_Trans.matWVP = g_Trans.matWV * g_Trans.matProj;
 
 	qConstBuffer* pTransformCB = qDevice::GetInst()->GetConstBuffer(CB_TYPE::TRANSFORM);
 

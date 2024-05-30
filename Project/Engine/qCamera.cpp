@@ -9,6 +9,7 @@
 #include "qLevel.h"
 #include "qLayer.h"
 #include "qGameObject.h"
+#include "qRenderComponent.h"
 
 #include "qTimeMgr.h"
 #include "qKeyMgr.h"
@@ -88,18 +89,11 @@ void qCamera::FinalTick()
 		float AspectRatio = m_Width / m_Height;
 		m_matProj = XMMatrixPerspectiveFovLH(m_FOV, AspectRatio, 1.f, m_Far);
 	}
-	
-
-	
-
-
 }
 
-void qCamera::Render()
+// 렌더링 분류하기
+void qCamera::SortGameObject()
 {
-	g_Trans.matView = m_matView;
-	g_Trans.matProj = m_matProj;
-
 	qLevel* pLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 
 	for (UINT i = 0; i < MAX_LAYER; ++i)
@@ -111,7 +105,74 @@ void qCamera::Render()
 		const vector<qGameObject*>& vecObjects = pLayer->GetParentObjects();
 		for (size_t j = 0; j < vecObjects.size(); ++j)
 		{
-			vecObjects[j]->Render();
+			if (nullptr == vecObjects[j]->GetRenderComponent()
+				|| nullptr == vecObjects[j]->GetRenderComponent()->GetMesh()
+				|| nullptr == vecObjects[j]->GetRenderComponent()->GetMaterial()
+				|| nullptr == vecObjects[j]->GetRenderComponent()->GetMaterial()->GetShader())
+			{
+				continue;
+			}
+
+			Ptr<qGraphicShader> pShader = vecObjects[j]->GetRenderComponent()->GetMaterial()->GetShader();
+			SHADER_DOMAIN Domain = pShader->GetDomain();
+
+			switch (Domain)
+			{
+			case DOMAIN_OPAQUE:
+				m_vecOpaque.push_back(vecObjects[j]);
+				break;
+			case DOMAIN_MASKED:
+				m_vecMasked.push_back(vecObjects[j]);
+				break;
+			case DOMAIN_TRANSPARENT:
+				m_vecTransparent.push_back(vecObjects[j]);
+				break;
+			case DOMAIN_PARTICLE:
+				m_vecParticles.push_back(vecObjects[j]);
+				break;
+			}
 		}
 	}
 }
+
+
+void qCamera::Render()
+{
+	// 오브젝트 분류
+	SortGameObject();
+
+
+	// 물체가 렌더링 될때 사용할 View, Proj 행렬
+	g_Trans.matView = m_matView;
+	g_Trans.matProj = m_matProj;
+
+	// Opaque
+	for (size_t i = 0; i < m_vecOpaque.size(); ++i)
+	{
+		m_vecOpaque[i]->Render();
+	}
+
+	// Masked
+	for (size_t i = 0; i < m_vecMasked.size(); ++i)
+	{
+		m_vecMasked[i]->Render();
+	}
+
+	// Transparent
+	for (size_t i = 0; i < m_vecTransparent.size(); ++i)
+	{
+		m_vecTransparent[i]->Render();
+	}
+
+	// Particles
+	for (size_t i = 0; i < m_vecParticles.size(); ++i)
+	{
+		m_vecParticles[i]->Render();
+	}
+
+	m_vecOpaque.clear();
+	m_vecMasked.clear();
+	m_vecTransparent.clear();
+	m_vecParticles.clear();
+}
+

@@ -27,9 +27,10 @@ qLevelMgr::~qLevelMgr()
 
 void qLevelMgr::Init()
 {
-	// Std2D Mtrl
+	// Material
 	Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
 	Ptr<qMaterial> pAlphaBlendMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DAlphaBlendMtrl");
+	Ptr<qMaterial> pDebugShapeMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"DebugShapeMtrl");
 
 	Ptr<qTexture> pTexture = qAssetMgr::GetInst()->Load<qTexture>(L"PlayerTex", L"texture\\Character.png");
 
@@ -76,7 +77,10 @@ void qLevelMgr::Init()
 	pObject->Transform()->SetRelativeScale(200.f, 200.f, 1.f);
 	
 	pObject->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	pObject->MeshRender()->SetMaterial(pAlphaBlendMtrl);
+	pObject->MeshRender()->SetMaterial(pDebugShapeMtrl);
+	pObject->MeshRender()->GetMaterial()->SetScalarParam(INT_1, 1);
+	pObject->MeshRender()->GetMaterial()->SetScalarParam(FLOAT_0, 0.01f);
+	pObject->MeshRender()->GetMaterial()->SetScalarParam(VEC4_0, Vec4(0.f, 1.f, 0.f, 1.f));
 
 	m_CurLevel->AddObject(0, pObject);
 

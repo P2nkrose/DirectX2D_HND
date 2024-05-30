@@ -23,6 +23,7 @@ public:
 public:
 	void AddComponent(qComponent* _Component);
 	qComponent* GetComponent(COMPONENT_TYPE _Type) { return m_arrCom[(UINT)_Type]; }
+	qRenderComponent* GetRenderComponent() { return m_RenderCom; }
 
 	GET_COMPONENT(Transform, TRANSFORM);
 	GET_COMPONENT(MeshRender, MESHRENDER);

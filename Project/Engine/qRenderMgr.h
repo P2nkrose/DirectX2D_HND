@@ -12,10 +12,15 @@ public:
 	void Tick();
 
 	void RegisterCamera(qCamera* _Cam, int _CamPriority);
+	void AddDebugShapeInfo(const tDebugShapeInfo& _Info) { m_DebugShapeList.push_back(_Info); }
 
 
 private:
-	vector<qCamera*>	m_vecCam;
+	void RenderDebugShape();
 
+
+private:
+	vector<qCamera*>			m_vecCam;
+	list<tDebugShapeInfo>		m_DebugShapeList;
 };
 

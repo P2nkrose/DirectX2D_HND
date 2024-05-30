@@ -27,6 +27,8 @@ void qRenderMgr::Tick()
 
 		m_vecCam[i]->Render();
 	}
+
+	RenderDebugShape();
 }
 
 void qRenderMgr::RegisterCamera(qCamera* _Cam, int _CamPriority)
@@ -37,4 +39,9 @@ void qRenderMgr::RegisterCamera(qCamera* _Cam, int _CamPriority)
 
 	// 카메라 우선 순위에 맞는 위치에 넣는다.
 	m_vecCam[_CamPriority] = _Cam;
+}
+
+
+void qRenderMgr::RenderDebugShape()
+{
 }
