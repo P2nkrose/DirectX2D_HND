@@ -264,6 +264,9 @@
     <ClInclude Include="qMaterial.h">
       <Filter>06. Asset\03. Material</Filter>
     </ClInclude>
+    <ClInclude Include="qCollider2D.h">
+      <Filter>08. Component\02. Collider2D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -367,6 +370,9 @@
     </ClCompile>
     <ClCompile Include="func.cpp">
       <Filter>01. Header</Filter>
+    </ClCompile>
+    <ClCompile Include="qCollider2D.cpp">
+      <Filter>08. Component\02. Collider2D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

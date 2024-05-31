@@ -5,7 +5,7 @@
 class qTransform : public qComponent
 {
 public:
-	virtual qTransform* Clone() { return new qTransform; }
+	CLONE(qTransform);
 	qTransform();
 	~qTransform();
 

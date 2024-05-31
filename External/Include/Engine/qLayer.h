@@ -6,7 +6,7 @@ class qGameObject;
 class qLayer : public qEntity
 {
 public:
-	virtual qLayer* Clone() { return new qLayer(*this); }
+	CLONE(qLayer);
 	qLayer(int _LayerIdx);
 	~qLayer();
 
@@ -18,11 +18,14 @@ public:
 
 
 public:
-	void AddObject(qGameObject* _Object) { m_Parents.push_back(_Object); }
+	int GetLayerIdx() { return m_LayerIdx; }
+	void AddObject(qGameObject* _Object);
 	const vector<qGameObject*>& GetParentObjects() { return m_Parents; }
 
 private:
-	vector<qGameObject*>	m_Parents;
+	vector<qGameObject*>	m_Parents;	// 해당 레이어 소속 오브젝트중에서 최상위 부모 오브젝트만 관리
+	vector<qGameObject*>	m_Objects;	// 해당 레이어 소속 오브젝트 중에서 부모 자식 상관없는 모든 오브젝트
+
 	const int				m_LayerIdx;
 };
 

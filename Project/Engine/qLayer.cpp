@@ -37,4 +37,23 @@ void qLayer::FinalTick()
 	}
 }
 
+void qLayer::AddObject(qGameObject* _Object)//, bool _bChildMove)
+{
+	// 1. 오브젝트가 다른 레이어 소속인 경우
+	if (-1 != _Object->GetLayerIdx())
+	{
+		// 기존에 소속된 레이어에서 빠져나와야 한다.
+	}
+
+	// 2. 부모 오브젝트가 있는 경우
+	if (_Object->GetParent())
+	{
+		_Object->m_LayerIdx = m_LayerIdx;
+	}
+	else
+	{
+		m_Parents.push_back(_Object);
+	}
+}
+
 

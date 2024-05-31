@@ -1,4 +1,5 @@
 #pragma once
+#include "pch.h"
 #include "qEntity.h"
 
 class qComponent;
@@ -11,7 +12,11 @@ class qScript;
 class qGameObject : public qEntity
 {
 public:
-	virtual qGameObject* Clone() { return new qGameObject(*this); }
+
+	friend class qLevel;
+	friend class qLayer;
+
+	CLONE(qGameObject);
 	qGameObject();
 	~qGameObject();
 
@@ -25,15 +30,23 @@ public:
 	qComponent* GetComponent(COMPONENT_TYPE _Type) { return m_arrCom[(UINT)_Type]; }
 	qRenderComponent* GetRenderComponent() { return m_RenderCom; }
 
+	qGameObject* GetParent() { return m_Parent; }
+	int GetLayerIdx() { return m_LayerIdx; }
+
+
 	GET_COMPONENT(Transform, TRANSFORM);
 	GET_COMPONENT(MeshRender, MESHRENDER);
 	GET_COMPONENT(Camera, CAMERA);
 
 
 private:
-	qComponent*			m_arrCom[(UINT)COMPONENT_TYPE::END];
-	qRenderComponent*	m_RenderCom;
+	qComponent*				m_arrCom[(UINT)COMPONENT_TYPE::END];
+	qRenderComponent*		m_RenderCom;
+	vector<qScript*>		m_vecScript;
 
-	vector<qScript*>	m_vecScript;
+	qGameObject*			m_Parent;
+	vector<qGameObject*>	m_vecChildren;
+
+	int						m_LayerIdx;		// 소속 레이어의 인덱스 번호
 };
 

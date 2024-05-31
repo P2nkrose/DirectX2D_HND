@@ -9,6 +9,8 @@
 qGameObject::qGameObject()
 	: m_arrCom{}
 	, m_RenderCom(nullptr)
+	, m_Parent(nullptr)
+	, m_LayerIdx(-1)	// -1 : 어느 레이어 소속도 아니다 (레벨 안에 있지 않은 상태)
 {
 }
 
@@ -74,6 +76,12 @@ void qGameObject::Tick()
 	{
 		m_vecScript[i]->Tick();
 	}
+
+	// 자식 오브젝트
+	for (size_t i = 0; i < m_vecChildren.size(); ++i)
+	{
+		m_vecChildren[i]->Tick();
+	}
 }
 
 void qGameObject::FinalTick()
@@ -82,6 +90,15 @@ void qGameObject::FinalTick()
 	{
 		if (nullptr != m_arrCom[i])
 			m_arrCom[i]->FinalTick();
+	}
+	
+	// 레이어 등록
+
+
+	// 자식 오브젝트
+	for (size_t i = 0; i < m_vecChildren.size(); ++i)
+	{
+		m_vecChildren[i]->FinalTick();
 	}
 }
 
