@@ -2,20 +2,34 @@
 #include "qRenderMgr.h"
 
 #include "qCamera.h"
+#include "qTimeMgr.h"
+#include "qAssetMgr.h"
+
+#include "qGameObject.h"
+#include "qTransform.h"
+#include "qMeshRender.h"
+
 
 qRenderMgr::qRenderMgr()
+	: m_DebugObject(nullptr)
 {
 
 }
 
 qRenderMgr::~qRenderMgr()
 {
-
+	if (nullptr != m_DebugObject)
+		delete m_DebugObject;
 }
 
 
 void qRenderMgr::Init()
 {
+	// 디버그 렌더링용 게임 오브젝트
+	m_DebugObject = new qGameObject;
+	m_DebugObject->AddComponent(new qTransform);
+	m_DebugObject->AddComponent(new qMeshRender);
+	m_DebugObject->MeshRender()->SetMaterial(qAssetMgr::GetInst()->FindAsset<qMaterial>(L"DebugShapeMtrl"));
 }
 
 void qRenderMgr::Tick()
@@ -44,4 +58,55 @@ void qRenderMgr::RegisterCamera(qCamera* _Cam, int _CamPriority)
 
 void qRenderMgr::RenderDebugShape()
 {
+	list<tDebugShapeInfo>::iterator iter = m_DebugShapeList.begin();
+
+	for (; iter != m_DebugShapeList.end(); )
+	{
+		// 디버그 요청 모양에 맞는 메시를 가져옴
+		switch ((*iter).Shape)
+		{
+		case DEBUG_SHAPE::RECT:
+			m_DebugObject->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh_Debug"));
+			break;
+		case DEBUG_SHAPE::CIRCLE:
+			m_DebugObject->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"CircleMesh_Debug"));
+			break;
+		case DEBUG_SHAPE::LINE:
+
+			break;
+		case DEBUG_SHAPE::CUBE:
+
+			break;
+		case DEBUG_SHAPE::SPHERE:
+
+			break;
+		}
+
+		// 위치 세팅
+		m_DebugObject->Transform()->SetWorldMatrix((*iter).matWorld);
+
+		// 재질 세팅
+		m_DebugObject->MeshRender()->GetMaterial()->SetScalarParam(VEC4_0, (*iter).vColor);
+
+		// 깊이판정 여부에 따라서, 쉐이더의 깊이판정 방식을 결정한다.
+		if ((*iter).DepthTest)
+			m_DebugObject->MeshRender()->GetMaterial()->GetShader()->SetDSType(DS_TYPE::LESS);
+		else
+			m_DebugObject->MeshRender()->GetMaterial()->GetShader()->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
+
+		// 렌더링
+		m_DebugObject->MeshRender()->Render();
+
+
+		// 수명이 다한 디버그 정보를 삭제
+		(*iter).Age += DT;
+		if ((*iter).LifeTime < (*iter).Age)
+		{
+			iter = m_DebugShapeList.erase(iter);
+		}
+		else
+		{
+			++iter;
+		}
+	}
 }

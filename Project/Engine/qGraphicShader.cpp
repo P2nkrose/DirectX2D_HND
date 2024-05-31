@@ -6,7 +6,7 @@
 
 qGraphicShader::qGraphicShader()
 	: qShader(ASSET_TYPE::GRAPHIC_SHADER)
-	, m_Topolog(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
+	, m_Topology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST)
 	, m_RSType(RS_TYPE::CULL_BACK)
 	, m_DSType(DS_TYPE::LESS)
 	, m_BSType(BS_TYPE::DEFAULT)
@@ -123,7 +123,7 @@ int qGraphicShader::CreatePixelShader(const wstring& _RelativePath, const string
 
 void qGraphicShader::Binding()
 {
-	CONTEXT->IASetPrimitiveTopology(m_Topolog);
+	CONTEXT->IASetPrimitiveTopology(m_Topology);
 	CONTEXT->IASetInputLayout(m_Layout.Get());
 
 	CONTEXT->VSSetShader(m_VS.Get(), nullptr, 0);

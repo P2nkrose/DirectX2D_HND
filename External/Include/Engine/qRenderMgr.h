@@ -2,6 +2,7 @@
 #include "singleton.h"
 
 class qCamera;
+class qGameObject;
 
 class qRenderMgr : public qSingleton<qRenderMgr>
 {
@@ -21,6 +22,8 @@ private:
 
 private:
 	vector<qCamera*>			m_vecCam;
+
+	qGameObject*				m_DebugObject;
 	list<tDebugShapeInfo>		m_DebugShapeList;
 };
 

@@ -58,7 +58,7 @@ int qMesh::Create(Vtx* _VtxSysMem, UINT _VtxCount, UINT* _IdxSysMem, UINT _IdxCo
 
 	// Index
 
-	m_IBDesc.ByteWidth = sizeof(UINT) * 6;
+	m_IBDesc.ByteWidth = sizeof(UINT) * _IdxCount;
 	m_IBDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
 
 	// Index 버퍼가 생성된 이후에 데이터가 변경될 일이 없다.

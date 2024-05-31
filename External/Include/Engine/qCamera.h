@@ -1,7 +1,7 @@
 #pragma once
 #include "qComponent.h"
 
-class qGameObejct;
+class qGameObject;
 
 enum PROJ_TYPE
 {
