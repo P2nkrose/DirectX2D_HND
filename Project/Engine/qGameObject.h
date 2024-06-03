@@ -32,6 +32,12 @@ public:
 
 	qGameObject* GetParent() { return m_Parent; }
 	int GetLayerIdx() { return m_LayerIdx; }
+	
+public:
+	void AddChild(qGameObject* _ChildObject);
+	const vector<qGameObject*>& GetChildren() { return m_vecChildren; }
+
+	void DisconnectWithLayer();
 
 
 	GET_COMPONENT(Transform, TRANSFORM);

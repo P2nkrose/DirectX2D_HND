@@ -47,7 +47,7 @@ void qCameraMoveScript::OrthoGraphicMove()
 	}
 
 
-	Vec3 vFront = Transform()->GetDir(DIR::FRONT);
+	Transform()->SetRelativeRotation(Vec3(0.f, 0.f, 0.f));
 	Vec3 vPos = Transform()->GetRelativePos();
 
 	if (KEY_PRESSED(KEY::W))
@@ -83,8 +83,8 @@ void qCameraMoveScript::PerspectiveMove()
 	}
 
 
-	Vec3 vFront = Transform()->GetDir(DIR::FRONT);
-	Vec3 vRight = Transform()->GetDir(DIR::RIGHT);
+	Vec3 vFront = Transform()->GetWorldDir(DIR::FRONT);
+	Vec3 vRight = Transform()->GetWorldDir(DIR::RIGHT);
 
 	Vec3 vPos = Transform()->GetRelativePos();
 

@@ -41,8 +41,16 @@ void qLevel::FinalTick()
 	}
 }
 
-
-void qLevel::AddObject(int LayerIdx, qGameObject* _Object)
+void qLevel::ClearObject()
 {
-	m_Layer[LayerIdx]->AddObject(_Object);
+	for (UINT i = 0; i < MAX_LAYER; ++i)
+	{
+		m_Layer[i]->ClearObject();
+	}
+}
+
+
+void qLevel::AddObject(int LayerIdx, qGameObject* _Object, bool _bMoveChild)
+{
+	m_Layer[LayerIdx]->AddObject(_Object, _bMoveChild);
 }

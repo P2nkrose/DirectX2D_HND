@@ -16,8 +16,10 @@ public:
 	void Tick();
 	void FinalTick();
 
+	void ClearObject();
+
 public:
-	void AddObject(int LayerIdx, qGameObject* _Object);
+	void AddObject(int LayerIdx, qGameObject* _Object, bool _bMoveChild = false);
 	qLayer* GetLayer(int _LayerIdx) { return m_Layer[_LayerIdx]; }
 
 

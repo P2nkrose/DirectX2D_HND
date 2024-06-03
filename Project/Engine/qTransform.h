@@ -27,16 +27,20 @@ public:
 	Vec3 GetRelativeScale() { return m_RelativeScale; }
 	Vec3 GetRelativeRotation() { return m_RelativeRotation; }
 
-	Vec3 GetDir(DIR _Type) { return m_RelativeDir[_Type]; }
 	const Matrix& GetWorldMat() { return m_matWorld; }
+
+	Vec3 GetRelativeDir(DIR _Type) { return m_RelativeDir[_Type]; }
+	Vec3 GetWorldDir(DIR _Type) { return m_WorldDir[_Type]; }
 
 private:
 	Vec3		m_RelativePos;
 	Vec3		m_RelativeScale;
 	Vec3		m_RelativeRotation;
 
-	Vec3		m_RelativeDir[3] = {};	// 방향
+	Vec3		m_RelativeDir[3];	// 객체 하나당의 방향
+	Vec3		m_WorldDir[3];		// 부모의 이동을 더한 월드에서의 방향
 
-	Matrix		m_matWorld;		// 이동, 크기, 회전
+	Matrix		m_matWorld;			// 이동, 크기, 회전
+	bool		m_IndependentScale;	// 부모의 크기에 영향받지 않음
 };
 

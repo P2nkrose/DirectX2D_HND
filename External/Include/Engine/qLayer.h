@@ -19,8 +19,16 @@ public:
 
 public:
 	int GetLayerIdx() { return m_LayerIdx; }
-	void AddObject(qGameObject* _Object);
+	void AddObject(qGameObject* _Object, bool _bMoveChild);
+	
 	const vector<qGameObject*>& GetParentObjects() { return m_Parents; }
+	const vector<qGameObject*>& GetObjects() { return m_Objects; }
+
+	void ClearObject() { m_Objects.clear(); }
+	void RegisterGameObject(qGameObject* _Object) { m_Objects.push_back(_Object); }
+	void DisconnectWithObject(qGameObject* _Object);
+
+
 
 private:
 	vector<qGameObject*>	m_Parents;	// 해당 레이어 소속 오브젝트중에서 최상위 부모 오브젝트만 관리

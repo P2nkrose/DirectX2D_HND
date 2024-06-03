@@ -54,7 +54,7 @@ void qLevelMgr::Init()
 	// 31번 UI임
 	CamObj->Camera()->SetLayerAll();
 	CamObj->Camera()->SetLayer(31, false);
-	CamObj->Camera()->SetFar(10000.f);
+	CamObj->Camera()->SetFar(100000.f);
 	CamObj->Camera()->SetProjType(ORTHOGRAPHIC);
 	//CamObj->Camera()->SetProjType(PERSPECTIVE);
 
@@ -82,26 +82,24 @@ void qLevelMgr::Init()
 	pObject->MeshRender()->GetMaterial()->SetScalarParam(FLOAT_0, 0.01f);
 	pObject->MeshRender()->GetMaterial()->SetScalarParam(VEC4_0, Vec4(0.f, 1.f, 0.f, 1.f));
 
-	m_CurLevel->AddObject(0, pObject);
+	
+	// Child 오브젝트
+	qGameObject* pChild = new qGameObject;
+	pChild->SetName(L"Child");
 
+	pChild->AddComponent(new qTransform);
+	pChild->AddComponent(new qMeshRender);
 
+	pChild->Transform()->SetRelativePos(1.f, 0.f, 0.f);
+	pChild->Transform()->SetRelativeScale(0.8f, 0.8f, 1.f);
 
+	pChild->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pChild->MeshRender()->SetMaterial(pMtrl);
 
-	// 몬스터 오브젝트
-	pObject = new qGameObject;
-	pObject->SetName(L"Monster");
-	pObject->AddComponent(new qTransform);
-	pObject->AddComponent(new qMeshRender);
-
-
-	pObject->Transform()->SetRelativePos(100.f, 0.0f, 200.f);
-	pObject->Transform()->SetRelativeScale(200.f, 200.f, 1.f);
-
-	pObject->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	pObject->MeshRender()->SetMaterial(pMtrl);
+	pObject->AddChild(pChild);
 
 	m_CurLevel->AddObject(0, pObject);
-
+	
 
 	m_CurLevel->Begin();
 }
@@ -109,5 +107,6 @@ void qLevelMgr::Init()
 void qLevelMgr::Progress()
 {
 	m_CurLevel->Tick();
+	m_CurLevel->ClearObject();
 	m_CurLevel->FinalTick();
 }

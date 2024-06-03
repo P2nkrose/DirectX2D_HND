@@ -4,6 +4,10 @@
 #include "qTimeMgr.h"
 #include "qKeyMgr.h"
 
+#include "qLevelMgr.h"
+#include "qLevel.h"
+#include "qLayer.h"
+
 #include "components.h"
 
 qGameObject::qGameObject()
@@ -18,6 +22,7 @@ qGameObject::~qGameObject()
 {
 	Delete_Array(m_arrCom);
 	Delete_Vec(m_vecScript);
+	Delete_Vec(m_vecChildren);
 }
 
 
@@ -46,6 +51,24 @@ void qGameObject::AddComponent(qComponent* _Component)
 	}
 }
 
+void qGameObject::AddChild(qGameObject* _ChildObject)
+{
+	m_vecChildren.push_back(_ChildObject);
+	_ChildObject->m_Parent = this;
+}
+
+void qGameObject::DisconnectWithLayer()
+{
+	if (nullptr == m_Parent)
+	{
+		qLevel* pLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+		qLayer* pLayer = pLevel->GetLayer(m_LayerIdx);
+		pLayer->DisconnectWithObject(this);
+	}
+
+	m_LayerIdx = -1;
+}
+
 
 
 void qGameObject::Begin()
@@ -61,6 +84,12 @@ void qGameObject::Begin()
 	for (size_t i = 0; i < m_vecScript.size(); ++i)
 	{
 		m_vecScript[i]->Begin();
+	}
+
+	// 자식 오브젝트
+	for (size_t i = 0; i < m_vecChildren.size(); ++i)
+	{
+		m_vecChildren[i]->Begin();
 	}
 }
 
@@ -93,6 +122,11 @@ void qGameObject::FinalTick()
 	}
 	
 	// 레이어 등록
+	assert(-1 != m_LayerIdx);
+	qLevel* pLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+	qLayer* pLayer = pLevel->GetLayer(m_LayerIdx);
+	pLayer->RegisterGameObject(this);
+
 
 
 	// 자식 오브젝트
