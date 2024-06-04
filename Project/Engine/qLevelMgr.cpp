@@ -90,8 +90,9 @@ void qLevelMgr::Init()
 	pChild->AddComponent(new qTransform);
 	pChild->AddComponent(new qMeshRender);
 
-	pChild->Transform()->SetRelativePos(1.f, 0.f, 0.f);
-	pChild->Transform()->SetRelativeScale(0.8f, 0.8f, 1.f);
+	pChild->Transform()->SetRelativePos(400.f, 0.f, 0.f);
+	pChild->Transform()->SetRelativeScale(100.f, 100.f, 1.f);
+	pChild->Transform()->SetIndependentScale(true);
 
 	pChild->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
 	pChild->MeshRender()->SetMaterial(pMtrl);

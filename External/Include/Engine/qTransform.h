@@ -23,6 +23,9 @@ public:
 
 	void SetWorldMatrix(const Matrix& _matWorld) { m_matWorld = _matWorld; }
 
+	void SetIndependentScale(bool _Set) { m_IndependentScale = _Set; }
+	Vec3 GetWorldScale();
+
 	Vec3 GetRelativePos() { return m_RelativePos; }
 	Vec3 GetRelativeScale() { return m_RelativeScale; }
 	Vec3 GetRelativeRotation() { return m_RelativeRotation; }
@@ -31,6 +34,9 @@ public:
 
 	Vec3 GetRelativeDir(DIR _Type) { return m_RelativeDir[_Type]; }
 	Vec3 GetWorldDir(DIR _Type) { return m_WorldDir[_Type]; }
+
+	
+
 
 private:
 	Vec3		m_RelativePos;
