@@ -21,18 +21,21 @@ public:
 public:
 	void SetOffset(Vec3 _Offset) { m_Offset = _Offset; }
 	void SetScale(Vec3 _Scale) { m_Scale = _Scale; }
+	void SetIndependentScale(bool _Set) { m_IndependentScale = _Set; }
 
 	Vec3 GetOffset() { return m_Offset; }
 	Vec3 GetScale() { return m_Scale; }
-	Vec3 GetFinalPos() { return m_FinalPos; }
+	Vec3 GetWorldPos() { return m_matColWorld.Translation(); }
 	int GetOverlapCount() { return m_OverlapCount; }
 
 
 private:
 	Vec3		m_Offset;
-	Vec3		m_Scale;
-	Vec3		m_FinalPos;
-	int			m_OverlapCount;
+	Vec3		m_Scale;			// 배율 or 절대 크기
+	Matrix		m_matColWorld;		// 충돌체의 최종 월드 상태
+	int			m_OverlapCount;		
+
+	bool		m_IndependentScale;	// 오브젝트의 크기에 영향을 받을지 여부
 
 };
 

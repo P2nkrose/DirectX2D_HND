@@ -27,6 +27,8 @@ public:
 	Vec3 GetWorldScale();
 
 	Vec3 GetRelativePos() { return m_RelativePos; }
+	Vec3 GetWorldPos() { return m_matWorld.Translation(); }
+
 	Vec3 GetRelativeScale() { return m_RelativeScale; }
 	Vec3 GetRelativeRotation() { return m_RelativeRotation; }
 

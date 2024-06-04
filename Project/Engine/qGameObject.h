@@ -47,6 +47,7 @@ public:
 	GET_COMPONENT(Transform, TRANSFORM);
 	GET_COMPONENT(MeshRender, MESHRENDER);
 	GET_COMPONENT(Camera, CAMERA);
+	GET_COMPONENT(Collider2D, COLLIDER2D);
 
 
 private:

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "qTransform.h"
-//#include "qCollider2D.h"
+#include "qCollider2D.h"
 //#include "qCollider3D.h"
 //#include "qAnimator2D.h"
 //#include "qAnimator3D.h"

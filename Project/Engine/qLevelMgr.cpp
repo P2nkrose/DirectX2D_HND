@@ -71,10 +71,15 @@ void qLevelMgr::Init()
 	pObject->SetName(L"Player");
 	pObject->AddComponent(new qTransform);
 	pObject->AddComponent(new qMeshRender);
+	pObject->AddComponent(new qCollider2D);
 	pObject->AddComponent(new qPlayerScript);
 
 	pObject->Transform()->SetRelativePos(0.f, 0.0f, 100.f);
 	pObject->Transform()->SetRelativeScale(200.f, 200.f, 1.f);
+
+	pObject->Collider2D()->SetIndependentScale(true);
+	pObject->Collider2D()->SetOffset(Vec3(20.f, 0.f, 0.f));
+	pObject->Collider2D()->SetScale(Vec3(220.f, 220.f, 1.f));
 	
 	pObject->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
 	pObject->MeshRender()->SetMaterial(pMtrl);
@@ -89,10 +94,14 @@ void qLevelMgr::Init()
 
 	pChild->AddComponent(new qTransform);
 	pChild->AddComponent(new qMeshRender);
+	pChild->AddComponent(new qCollider2D);
 
 	pChild->Transform()->SetRelativePos(400.f, 0.f, 0.f);
 	pChild->Transform()->SetRelativeScale(100.f, 100.f, 1.f);
 	pChild->Transform()->SetIndependentScale(true);
+
+	pChild->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pChild->Collider2D()->SetScale(Vec3(1.2f, 1.2f, 1.f));
 
 	pChild->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
 	pChild->MeshRender()->SetMaterial(pMtrl);
