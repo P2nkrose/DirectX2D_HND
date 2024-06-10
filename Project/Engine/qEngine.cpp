@@ -8,6 +8,7 @@
 #include "qAssetMgr.h"
 #include "qLevelMgr.h"
 #include "qRenderMgr.h"
+#include "qCollisionMgr.h"
 
 
 qEngine::qEngine()
@@ -52,6 +53,8 @@ void qEngine::Progress()
 	qTimeMgr::GetInst()->Tick();
 	qLevelMgr::GetInst()->Progress();
 
+	// Collision
+	qCollisionMgr::GetInst()->Tick();
 	
 	// Render
 	qDevice::GetInst()->Clear();

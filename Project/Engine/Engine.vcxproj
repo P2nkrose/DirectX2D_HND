@@ -178,6 +178,7 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="qCamera.h" />
     <ClInclude Include="qCameraMoveScript.h" />
     <ClInclude Include="qCollider2D.h" />
+    <ClInclude Include="qCollisionMgr.h" />
     <ClInclude Include="qComponent.h" />
     <ClInclude Include="qComputeShader.h" />
     <ClInclude Include="qConstBuffer.h" />
@@ -226,6 +227,7 @@ call EngineHeaderCopy.bat</Command>
     <ClCompile Include="qCamera.cpp" />
     <ClCompile Include="qCameraMoveScript.cpp" />
     <ClCompile Include="qCollider2D.cpp" />
+    <ClCompile Include="qCollisionMgr.cpp" />
     <ClCompile Include="qComponent.cpp" />
     <ClCompile Include="qComputeShader.cpp" />
     <ClCompile Include="qConstBuffer.cpp" />

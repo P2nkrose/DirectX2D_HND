@@ -7,6 +7,7 @@
 qCollider2D::qCollider2D()
 	: qComponent(COMPONENT_TYPE::COLLIDER2D)
 	, m_OverlapCount(0)
+	, m_IndependentScale(false)
 {
 }
 

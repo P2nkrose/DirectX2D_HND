@@ -139,6 +139,9 @@
     <Filter Include="Scripts\02. CameraMoveScript">
       <UniqueIdentifier>{90bc1b27-1358-4022-a846-44ac873e33a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. Manager\07. CollisionMgr">
+      <UniqueIdentifier>{ea69862e-a3f0-42e6-acf1-63ae9c3c7dcb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -267,6 +270,9 @@
     <ClInclude Include="qCollider2D.h">
       <Filter>08. Component\02. Collider2D</Filter>
     </ClInclude>
+    <ClInclude Include="qCollisionMgr.h">
+      <Filter>04. Manager\07. CollisionMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -373,6 +379,9 @@
     </ClCompile>
     <ClCompile Include="qCollider2D.cpp">
       <Filter>08. Component\02. Collider2D</Filter>
+    </ClCompile>
+    <ClCompile Include="qCollisionMgr.cpp">
+      <Filter>04. Manager\07. CollisionMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

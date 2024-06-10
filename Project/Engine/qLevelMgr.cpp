@@ -12,6 +12,8 @@
 #include "qPlayerScript.h"
 #include "qCameraMoveScript.h"
 
+#include "qCollisionMgr.h"
+
 qLevelMgr::qLevelMgr()
 	: m_CurLevel(nullptr)
 {
@@ -37,8 +39,15 @@ void qLevelMgr::Init()
 
 	pAlphaBlendMtrl->SetTexParam(TEX_0, pTexture);
 	
-
+	// Level 생성
 	m_CurLevel = new qLevel;
+
+	m_CurLevel->GetLayer(0)->SetName(L"Default");
+	m_CurLevel->GetLayer(1)->SetName(L"Background");
+	m_CurLevel->GetLayer(2)->SetName(L"Tile");
+	m_CurLevel->GetLayer(3)->SetName(L"Player");
+	m_CurLevel->GetLayer(4)->SetName(L"Monster");
+
 
 	// 카메라 오브젝트
 	qGameObject* CamObj = new qGameObject;
@@ -108,9 +117,38 @@ void qLevelMgr::Init()
 
 	pObject->AddChild(pChild);
 
-	m_CurLevel->AddObject(0, pObject);
-	
+	m_CurLevel->AddObject(3, pObject);
 
+
+
+
+	// Monster Object
+	qGameObject* pMonster = new qGameObject;
+	pMonster->SetName(L"Monster");
+
+	pMonster->AddComponent(new qTransform);
+	pMonster->AddComponent(new qMeshRender);
+	pMonster->AddComponent(new qCollider2D);
+
+	pMonster->Transform()->SetRelativePos(-400.f, 0.f, 100.f);
+	pMonster->Transform()->SetRelativeScale(150.f, 150.f, 1.f);
+
+	pMonster->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pMonster->Collider2D()->SetScale(Vec3(1.2f, 1.2f, 1.f));
+
+	pMonster->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pMonster->MeshRender()->SetMaterial(pMtrl);
+
+	m_CurLevel->AddObject(4, pMonster);
+
+	// 충돌 지정
+	qCollisionMgr::GetInst()->CollisionCheck(3, 4);
+
+
+
+
+	
+	// 레벨 시작
 	m_CurLevel->Begin();
 }
 
