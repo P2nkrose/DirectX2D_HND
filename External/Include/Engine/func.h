@@ -1,7 +1,7 @@
 #pragma once
 
 void CreateObject(class qGameObject* _NewObject, int _LayerIndex);
-
+void DeleteObject(qGameObject* _DeleteObject);
 
 bool IsVaild(qGameObject*& _Object);
 

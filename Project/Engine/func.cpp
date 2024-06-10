@@ -16,6 +16,15 @@ void CreateObject(qGameObject* _NewObject, int _LayerIndex)
 	qTaskMgr::GetInst()->AddTask(task);
 }
 
+void DeleteObject(qGameObject* _DeleteObject)
+{
+	tTask task = {};
+	task.Type = TASK_TYPE::DELETE_OBJECT;
+	task.Param_0 = (DWORD_PTR)_DeleteObject;
+
+	qTaskMgr::GetInst()->AddTask(task);
+}
+
 bool IsVaild(qGameObject*& _Object)
 {
 	if (nullptr == _Object)

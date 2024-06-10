@@ -43,7 +43,13 @@ void qTaskMgr::ExecuteTask()
 
 		case TASK_TYPE::DELETE_OBJECT:
 		{
+			qGameObject* pObject = (qGameObject*)task.Param_0;
+			if (pObject->m_Dead)
+				continue;
 
+			// GC¿¡ ³Ö±â
+			pObject->m_Dead = true;
+			m_GC.push_back(pObject);
 		}
 		break;
 

@@ -21,5 +21,5 @@ void qMissileScript::Tick()
 
 void qMissileScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)
 {
-	
+	DeleteObject(_OtherObject);
 }

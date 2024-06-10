@@ -31,9 +31,16 @@ void qLayer::Tick()
 
 void qLayer::FinalTick()
 {
-	for (size_t i = 0; i < m_Parents.size(); ++i)
+	vector<qGameObject*>::iterator iter = m_Parents.begin();
+
+	for (; iter != m_Parents.end(); )
 	{
-		m_Parents[i]->FinalTick();
+		(*iter)->FinalTick();
+
+		if ((*iter)->IsDead())
+			iter = m_Parents.erase(iter);
+		else
+			++iter;
 	}
 }
 

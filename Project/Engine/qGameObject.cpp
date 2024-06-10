@@ -175,9 +175,15 @@ void qGameObject::FinalTick()
 
 
 	// 자식 오브젝트
-	for (size_t i = 0; i < m_vecChildren.size(); ++i)
+	vector<qGameObject*>::iterator iter = m_vecChildren.begin();
+	for (; iter != m_vecChildren.end(); )
 	{
-		m_vecChildren[i]->FinalTick();
+		(*iter)->FinalTick();
+
+		if ((*iter)->IsDead())
+			iter = m_vecChildren.erase(iter);
+		else
+			++iter;
 	}
 }
 
