@@ -4,9 +4,6 @@
 class qTaskMgr : public qSingleton<qTaskMgr>
 {
 	SINGLE(qTaskMgr)
-private:
-	vector<tTask>	m_vecTask;
-	vector<CObj*>	m_GC; // Garbage Collector;
 
 public:
 	void Tick();
@@ -15,5 +12,10 @@ public:
 private:
 	void ClearGC();
 	void ExecuteTask();	
+
+
+private:
+	vector<tTask>			m_vecTask;
+	vector<qGameObject*>	m_GC; // Garbage Collector;
 };
 

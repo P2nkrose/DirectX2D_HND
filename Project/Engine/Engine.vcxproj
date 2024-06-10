@@ -160,10 +160,6 @@ call EngineHeaderCopy.bat</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\TeacherSVN\Project\Engine\qTaskMgr.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="assets.h" />
     <ClInclude Include="components.h" />
     <ClInclude Include="define.h" />
@@ -194,12 +190,14 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="qMaterial.h" />
     <ClInclude Include="qMesh.h" />
     <ClInclude Include="qMeshRender.h" />
+    <ClInclude Include="qMissileScript.h" />
     <ClInclude Include="qPathMgr.h" />
     <ClInclude Include="qPlayerScript.h" />
     <ClInclude Include="qRenderComponent.h" />
     <ClInclude Include="qRenderMgr.h" />
     <ClInclude Include="qScript.h" />
     <ClInclude Include="qShader.h" />
+    <ClInclude Include="qTaskMgr.h" />
     <ClInclude Include="qTexture.h" />
     <ClInclude Include="qTimeMgr.h" />
     <ClInclude Include="qTransform.h" />
@@ -208,10 +206,6 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="struct.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\TeacherSVN\Project\Engine\qTaskMgr.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="extern.cpp" />
     <ClCompile Include="func.cpp" />
@@ -243,12 +237,14 @@ call EngineHeaderCopy.bat</Command>
     <ClCompile Include="qMaterial.cpp" />
     <ClCompile Include="qMesh.cpp" />
     <ClCompile Include="qMeshRender.cpp" />
+    <ClCompile Include="qMissileScript.cpp" />
     <ClCompile Include="qPathMgr.cpp" />
     <ClCompile Include="qPlayerScript.cpp" />
     <ClCompile Include="qRenderComponent.cpp" />
     <ClCompile Include="qRenderMgr.cpp" />
     <ClCompile Include="qScript.cpp" />
     <ClCompile Include="qShader.cpp" />
+    <ClCompile Include="qTaskMgr.cpp" />
     <ClCompile Include="qTexture.cpp" />
     <ClCompile Include="qTimeMgr.cpp" />
     <ClCompile Include="qTransform.cpp" />

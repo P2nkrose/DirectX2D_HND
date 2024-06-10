@@ -1,5 +1,9 @@
 #pragma once
 
+void CreateObject(class qGameObject* _NewObject, int _LayerIndex);
+
+
+bool IsVaild(qGameObject*& _Object);
 
 void DrawDebugRect(Vec3 _Pos, Vec3 _Scale, Vec3 _Rot, Vec4 _Color, float _Life, bool _DepthTest);
 void DrawDebugRect(const Matrix& _matWorld, Vec4 _Color, float _Life, bool _DepthTest);

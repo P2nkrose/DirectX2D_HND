@@ -47,6 +47,8 @@ void qLevelMgr::Init()
 	m_CurLevel->GetLayer(2)->SetName(L"Tile");
 	m_CurLevel->GetLayer(3)->SetName(L"Player");
 	m_CurLevel->GetLayer(4)->SetName(L"Monster");
+	m_CurLevel->GetLayer(5)->SetName(L"PlayerProjectile");		// 플레이어 투사체
+	m_CurLevel->GetLayer(6)->SetName(L"MonsterProjectile");		// 몬스터 투사체
 
 
 	// 카메라 오브젝트
@@ -96,28 +98,33 @@ void qLevelMgr::Init()
 	pObject->MeshRender()->GetMaterial()->SetScalarParam(FLOAT_0, 0.01f);
 	pObject->MeshRender()->GetMaterial()->SetScalarParam(VEC4_0, Vec4(0.f, 1.f, 0.f, 1.f));
 
-	
-	// Child 오브젝트
-	qGameObject* pChild = new qGameObject;
-	pChild->SetName(L"Child");
-
-	pChild->AddComponent(new qTransform);
-	pChild->AddComponent(new qMeshRender);
-	pChild->AddComponent(new qCollider2D);
-
-	pChild->Transform()->SetRelativePos(400.f, 0.f, 0.f);
-	pChild->Transform()->SetRelativeScale(100.f, 100.f, 1.f);
-	pChild->Transform()->SetIndependentScale(true);
-
-	pChild->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
-	pChild->Collider2D()->SetScale(Vec3(1.2f, 1.2f, 1.f));
-
-	pChild->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	pChild->MeshRender()->SetMaterial(pMtrl);
-
-	pObject->AddChild(pChild);
-
 	m_CurLevel->AddObject(3, pObject);
+	
+
+
+	// ======================================================
+
+	// Child 오브젝트
+	//qGameObject* pChild = new qGameObject;
+	//pChild->SetName(L"Child");
+
+	//pChild->AddComponent(new qTransform);
+	//pChild->AddComponent(new qMeshRender);
+	//pChild->AddComponent(new qCollider2D);
+
+	//pChild->Transform()->SetRelativePos(400.f, 0.f, 0.f);
+	//pChild->Transform()->SetRelativeScale(100.f, 100.f, 1.f);
+	//pChild->Transform()->SetIndependentScale(true);
+
+	//pChild->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	//pChild->Collider2D()->SetScale(Vec3(1.2f, 1.2f, 1.f));
+
+	//pChild->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	//pChild->MeshRender()->SetMaterial(pMtrl);
+
+	//pObject->AddChild(pChild);
+
+	// ======================================================
 
 
 
@@ -141,8 +148,12 @@ void qLevelMgr::Init()
 
 	m_CurLevel->AddObject(4, pMonster);
 
+
+
 	// 충돌 지정
-	qCollisionMgr::GetInst()->CollisionCheck(3, 4);
+	qCollisionMgr::GetInst()->CollisionCheck(3, 4);		// Player vs Monster
+	qCollisionMgr::GetInst()->CollisionCheck(5, 4);		// Player Projectile vs Monster
+
 
 
 	

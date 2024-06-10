@@ -15,6 +15,7 @@ public:
 
 	friend class qLevel;
 	friend class qLayer;
+	friend class qTaskMgr;
 
 	CLONE(qGameObject);
 	qGameObject();
@@ -38,6 +39,8 @@ public:
 	const vector<qGameObject*>& GetChildren() { return m_vecChildren; }
 	const vector<qScript*> GetScripts() { return m_vecScript; }
 
+	bool IsDead() { return m_Dead; }
+
 	void DisconnectWithLayer();
 
 	// Unregister : 등록을 취소하다, 등록하는 행위를 취소하다.
@@ -60,5 +63,7 @@ private:
 	vector<qGameObject*>	m_vecChildren;
 
 	int						m_LayerIdx;		// 소속 레이어의 인덱스 번호
+
+	bool					m_Dead;
 };
 

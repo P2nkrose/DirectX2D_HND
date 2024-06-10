@@ -142,6 +142,9 @@
     <Filter Include="04. Manager\07. CollisionMgr">
       <UniqueIdentifier>{ea69862e-a3f0-42e6-acf1-63ae9c3c7dcb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scripts\03. MissileScript">
+      <UniqueIdentifier>{9f7f4032-bb9c-4279-8e81-67d14533bca7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -225,9 +228,6 @@
     <ClInclude Include="qLevelMgr.h">
       <Filter>04. Manager\04. LevelMgr</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\TeacherSVN\Project\Engine\qTaskMgr.h">
-      <Filter>04. Manager\TaskMgr</Filter>
-    </ClInclude>
     <ClInclude Include="qComponent.h">
       <Filter>08. Component</Filter>
     </ClInclude>
@@ -272,6 +272,12 @@
     </ClInclude>
     <ClInclude Include="qCollisionMgr.h">
       <Filter>04. Manager\07. CollisionMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="qTaskMgr.h">
+      <Filter>04. Manager\TaskMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="qMissileScript.h">
+      <Filter>Scripts\03. MissileScript</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -332,9 +338,6 @@
     <ClCompile Include="qLevelMgr.cpp">
       <Filter>04. Manager\04. LevelMgr</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\TeacherSVN\Project\Engine\qTaskMgr.cpp">
-      <Filter>04. Manager\TaskMgr</Filter>
-    </ClCompile>
     <ClCompile Include="qComponent.cpp">
       <Filter>08. Component</Filter>
     </ClCompile>
@@ -382,6 +385,12 @@
     </ClCompile>
     <ClCompile Include="qCollisionMgr.cpp">
       <Filter>04. Manager\07. CollisionMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="qTaskMgr.cpp">
+      <Filter>04. Manager\TaskMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="qMissileScript.cpp">
+      <Filter>Scripts\03. MissileScript</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

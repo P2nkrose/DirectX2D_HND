@@ -1,7 +1,34 @@
 #include "pch.h"
 
 #include "qRenderMgr.h"
+#include "qTaskMgr.h"
 
+#include "qGameObject.h"
+
+
+void CreateObject(qGameObject* _NewObject, int _LayerIndex)
+{
+	tTask task = {};
+	task.Type = TASK_TYPE::CREATE_OBJECT;
+	task.Param_0 = _LayerIndex;
+	task.Param_1 = (DWORD_PTR)_NewObject;
+
+	qTaskMgr::GetInst()->AddTask(task);
+}
+
+bool IsVaild(qGameObject*& _Object)
+{
+	if (nullptr == _Object)
+		return false;
+
+	if (_Object->IsDead())
+	{
+		_Object = nullptr;
+		return false;
+	}
+
+	return true;
+}
 
 void DrawDebugRect(Vec3 _Pos, Vec3 _Scale, Vec3 _Rot, Vec4 _Color, float _Life, bool _DepthTest)
 {

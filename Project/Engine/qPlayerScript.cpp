@@ -1,5 +1,7 @@
 #include "pch.h"
+
 #include "qPlayerScript.h"
+#include "qMissileScript.h"
 
 qPlayerScript::qPlayerScript()
 	: m_Speed(500.f)
@@ -53,8 +55,22 @@ void qPlayerScript::Tick()
 
 	if (KEY_TAP(KEY::SPACE))
 	{
-		//DrawDebugRect(Transform()->GetWorldMat(), Vec4(1.f, 0.4f, 0.6f, 1.f), 3.f, true);
-		//DrawDebugCircle(Transform()->GetRelativePos(), 100.f, Vec4(0.4f, 1.f, 0.6f, 1.f), 5.f, false);
+		// 미사일 발사
+		qGameObject* pMissileObject = new qGameObject;
+		pMissileObject->AddComponent(new qTransform);
+		pMissileObject->AddComponent(new qMeshRender);
+		pMissileObject->AddComponent(new qCollider2D);
+		pMissileObject->AddComponent(new qMissileScript);
+
+		Vec3 vMissilePos = Transform()->GetRelativePos();
+		vMissilePos.y += Transform()->GetRelativeScale().y / 2.f;
+
+		pMissileObject->Transform()->SetRelativePos(vMissilePos);
+		pMissileObject->Transform()->SetRelativeScale(Vec3(50.f, 50.f, 1.f));
+
+		pMissileObject->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+
+		CreateObject(pMissileObject, 5);
 	}
 
 

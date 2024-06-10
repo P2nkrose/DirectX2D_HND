@@ -9,6 +9,7 @@
 #include "qLevelMgr.h"
 #include "qRenderMgr.h"
 #include "qCollisionMgr.h"
+#include "qTaskMgr.h"
 
 
 qEngine::qEngine()
@@ -60,6 +61,10 @@ void qEngine::Progress()
 	qDevice::GetInst()->Clear();
 	qRenderMgr::GetInst()->Tick();
 	qDevice::GetInst()->Present();
+
+
+	// Task Manager
+	qTaskMgr::GetInst()->Tick();
 }
 
 
