@@ -32,12 +32,21 @@ void qCollider2D::FinalTick()
 
 	m_matColWorld = matScale * matTranslation * matObjectScaleInv * GetOwner()->Transform()->GetWorldMat();
 
+
+	// 충돌했을 시 색깔 변경
 	// Debug 렌더링으로 충돌체의 위치를 표시
-	DrawDebugRect(m_matColWorld, Vec4(0.f, 1.f, 0.f, 1.f), 0.f, false);
+	if(m_OverlapCount)
+		DrawDebugRect(m_matColWorld, Vec4(1.f, 0.f, 0.f, 1.f), 0.f, false);
+	else
+		DrawDebugRect(m_matColWorld, Vec4(0.f, 1.f, 0.f, 1.f), 0.f, false);
+
 }
+
+
 
 void qCollider2D::BeginOverlap(qCollider2D* _Other)
 {
+	m_OverlapCount += 1;
 }
 
 void qCollider2D::Overlap(qCollider2D* _Other)
@@ -46,4 +55,5 @@ void qCollider2D::Overlap(qCollider2D* _Other)
 
 void qCollider2D::EndOverlap(qCollider2D* _Other)
 {
+	m_OverlapCount -= 1;
 }

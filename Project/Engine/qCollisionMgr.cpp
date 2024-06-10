@@ -7,6 +7,8 @@
 #include "qGameObject.h"
 #include "qCollider2D.h"
 
+#include "qAssetMgr.h"
+
 
 
 qCollisionMgr::qCollisionMgr()
@@ -58,7 +60,7 @@ void qCollisionMgr::CollisionCheck(UINT Layer1, UINT Layer2)
 
 void qCollisionMgr::CollisionBtwLayer(UINT _Left, UINT _Right)
 {
-	// 현재 레벨을 가져온다.
+	// 현재 레벨 가져온다.
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 
 	// 각 레이어에 속한 모든 오브젝트들을 가져온다.
@@ -110,7 +112,7 @@ void qCollisionMgr::CollisionBtwLayer(UINT _Left, UINT _Right)
 					pLeftCol->BeginOverlap(pRightCol);
 					pRightCol->BeginOverlap(pLeftCol);
 				}
-
+				
 				iter->second = true;
 
 				// 두 충돌체중 하나라도 Dead 상태거나 비활성화 상태라면
@@ -141,5 +143,52 @@ void qCollisionMgr::CollisionBtwLayer(UINT _Left, UINT _Right)
 
 bool qCollisionMgr::IsCollision(qCollider2D* _Left, qCollider2D* _Right)
 {
-	return false;
+	// 충돌체의 기본 원형 도형을 가져온다.
+	Ptr<qMesh> pRectMesh = qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh");
+	Vtx* pVtx = (Vtx*)pRectMesh->GetVtxSysMem();
+
+	// 각 충돌체의 월드 행렬을 가져온다.
+	const Matrix& matLeft = _Left->GetWorldMat();
+	const Matrix& matRight = _Right->GetWorldMat();
+
+	// 기본 도형(Rect) 를 각 충돌체의 월드행렬을 곱해서, 충돌체의 각 모서리 위치로 옮긴 후,
+	// 좌표끼리 위치값을 빼서 충돌체의 월드상에서의 위치에서 도형의 표면 방향 벡터를 구한다.
+	// 이 벡터는 충돌체들을 투영시킬 축이 될 예정
+	Vec3 vProjAxis[4] = {};
+
+	// 0 --- 1
+	// |  \  |
+	// 3 --- 2
+	// ex) 3에서 0을 빼면, 0에서 3까지의 방향벡터가 나온다.
+	// 이게 내적을 구하는 거리값이자, 축으로 사용할때는 Normalize해서 사용한다.
+	vProjAxis[0] = XMVector3TransformCoord(pVtx[3].vPos, matLeft) - XMVector3TransformCoord(pVtx[0].vPos, matLeft);
+	vProjAxis[1] = XMVector3TransformCoord(pVtx[1].vPos, matLeft) - XMVector3TransformCoord(pVtx[0].vPos, matLeft);
+
+	vProjAxis[2] = XMVector3TransformCoord(pVtx[3].vPos, matRight) - XMVector3TransformCoord(pVtx[0].vPos, matRight);
+	vProjAxis[3] = XMVector3TransformCoord(pVtx[1].vPos, matRight) - XMVector3TransformCoord(pVtx[0].vPos, matRight);
+
+	// 충돌체의 중심을 잇는 벡터
+	Vec3 vCenter = XMVector3TransformCoord(Vec3(0.f, 0.f, 0.f), matLeft) - XMVector3TransformCoord(Vec3(0.f, 0.f, 0.f), matRight);
+
+	// 투영
+	for (int i = 0; i < 4; ++i)
+	{
+		Vec3 vProj = vProjAxis[i];
+		vProj.Normalize();
+
+		// 내적 계산
+		float dot = fabs(vProjAxis[0].Dot(vProj));
+		dot += fabs(vProjAxis[1].Dot(vProj));
+		dot += fabs(vProjAxis[2].Dot(vProj));
+		dot += fabs(vProjAxis[3].Dot(vProj));
+		dot /= 2.f;
+
+		float fCenter = fabs(vCenter.Dot(vProj));
+
+		if (dot < fCenter)
+			return false;
+	}
+
+	return true;
+
 }
