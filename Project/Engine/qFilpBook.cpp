@@ -1,15 +1,15 @@
 #include "pch.h"
 #include "qFilpBook.h"
 
-qFilpBook::qFilpBook()
+qFlipBook::qFlipBook()
 	: qAsset(ASSET_TYPE::FLIPBOOK)
 {
 }
 
-qFilpBook::~qFilpBook()
+qFlipBook::~qFlipBook()
 {
 }
 
-void qFilpBook::FinalTick()
+void qFlipBook::FinalTick()
 {
 }

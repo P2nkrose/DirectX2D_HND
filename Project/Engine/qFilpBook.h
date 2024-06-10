@@ -3,11 +3,11 @@
 
 class qSprite;
 
-class qFilpBook : public qAsset
+class qFlipBook : public qAsset
 {
 public:
-	qFilpBook();
-	~qFilpBook();
+	qFlipBook();
+	~qFlipBook();
 
 public:
 	void FinalTick();
