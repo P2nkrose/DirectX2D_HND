@@ -2,6 +2,7 @@
 #include "qCollider2D.h"
 
 #include "qTransform.h"
+#include "qScript.h"
 
 
 qCollider2D::qCollider2D()
@@ -47,13 +48,30 @@ void qCollider2D::FinalTick()
 void qCollider2D::BeginOverlap(qCollider2D* _Other)
 {
 	m_OverlapCount += 1;
+
+	const vector<qScript*> vecScripts = GetOwner()->GetScripts();
+	for (size_t i = 0; i < vecScripts.size(); ++i)
+	{
+		vecScripts[i]->BeginOverlap(this, _Other->GetOwner(), _Other);
+	}
 }
 
 void qCollider2D::Overlap(qCollider2D* _Other)
 {
+	const vector<qScript*> vecScripts = GetOwner()->GetScripts();
+	for (size_t i = 0; i < vecScripts.size(); ++i)
+	{
+		vecScripts[i]->Overlap(this, _Other->GetOwner(), _Other);
+	}
 }
 
 void qCollider2D::EndOverlap(qCollider2D* _Other)
 {
 	m_OverlapCount -= 1;
+
+	const vector<qScript*> vecScripts = GetOwner()->GetScripts();
+	for (size_t i = 0; i < vecScripts.size(); ++i)
+	{
+		vecScripts[i]->EndOverlap(this, _Other->GetOwner(), _Other);
+	}
 }

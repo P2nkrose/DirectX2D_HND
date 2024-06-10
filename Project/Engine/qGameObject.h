@@ -36,6 +36,7 @@ public:
 public:
 	void AddChild(qGameObject* _ChildObject);
 	const vector<qGameObject*>& GetChildren() { return m_vecChildren; }
+	const vector<qScript*> GetScripts() { return m_vecScript; }
 
 	void DisconnectWithLayer();
 

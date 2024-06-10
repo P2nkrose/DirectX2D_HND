@@ -14,5 +14,10 @@ public:
 
 	virtual void Tick() PURE;
 	virtual void FinalTick() final override {}
+
+	virtual void BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider){}
+	virtual void Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider){}
+	virtual void EndOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider){}
+
 };
 

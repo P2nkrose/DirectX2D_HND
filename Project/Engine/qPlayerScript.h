@@ -11,6 +11,7 @@ public:
 public:
 	virtual void Tick() override;
 
+	virtual void BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider) override;
 
 private:
 	float		m_Speed;
