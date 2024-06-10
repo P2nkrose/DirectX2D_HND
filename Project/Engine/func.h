@@ -71,5 +71,9 @@ ASSET_TYPE GetAssetType()
 		return ASSET_TYPE::GRAPHIC_SHADER;
 	if constexpr (std::is_same_v<T, qComputeShader>)
 		return ASSET_TYPE::COMPUTE_SHADER;
+	if constexpr (std::is_same_v<T, qSprite>)
+		return ASSET_TYPE::SPRITE;
+	if constexpr (std::is_same_v<T, qFlipBook>)
+		return ASSET_TYPE::FLIPBOOK;
 
 }

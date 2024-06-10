@@ -27,6 +27,11 @@ public:
 	ComPtr<ID3D11DepthStencilView>		GetDSV()   { return m_DSV; }
 	ComPtr<ID3D11ShaderResourceView>	GetSRV()   { return m_SRV; }
 	ComPtr<ID3D11UnorderedAccessView>	GetUAV()   { return m_UAV; }
+
+
+public:
+	UINT Width() { return m_Desc.Width; }
+	UINT Height() { return m_Desc.Height; }
 	
 
 private:

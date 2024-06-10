@@ -64,15 +64,6 @@
     <Filter Include="06. Asset\06. Sound">
       <UniqueIdentifier>{0098e869-7544-4f37-b402-ed241be3fd19}</UniqueIdentifier>
     </Filter>
-    <Filter Include="06. Asset\07. Shader">
-      <UniqueIdentifier>{df7abf6f-d65e-47ab-8e12-372cc2c68310}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06. Asset\07. Shader\01. GraphicShader">
-      <UniqueIdentifier>{d1aff048-6895-4b48-b7fe-3a4e41a5c7d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06. Asset\07. Shader\02. ComputeShader">
-      <UniqueIdentifier>{ae7e1bad-51f8-404a-a6dd-6aa6153ee77e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="07. GameObject">
       <UniqueIdentifier>{cfd7d4b3-ffdd-4424-9220-6da93b3144e9}</UniqueIdentifier>
     </Filter>
@@ -145,6 +136,21 @@
     <Filter Include="Scripts\03. MissileScript">
       <UniqueIdentifier>{9f7f4032-bb9c-4279-8e81-67d14533bca7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="06. Asset\09. Shader">
+      <UniqueIdentifier>{df7abf6f-d65e-47ab-8e12-372cc2c68310}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Asset\09. Shader\01. GraphicShader">
+      <UniqueIdentifier>{d1aff048-6895-4b48-b7fe-3a4e41a5c7d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Asset\09. Shader\02. ComputeShader">
+      <UniqueIdentifier>{ae7e1bad-51f8-404a-a6dd-6aa6153ee77e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Asset\07. Sprite">
+      <UniqueIdentifier>{a9cb7312-42b7-4bf5-8e9c-46176e74a466}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Asset\08. FlipBook">
+      <UniqueIdentifier>{f6cba7f1-551d-4180-8188-203ecf12e86b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -202,16 +208,16 @@
       <Filter>03. Device\ConstBuffer</Filter>
     </ClInclude>
     <ClInclude Include="qShader.h">
-      <Filter>06. Asset\07. Shader</Filter>
+      <Filter>06. Asset\09. Shader</Filter>
     </ClInclude>
     <ClInclude Include="assets.h">
       <Filter>01. Header</Filter>
     </ClInclude>
     <ClInclude Include="qGraphicShader.h">
-      <Filter>06. Asset\07. Shader\01. GraphicShader</Filter>
+      <Filter>06. Asset\09. Shader\01. GraphicShader</Filter>
     </ClInclude>
     <ClInclude Include="qComputeShader.h">
-      <Filter>06. Asset\07. Shader\02. ComputeShader</Filter>
+      <Filter>06. Asset\09. Shader\02. ComputeShader</Filter>
     </ClInclude>
     <ClInclude Include="func.h">
       <Filter>01. Header</Filter>
@@ -279,6 +285,15 @@
     <ClInclude Include="qMissileScript.h">
       <Filter>Scripts\03. MissileScript</Filter>
     </ClInclude>
+    <ClInclude Include="qSprite.h">
+      <Filter>06. Asset\07. Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="qFilpBook.h">
+      <Filter>06. Asset\08. FlipBook</Filter>
+    </ClInclude>
+    <ClInclude Include="qAnimator2D.h">
+      <Filter>08. Component\04. Animator2D</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -318,13 +333,13 @@
       <Filter>03. Device\ConstBuffer</Filter>
     </ClCompile>
     <ClCompile Include="qShader.cpp">
-      <Filter>06. Asset\07. Shader</Filter>
+      <Filter>06. Asset\09. Shader</Filter>
     </ClCompile>
     <ClCompile Include="qGraphicShader.cpp">
-      <Filter>06. Asset\07. Shader\01. GraphicShader</Filter>
+      <Filter>06. Asset\09. Shader\01. GraphicShader</Filter>
     </ClCompile>
     <ClCompile Include="qComputeShader.cpp">
-      <Filter>06. Asset\07. Shader\02. ComputeShader</Filter>
+      <Filter>06. Asset\09. Shader\02. ComputeShader</Filter>
     </ClCompile>
     <ClCompile Include="qLevel.cpp">
       <Filter>05. Level</Filter>
@@ -391,6 +406,15 @@
     </ClCompile>
     <ClCompile Include="qMissileScript.cpp">
       <Filter>Scripts\03. MissileScript</Filter>
+    </ClCompile>
+    <ClCompile Include="qSprite.cpp">
+      <Filter>06. Asset\07. Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="qFilpBook.cpp">
+      <Filter>06. Asset\08. FlipBook</Filter>
+    </ClCompile>
+    <ClCompile Include="qAnimator2D.cpp">
+      <Filter>08. Component\04. Animator2D</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
