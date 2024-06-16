@@ -7,6 +7,8 @@ void qAssetMgr::Init()
 
 	CreateEngineTexture();
 
+	CreateEngineSprite();
+
 	CreateEngineGraphicShader();
 
 	CreateEngineComputeShader();
@@ -116,6 +118,36 @@ void qAssetMgr::CreateEngineMesh()
 
 void qAssetMgr::CreateEngineTexture()
 {
+}
+
+void qAssetMgr::CreateEngineSprite()
+{
+	Ptr<qTexture> pAtlasTex = Load<qTexture>(L"texture\\link_32.bmp", L"texture\\link_32.bmp");
+
+	Ptr<qSprite> pSprite = nullptr;
+
+	for (int i = 0; i < 10; ++i)
+	{
+		wchar_t szKey[50] = {};
+		swprintf_s(szKey, 50, L"Link_MoveDown_%d", i);
+
+		pSprite = new qSprite;
+		pSprite->Create(pAtlasTex, Vec2((float)i * 120.f, 520.f), Vec2(120.f, 130.f));
+		AddAsset(szKey, pSprite);
+	}
+
+	Ptr<qFlipBook> pFlipBook = nullptr;
+
+	pFlipBook = new qFlipBook;
+
+	for (int i = 0; i < 10; ++i)
+	{
+		wchar_t szKey[50] = {};
+		swprintf_s(szKey, 50, L"Link_MoveDown_%d", i);
+		pFlipBook->AddSprite(FindAsset<qSprite>(szKey));
+	}
+
+	AddAsset(L"Link_MoveDown", pFlipBook);
 }
 
 void qAssetMgr::CreateEngineGraphicShader()

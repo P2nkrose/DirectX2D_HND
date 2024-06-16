@@ -42,21 +42,27 @@ float4 PS_Std2D(VTX_OUT _in) : SV_Target
 {
     float4 vColor = float4(0.f, 0.f, 0.f, 1.f);
     
-    if(g_btex_0)
+         
+    // FlipBook 을 사용한다.
+    if (g_int_0)
     {
-        vColor = g_tex_0.Sample(g_sam_1, _in.vUV);
-        
-        if(g_int_0)
-        {
-            vColor.r *= 2.f;
-            //vColor = float4(0.9f, 0.9f, 0.9f, 0.9f);
-        }
+        // _in.vUV : 스프라이를 참조할 위치를 비율로 환산한 값
+        float2 vSpriteUV = g_vec2_0 /*LeftTop*/ + (_in.vUV * g_vec2_1 /*Slice*/);
+        vColor = g_AtlasTex.Sample(g_sam_1, vSpriteUV);
     }
+    // FlipBook 을 사용하지 않는다.
     else
     {
-        vColor = float4(1.f, 0.f, 1.f, 1.f);
+        if (g_btex_0)
+        {
+            vColor = g_tex_0.Sample(g_sam_1, _in.vUV);
+        }
+        else
+        {
+            vColor = float4(1.f, 0.f, 1.f, 1.f);
+        }
     }
-    
+
     if (vColor.a == 0.f)
     {
         //clip(-1);

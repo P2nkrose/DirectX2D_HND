@@ -82,9 +82,6 @@
     <Filter Include="08. Component\03. Collider3D">
       <UniqueIdentifier>{a0fb8b3c-c015-4bc6-802e-09242fa13ae7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="08. Component\04. Animator2D">
-      <UniqueIdentifier>{a15c471f-5b92-4c5c-b9f4-4d35de60cd3b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="08. Component\05. Animator3D">
       <UniqueIdentifier>{0c51033f-1870-4aa5-8fbc-8d87efe9e8fa}</UniqueIdentifier>
     </Filter>
@@ -150,6 +147,9 @@
     </Filter>
     <Filter Include="06. Asset\08. FlipBook">
       <UniqueIdentifier>{f6cba7f1-551d-4180-8188-203ecf12e86b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08. Component\04. FlipBookComponent">
+      <UniqueIdentifier>{a15c471f-5b92-4c5c-b9f4-4d35de60cd3b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -288,11 +288,11 @@
     <ClInclude Include="qSprite.h">
       <Filter>06. Asset\07. Sprite</Filter>
     </ClInclude>
-    <ClInclude Include="qFilpBook.h">
+    <ClInclude Include="qFlipBook.h">
       <Filter>06. Asset\08. FlipBook</Filter>
     </ClInclude>
-    <ClInclude Include="qAnimator2D.h">
-      <Filter>08. Component\04. Animator2D</Filter>
+    <ClInclude Include="qFlipBookComponent.h">
+      <Filter>08. Component\04. FlipBookComponent</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -410,11 +410,11 @@
     <ClCompile Include="qSprite.cpp">
       <Filter>06. Asset\07. Sprite</Filter>
     </ClCompile>
-    <ClCompile Include="qFilpBook.cpp">
+    <ClCompile Include="qFlipBook.cpp">
       <Filter>06. Asset\08. FlipBook</Filter>
     </ClCompile>
-    <ClCompile Include="qAnimator2D.cpp">
-      <Filter>08. Component\04. Animator2D</Filter>
+    <ClCompile Include="qFlipBookComponent.cpp">
+      <Filter>08. Component\04. FlipBookComponent</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
