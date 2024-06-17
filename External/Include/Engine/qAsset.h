@@ -25,7 +25,7 @@ public:
 
 private:
 	void SetKey(const wstring& _Key) { m_Key = _Key; }
-	void SetRelative(const wstring& _path) { m_RelativePath = _path; }
+	void SetRelativePath(const wstring& _path) { m_RelativePath = _path; }
 
 	void AddRef() { ++m_RefCount; }
 	void Release()
