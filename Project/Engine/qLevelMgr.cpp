@@ -91,7 +91,7 @@ void qLevelMgr::Init()
 
 	pObject->Collider2D()->SetIndependentScale(true);
 	pObject->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
-	pObject->Collider2D()->SetScale(Vec3(220.f, 220.f, 1.f));
+	pObject->Collider2D()->SetScale(Vec3(200.f, 200.f, 1.f));
 	
 	pObject->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
 	pObject->MeshRender()->SetMaterial(pMtrl);

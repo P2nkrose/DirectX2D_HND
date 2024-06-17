@@ -16,19 +16,23 @@ public:
 	
 public:
 	Ptr<qTexture> GetAtlasTexture() { return m_Atlas; }
-	Vec2 GetLeftTopUV() { return m_LeftTop; }
-	Vec2 GetSliceUV() { return m_Slice; }
 
+	void SetLeftTop(Vec2 _LeftTop);
+	void SetSlice(Vec2 _Slice);
 	void SetBackground(Vec2 _Background);
 	void SetOffset(Vec2 _Offset);
+
+	Vec2 GetLeftTopUV() { return m_LeftTopUV; }
+	Vec2 GetSliceUV() { return m_SliceUV; }
 	Vec2 GetBackgroundUV() { return m_BackgroundUV; }
 	Vec2 GetOffsetUV() { return m_OffsetUV; }
 
 
+
 private:
 	Ptr<qTexture>		m_Atlas;
-	Vec2				m_LeftTop;	// UV ÁÂÇ¥°è
-	Vec2				m_Slice;	// UV ÁÂÇ¥°è
+	Vec2				m_LeftTopUV;	// UV ÁÂÇ¥°è
+	Vec2				m_SliceUV;	// UV ÁÂÇ¥°è
 	Vec2				m_BackgroundUV;
 	Vec2				m_OffsetUV;
 };
