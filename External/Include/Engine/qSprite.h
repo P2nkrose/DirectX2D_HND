@@ -11,8 +11,8 @@ public:
 public:
 	void Create(Ptr<qTexture> _Atlas, Vec2 _LeftTopPixel, Vec2 _SlicePixel);
 
-	virtual int Load(const wstring& _FilePath) { return S_OK; }
-	virtual int Save(const wstring& _FilePath) { return S_OK; }
+	virtual int Load(const wstring& _FilePath) override;
+	virtual int Save(const wstring& _FilePath) override;
 	
 public:
 	Ptr<qTexture> GetAtlasTexture() { return m_Atlas; }

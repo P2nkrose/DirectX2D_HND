@@ -122,37 +122,39 @@ void qAssetMgr::CreateEngineTexture()
 
 void qAssetMgr::CreateEngineSprite()
 {
-	Ptr<qTexture> pAtlasTex = Load<qTexture>(L"texture\\link_32.bmp", L"texture\\link.png");
+	wstring strContentPath = qPathMgr::GetInst()->GetContentPath();
 
-	Ptr<qSprite> pSprite = nullptr;
 
-	for (int i = 0; i < 10; ++i)
-	{
-		wchar_t szKey[50] = {};
-		swprintf_s(szKey, 50, L"Link_MoveDown_%d", i);
+	//Ptr<qSprite> pSprite = nullptr;
+	//
+	//for (int i = 0; i < 10; ++i)
+	//{
+	//	wchar_t Buffer[50] = {};
+	//	swprintf_s(Buffer, 50, L"Link_MoveDown_%d", i);
+	//
+	//	pSprite = Load<qSprite>(Buffer, wstring(L"Animation\\") + Buffer + L".sprite");		
+	//
+	//	pSprite->SetRelativePath(wstring(L"Animation\\") + Buffer + L".sprite");
+	//	pSprite->Save(strContentPath + L"Animation\\" + Buffer + L".sprite");
+	//}
+	//
+	//
+	//Ptr<qFlipBook> pFilpBook = new qFlipBook;
+	//
+	//for (int i = 0; i < 10; ++i)
+	//{
+	//	wchar_t Buffer[50] = {};
+	//	swprintf_s(Buffer, 50, L"Link_MoveDown_%d", i);
+	//	pFilpBook->AddSprite(FindAsset<qSprite>(Buffer));		
+	//}
+	//
+	//AddAsset(L"Link_MoveDown", pFilpBook);
+	//pFilpBook->Save(strContentPath + L"Animation\\" + L"Link_MoveDown" + L".flip");
 
-		pSprite = new qSprite;
-		pSprite->Create(pAtlasTex, Vec2((float)i * 120.f, 520.f), Vec2(120.f, 130.f));
-		pSprite->SetBackground(Vec2(200.f, 200.f));
 
-		if (i == 2)
-			pSprite->SetOffset(Vec2(30.f, 0.f));
-
-		AddAsset(szKey, pSprite);
-	}
-
-	Ptr<qFlipBook> pFlipBook = nullptr;
-
-	pFlipBook = new qFlipBook;
-
-	for (int i = 0; i < 10; ++i)
-	{
-		wchar_t szKey[50] = {};
-		swprintf_s(szKey, 50, L"Link_MoveDown_%d", i);
-		pFlipBook->AddSprite(FindAsset<qSprite>(szKey));
-	}
-
-	AddAsset(L"Link_MoveDown", pFlipBook);
+	Ptr<qFlipBook> pFilpBook = new qFlipBook;
+	pFilpBook->Load(strContentPath + L"Animation\\" + L"Link_MoveDown" + L".flip");
+	AddAsset(L"Link_MoveDown", pFilpBook);
 }
 
 void qAssetMgr::CreateEngineGraphicShader()
