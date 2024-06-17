@@ -95,8 +95,8 @@ void qLevelMgr::Init()
 	
 	pObject->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
 	pObject->MeshRender()->SetMaterial(pMtrl);
-	pObject->FlipBookComponent()->AddFlipBook(qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Link_MoveDown"));
-	pObject->FlipBookComponent()->Play(0, 10, true);
+	pObject->FlipBookComponent()->AddFlipBook(5, qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Link_MoveDown"));
+	pObject->FlipBookComponent()->Play(5, 10, true);
 
 	m_CurLevel->AddObject(3, pObject);
 	

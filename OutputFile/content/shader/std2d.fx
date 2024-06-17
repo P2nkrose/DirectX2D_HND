@@ -44,10 +44,10 @@ float4 PS_Std2D(VTX_OUT _in) : SV_Target
     
          
     // FlipBook 을 사용한다.
-    if (g_int_0)
+    if (UseFlipbook)
     {
         // _in.vUV : 스프라이를 참조할 위치를 비율로 환산한 값
-        float2 vSpriteUV = g_vec2_0 /*LeftTop*/ + (_in.vUV * g_vec2_1 /*Slice*/);
+        float2 vSpriteUV = LeftTopUV + (_in.vUV * SliceUV);
         vColor = g_AtlasTex.Sample(g_sam_1, vSpriteUV);
     }
     // FlipBook 을 사용하지 않는다.

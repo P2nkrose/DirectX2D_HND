@@ -30,8 +30,10 @@ struct tTask
 };
 
 
+// ======================
+//  상수 버퍼 연동 구조체
+// ======================
 
-// 상수 버퍼 연동 구조체
 struct tTransform
 {
 	Matrix		matWorld;
@@ -51,4 +53,15 @@ struct tMtrlConst
 	Vec4		v4Arr[4];
 	Matrix		matArr[4];
 	int			btex[TEX_PARAM::END + 2];
+};
+
+
+struct tSpriteInfo
+{
+	Vec2 LeftTopUV;
+	Vec2 SliceUV;
+	Vec2 BackGroundUV;
+	Vec2 OffsetUV;
+	int	 UseFlipbook;
+	int  Padding[3];
 };

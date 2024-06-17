@@ -15,12 +15,14 @@ public:
 
 
 public:
-	void AddFlipBook(Ptr<qFlipBook> _FlipBook);
+	void AddFlipBook(int _Idx, Ptr<qFlipBook> _FlipBook);
 	Ptr<qFlipBook> FindFlipBook(const wstring& _Key);
 	void Play(int _FliBookIdx, float _FPS, bool _Repeat);
 	Ptr<qSprite> GetCurSprite() { return m_CurFrmSprite; }
 
 	void Reset();
+	void Binding();
+	static void Clear();
 
 
 private:

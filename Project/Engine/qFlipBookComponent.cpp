@@ -2,6 +2,8 @@
 #include "qFlipBookComponent.h"
 
 #include "qTimeMgr.h"
+#include "qDevice.h"
+#include "qConstBuffer.h"
 
 #include "qFlipBook.h"
 
@@ -48,10 +50,14 @@ void qFlipBookComponent::FinalTick()
 	}
 }
 
-void qFlipBookComponent::AddFlipBook(Ptr<qFlipBook> _Flipbook)
+void qFlipBookComponent::AddFlipBook(int _Idx, Ptr<qFlipBook> _Flipbook)
 {
-	// 동일한 FlipBook 이 이미 컴포넌트에 등록된 적이 있다면
-	m_vecFlipBook.push_back(_Flipbook);
+	if (m_vecFlipBook.size() <= _Idx)
+	{
+		m_vecFlipBook.resize(_Idx + 1);
+	}
+
+	m_vecFlipBook[_Idx] = _Flipbook;
 }
 
 Ptr<qFlipBook> qFlipBookComponent::FindFlipBook(const wstring& _Key)
@@ -87,4 +93,40 @@ void qFlipBookComponent::Reset()
 	m_CurFrmIdx = 0;
 	m_AccTime = 0.f;
 	m_Finish = false;
+}
+
+void qFlipBookComponent::Binding()
+{
+	if (nullptr != m_CurFrmSprite)
+	{
+		// 현재 표시해야하는 Sprite 의 정보를 Sprite 전용 상수버퍼를 통해서 GPU 에 전달
+		tSpriteInfo tInfo = {};
+
+		tInfo.LeftTopUV = m_CurFrmSprite->GetLeftTopUV();
+		tInfo.SliceUV = m_CurFrmSprite->GetSliceUV();
+		tInfo.BackGroundUV = m_CurFrmSprite->GetBackgroundUV();
+		tInfo.OffsetUV = m_CurFrmSprite->GetOffsetUV();
+		tInfo.UseFlipbook = 1;
+
+		static qConstBuffer* CB = qDevice::GetInst()->GetConstBuffer(CB_TYPE::SPRITE);
+
+		CB->SetData(&tInfo);
+		CB->Binding();
+
+		// FlipBook Sprite 아틀라스 텍스쳐 전용 레지스터번호 t10 에 바인딩
+		Ptr<qTexture> pAtlas = m_CurFrmSprite->GetAtlasTexture();
+		pAtlas->Binding(10);
+	}
+	else
+	{
+		Clear();
+	}
+}
+
+void qFlipBookComponent::Clear()
+{
+	tSpriteInfo tInfo = {};
+	static qConstBuffer* CB = qDevice::GetInst()->GetConstBuffer(CB_TYPE::SPRITE);
+	CB->SetData(&tInfo);
+	CB->Binding();
 }
