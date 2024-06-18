@@ -200,8 +200,10 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="qScript.h" />
     <ClInclude Include="qShader.h" />
     <ClInclude Include="qSprite.h" />
+    <ClInclude Include="qStructuredBuffer.h" />
     <ClInclude Include="qTaskMgr.h" />
     <ClInclude Include="qTexture.h" />
+    <ClInclude Include="qTileMap.h" />
     <ClInclude Include="qTimeMgr.h" />
     <ClInclude Include="qTransform.h" />
     <ClInclude Include="SimpleMath.h" />
@@ -250,8 +252,10 @@ call EngineHeaderCopy.bat</Command>
     <ClCompile Include="qScript.cpp" />
     <ClCompile Include="qShader.cpp" />
     <ClCompile Include="qSprite.cpp" />
+    <ClCompile Include="qStructuredBuffer.cpp" />
     <ClCompile Include="qTaskMgr.cpp" />
     <ClCompile Include="qTexture.cpp" />
+    <ClCompile Include="qTileMap.cpp" />
     <ClCompile Include="qTimeMgr.cpp" />
     <ClCompile Include="qTransform.cpp" />
   </ItemGroup>
@@ -272,6 +276,12 @@ call EngineHeaderCopy.bat</Command>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="std2d.fx">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="tilemap.fx">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>

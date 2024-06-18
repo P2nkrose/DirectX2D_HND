@@ -10,7 +10,7 @@
 //#include "qStateMachine.h"
 
 #include "qMeshRender.h"
-//#include "qTileMap.h"
+#include "qTileMap.h"
 //#include "qDecal.h"
 //#include "qParticleSystem.h"
 //#include "qLandScape.h"

@@ -90,7 +90,7 @@ void qMesh::Binding()
 	CONTEXT->IASetIndexBuffer(m_IB.Get(), DXGI_FORMAT_R32_UINT, 0);
 }
 
-void qMesh::render()
+void qMesh::Render()
 {
 	Binding();
 

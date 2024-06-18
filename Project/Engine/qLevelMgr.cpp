@@ -129,24 +129,47 @@ void qLevelMgr::Init()
 
 
 
-	// Monster Object
-	qGameObject* pMonster = new qGameObject;
-	pMonster->SetName(L"Monster");
+	//// Monster Object
+	//qGameObject* pMonster = new qGameObject;
+	//pMonster->SetName(L"Monster");
+	//
+	//pMonster->AddComponent(new qTransform);
+	//pMonster->AddComponent(new qMeshRender);
+	//pMonster->AddComponent(new qCollider2D);
+	//
+	//pMonster->Transform()->SetRelativePos(-400.f, 0.f, 100.f);
+	//pMonster->Transform()->SetRelativeScale(150.f, 150.f, 1.f);
+	//
+	//pMonster->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	//pMonster->Collider2D()->SetScale(Vec3(1.2f, 1.2f, 1.f));
+	//
+	//pMonster->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	//pMonster->MeshRender()->SetMaterial(pMtrl);
+	//
+	//m_CurLevel->AddObject(4, pMonster);
 
-	pMonster->AddComponent(new qTransform);
-	pMonster->AddComponent(new qMeshRender);
-	pMonster->AddComponent(new qCollider2D);
 
-	pMonster->Transform()->SetRelativePos(-400.f, 0.f, 100.f);
-	pMonster->Transform()->SetRelativeScale(150.f, 150.f, 1.f);
 
-	pMonster->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
-	pMonster->Collider2D()->SetScale(Vec3(1.2f, 1.2f, 1.f));
+	// TileMap Object
+	qGameObject* pTileMapObj = new qGameObject;
+	pTileMapObj->SetName(L"TileMap");
 
-	pMonster->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	pMonster->MeshRender()->SetMaterial(pMtrl);
+	pTileMapObj->AddComponent(new qTransform);
+	pTileMapObj->AddComponent(new qTileMap);
 
-	m_CurLevel->AddObject(4, pMonster);
+	pTileMapObj->Transform()->SetRelativePos(Vec3(-500.f, 250.f, 500.f));
+
+	pTileMapObj->TileMap()->SetRowCol(4, 4);
+	pTileMapObj->TileMap()->SetTileSize(Vec2(64.f, 64.f));
+
+	Ptr<qTexture> pTileAtlas = qAssetMgr::GetInst()->Load<qTexture>(L"TileAtlasTex", L"texture\\TILE.bmp");
+	pTileMapObj->TileMap()->SetAtlasTexture(pTileAtlas);
+	pTileMapObj->TileMap()->SetAtlasTileSize(Vec2(64.f, 64.f));
+
+
+	m_CurLevel->AddObject(2, pTileMapObj);
+
+
 
 
 

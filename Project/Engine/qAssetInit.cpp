@@ -124,22 +124,25 @@ void qAssetMgr::CreateEngineSprite()
 {
 	wstring strContentPath = qPathMgr::GetInst()->GetContentPath();
 
-	Ptr<qFlipBook> pFilpBook = new qFlipBook;
-	pFilpBook->Load(strContentPath + L"Animation\\" + L"Link_MoveDown" + L".flip");
-	AddAsset(L"Link_MoveDown", pFilpBook);
+	Ptr<qFlipBook> pFlipBook = new qFlipBook;
+	Load<qFlipBook>(L"Link_MoveDown", L"Animation\\Link_MoveDown.flip");
+	//AddAsset(L"Link_MoveDown", pFlipBook);
+
+	//Ptr<qFlipBook> pFlipBook = new qFlipBook;
+	//Load<qFlipBook>(L"Link_MoveDown", strContentPath + L"Animation\\" + L"Link_MoveDown" + L".flip");
 
 
 	//Ptr<qTexture> pTexture = new qTexture;
 	//pTexture = Load<qTexture>(L"Link_MoveDownTexture", L"texture\\link.png");
 	//Ptr<qSprite> pSprite = nullptr;
-	//
+	
 	//for (int i = 0; i < 10; ++i)
 	//{
 	//	wchar_t Buffer[50] = {};
 	//	swprintf_s(Buffer, 50, L"Link_MoveDown_%d", i);
 	//
 	//	pSprite = new qSprite;
-	//	//pSprite = Load<qSprite>(Buffer, wstring(L"Animation\\") + Buffer + L".sprite");		
+	//	pSprite = Load<qSprite>(Buffer, wstring(L"Animation\\") + Buffer + L".sprite");		
 	//
 	//
 	//	pSprite->Create(pTexture, Vec2(float(i) * 120.f, 520.f), Vec2(120.f, 130.f));
@@ -163,8 +166,7 @@ void qAssetMgr::CreateEngineSprite()
 	//pFilpBook->Save(strContentPath + L"Animation\\" + L"Link_MoveDown" + L".flip");
 
 
-	//Ptr<qFlipBook> pFilpBook = new qFlipBook;
-	//Load<qFlipBook>(L"Link_MoveDown", strContentPath + L"Animation\\" + L"Link_MoveDown" + L".flip");
+	
 }
 
 void qAssetMgr::CreateEngineGraphicShader()
@@ -215,6 +217,22 @@ void qAssetMgr::CreateEngineGraphicShader()
 
 	AddAsset(L"DebugShapeShader", pShader);
 
+	
+	// TileMapShader
+	pShader = new qGraphicShader;
+
+	pShader->CreateVertexShader(L"shader\\tilemap.fx", "VS_TileMap");
+	pShader->CreatePixelShader(L"shader\\tilemap.fx", "PS_TileMap");
+
+	pShader->SetRSType(RS_TYPE::CULL_NONE);
+	pShader->SetDSType(DS_TYPE::LESS);
+	pShader->SetBSType(BS_TYPE::DEFAULT);
+
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_MASKED);
+
+	AddAsset(L"TileMapShader", pShader);
+
+
 }
 
 void qAssetMgr::CreateEngineComputeShader()
@@ -240,4 +258,9 @@ void qAssetMgr::CreateEngineMaterial()
 	pMtrl = new qMaterial();
 	pMtrl->SetShader(FindAsset<qGraphicShader>(L"DebugShapeShader"));
 	AddAsset(L"DebugShapeMtrl", pMtrl);
+
+	// TileMapMtrl
+	pMtrl = new qMaterial();
+	pMtrl->SetShader(FindAsset<qGraphicShader>(L"TileMapShader"));
+	AddAsset(L"TileMapMtrl", pMtrl);
 }

@@ -10,7 +10,7 @@ private:
 
 public:
 	void Init();
-	void render();
+	void Render();
 
 private:
 	void GetParentPath(_Inout_ wchar_t* _Buffer);

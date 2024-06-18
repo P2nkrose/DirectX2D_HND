@@ -151,6 +151,15 @@
     <Filter Include="08. Component\04. FlipBookComponent">
       <UniqueIdentifier>{a15c471f-5b92-4c5c-b9f4-4d35de60cd3b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="HLSL\01. Header">
+      <UniqueIdentifier>{41680160-ccdd-4f41-a983-1618e30c9066}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HLSL\02. Render">
+      <UniqueIdentifier>{7c7ea7e7-edef-4626-bac0-32ac93dbb035}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Device\StructuredBuffer">
+      <UniqueIdentifier>{a6132389-716e-423f-8506-6387ab09e233}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -294,6 +303,12 @@
     <ClInclude Include="qFlipBookComponent.h">
       <Filter>08. Component\04. FlipBookComponent</Filter>
     </ClInclude>
+    <ClInclude Include="qTileMap.h">
+      <Filter>08. Component\RenderComponent\02. TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="qStructuredBuffer.h">
+      <Filter>03. Device\StructuredBuffer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -416,6 +431,12 @@
     <ClCompile Include="qFlipBookComponent.cpp">
       <Filter>08. Component\04. FlipBookComponent</Filter>
     </ClCompile>
+    <ClCompile Include="qTileMap.cpp">
+      <Filter>08. Component\RenderComponent\02. TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="qStructuredBuffer.cpp">
+      <Filter>03. Device\StructuredBuffer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -423,17 +444,20 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="std2d.fx">
-      <Filter>HLSL</Filter>
+    <FxCompile Include="func.fx">
+      <Filter>HLSL\01. Header</Filter>
     </FxCompile>
     <FxCompile Include="value.fx">
-      <Filter>HLSL</Filter>
+      <Filter>HLSL\01. Header</Filter>
     </FxCompile>
-    <FxCompile Include="func.fx">
-      <Filter>HLSL</Filter>
+    <FxCompile Include="std2d.fx">
+      <Filter>HLSL\02. Render</Filter>
     </FxCompile>
     <FxCompile Include="debug.fx">
-      <Filter>HLSL</Filter>
+      <Filter>HLSL\02. Render</Filter>
+    </FxCompile>
+    <FxCompile Include="tilemap.fx">
+      <Filter>HLSL\02. Render</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

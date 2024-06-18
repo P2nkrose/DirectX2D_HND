@@ -4,6 +4,7 @@
 class qMeshRender : public qRenderComponent
 {
 public:
+	CLONE(qMeshRender);
 	qMeshRender();
 	~qMeshRender();
 
@@ -11,6 +12,5 @@ public:
 	virtual void FinalTick() override;
 	virtual void Render() override;
 
-	virtual qMeshRender* Clone() { return new qMeshRender(*this); }
 };
 

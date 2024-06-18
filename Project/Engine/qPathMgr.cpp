@@ -25,7 +25,7 @@ void qPathMgr::Init()
 	m_Content += L"\\content\\";	
 }
 
-void qPathMgr::render()
+void qPathMgr::Render()
 {	
 }
 
