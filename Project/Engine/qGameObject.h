@@ -23,7 +23,7 @@ public:
 
 	void Begin();
 	void Tick();
-	void FinalTick();
+	virtual void FinalTick();
 	void Render();
 
 public:

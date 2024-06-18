@@ -9,9 +9,13 @@
 #include "qTransform.h"
 #include "qMeshRender.h"
 
+#include "qLevelMgr.h"
+#include "qLevel.h"
+
 
 qRenderMgr::qRenderMgr()
 	: m_DebugObject(nullptr)
+	, m_EditorCamera(nullptr)
 {
 
 }
@@ -34,12 +38,29 @@ void qRenderMgr::Init()
 
 void qRenderMgr::Tick()
 {
-	for (size_t i = 0; i < m_vecCam.size(); ++i)
-	{
-		if (nullptr == m_vecCam[i])
-			continue;
+	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+	if (nullptr == pCurLevel)
+		return;
 
-		m_vecCam[i]->Render();
+	// Level 이 Play 상태인 경우, Level 내에 있는 카메라 시점으로 렌더링하기
+	if (PLAY == pCurLevel->GetState())
+	{
+		for (size_t i = 0; i < m_vecCam.size(); ++i)
+		{
+			if (nullptr == m_vecCam[i])
+				continue;
+
+			m_vecCam[i]->Render();
+		}
+	}
+
+	// Level 이 Stop 이나 Pause 인 경우, Editor 용 카메라 시점으로 렌더링 하기
+	else
+	{
+		if (nullptr != m_EditorCamera)
+		{
+			m_EditorCamera->Render();
+		}
 	}
 
 	RenderDebugShape();

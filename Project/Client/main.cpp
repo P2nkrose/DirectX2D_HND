@@ -2,6 +2,8 @@
 #include "framework.h"
 #include "Client.h"
 
+#include "qEditorMgr.h"
+
 // 전역 변수:
 HINSTANCE g_hInst = nullptr;
 
@@ -44,6 +46,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return 0;
     }
 
+
+#ifdef _DEBUG
+   // Editor Manager 초기화
+    qEditorMgr::GetInst()->Init();
+#endif
+
+
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
     MSG msg = {};
 
@@ -63,6 +72,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         else
         {
             qEngine::GetInst()->Progress();
+
+#ifdef _DEBUG
+            qEditorMgr::GetInst()->Tick();
+#endif
+
         }
         
     }

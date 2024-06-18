@@ -2,6 +2,8 @@
 
 #include <Engine/singleton.h>
 
+class qGameObject;
+
 class qEditorMgr : public qSingleton<qEditorMgr>
 {
 	SINGLE(qEditorMgr);
@@ -12,6 +14,10 @@ public:
 
 
 private:
+	void CreateEditorObject();
 
+
+private:
+	vector<qGameObject*>	m_vecEditorObject;
 };
 
