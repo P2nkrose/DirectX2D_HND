@@ -26,6 +26,17 @@ void DeleteObject(qGameObject* _DeleteObject)
 	qTaskMgr::GetInst()->AddTask(task);
 }
 
+
+void ChangeLevelState(LEVEL_STATE _NextState)
+{
+	tTask task = {};
+	task.Type = TASK_TYPE::CHANGE_LEVELSTATE;
+	task.Param_0 = (DWORD_PTR)_NextState;
+
+	qTaskMgr::GetInst()->AddTask(task);
+}
+
+
 bool IsVaild(qGameObject*& _Object)
 {
 	if (nullptr == _Object)

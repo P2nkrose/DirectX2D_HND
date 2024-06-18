@@ -11,6 +11,8 @@
 #define MAX_LAYER 32
 
 #define DT qTimeMgr::GetInst()->GetDeltaTime()
+#define EngineDT qTimeMgr::GetInst()->GetEngineDeltaTime()
+
 #define KEY_CHECK(KEY, STATE) qKeyMgr::GetInst()->GetKeyState(KEY) == STATE
 #define KEY_TAP(KEY) qKeyMgr::GetInst()->GetKeyState(KEY) == KEY_STATE::TAP
 #define KEY_PRESSED(KEY) qKeyMgr::GetInst()->GetKeyState(KEY) == KEY_STATE::PRESSED

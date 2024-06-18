@@ -2,6 +2,7 @@
 
 void CreateObject(class qGameObject* _NewObject, int _LayerIndex);
 void DeleteObject(qGameObject* _DeleteObject);
+void ChangeLevelState(LEVEL_STATE _NextState);
 
 bool IsVaild(qGameObject*& _Object);
 

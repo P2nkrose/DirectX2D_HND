@@ -1,19 +1,6 @@
-﻿// Client.cpp : 애플리케이션에 대한 진입점을 정의합니다.
-//
-
+﻿#include "pch.h"
 #include "framework.h"
 #include "Client.h"
-
-#ifdef _DEBUG
-#pragma comment(lib, "Engine\\Engine_D")
-#else
-#pragma comment(lib, "Engine\\Engine")
-#endif
-
-#include <Engine\\global.h>
-#include <Engine\\qEngine.h>
-
-
 
 // 전역 변수:
 HINSTANCE g_hInst = nullptr;

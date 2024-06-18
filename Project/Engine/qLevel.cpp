@@ -5,6 +5,7 @@
 
 qLevel::qLevel()
 	: m_Layer{}
+	, m_State(LEVEL_STATE::STOP)
 {
 	for (int i = 0; i < MAX_LAYER; ++i)
 	{
@@ -53,4 +54,10 @@ void qLevel::ClearObject()
 void qLevel::AddObject(int LayerIdx, qGameObject* _Object, bool _bMoveChild)
 {
 	m_Layer[LayerIdx]->AddObject(_Object, _bMoveChild);
+}
+
+void qLevel::ChangeState(LEVEL_STATE _NextState)
+{
+	// Stop -> Play
+	// Begin
 }

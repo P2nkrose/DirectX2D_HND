@@ -5,6 +5,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{1f686413-641d-4fb7-8a51-6a5c07150315}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\01. EditorMgr">
+      <UniqueIdentifier>{d4d7ab67-5599-4309-9f31-58bd7ed267ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager\EditorGameObject">
+      <UniqueIdentifier>{16c90d86-a4a4-4f6b-bf9b-bd759168718b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -18,6 +27,12 @@
     </ClInclude>
     <ClInclude Include="Resource.h">
       <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="qEditorMgr.h">
+      <Filter>Manager\01. EditorMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -35,5 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="pch.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="qEditorMgr.cpp">
+      <Filter>Manager\01. EditorMgr</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

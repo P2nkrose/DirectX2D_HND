@@ -75,10 +75,10 @@ void qTileMap::SetRowCol(UINT _Row, UINT _Col)
 	{
 		m_Buffer->Create(sizeof(tTileInfo), TileCount);
 
-		for (size_t i = 0; i < m_vecTileInfo.size(); ++i)
-		{
-			m_vecTileInfo[i].ImgIdx = i;
-		}
+		//for (size_t i = 0; i < m_vecTileInfo.size(); ++i)
+		//{
+		//	m_vecTileInfo[i].ImgIdx = i;
+		//}
 	}
 }
 
