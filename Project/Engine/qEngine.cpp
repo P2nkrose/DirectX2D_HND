@@ -60,7 +60,7 @@ void qEngine::Progress()
 	// Render
 	qDevice::GetInst()->Clear();
 	qRenderMgr::GetInst()->Tick();
-	qDevice::GetInst()->Present();
+
 
 
 	// Task Manager

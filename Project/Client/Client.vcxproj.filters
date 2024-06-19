@@ -43,32 +43,32 @@
     <ClInclude Include="qGameObjectEx.h">
       <Filter>Manager\GameObjectEx</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\TeacherSVN\Project\Client\ImGui\imconfig.h">
-      <Filter>Manager\01. EditorMgr\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\TeacherSVN\Project\Client\ImGui\imgui.h">
-      <Filter>Manager\01. EditorMgr\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\TeacherSVN\Project\Client\ImGui\imgui_impl_dx11.h">
-      <Filter>Manager\01. EditorMgr\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\TeacherSVN\Project\Client\ImGui\imgui_impl_win32.h">
-      <Filter>Manager\01. EditorMgr\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\TeacherSVN\Project\Client\ImGui\imgui_internal.h">
-      <Filter>Manager\01. EditorMgr\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\TeacherSVN\Project\Client\ImGui\imstb_rectpack.h">
-      <Filter>Manager\01. EditorMgr\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\TeacherSVN\Project\Client\ImGui\imstb_textedit.h">
-      <Filter>Manager\01. EditorMgr\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\TeacherSVN\Project\Client\ImGui\imstb_truetype.h">
-      <Filter>Manager\01. EditorMgr\ImGui</Filter>
-    </ClInclude>
     <ClInclude Include="qEditorCameraScript.h">
       <Filter>Manager\GameObjectEx\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imconfig.h">
+      <Filter>Manager\01. EditorMgr\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui.h">
+      <Filter>Manager\01. EditorMgr\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_impl_dx11.h">
+      <Filter>Manager\01. EditorMgr\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_impl_win32.h">
+      <Filter>Manager\01. EditorMgr\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imgui_internal.h">
+      <Filter>Manager\01. EditorMgr\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_rectpack.h">
+      <Filter>Manager\01. EditorMgr\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_textedit.h">
+      <Filter>Manager\01. EditorMgr\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="ImGui\imstb_truetype.h">
+      <Filter>Manager\01. EditorMgr\ImGui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -95,33 +95,33 @@
     <ClCompile Include="qGameObjectEx.cpp">
       <Filter>Manager\GameObjectEx</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\TeacherSVN\Project\Client\ImGui\imgui.cpp">
-      <Filter>Manager\01. EditorMgr\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\TeacherSVN\Project\Client\ImGui\imgui_demo.cpp">
-      <Filter>Manager\01. EditorMgr\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\TeacherSVN\Project\Client\ImGui\imgui_draw.cpp">
-      <Filter>Manager\01. EditorMgr\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\TeacherSVN\Project\Client\ImGui\imgui_impl_dx11.cpp">
-      <Filter>Manager\01. EditorMgr\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\TeacherSVN\Project\Client\ImGui\imgui_impl_win32.cpp">
-      <Filter>Manager\01. EditorMgr\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\TeacherSVN\Project\Client\ImGui\imgui_tables.cpp">
-      <Filter>Manager\01. EditorMgr\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\TeacherSVN\Project\Client\ImGui\imgui_widgets.cpp">
-      <Filter>Manager\01. EditorMgr\ImGui</Filter>
-    </ClCompile>
     <ClCompile Include="qEditorCameraScript.cpp">
       <Filter>Manager\GameObjectEx\Scripts</Filter>
     </ClCompile>
+    <ClCompile Include="ImGui\imgui.cpp">
+      <Filter>Manager\01. EditorMgr\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_demo.cpp">
+      <Filter>Manager\01. EditorMgr\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_draw.cpp">
+      <Filter>Manager\01. EditorMgr\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_impl_dx11.cpp">
+      <Filter>Manager\01. EditorMgr\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_impl_win32.cpp">
+      <Filter>Manager\01. EditorMgr\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_tables.cpp">
+      <Filter>Manager\01. EditorMgr\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="ImGui\imgui_widgets.cpp">
+      <Filter>Manager\01. EditorMgr\ImGui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\..\..\TeacherSVN\Project\Client\ImGui\LICENSE.txt">
+    <Text Include="ImGui\LICENSE.txt">
       <Filter>Manager\01. EditorMgr\ImGui</Filter>
     </Text>
   </ItemGroup>

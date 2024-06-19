@@ -12,9 +12,12 @@ public:
 	void Init();
 	void Tick();
 
-
 private:
 	void CreateEditorObject();
+
+	void InitImGui();
+	void ImGuiProgress();
+	void ImGuiTick();
 
 
 private:
