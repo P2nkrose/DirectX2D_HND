@@ -120,7 +120,7 @@ void qRenderMgr::RenderDebugShape()
 
 
 		// 수명이 다한 디버그 정보를 삭제
-		(*iter).Age += DT;
+		(*iter).Age += EngineDT;
 		if ((*iter).LifeTime < (*iter).Age)
 		{
 			iter = m_DebugShapeList.erase(iter);
@@ -131,3 +131,4 @@ void qRenderMgr::RenderDebugShape()
 		}
 	}
 }
+

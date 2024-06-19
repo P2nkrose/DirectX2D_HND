@@ -1,10 +1,14 @@
 #include "pch.h"
 #include "qEditorMgr.h"
 
+#include <Engine/components.h>
 #include "qGameObjectEx.h"
 
+#include <Engine/qKeyMgr.h>
 #include <Engine/qRenderMgr.h>
-#include <Engine/components.h>
+#include "qEditorCameraScript.h"
+
+
 
 
 qEditorMgr::qEditorMgr()
@@ -41,7 +45,7 @@ void qEditorMgr::CreateEditorObject()
 	pEditorCamera->SetName(L"EditorCamera");
 	pEditorCamera->AddComponent(new qTransform);
 	pEditorCamera->AddComponent(new qCamera);
-	//pEditorCamera->AddComponent(new qEditorCameraScript);
+	pEditorCamera->AddComponent(new qEditorCameraScript);
 
 	pEditorCamera->Camera()->SetLayerAll();
 	pEditorCamera->Camera()->SetLayer(31, false);
