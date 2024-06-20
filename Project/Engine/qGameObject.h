@@ -36,7 +36,7 @@ public:
 	
 public:
 	void AddChild(qGameObject* _ChildObject);
-	const vector<qGameObject*>& GetChildren() { return m_vecChildren; }
+	const vector<qGameObject*>& GetChildren() { return m_vecChildUI; }
 	const vector<qScript*> GetScripts() { return m_vecScript; }
 
 	bool IsDead() { return m_Dead; }
@@ -61,7 +61,7 @@ private:
 	vector<qScript*>		m_vecScript;
 
 	qGameObject*			m_Parent;
-	vector<qGameObject*>	m_vecChildren;
+	vector<qGameObject*>	m_vecChildUI;
 
 	int						m_LayerIdx;		// 소속 레이어의 인덱스 번호
 

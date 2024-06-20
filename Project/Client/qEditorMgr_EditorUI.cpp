@@ -78,7 +78,11 @@ void qEditorMgr::CreateEditorUI()
 	// Content
 	pUI = new Content;
 	pUI->SetName("Content");
-	m_mapUI.insert(make_pair(pUI->GetName(), pUI));
+	m_mapUI.insert(make_pair(pUI->GetFullName(), pUI));
+
+	pUI = new Content;
+	pUI->SetName("Content");
+	m_mapUI.insert(make_pair(pUI->GetFullName(), pUI));
 }
 
 

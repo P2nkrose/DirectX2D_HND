@@ -23,7 +23,7 @@ qGameObject::~qGameObject()
 {
 	Delete_Array(m_arrCom);
 	Delete_Vec(m_vecScript);
-	Delete_Vec(m_vecChildren);
+	Delete_Vec(m_vecChildUI);
 }
 
 
@@ -81,7 +81,7 @@ void qGameObject::AddChild(qGameObject* _ChildObject)
 	}
 
 
-	m_vecChildren.push_back(_ChildObject);
+	m_vecChildUI.push_back(_ChildObject);
 	_ChildObject->m_Parent = this;
 }
 
@@ -99,13 +99,13 @@ void qGameObject::DisconnectWithLayer()
 
 void qGameObject::DeregisterChild()
 {
-	vector<qGameObject*>::iterator iter = m_Parent->m_vecChildren.begin();
+	vector<qGameObject*>::iterator iter = m_Parent->m_vecChildUI.begin();
 
-	for (; iter != m_Parent->m_vecChildren.end(); ++iter)
+	for (; iter != m_Parent->m_vecChildUI.end(); ++iter)
 	{
 		if ((*iter) == this)
 		{
-			m_Parent->m_vecChildren.erase(iter);
+			m_Parent->m_vecChildUI.erase(iter);
 			m_Parent = nullptr;
 			return;
 		}
@@ -132,9 +132,9 @@ void qGameObject::Begin()
 	}
 
 	// 자식 오브젝트
-	for (size_t i = 0; i < m_vecChildren.size(); ++i)
+	for (size_t i = 0; i < m_vecChildUI.size(); ++i)
 	{
-		m_vecChildren[i]->Begin();
+		m_vecChildUI[i]->Begin();
 	}
 }
 
@@ -152,9 +152,9 @@ void qGameObject::Tick()
 	}
 
 	// 자식 오브젝트
-	for (size_t i = 0; i < m_vecChildren.size(); ++i)
+	for (size_t i = 0; i < m_vecChildUI.size(); ++i)
 	{
-		m_vecChildren[i]->Tick();
+		m_vecChildUI[i]->Tick();
 	}
 }
 
@@ -175,13 +175,13 @@ void qGameObject::FinalTick()
 
 
 	// 자식 오브젝트
-	vector<qGameObject*>::iterator iter = m_vecChildren.begin();
-	for (; iter != m_vecChildren.end(); )
+	vector<qGameObject*>::iterator iter = m_vecChildUI.begin();
+	for (; iter != m_vecChildUI.end(); )
 	{
 		(*iter)->FinalTick();
 
 		if ((*iter)->IsDead())
-			iter = m_vecChildren.erase(iter);
+			iter = m_vecChildUI.erase(iter);
 		else
 			++iter;
 	}

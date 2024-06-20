@@ -11,6 +11,11 @@ Content::~Content()
 
 void Content::Update()
 {
+	// Separator : ±¸ºÐ¼±
+	ImGui::Separator();
+
 	Vec4 vData;
 	ImGui::DragFloat4("data", vData);
+
+	ImGui::Separator();
 }
