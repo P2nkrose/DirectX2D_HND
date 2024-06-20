@@ -11,14 +11,26 @@
     <Filter Include="Manager\01. EditorMgr">
       <UniqueIdentifier>{d4d7ab67-5599-4309-9f31-58bd7ed267ba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Manager\GameObjectEx">
-      <UniqueIdentifier>{16c90d86-a4a4-4f6b-bf9b-bd759168718b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Manager\01. EditorMgr\ImGui">
       <UniqueIdentifier>{81e7e3de-541a-4d55-afca-2cb701da6bf4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Manager\GameObjectEx\Scripts">
+    <Filter Include="GameObjectEx">
+      <UniqueIdentifier>{16c90d86-a4a4-4f6b-bf9b-bd759168718b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjectEx\Scripts">
       <UniqueIdentifier>{90211378-0b30-47b8-b4eb-f505fbc18691}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorUI">
+      <UniqueIdentifier>{ab8c4655-10d6-4270-b56f-530d09c181ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorUI\01. Inspector">
+      <UniqueIdentifier>{bdbc6a51-4101-4029-beec-35bf96b48db9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorUI\02. Content">
+      <UniqueIdentifier>{9e9e1d10-bc74-40b3-9dce-2684d342aef1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorUI\03. Outliner">
+      <UniqueIdentifier>{d92a2a3b-c8d5-497d-a962-411cb921ff44}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -41,10 +53,10 @@
       <Filter>Manager\01. EditorMgr</Filter>
     </ClInclude>
     <ClInclude Include="qGameObjectEx.h">
-      <Filter>Manager\GameObjectEx</Filter>
+      <Filter>GameObjectEx</Filter>
     </ClInclude>
     <ClInclude Include="qEditorCameraScript.h">
-      <Filter>Manager\GameObjectEx\Scripts</Filter>
+      <Filter>GameObjectEx\Scripts</Filter>
     </ClInclude>
     <ClInclude Include="ImGui\imconfig.h">
       <Filter>Manager\01. EditorMgr\ImGui</Filter>
@@ -70,6 +82,15 @@
     <ClInclude Include="ImGui\imstb_truetype.h">
       <Filter>Manager\01. EditorMgr\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="EditorUI.h">
+      <Filter>EditorUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Inspector.h">
+      <Filter>EditorUI\01. Inspector</Filter>
+    </ClInclude>
+    <ClInclude Include="Content.h">
+      <Filter>EditorUI\02. Content</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -93,10 +114,10 @@
       <Filter>Manager\01. EditorMgr</Filter>
     </ClCompile>
     <ClCompile Include="qGameObjectEx.cpp">
-      <Filter>Manager\GameObjectEx</Filter>
+      <Filter>GameObjectEx</Filter>
     </ClCompile>
     <ClCompile Include="qEditorCameraScript.cpp">
-      <Filter>Manager\GameObjectEx\Scripts</Filter>
+      <Filter>GameObjectEx\Scripts</Filter>
     </ClCompile>
     <ClCompile Include="ImGui\imgui.cpp">
       <Filter>Manager\01. EditorMgr\ImGui</Filter>
@@ -118,6 +139,21 @@
     </ClCompile>
     <ClCompile Include="ImGui\imgui_widgets.cpp">
       <Filter>Manager\01. EditorMgr\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="EditorUI.cpp">
+      <Filter>EditorUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Inspector.cpp">
+      <Filter>EditorUI\01. Inspector</Filter>
+    </ClCompile>
+    <ClCompile Include="Content.cpp">
+      <Filter>EditorUI\02. Content</Filter>
+    </ClCompile>
+    <ClCompile Include="qEditorMgr_EditorObject.cpp">
+      <Filter>Manager\01. EditorMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="qEditorMgr_EditorUI.cpp">
+      <Filter>Manager\01. EditorMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
