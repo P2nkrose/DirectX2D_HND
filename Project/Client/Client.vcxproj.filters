@@ -32,6 +32,15 @@
     <Filter Include="EditorUI\03. Outliner">
       <UniqueIdentifier>{d92a2a3b-c8d5-497d-a962-411cb921ff44}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EditorUI\01. Inspector\ComponentUI">
+      <UniqueIdentifier>{bf801130-0419-4ad3-8a7a-3c26ad8e80ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorUI\01. Inspector\ComponentUI\1. TransformUI">
+      <UniqueIdentifier>{01d57b61-84d0-402c-8533-6e5e1028984d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorUI\01. Inspector\ComponentUI\2. Collider2DUI">
+      <UniqueIdentifier>{cc52d238-c845-404b-9fa1-9b84b940ef7e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -93,6 +102,15 @@
     </ClInclude>
     <ClInclude Include="Outliner.h">
       <Filter>EditorUI\03. Outliner</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentUI.h">
+      <Filter>EditorUI\01. Inspector\ComponentUI</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformUI.h">
+      <Filter>EditorUI\01. Inspector\ComponentUI\1. TransformUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider2DUI.h">
+      <Filter>EditorUI\01. Inspector\ComponentUI\2. Collider2DUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +178,15 @@
     </ClCompile>
     <ClCompile Include="Outliner.cpp">
       <Filter>EditorUI\03. Outliner</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentUI.cpp">
+      <Filter>EditorUI\01. Inspector\ComponentUI</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformUI.cpp">
+      <Filter>EditorUI\01. Inspector\ComponentUI\1. TransformUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider2DUI.cpp">
+      <Filter>EditorUI\01. Inspector\ComponentUI\2. Collider2DUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

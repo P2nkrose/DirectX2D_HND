@@ -145,6 +145,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Client.h" />
+    <ClInclude Include="Collider2DUI.h" />
+    <ClInclude Include="ComponentUI.h" />
     <ClInclude Include="Content.h" />
     <ClInclude Include="EditorUI.h" />
     <ClInclude Include="framework.h" />
@@ -164,8 +166,11 @@
     <ClInclude Include="qGameObjectEx.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TransformUI.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Collider2DUI.cpp" />
+    <ClCompile Include="ComponentUI.cpp" />
     <ClCompile Include="Content.cpp" />
     <ClCompile Include="EditorUI.cpp" />
     <ClCompile Include="ImGui\imgui.cpp" />
@@ -187,6 +192,7 @@
     <ClCompile Include="qEditorMgr_EditorObject.cpp" />
     <ClCompile Include="qEditorMgr_EditorUI.cpp" />
     <ClCompile Include="qGameObjectEx.cpp" />
+    <ClCompile Include="TransformUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />

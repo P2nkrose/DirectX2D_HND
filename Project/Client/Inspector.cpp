@@ -5,22 +5,52 @@
 #include <Engine/qLevel.h>
 #include <Engine/qLayer.h>
 #include <Engine/qGameObject.h>
+#include <Engine/components.h>
+
+#include "TransformUI.h"
+#include "Collider2DUI.h"
 
 
 Inspector::Inspector()
 	: m_TargetObject(nullptr)
+	, m_arrComUI{}
 {
+	m_arrComUI[(UINT)COMPONENT_TYPE::TRANSFORM] = new TransformUI;
+	m_arrComUI[(UINT)COMPONENT_TYPE::TRANSFORM]->SetName("TransformUI");
+	m_arrComUI[(UINT)COMPONENT_TYPE::TRANSFORM]->SetChildSize(ImVec2(0.f, 100.f));
+	AddChild(m_arrComUI[(UINT)COMPONENT_TYPE::TRANSFORM]);
+
+	m_arrComUI[(UINT)COMPONENT_TYPE::COLLIDER2D] = new Collider2DUI;
+	m_arrComUI[(UINT)COMPONENT_TYPE::COLLIDER2D]->SetName("Collider2DUI");
+	m_arrComUI[(UINT)COMPONENT_TYPE::COLLIDER2D]->SetChildSize(ImVec2(0.f, 100.f));
+	AddChild(m_arrComUI[(UINT)COMPONENT_TYPE::COLLIDER2D]);
 }
 
 Inspector::~Inspector()
 {
 }
 
+
+void Inspector::SetTargetObject(qGameObject* _Object)
+{
+	m_TargetObject = _Object;
+
+	for (UINT i = 0; i < (UINT)COMPONENT_TYPE::END; ++i)
+	{
+		if (nullptr == m_arrComUI[i])
+			continue;
+
+		m_arrComUI[i]->SetTargetObject(_Object);
+	}
+}
+
+
+
 void Inspector::Update()
 {
 	if (nullptr == m_TargetObject)
 	{
-		m_TargetObject = qLevelMgr::GetInst()->FindObjectByName(L"Player");
+		SetTargetObject(qLevelMgr::GetInst()->FindObjectByName(L"Player"));
 		return;
 	}
 
@@ -54,3 +84,5 @@ void Inspector::Update()
 	ImGui::InputText("##LayerName", buffer, strlen(buffer), ImGuiInputTextFlags_ReadOnly);
 
 }
+
+
