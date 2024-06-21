@@ -27,6 +27,20 @@ qLevelMgr::~qLevelMgr()
 		delete m_CurLevel;
 }
 
+
+qGameObject* qLevelMgr::FindObjectByName(const wstring& _Name)
+{
+	if (m_CurLevel)
+	{
+		return m_CurLevel->FindObjectByName(_Name);
+	}
+
+	return nullptr;
+}
+
+
+
+
 void qLevelMgr::Init()
 {
 	// Material
@@ -194,3 +208,4 @@ void qLevelMgr::Progress()
 	m_CurLevel->ClearObject();
 	m_CurLevel->FinalTick();
 }
+

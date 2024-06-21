@@ -2,6 +2,7 @@
 #include "qLevel.h"
 
 #include "qLayer.h"
+#include "qGameObject.h"
 
 qLevel::qLevel()
 	: m_Layer{}
@@ -55,6 +56,44 @@ void qLevel::AddObject(int LayerIdx, qGameObject* _Object, bool _bMoveChild)
 {
 	m_Layer[LayerIdx]->AddObject(_Object, _bMoveChild);
 }
+
+
+
+qGameObject* qLevel::FindObjectByName(const wstring& _Name)
+{
+	for (UINT i = 0; i < MAX_LAYER; ++i)
+	{
+		const vector<qGameObject*>& vecParent = m_Layer[i]->GetParentObjects();
+
+		static list<qGameObject*> list;
+		for (size_t i = 0; i < vecParent.size(); ++i)
+		{
+			list.clear();
+			list.push_back(vecParent[i]);
+
+			while (!list.empty())
+			{
+				qGameObject* pObject = list.front();
+				list.pop_front();
+
+				const vector<qGameObject*>& vecChild = pObject->GetChildren();
+				for (size_t i = 0; i < vecChild.size(); ++i)
+				{
+					list.push_back(vecChild[i]);
+				}
+
+				if (_Name == pObject->GetName())
+				{
+					return pObject;
+				}
+			}
+		}
+	}
+
+	return nullptr;
+}
+
+
 
 void qLevel::ChangeState(LEVEL_STATE _NextState)
 {

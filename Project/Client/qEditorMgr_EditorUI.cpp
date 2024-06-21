@@ -8,6 +8,7 @@
 
 #include "Inspector.h"
 #include "Content.h"
+#include "Outliner.h"
 
 
 
@@ -80,8 +81,9 @@ void qEditorMgr::CreateEditorUI()
 	pUI->SetName("Content");
 	m_mapUI.insert(make_pair(pUI->GetFullName(), pUI));
 
-	pUI = new Content;
-	pUI->SetName("Content");
+	// Outliner
+	pUI = new Outliner;
+	pUI->SetName("Outliner");
 	m_mapUI.insert(make_pair(pUI->GetFullName(), pUI));
 }
 

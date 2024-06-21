@@ -1,6 +1,7 @@
 #pragma once
 
 class qLevel;
+class qGameObject;
 
 class qLevelMgr : public qSingleton<qLevelMgr>
 {
@@ -12,6 +13,7 @@ public:
 
 public:
 	qLevel* GetCurrentLevel() { return m_CurLevel; }
+	qGameObject* FindObjectByName(const wstring& _Name);
 
 private:
 	qLevel*		m_CurLevel;

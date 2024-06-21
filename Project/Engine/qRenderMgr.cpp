@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "qRenderMgr.h"
 
+#include "qDevice.h"
+
 #include "qCamera.h"
 #include "qTimeMgr.h"
 #include "qAssetMgr.h"
@@ -41,6 +43,11 @@ void qRenderMgr::Tick()
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 	if (nullptr == pCurLevel)
 		return;
+
+	// 렌더타겟 지정
+	Ptr<qTexture> pRTTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"RenderTargetTex");
+	Ptr<qTexture> pDSTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"DepthStencilTex");
+	CONTEXT->OMSetRenderTargets(1, pRTTex->GetRTV().GetAddressOf(), pDSTex->GetDSV().Get());
 
 	// Level 이 Play 상태인 경우, Level 내에 있는 카메라 시점으로 렌더링하기
 	if (PLAY == pCurLevel->GetState())

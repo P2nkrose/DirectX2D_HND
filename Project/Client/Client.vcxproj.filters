@@ -91,6 +91,9 @@
     <ClInclude Include="Content.h">
       <Filter>EditorUI\02. Content</Filter>
     </ClInclude>
+    <ClInclude Include="Outliner.h">
+      <Filter>EditorUI\03. Outliner</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -154,6 +157,9 @@
     </ClCompile>
     <ClCompile Include="qEditorMgr_EditorUI.cpp">
       <Filter>Manager\01. EditorMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Outliner.cpp">
+      <Filter>EditorUI\03. Outliner</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
