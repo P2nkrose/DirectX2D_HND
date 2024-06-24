@@ -30,6 +30,9 @@ public:
 
 	int GetOverlapCount() { return m_OverlapCount; }
 
+	bool IsIndependentScale() { return m_IndependentScale; }
+
+
 
 private:
 	Vec3		m_Offset;

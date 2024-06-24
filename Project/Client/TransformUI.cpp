@@ -21,10 +21,6 @@ void TransformUI::Update()
 	if (nullptr == GetTargetObject())
 		return;
 
-	// ===============
-	//    Transform
-	// ===============
-
 	qTransform* pTrans = GetTargetObject()->Transform();
 
 	Vec3 vPos = pTrans->GetRelativePos();
