@@ -29,6 +29,7 @@ qCamera::qCamera()
 	Vec2 vResolution = qDevice::GetInst()->GetResolution();
 	m_Width = vResolution.x;
 	m_Height = vResolution.y;
+	m_AspectRatio = m_Width / m_Height;
 }
 
 qCamera::~qCamera()
@@ -86,8 +87,7 @@ void qCamera::FinalTick()
 	else
 	{
 		// 2. 원근 투영 (Perspective)
-		float AspectRatio = m_Width / m_Height;
-		m_matProj = XMMatrixPerspectiveFovLH(m_FOV, AspectRatio, 1.f, m_Far);
+		m_matProj = XMMatrixPerspectiveFovLH(m_FOV, m_AspectRatio, 1.f, m_Far);
 	}
 }
 

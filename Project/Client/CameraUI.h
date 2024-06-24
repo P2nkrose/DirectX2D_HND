@@ -12,8 +12,6 @@ private:
 
 	void LayerCheck();
 
-
-
 private:
 	bool		m_ShowLayerCheck;
 };
