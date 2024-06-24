@@ -41,6 +41,18 @@
     <Filter Include="EditorUI\01. Inspector\ComponentUI\2. Collider2DUI">
       <UniqueIdentifier>{cc52d238-c845-404b-9fa1-9b84b940ef7e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EditorUI\01. Inspector\ComponentUI\3. CameraUI">
+      <UniqueIdentifier>{549e2ce2-eabe-4d41-b9f0-35fa3be77ffe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorUI\01. Inspector\ComponentUI\4. FlipBookUI">
+      <UniqueIdentifier>{71502068-105f-452c-a0d2-86e3ec560eea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorUI\01. Inspector\ComponentUI\5. MeshRenderUI">
+      <UniqueIdentifier>{5d291b17-62da-48da-8756-ef073a20373e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorUI\01. Inspector\ComponentUI\6. TileMapUI">
+      <UniqueIdentifier>{a0a82881-3b17-41d3-8dee-efcf73b37d23}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -111,6 +123,9 @@
     </ClInclude>
     <ClInclude Include="Collider2DUI.h">
       <Filter>EditorUI\01. Inspector\ComponentUI\2. Collider2DUI</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraUI.h">
+      <Filter>EditorUI\01. Inspector\ComponentUI\3. CameraUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -187,6 +202,9 @@
     </ClCompile>
     <ClCompile Include="Collider2DUI.cpp">
       <Filter>EditorUI\01. Inspector\ComponentUI\2. Collider2DUI</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraUI.cpp">
+      <Filter>EditorUI\01. Inspector\ComponentUI\3. CameraUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

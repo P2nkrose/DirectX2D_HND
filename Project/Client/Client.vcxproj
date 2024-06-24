@@ -144,6 +144,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CameraUI.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="Collider2DUI.h" />
     <ClInclude Include="ComponentUI.h" />
@@ -169,6 +170,7 @@
     <ClInclude Include="TransformUI.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CameraUI.cpp" />
     <ClCompile Include="Collider2DUI.cpp" />
     <ClCompile Include="ComponentUI.cpp" />
     <ClCompile Include="Content.cpp" />
