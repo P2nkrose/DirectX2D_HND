@@ -21,11 +21,11 @@ void ComponentUI::SetTargetObject(qGameObject* _Object)
 
 	if (nullptr != m_TargetObject && nullptr != m_TargetObject->GetComponent(m_Type))
 	{
-		Activate();
+		SetActive(true);
 	}
 	else
 	{
-		Deactivate();
+		SetActive(false);
 	}
 }
 

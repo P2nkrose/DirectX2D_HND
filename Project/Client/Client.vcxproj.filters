@@ -56,6 +56,9 @@
     <Filter Include="EditorUI\01. Inspector\ComponentUI\07. ParticleSystemUI">
       <UniqueIdentifier>{dc0fea64-584d-4e2d-8185-217afa7712a1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EditorUI\04. ListUI">
+      <UniqueIdentifier>{42311b1b-73a5-4b86-a1a9-a1ae781138e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -141,6 +144,9 @@
     </ClInclude>
     <ClInclude Include="ParticleSystemUI.h">
       <Filter>EditorUI\01. Inspector\ComponentUI\07. ParticleSystemUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ListUI.h">
+      <Filter>EditorUI\04. ListUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -232,6 +238,9 @@
     </ClCompile>
     <ClCompile Include="ParticleSystemUI.cpp">
       <Filter>EditorUI\01. Inspector\ComponentUI\07. ParticleSystemUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ListUI.cpp">
+      <Filter>EditorUI\04. ListUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
