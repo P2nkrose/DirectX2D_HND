@@ -35,23 +35,26 @@
     <Filter Include="EditorUI\01. Inspector\ComponentUI">
       <UniqueIdentifier>{bf801130-0419-4ad3-8a7a-3c26ad8e80ca}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EditorUI\01. Inspector\ComponentUI\1. TransformUI">
+    <Filter Include="EditorUI\01. Inspector\ComponentUI\01. TransformUI">
       <UniqueIdentifier>{01d57b61-84d0-402c-8533-6e5e1028984d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EditorUI\01. Inspector\ComponentUI\2. Collider2DUI">
+    <Filter Include="EditorUI\01. Inspector\ComponentUI\02. Collider2DUI">
       <UniqueIdentifier>{cc52d238-c845-404b-9fa1-9b84b940ef7e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EditorUI\01. Inspector\ComponentUI\3. CameraUI">
+    <Filter Include="EditorUI\01. Inspector\ComponentUI\03. CameraUI">
       <UniqueIdentifier>{549e2ce2-eabe-4d41-b9f0-35fa3be77ffe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EditorUI\01. Inspector\ComponentUI\4. FlipBookUI">
+    <Filter Include="EditorUI\01. Inspector\ComponentUI\04. FlipBookUI">
       <UniqueIdentifier>{71502068-105f-452c-a0d2-86e3ec560eea}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EditorUI\01. Inspector\ComponentUI\5. MeshRenderUI">
+    <Filter Include="EditorUI\01. Inspector\ComponentUI\05. MeshRenderUI">
       <UniqueIdentifier>{5d291b17-62da-48da-8756-ef073a20373e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EditorUI\01. Inspector\ComponentUI\6. TileMapUI">
+    <Filter Include="EditorUI\01. Inspector\ComponentUI\06. TileMapUI">
       <UniqueIdentifier>{a0a82881-3b17-41d3-8dee-efcf73b37d23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorUI\01. Inspector\ComponentUI\07. ParticleSystemUI">
+      <UniqueIdentifier>{dc0fea64-584d-4e2d-8185-217afa7712a1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -119,13 +122,25 @@
       <Filter>EditorUI\01. Inspector\ComponentUI</Filter>
     </ClInclude>
     <ClInclude Include="TransformUI.h">
-      <Filter>EditorUI\01. Inspector\ComponentUI\1. TransformUI</Filter>
+      <Filter>EditorUI\01. Inspector\ComponentUI\01. TransformUI</Filter>
     </ClInclude>
     <ClInclude Include="Collider2DUI.h">
-      <Filter>EditorUI\01. Inspector\ComponentUI\2. Collider2DUI</Filter>
+      <Filter>EditorUI\01. Inspector\ComponentUI\02. Collider2DUI</Filter>
     </ClInclude>
     <ClInclude Include="CameraUI.h">
-      <Filter>EditorUI\01. Inspector\ComponentUI\3. CameraUI</Filter>
+      <Filter>EditorUI\01. Inspector\ComponentUI\03. CameraUI</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshRenderUI.h">
+      <Filter>EditorUI\01. Inspector\ComponentUI\05. MeshRenderUI</Filter>
+    </ClInclude>
+    <ClInclude Include="FlipBookComUI.h">
+      <Filter>EditorUI\01. Inspector\ComponentUI\04. FlipBookUI</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMapUI.h">
+      <Filter>EditorUI\01. Inspector\ComponentUI\06. TileMapUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSystemUI.h">
+      <Filter>EditorUI\01. Inspector\ComponentUI\07. ParticleSystemUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -198,13 +213,25 @@
       <Filter>EditorUI\01. Inspector\ComponentUI</Filter>
     </ClCompile>
     <ClCompile Include="TransformUI.cpp">
-      <Filter>EditorUI\01. Inspector\ComponentUI\1. TransformUI</Filter>
+      <Filter>EditorUI\01. Inspector\ComponentUI\01. TransformUI</Filter>
     </ClCompile>
     <ClCompile Include="Collider2DUI.cpp">
-      <Filter>EditorUI\01. Inspector\ComponentUI\2. Collider2DUI</Filter>
+      <Filter>EditorUI\01. Inspector\ComponentUI\02. Collider2DUI</Filter>
     </ClCompile>
     <ClCompile Include="CameraUI.cpp">
-      <Filter>EditorUI\01. Inspector\ComponentUI\3. CameraUI</Filter>
+      <Filter>EditorUI\01. Inspector\ComponentUI\03. CameraUI</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshRenderUI.cpp">
+      <Filter>EditorUI\01. Inspector\ComponentUI\05. MeshRenderUI</Filter>
+    </ClCompile>
+    <ClCompile Include="FlipBookComUI.cpp">
+      <Filter>EditorUI\01. Inspector\ComponentUI\04. FlipBookUI</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMapUI.cpp">
+      <Filter>EditorUI\01. Inspector\ComponentUI\06. TileMapUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSystemUI.cpp">
+      <Filter>EditorUI\01. Inspector\ComponentUI\07. ParticleSystemUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -65,6 +65,19 @@ void qEditorCameraScript::OrthoGraphicMove()
 	}
 
 	Transform()->SetRelativePos(vPos);
+
+
+	// 직교투영 시 시야 커지고 작게하기
+	float Scale = Camera()->GetScale();
+	if (KEY_PRESSED(KEY::_8))
+		Scale += EngineDT;
+
+	if (KEY_PRESSED(KEY::_9))
+		Scale -= EngineDT;
+
+	Camera()->SetScale(Scale);
+
+
 }
 
 void qEditorCameraScript::PerspectiveMove()

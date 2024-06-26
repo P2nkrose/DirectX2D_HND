@@ -11,6 +11,7 @@ private:
 	virtual void Update() override;
 
 	void LayerCheck();
+	void Projection();
 
 private:
 	bool		m_ShowLayerCheck;

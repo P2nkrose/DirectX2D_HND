@@ -62,6 +62,12 @@ public:
 	void SetFar(float _Far) { m_Far = _Far; }
 	float GetFar() { return m_Far; }
 
+	void SetFOV(float _FOV) { m_FOV = _FOV; }
+	float GetFOV() { return m_FOV; }
+
+	void SetScale(float _Scale) { m_ProjectionScale = _Scale; }
+	float GetScale() { return m_ProjectionScale; }
+
 
 private:
 	int						m_Priority;				// 우선순위
@@ -73,8 +79,8 @@ private:
 	float					m_Height;
 	float					m_AspectRatio;			// 종횡 비
 	float					m_Far;					// 카메라가 볼수 있는 시야 거리 (ex : 10000.f)
-
 	float					m_FOV;					// Field Of View (시야 범위, 시야 각)
+	float					m_ProjectionScale;
 
 	Matrix					m_matView;
 	Matrix					m_matProj;
