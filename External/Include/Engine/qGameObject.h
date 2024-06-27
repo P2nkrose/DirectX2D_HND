@@ -54,6 +54,8 @@ public:
 	GET_COMPONENT(Collider2D, COLLIDER2D);
 	GET_COMPONENT(FlipBookComponent, FLIPBOOKCOMPONENT);
 	GET_COMPONENT(TileMap, TILEMAP);
+	GET_COMPONENT(Light2D, LIGHT2D);
+
 
 private:
 	qComponent*				m_arrCom[(UINT)COMPONENT_TYPE::END];

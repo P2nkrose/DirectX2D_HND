@@ -97,6 +97,8 @@ void qLevelMgr::Init()
 	pObject->AddComponent(new qTransform);
 	pObject->AddComponent(new qLight2D);
 	
+	pObject->Transform()->SetRelativePos(Vec3(0.f, 0.f, 100.f));
+
 	m_CurLevel->AddObject(0, pObject);
 
 
