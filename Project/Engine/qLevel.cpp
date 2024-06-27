@@ -6,7 +6,7 @@
 
 qLevel::qLevel()
 	: m_Layer{}
-	, m_State(LEVEL_STATE::PLAY)
+	, m_State(LEVEL_STATE::STOP)
 {
 	for (int i = 0; i < MAX_LAYER; ++i)
 	{

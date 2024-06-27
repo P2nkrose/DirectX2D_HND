@@ -88,8 +88,18 @@ void qLevelMgr::Init()
 
 	// ------------------------------------------------
 
-
 	qGameObject* pObject = nullptr;
+
+
+	// 광원 오브젝트 추가
+	pObject = new qGameObject;
+	pObject->SetName(L"Directional");
+	pObject->AddComponent(new qTransform);
+	pObject->AddComponent(new qLight2D);
+	
+	m_CurLevel->AddObject(0, pObject);
+
+
 
 	// 플레이어 오브젝트
 	pObject = new qGameObject;

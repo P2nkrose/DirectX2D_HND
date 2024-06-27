@@ -14,18 +14,24 @@
 #include "qLevelMgr.h"
 #include "qLevel.h"
 
+#include "qLight2D.h"
+#include "qStructuredBuffer.h"
+
 
 qRenderMgr::qRenderMgr()
-	: m_DebugObject(nullptr)
-	, m_EditorCamera(nullptr)
+	: m_EditorCamera(nullptr)
+	, m_Light2DBuffer(nullptr)
 {
-
+	m_Light2DBuffer = new qStructuredBuffer;
 }
 
 qRenderMgr::~qRenderMgr()
 {
 	if (nullptr != m_DebugObject)
 		delete m_DebugObject;
+
+	if (nullptr != m_Light2DBuffer)
+		delete m_Light2DBuffer;
 }
 
 
@@ -44,10 +50,7 @@ void qRenderMgr::Tick()
 	if (nullptr == pCurLevel)
 		return;
 
-	// 렌더타겟 지정
-	Ptr<qTexture> pRTTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"RenderTargetTex");
-	Ptr<qTexture> pDSTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"DepthStencilTex");
-	CONTEXT->OMSetRenderTargets(1, pRTTex->GetRTV().GetAddressOf(), pDSTex->GetDSV().Get());
+	RenderStart();
 
 	// Level 이 Play 상태인 경우, Level 내에 있는 카메라 시점으로 렌더링하기
 	if (PLAY == pCurLevel->GetState())
@@ -70,7 +73,11 @@ void qRenderMgr::Tick()
 		}
 	}
 
+	// Debug Render
 	RenderDebugShape();
+
+	// Clear
+	Clear();
 }
 
 void qRenderMgr::RegisterCamera(qCamera* _Cam, int _CamPriority)
@@ -83,6 +90,36 @@ void qRenderMgr::RegisterCamera(qCamera* _Cam, int _CamPriority)
 	m_vecCam[_CamPriority] = _Cam;
 }
 
+
+void qRenderMgr::RenderStart()
+{
+	// 렌더타겟 지정
+	Ptr<qTexture> pRTTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"RenderTargetTex");
+	Ptr<qTexture> pDSTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"DepthStencilTex");
+	CONTEXT->OMSetRenderTargets(1, pRTTex->GetRTV().GetAddressOf(), pDSTex->GetDSV().Get());
+
+
+	// Light2D 정보 업데이트 및 바인딩
+	vector<tLightInfo> vecLight2DInfo;
+	for (size_t i = 0; i < m_vecLight2D.size(); ++i)
+	{
+		vecLight2DInfo.push_back(m_vecLight2D[i]->GetLightInfo());
+	}
+
+	if (m_Light2DBuffer->GetElementCount() < vecLight2DInfo.size())
+	{
+		m_Light2DBuffer->Create(sizeof(tLightInfo), vecLight2DInfo.size());
+	}
+
+	m_Light2DBuffer->SetData(vecLight2DInfo.data());
+	m_Light2DBuffer->Binding(11);
+	
+}
+
+void qRenderMgr::Clear()
+{
+	m_vecLight2D.clear();
+}
 
 void qRenderMgr::RenderDebugShape()
 {
