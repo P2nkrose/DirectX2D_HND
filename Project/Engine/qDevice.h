@@ -13,7 +13,6 @@ class qDevice : public qSingleton<qDevice>
 
 public:
 	int Init(HWND _hWnd, UINT _Width, UINT _Height);
-	void Clear();
 	void Present() { m_SwapChain->Present(0, 0); }
 
 public:

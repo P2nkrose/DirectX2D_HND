@@ -67,6 +67,24 @@ cbuffer SPRITE_INFO : register(b2)
 }
 
 
+cbuffer GLOBAL_DATA : register(b3)
+{
+    // 시간 관련 정보
+    float   g_DT;
+    float   g_EngineDT;
+    float   g_Time;
+    float   g_EngineTime;
+    
+    // 랜더타겟의 해상도 정보
+    float2  g_Resolution;
+    
+    // 바인딩 된 구조화버퍼에 광원이 몇개 들어있느지
+    int     g_Light2DCount;
+    int     g_Light3DCount;
+}
+
+
+
 SamplerState g_sam_0 : register(s0); // 이방성 필터 샘플러
 SamplerState g_sam_1 : register(s1); // 포인트 필터 샘플러
 

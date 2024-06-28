@@ -58,7 +58,6 @@ void qEngine::Progress()
 	qCollisionMgr::GetInst()->Tick();
 	
 	// Render
-	qDevice::GetInst()->Clear();
 	qRenderMgr::GetInst()->Tick();
 
 

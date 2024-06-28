@@ -18,6 +18,8 @@ struct VTX_OUT
     float4 vPosition    : SV_Position;
     float4 vColor       : COLOR;
     float2 vUV          : TEXCOORD;
+    
+    float3 vWorldPos    : POSITION;
 };
 
 VTX_OUT VS_Std2D(VTX_IN _in)
@@ -33,6 +35,8 @@ VTX_OUT VS_Std2D(VTX_IN _in)
     
     output.vColor = _in.vColor;
     output.vUV = _in.vUV;
+    
+    output.vWorldPos = mul(float4(_in.vPos, 1.f), matWorld);
     
     return output;
 }
@@ -80,7 +84,30 @@ float4 PS_Std2D(VTX_OUT _in) : SV_Target
         //clip(-1);
         discard;
     }
-        return vColor;
+    
+    
+    // 광원 적용
+    // Directional Light 인 경우
+    if(0 == g_Light2D[0].Type)
+    {
+        vColor.rgb = g_Light2D[0].light.Color.rgb * vColor.rgb
+                   + g_Light2D[0].light.Ambient.rgb * vColor.rgb;
+    }
+    else if(1 == g_Light2D[0].Type)
+    {
+        float fDist = distance(g_Light2D[0].WorldPos.xy, _in.vWorldPos.xy);
+        
+        if(fDist < g_Light2D[0].Radius)
+        {
+            vColor.rgb *= g_Light2D[0].light.Color.rgb;
+        }
+        else
+        {
+            vColor.rbg *= float3(0.f, 0.f, 0.f);
+        }
+    }
+    
+    return vColor;
 }
 
 

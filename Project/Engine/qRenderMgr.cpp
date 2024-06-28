@@ -2,6 +2,7 @@
 #include "qRenderMgr.h"
 
 #include "qDevice.h"
+#include "qConstBuffer.h"
 
 #include "qCamera.h"
 #include "qTimeMgr.h"
@@ -99,6 +100,15 @@ void qRenderMgr::RenderStart()
 	CONTEXT->OMSetRenderTargets(1, pRTTex->GetRTV().GetAddressOf(), pDSTex->GetDSV().Get());
 
 
+	// Target Clear
+	float color[4] = { 0.4f, 0.4f, 0.4f, 1.f };
+	CONTEXT->ClearRenderTargetView(pRTTex->GetRTV().Get(), color);
+	CONTEXT->ClearDepthStencilView(pDSTex->GetDSV().Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
+
+	g_GlobalData.g_Resolution = Vec2((float)pRTTex->Width(), (float)pRTTex->Height());
+	g_GlobalData.g_Light2DCount = (int)m_vecLight2D.size();
+
+
 	// Light2D 정보 업데이트 및 바인딩
 	vector<tLightInfo> vecLight2DInfo;
 	for (size_t i = 0; i < m_vecLight2D.size(); ++i)
@@ -113,6 +123,13 @@ void qRenderMgr::RenderStart()
 
 	m_Light2DBuffer->SetData(vecLight2DInfo.data());
 	m_Light2DBuffer->Binding(11);
+
+
+
+	// GlobalData 바인딩
+	static qConstBuffer* pGlobalCB = qDevice::GetInst()->GetConstBuffer(CB_TYPE::GLOBAL);
+	pGlobalCB->SetData(&g_GlobalData);
+	pGlobalCB->Binding();
 	
 }
 
