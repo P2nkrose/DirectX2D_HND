@@ -18,6 +18,8 @@
 #include "qLight2D.h"
 #include "qStructuredBuffer.h"
 
+#include "qKeyMgr.h"
+
 
 qRenderMgr::qRenderMgr()
 	: m_EditorCamera(nullptr)
@@ -101,12 +103,24 @@ void qRenderMgr::RenderStart()
 
 
 	// Target Clear
-	float color[4] = { 0.4f, 0.4f, 0.4f, 1.f };
+	float color[4] = { 0.f, 0.f, 0.f, 1.f };
 	CONTEXT->ClearRenderTargetView(pRTTex->GetRTV().Get(), color);
 	CONTEXT->ClearDepthStencilView(pDSTex->GetDSV().Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
 
 	g_GlobalData.g_Resolution = Vec2((float)pRTTex->Width(), (float)pRTTex->Height());
 	g_GlobalData.g_Light2DCount = (int)m_vecLight2D.size();
+
+
+	//// 키매니저 7번
+	//if (KEY_PRESSED(KEY::_7))
+	//{
+	//	g_GlobalData.g_Light3DCount = 1;
+	//}
+	//else
+	//{
+	//	g_GlobalData.g_Light3DCount = 0;
+	//}
+
 
 
 	// Light2D 정보 업데이트 및 바인딩

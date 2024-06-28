@@ -92,16 +92,17 @@ float4 PS_TileMap(VS_OUT _in) : SV_Target
     }
     else if(1 == g_Light2D[0].Type)
     {
+         // 점광원과 픽셀까지의 거리
         float fDist = distance(g_Light2D[0].WorldPos.xy, _in.vWorldPos.xy);
         
-        if(fDist < g_Light2D[0].Radius)
-        {
-            vOutColor.rgb *= g_Light2D[0].light.Color.rgb;
-        }
-        else
-        {
-            vOutColor.rgb *= float3(0.f, 0.f, 0.f);
-        }
+        // 거리값을 각도로 치환해서 거리에 따른 빛의 세기를 코사인 그래프 형태로 사용한다.
+        float fPow = cos(saturate((fDist / g_Light2D[0].Radius)) * (PI / 2.f));
+        
+        // 광원으로부터 떨어진 거리에 따른 빛의 세기
+        //float fPow2 = saturate(1.f - fDist / g_Light2D[0].Radius);
+        
+        // 최종 색상 계산 = 물체색 * 빛의 색 * 거리에따른 세기
+        vOutColor.rgb = vOutColor.rgb * g_Light2D[0].light.Color.rgb * fPow;
     }
    
     return vOutColor;
