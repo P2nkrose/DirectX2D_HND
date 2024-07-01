@@ -51,12 +51,26 @@ void CalculateLight2D(int _LightIdx, float3 _WorldPos, inout tLight _Light)
     // SpotLight 인 경우
     else
     {
-        // 숙제
+        // 픽셀 위치로부터 광원까지의 거리
+        float2 pixelDir = _WorldPos.xy - Info.WorldPos.xy;
+        
+        // SpotLight 방향 벡터
+        float2 lightDir = normalize(pixelDir.xy);
+        
+        // 픽셀 위치부터 광원까지의 거리값
+        float fDist = length(pixelDir); 
+        
+        // 두 벡터 사이의 각도 계산 (코사인 값)
+        float angleCos = saturate(dot(lightDir.xy, Info.WorldDir.xy));
+
+        
+        if (angleCos > cos(Info.Angle) && fDist < Info.Radius)
+        {
+            _Light.Color.rgb += Info.light.Color.rgb;
+
+        }
+        
     }
-    
-    
-    
-    
 }
 
 

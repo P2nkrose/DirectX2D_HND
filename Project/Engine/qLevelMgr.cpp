@@ -106,17 +106,17 @@ void qLevelMgr::Init()
 
 
 
-	pObject = new qGameObject;
-	pObject->SetName(L"PointLight 2");
-	pObject->AddComponent(new qTransform);
-	pObject->AddComponent(new qLight2D);
-
-	pObject->Light2D()->SetLightType(LIGHT_TYPE::POINT);
-	pObject->Light2D()->SetLightColor(Vec3(0.2f, 0.2f, 0.8f));
-	pObject->Light2D()->SetRadius(500.f);
-	pObject->Transform()->SetRelativePos(Vec3(300.f, 0.f, 100.f));
-
-	m_CurLevel->AddObject(0, pObject);
+	//pObject = new qGameObject;
+	//pObject->SetName(L"PointLight 2");
+	//pObject->AddComponent(new qTransform);
+	//pObject->AddComponent(new qLight2D);
+	//
+	//pObject->Light2D()->SetLightType(LIGHT_TYPE::POINT);
+	//pObject->Light2D()->SetLightColor(Vec3(0.2f, 0.2f, 0.8f));
+	//pObject->Light2D()->SetRadius(500.f);
+	//pObject->Transform()->SetRelativePos(Vec3(300.f, 0.f, 100.f));
+	//
+	//m_CurLevel->AddObject(0, pObject);
 
 
 

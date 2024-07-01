@@ -14,15 +14,23 @@ public:
 
 public:
 	void SetMesh(Ptr<qMesh> _Mesh) { m_Mesh = _Mesh; }
-	void SetMaterial(Ptr<qMaterial> _Mtrl) { m_Mtrl = _Mtrl; }
+	void SetMaterial(Ptr<qMaterial> _Mtrl);
 
 	Ptr<qMesh> GetMesh() { return m_Mesh; }
 	Ptr<qMaterial> GetMaterial() { return m_Mtrl; }
+	Ptr<qMaterial> GetSharedMtrl();
+
+
+	// 동적 재질 생성 및 반환
+	Ptr<qMaterial> GetDynamicMaterial();
 
 
 private:
 	Ptr<qMesh>					m_Mesh;
-	Ptr<qMaterial>				m_Mtrl;
+
+	Ptr<qMaterial>				m_Mtrl;			// 현재 사용중인 재질
+	Ptr<qMaterial>				m_ShareMtrl;	// 공유 재질 (마스터)
+	Ptr<qMaterial>				m_DynamicMtrl;	// 임시(동적) 재질
 };
 
 	

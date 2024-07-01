@@ -19,5 +19,8 @@ public:
 	virtual void Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider){}
 	virtual void EndOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider){}
 
+public:
+	qRenderComponent* GetRenderComponent() { return GetOwner()->GetRenderComponent(); }
+
 };
 
