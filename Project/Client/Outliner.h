@@ -11,5 +11,8 @@ public:
 	virtual void Update() override;
 
 
+private:
+	class TreeUI*		m_Tree;
+
 };
 

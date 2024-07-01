@@ -87,9 +87,9 @@ void Inspector::Update()
 {
 	if (nullptr == m_TargetObject)
 	{
-		//SetTargetObject(qLevelMgr::GetInst()->FindObjectByName(L"Player"));
+		SetTargetObject(qLevelMgr::GetInst()->FindObjectByName(L"Player"));
 		//SetTargetObject(qLevelMgr::GetInst()->FindObjectByName(L"MainCamera"));
-		SetTargetObject(qLevelMgr::GetInst()->FindObjectByName(L"PointLight 1"));
+		//SetTargetObject(qLevelMgr::GetInst()->FindObjectByName(L"PointLight 1"));
 		return;
 	}
 

@@ -222,10 +222,10 @@ void qLevelMgr::Init()
 	qCollisionMgr::GetInst()->CollisionCheck(5, 4);		// Player Projectile vs Monster
 
 
-
+	pMtrl->Save(L"material\\std2d.mtrl");
 	
 	// 레벨 시작
-	m_CurLevel->Begin();
+	//m_CurLevel->Begin();
 }
 
 void qLevelMgr::Progress()

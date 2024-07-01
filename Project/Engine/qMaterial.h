@@ -7,12 +7,13 @@
 class qMaterial : public qAsset
 {
 public:
+	CLONE(qMaterial);
 	qMaterial();
 	~qMaterial();
 
 public:
-	virtual int Load(const wstring& _FilePath) override { return S_OK; }
-	virtual int Save(const wstring& _FilePath) override { return S_OK; }
+	virtual int Save(const wstring& _RelativePath) override;
+	virtual int Load(const wstring& _FilePath) override;
 
 public:
 	void Binding();

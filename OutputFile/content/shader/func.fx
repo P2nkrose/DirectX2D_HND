@@ -62,8 +62,7 @@ void CalculateLight2D(int _LightIdx, float3 _WorldPos, inout tLight _Light)
         
         // 두 벡터 사이의 각도 계산 (코사인 값)
         float angleCos = saturate(dot(lightDir.xy, Info.WorldDir.xy));
-        
-        
+
         
         if (angleCos > cos(Info.Angle) && fDist < Info.Radius)
         {

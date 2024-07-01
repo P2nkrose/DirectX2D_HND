@@ -12,6 +12,11 @@ qPlayerScript::~qPlayerScript()
 {
 }
 
+void qPlayerScript::Begin()
+{
+	GetRenderComponent()->GetDynamicMaterial();
+}
+
 void qPlayerScript::Tick()
 {
 	Vec3 vPos = Transform()->GetRelativePos();

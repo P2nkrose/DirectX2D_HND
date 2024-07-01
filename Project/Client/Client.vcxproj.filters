@@ -62,6 +62,9 @@
     <Filter Include="EditorUI\01. Inspector\ComponentUI\08. Light2DUI">
       <UniqueIdentifier>{b87c4648-1471-4749-9c9e-dc8add9d16a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EditorUI\05. TreeUI">
+      <UniqueIdentifier>{0ab53cb6-a422-4115-ac66-6079503cafc3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -153,6 +156,9 @@
     </ClInclude>
     <ClInclude Include="Light2DUI.h">
       <Filter>EditorUI\01. Inspector\ComponentUI\08. Light2DUI</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeUI.h">
+      <Filter>EditorUI\05. TreeUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -250,6 +256,9 @@
     </ClCompile>
     <ClCompile Include="Light2DUI.cpp">
       <Filter>EditorUI\01. Inspector\ComponentUI\08. Light2DUI</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeUI.cpp">
+      <Filter>EditorUI\05. TreeUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
