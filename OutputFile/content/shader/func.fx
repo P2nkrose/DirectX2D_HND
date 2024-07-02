@@ -67,7 +67,6 @@ void CalculateLight2D(int _LightIdx, float3 _WorldPos, inout tLight _Light)
         if (angleCos > cos(Info.Angle) && fDist < Info.Radius)
         {
             _Light.Color.rgb += Info.light.Color.rgb;
-
         }
         
     }

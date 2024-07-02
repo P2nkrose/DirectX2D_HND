@@ -32,9 +32,9 @@ public:
 
 
 public:
-	T* Get() { return Asset; }
-	T** GetAdressOf() { return &Asset; }
-	T* operator ->() { return Asset; }
+	T* Get() const { return Asset; }
+	T** GetAdressOf() const { return &Asset; }
+	T* operator ->() const { return Asset; }
 
 
 public: 
