@@ -57,7 +57,7 @@ public:
 	bool IsShowRoot() { return m_ShowRoot; }
 	void SetSelectedNode(TreeNode* _Node);
 	void AddClickedDelegate(EditorUI* _Inst, DELEGATE_1 _Func) { m_ClickedInst = _Inst; m_ClickedFunc = _Func; }
-
+	void Clear();
 
 private:
 	TreeNode*		m_Root;

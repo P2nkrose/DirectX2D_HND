@@ -38,7 +38,11 @@ void TreeNode::Update()
 	if (m_vecChildNode.empty())
 	{
 		Flag |= ImGuiTreeNodeFlags_Leaf;
-		sprintf_s(Name, 255, "   %s##%d", m_Name.c_str(), m_ID);
+		
+		if(m_Frame)
+			sprintf_s(Name, 255, "   %s##%d", m_Name.c_str(), m_ID);
+		else
+			sprintf_s(Name, 255, "%s##%d", m_Name.c_str(), m_ID);
 	}
 	else
 	{
@@ -48,7 +52,7 @@ void TreeNode::Update()
 
 	if (ImGui::TreeNodeEx(Name, Flag))
 	{
-		if (ImGui::IsItemClicked(ImGuiMouseButton_Left))
+		if (ImGui::IsItemHovered() && ImGui::IsMouseReleased(ImGuiMouseButton_Left))
 		{
 			m_Owner->SetSelectedNode(this);
 		}
@@ -81,8 +85,7 @@ TreeUI::TreeUI()
 
 TreeUI::~TreeUI()
 {
-	if (nullptr != m_Root)
-		delete m_Root;
+	Clear();
 }
 
 void TreeUI::Update()
@@ -144,5 +147,14 @@ void TreeUI::SetSelectedNode(TreeNode* _Node)
 		{
 			(m_ClickedInst->*m_ClickedFunc)((DWORD_PTR)m_SelectedNode);
 		}
+	}
+}
+
+void TreeUI::Clear()
+{
+	if (nullptr != m_Root)
+	{
+		delete m_Root;
+		m_Root = nullptr;
 	}
 }

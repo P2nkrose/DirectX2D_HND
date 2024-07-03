@@ -122,27 +122,27 @@ void qLevelMgr::Init()
 
 
 	// 플레이어 오브젝트
-	pObject = new qGameObject;
-	pObject->SetName(L"Player");
-	pObject->AddComponent(new qTransform);
-	pObject->AddComponent(new qMeshRender);
-	pObject->AddComponent(new qCollider2D);
-	pObject->AddComponent(new qFlipBookComponent);
-	pObject->AddComponent(new qPlayerScript);
+	qGameObject* pPlayer = new qGameObject;
+	pPlayer->SetName(L"Player");
+	pPlayer->AddComponent(new qTransform);
+	pPlayer->AddComponent(new qMeshRender);
+	pPlayer->AddComponent(new qCollider2D);
+	pPlayer->AddComponent(new qFlipBookComponent);
+	pPlayer->AddComponent(new qPlayerScript);
 
-	pObject->Transform()->SetRelativePos(0.f, 0.0f, 100.f);
-	pObject->Transform()->SetRelativeScale(200.f, 200.f, 1.f);
+	pPlayer->Transform()->SetRelativePos(0.f, 0.0f, 100.f);
+	pPlayer->Transform()->SetRelativeScale(200.f, 200.f, 1.f);
 
-	pObject->Collider2D()->SetIndependentScale(false);
-	pObject->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
-	pObject->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+	pPlayer->Collider2D()->SetIndependentScale(false);
+	pPlayer->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pPlayer->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
 	
-	pObject->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	pObject->MeshRender()->SetMaterial(pMtrl);
-	pObject->FlipBookComponent()->AddFlipBook(5, qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Link_MoveDown"));
-	pObject->FlipBookComponent()->Play(5, 10, true);
+	pPlayer->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pPlayer->MeshRender()->SetMaterial(pMtrl);
+	pPlayer->FlipBookComponent()->AddFlipBook(5, qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Link_MoveDown"));
+	pPlayer->FlipBookComponent()->Play(5, 10, true);
 
-	m_CurLevel->AddObject(3, pObject);
+	m_CurLevel->AddObject(3, pPlayer);
 	
 
 
