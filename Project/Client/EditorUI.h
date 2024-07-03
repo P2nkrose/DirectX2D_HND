@@ -9,6 +9,7 @@ public:
 	virtual ~EditorUI();
 
 public:
+	virtual void Init() {}
 	virtual void Tick();
 	virtual void Update() PURE;			// 자식이 override받아서 쓰는 고유의 Tick
 

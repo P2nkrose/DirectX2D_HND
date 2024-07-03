@@ -14,7 +14,7 @@ enum class CB_TYPE
 enum class ASSET_TYPE
 {
 	MESH,
-	MESHDATA,
+	MESH_DATA,
 	MATERIAL,
 	PREFAB,
 	TEXTURE,

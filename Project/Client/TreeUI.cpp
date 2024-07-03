@@ -109,7 +109,7 @@ TreeNode* TreeUI::AddNode(TreeNode* _Parent, const string& _Name, DWORD_PTR _Dat
 	pNode->m_Owner = this;
 	pNode->SetName(_Name);
 	pNode->m_Data = _Data;
-
+	
 	// 부모가 지정되지 않으면 노드를 루트로 지정한다.
 	if (nullptr == _Parent)
 	{

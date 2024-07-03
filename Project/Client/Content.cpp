@@ -1,7 +1,9 @@
 #include "pch.h"
 #include "Content.h"
 
+#include "qEditorMgr.h"
 #include "TreeUI.h"
+#include "Inspector.h"
 
 #include <Engine/qAssetMgr.h>
 #include <Engine/assets.h>
@@ -57,5 +59,11 @@ void Content::RenewContent()
 void Content::AssetClicked(DWORD_PTR _Param)
 {
 	TreeNode* pNode = (TreeNode*)_Param;
+	if (pNode->IsFrame())
+		return;
+
 	Ptr<qAsset> pAsset = (qAsset*)pNode->GetData();
+
+	Inspector* pInspector = (Inspector*)qEditorMgr::GetInst()->FindEditorUI("Inspector");
+	pInspector->SetTargetAsset(pAsset);
 }

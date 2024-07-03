@@ -94,6 +94,7 @@ void qEditorMgr::CreateEditorUI()
 
 	// Inspector
 	pUI = new Inspector;
+	pUI->Init();
 	pUI->SetName("Inspector");
 	m_mapUI.insert(make_pair(pUI->GetName(), pUI));
 }
