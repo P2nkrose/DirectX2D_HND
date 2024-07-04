@@ -52,26 +52,17 @@ void TreeNode::Update()
 
 	if (ImGui::TreeNodeEx(Name, Flag))
 	{
+		// 클릭 체크
 		if (ImGui::IsItemHovered() && ImGui::IsMouseReleased(ImGuiMouseButton_Left))
 		{
 			m_Owner->SetSelectedNode(this);
 		}
 
 		// Drag 체크
-		// 1. 사용자가 Drag를 시작할때 BeginDragDropSource 함수가 실시됨
-		// 2. 옮길 데이터(PayLoad) 설정하기
-		// 3. Drag 된 Node 의 이름을 마우스 옆 text로 띄워주기
-		if (m_Owner->IsDrag())
-		{
-			if (ImGui::BeginDragDropSource())
-			{
-				TreeNode* pThis = this;
+		DragCheck();
 
-				ImGui::SetDragDropPayload(m_Owner->GetName().c_str(), &pThis, sizeof(TreeNode*));
-				ImGui::Text(m_Name.c_str());
-				ImGui::EndDragDropSource();
-			}
-		}
+		// Drop 체크
+		DropCheck();
 
 
 		for (size_t i = 0; i < m_vecChildNode.size(); ++i)
@@ -81,6 +72,44 @@ void TreeNode::Update()
 		
 		ImGui::TreePop();
 	}
+}
+
+void TreeNode::DragCheck()
+{
+	// 1. 사용자가 Drag를 시작할때 BeginDragDropSource 함수가 실시됨
+	// 2. 옮길 데이터(PayLoad) 설정하기
+	// 3. Drag 된 Node 의 이름을 마우스 옆 text로 띄워주기
+	if (m_Owner->IsDrag())
+	{
+		if (ImGui::BeginDragDropSource())
+		{
+			TreeNode* pThis = this;
+
+			ImGui::SetDragDropPayload(m_Owner->GetName().c_str(), &pThis, sizeof(TreeNode*));
+			ImGui::Text(m_Name.c_str());
+			ImGui::EndDragDropSource();
+
+			m_Owner->SetDragedNode(this);
+		}
+	}
+}
+
+void TreeNode::DropCheck()
+{
+	if (!m_Owner->IsDrop())
+		return;
+
+	if (ImGui::BeginDragDropTarget())
+	{
+		// 내용 넣기
+
+
+
+		m_Owner->SetDroppedNode(this);
+
+		ImGui::EndDragDropTarget();
+	}
+
 }
 
 
@@ -183,6 +212,35 @@ void TreeUI::SetDragedNode(TreeNode* _Node)
 
 void TreeUI::SetDroppedNode(TreeNode* _Node)
 {
+	// Drag 된 노드가 없는 경우 (외부 데이터가 트리로 드랍된 경우)
+	if (nullptr == m_DragedNode)
+	{
+		const ImGuiPayload* payload = ImGui::AcceptDragDropPayload(m_DropPayLoadName.c_str());
+		if (payload)
+		{
+			m_DroppedNode = _Node;
+
+			if (m_DropInst && m_DropFunc)
+				(m_DropInst->*m_DropFunc)((DWORD_PTR)payload->Data, (DWORD_PTR)m_DroppedNode);
+		}
+	}
+
+	// Self Drag Drop 된 상황
+	else
+	{
+		assert(m_DragedNode->m_Owner == this);
+
+		const ImGuiPayload* payload = ImGui::AcceptDragDropPayload(GetName().c_str());
+		if (payload)
+		{
+			m_DroppedNode = _Node;
+
+			if (m_SelfDragDropInst && m_SelfDragDropFunc)
+				(m_SelfDragDropInst->*m_SelfDragDropFunc)((DWORD_PTR)m_DragedNode, (DWORD_PTR)m_DroppedNode);
+		}
+	}
+
+
 	m_DroppedNode = _Node;
 }
 

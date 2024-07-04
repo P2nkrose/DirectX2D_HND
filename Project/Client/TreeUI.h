@@ -23,8 +23,12 @@ public:
 
 	DWORD_PTR GetData() { return m_Data; }
 
-
 	void AddChildNode(TreeNode* _Node) { m_vecChildNode.push_back(_Node); }
+
+public:
+	void DragCheck();
+	void DropCheck();
+
 
 private:
 	class TreeUI*			m_Owner;			// 노드가 자신이 속해있는 탭을 알게 한다.
@@ -65,7 +69,13 @@ public:
 	bool IsDrag() { return m_UseDrag; }
 	bool IsDrop() { return m_UseDrop; }
 
+	void SetDropPayLoadName(const string& _Name) { m_DropPayLoadName = _Name; }
+	const string GetDropPayLoadName() { return m_DropPayLoadName; }
+
 	void AddClickedDelegate(EditorUI* _Inst, DELEGATE_1 _Func) { m_ClickedInst = _Inst; m_ClickedFunc = _Func; }
+	void AddDragDropDelegate(EditorUI* _Inst, DELEGATE_2 _Func) { m_SelfDragDropInst = _Inst; m_SelfDragDropFunc = _Func; }
+	void AddDropDelegate(EditorUI* _Inst, DELEGATE_2 _Func) { m_DropInst = _Inst; m_DropFunc = _Func; }
+
 	void Clear();
 
 private:
@@ -81,5 +91,14 @@ private:
 
 	EditorUI*		m_ClickedInst;
 	DELEGATE_1		m_ClickedFunc;
+
+	EditorUI*		m_SelfDragDropInst;
+	DELEGATE_2		m_SelfDragDropFunc;
+
+	EditorUI*		m_DropInst;
+	DELEGATE_2		m_DropFunc;
+	string			m_DropPayLoadName;
+
+
 };
 
