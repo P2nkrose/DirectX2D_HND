@@ -57,6 +57,23 @@ void TreeNode::Update()
 			m_Owner->SetSelectedNode(this);
 		}
 
+		// Drag 체크
+		// 1. 사용자가 Drag를 시작할때 BeginDragDropSource 함수가 실시됨
+		// 2. 옮길 데이터(PayLoad) 설정하기
+		// 3. Drag 된 Node 의 이름을 마우스 옆 text로 띄워주기
+		if (m_Owner->IsDrag())
+		{
+			if (ImGui::BeginDragDropSource())
+			{
+				TreeNode* pThis = this;
+
+				ImGui::SetDragDropPayload(m_Owner->GetName().c_str(), &pThis, sizeof(TreeNode*));
+				ImGui::Text(m_Name.c_str());
+				ImGui::EndDragDropSource();
+			}
+		}
+
+
 		for (size_t i = 0; i < m_vecChildNode.size(); ++i)
 		{
 			m_vecChildNode[i]->Update();
@@ -76,8 +93,12 @@ void TreeNode::Update()
 TreeUI::TreeUI()
 	: m_Root(nullptr)
 	, m_SelectedNode(nullptr)
+	, m_DragedNode(nullptr)
+	, m_DroppedNode(nullptr)
 	, m_NodeID(0)
 	, m_ShowRoot(false)
+	, m_UseDrag(false)
+	, m_UseDrop(false)
 	, m_ClickedInst(nullptr)
 	, m_ClickedFunc(nullptr)
 {
@@ -101,6 +122,11 @@ void TreeUI::Update()
 		{
 			m_Root->m_vecChildNode[i]->Update();
 		}
+	}
+
+	if (ImGui::IsMouseReleased(ImGuiMouseButton_Left))
+	{
+		m_DroppedNode = m_DragedNode = nullptr;
 	}
 }
 
@@ -148,6 +174,16 @@ void TreeUI::SetSelectedNode(TreeNode* _Node)
 			(m_ClickedInst->*m_ClickedFunc)((DWORD_PTR)m_SelectedNode);
 		}
 	}
+}
+
+void TreeUI::SetDragedNode(TreeNode* _Node)
+{
+	m_DragedNode = _Node;
+}
+
+void TreeUI::SetDroppedNode(TreeNode* _Node)
+{
+	m_DroppedNode = _Node;
 }
 
 void TreeUI::Clear()

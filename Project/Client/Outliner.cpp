@@ -16,8 +16,15 @@ Outliner::Outliner()
 	m_Tree->SetName("OutlinerTree");
 	AddChild(m_Tree);
 
-	// 트리 옵션 세팅
-	m_Tree->ShowRoot(false);	// 루트 보이지 않기
+	// 트리 옵션 
+	// 루트 보이지 않기
+	m_Tree->ShowRoot(false);
+
+	// Drag, Drop을 사용하겠다
+	m_Tree->UseDrag(true);
+	m_Tree->UseDrop(true);
+
+	// Clicked Delegate 등록
 	m_Tree->AddClickedDelegate(this, (DELEGATE_1)&Outliner::GameObjectClicked);
 
 	// Asset 상태를 Content 의 TreeUI 에 반영
