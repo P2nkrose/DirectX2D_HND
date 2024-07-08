@@ -98,6 +98,9 @@
     <Filter Include="EditorUI\01. Inspector\AssetUI\10. ComputeShader">
       <UniqueIdentifier>{b725ef9f-3b8d-4d6d-86ba-68573d4e0f86}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EditorUI\06. MenuUI">
+      <UniqueIdentifier>{45dd7bcd-353c-495d-8c35-9771a7aa9807}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -225,6 +228,9 @@
     </ClInclude>
     <ClInclude Include="GraphicShaderUI.h">
       <Filter>EditorUI\01. Inspector\AssetUI\09. GraphicShader</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuUI.h">
+      <Filter>EditorUI\06. MenuUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -362,6 +368,9 @@
       <Filter>EditorUI\01. Inspector\AssetUI\09. GraphicShader</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuUI.cpp">
+      <Filter>EditorUI\06. MenuUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ImGui\LICENSE.txt">

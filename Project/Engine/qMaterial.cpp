@@ -43,6 +43,8 @@ void qMaterial::Binding()
 
 int qMaterial::Save(const wstring& _RelativePath)
 {
+	SetRelativePath(_RelativePath);
+
 	wstring strFilePath = qPathMgr::GetInst()->GetContentPath();
 	strFilePath += _RelativePath;
 

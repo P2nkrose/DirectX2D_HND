@@ -10,6 +10,7 @@
 #include "Content.h"
 #include "Outliner.h"
 #include "ListUI.h"
+#include "MenuUI.h"
 
 
 
@@ -96,6 +97,12 @@ void qEditorMgr::CreateEditorUI()
 	pUI = new Inspector;
 	pUI->Init();
 	pUI->SetName("Inspector");
+	m_mapUI.insert(make_pair(pUI->GetName(), pUI));
+
+	// Menu
+	pUI = new MenuUI;
+	pUI->Init();
+	pUI->SetName("MainMenu");
 	m_mapUI.insert(make_pair(pUI->GetName(), pUI));
 }
 
