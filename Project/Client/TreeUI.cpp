@@ -49,8 +49,17 @@ void TreeNode::Update()
 		sprintf_s(Name, 255, "%s##%d", m_Name.c_str(), m_ID);
 	}
 
+	string strName = Name;
 
-	if (ImGui::TreeNodeEx(Name, Flag))
+	// NameOnly
+	if (m_Owner->IsShowNameOnly())
+	{
+		path Path = Name;
+		strName = Path.stem().string();
+	}
+
+
+	if (ImGui::TreeNodeEx(strName.c_str(), Flag))
 	{
 		// 클릭 체크
 		if (ImGui::IsItemHovered() && ImGui::IsMouseReleased(ImGuiMouseButton_Left))

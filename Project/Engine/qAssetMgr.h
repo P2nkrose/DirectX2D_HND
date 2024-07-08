@@ -1,15 +1,19 @@
 #pragma once
 
 #include "qPathMgr.h"
+#include "qTaskMgr.h"
 
 class qAsset;
 
 class qAssetMgr : public qSingleton<qAssetMgr>
 {
+	friend class qTaskMgr;
+
 	SINGLE(qAssetMgr);
 
 public:
 	void Init();
+	void Tick();
 
 	template<typename T>
 	Ptr<T> Load(const wstring& _Key, const wstring& _RelativePath);
@@ -33,6 +37,7 @@ public:
 public:
 	void GetAssetNames(ASSET_TYPE _Type, vector<string>& _vecOut);
 	const map<wstring, Ptr<qAsset>>& GetAssets(ASSET_TYPE _Type) { return m_mapAsset[(UINT)_Type]; }
+	bool IsChanged() { return m_Changed; }
 
 private:
 	void CreateEngineMesh();
@@ -45,7 +50,8 @@ private:
 
 
 private:
-	map<wstring, Ptr<qAsset>> m_mapAsset[(UINT)ASSET_TYPE::END];
+	map<wstring, Ptr<qAsset>>	m_mapAsset[(UINT)ASSET_TYPE::END];
+	bool						m_Changed;		// Editor에서 만든 에셋 변경점 확인
 };
 
 
@@ -81,6 +87,9 @@ Ptr<T> qAssetMgr::Load(const wstring& _Key, const wstring& _RelativePath)
 	ASSET_TYPE type = GetAssetType<T>();
 	m_mapAsset[(UINT)type].insert(make_pair(_Key, Asset.Get()));
 
+	// Asset 변경 알림
+	qTaskMgr::GetInst()->AddTask(tTask{ ASSET_CHANGED });
+
 	// 로딩된 에셋 주소 변환
 	return Asset;
 }
@@ -109,6 +118,9 @@ void qAssetMgr::AddAsset(const wstring& _Key, Ptr<T> _Asset)
 
 	_Asset->SetKey(_Key);
 	m_mapAsset[(UINT)Type].insert(make_pair(_Key, _Asset.Get()));
+
+	// Asset 변경 알림
+	qTaskMgr::GetInst()->AddTask(tTask{ ASSET_CHANGED });
 }
 
 

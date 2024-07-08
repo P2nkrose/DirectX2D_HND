@@ -15,8 +15,9 @@ Content::Content()
 	AddChild(m_Tree);
 
 	// 트리 옵션 세팅
-	m_Tree->ShowRoot(false);	// 루트 보이지 않기
-	m_Tree->UseDrag(true);		// Tree Drag 기능 ON
+	m_Tree->ShowRoot(false);		// 루트 보이지 않기
+	m_Tree->UseDrag(true);			// Tree Drag 기능 ON
+	m_Tree->ShowNameOnly(true);		// 노드의 이름에서 경로 및 확장자는 제외하고 파일 이름만 보이기
 	m_Tree->AddClickedDelegate(this, (DELEGATE_1)&Content::AssetClicked);
 
 	// Asset 상태를 Content의 TreeUI에 반영
@@ -33,6 +34,13 @@ void Content::Update()
 	//ImGui::Separator();
 
 	// Asset Manager 에서 받은 Asset 정보를 띄워 준다.
+	
+
+	// AssetMgr 에 변경점이 생기면, 트리 내용을 재구성한다.
+	if (qAssetMgr::GetInst()->IsChanged())
+	{
+		RenewContent();
+	}
 
 }
 

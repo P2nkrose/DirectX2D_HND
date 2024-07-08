@@ -13,6 +13,7 @@
 MeshRenderUI::MeshRenderUI()
 	: ComponentUI(COMPONENT_TYPE::MESHRENDER)
 {
+
 }
 
 MeshRenderUI::~MeshRenderUI()
@@ -70,14 +71,29 @@ void MeshRenderUI::Update()
 	}
 
 
+
 	// 머티리얼 정보
 	Ptr<qMaterial> pMtrl = pMeshRender->GetMaterial();
 
 	string MtrlName = string(pMtrl->GetKey().begin(), pMtrl->GetKey().end());
+	
+	// ===========
+	string strName = MtrlName;
+	
+	// NameOnly
+	if (GetOwner()->IsShowNameOnly())
+	{
+		path Path = MtrlName;
+		strName = Path.stem().string();
+	}
+	
+	// ===========
+
 	ImGui::Text("Material");
 	ImGui::SameLine(100);
 	ImGui::SetNextItemWidth(150.f);
-	ImGui::InputText("##MaterialKey", (char*)MtrlName.c_str(), ImGuiInputTextFlags_::ImGuiInputTextFlags_ReadOnly);
+	//ImGui::InputText("##MaterialKey", (char*)MtrlName.c_str(), ImGuiInputTextFlags_::ImGuiInputTextFlags_ReadOnly);
+	ImGui::InputText("##MaterialKey", (char*)strName.c_str(), ImGuiInputTextFlags_::ImGuiInputTextFlags_ReadOnly);
 
 	if (ImGui::BeginDragDropTarget())
 	{

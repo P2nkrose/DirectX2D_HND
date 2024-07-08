@@ -20,6 +20,7 @@ protected:
 
 
 private:
+
 	qGameObject*			m_TargetObject;
 	const COMPONENT_TYPE	m_Type;
 };

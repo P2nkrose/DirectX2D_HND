@@ -59,6 +59,9 @@ public:
 	TreeNode* AddNode(TreeNode* _Parent, const string& _Name, DWORD_PTR _Data = 0);
 	void ShowRoot(bool _Show) { m_ShowRoot = _Show; }
 	bool IsShowRoot() { return m_ShowRoot; }
+
+	
+
 	void SetSelectedNode(TreeNode* _Node);
 	void SetDragedNode(TreeNode* _Node);
 	void SetDroppedNode(TreeNode* _Node);
@@ -88,6 +91,8 @@ private:
 	bool			m_ShowRoot;
 	bool			m_UseDrag;
 	bool			m_UseDrop;
+
+
 
 	EditorUI*		m_ClickedInst;
 	DELEGATE_1		m_ClickedFunc;

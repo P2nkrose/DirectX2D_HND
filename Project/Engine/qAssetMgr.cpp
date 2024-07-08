@@ -12,6 +12,13 @@ qAssetMgr::~qAssetMgr()
 }
 
 
+void qAssetMgr::Tick()
+{
+	if (m_Changed)
+		m_Changed = false;
+}
+
+
 Ptr<qAsset> qAssetMgr::FindAsset(ASSET_TYPE _Type, const wstring& _Key)
 {
 	map<wstring, Ptr<qAsset>>::iterator iter = m_mapAsset[(UINT)_Type].find(_Key);

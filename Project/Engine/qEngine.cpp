@@ -52,6 +52,7 @@ void qEngine::Progress()
 	// Manager
 	qKeyMgr::GetInst()->Tick();
 	qTimeMgr::GetInst()->Tick();
+	qAssetMgr::GetInst()->Tick();
 	qLevelMgr::GetInst()->Progress();
 
 	// Collision

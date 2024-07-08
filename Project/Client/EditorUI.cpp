@@ -11,7 +11,9 @@ EditorUI::EditorUI()
 	, m_ID(m_GlobalID++)
 	, m_Modal(false)
 	, m_ChildBorder(false)
+	, m_ShowNameOnly(true)
 {
+	SetOwner(this);
 }
 
 EditorUI::~EditorUI()

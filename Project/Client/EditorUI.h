@@ -40,6 +40,12 @@ public:
 
 	void SetFocus();
 
+	void ShowNameOnly(bool _NameOnly) { m_ShowNameOnly = _NameOnly; }
+	bool IsShowNameOnly() { return m_ShowNameOnly; }
+
+	EditorUI* GetOwner() { return m_Owner; }
+	void SetOwner(EditorUI* _Owner) { m_Owner = _Owner; }
+
 private:
 	virtual void Activate() {}
 	virtual void Deactivate() {}
@@ -60,6 +66,11 @@ private:
 
 	bool				m_Modal;
 	bool				m_ChildBorder;
+
+	bool				m_ShowNameOnly;
+
+
+	class EditorUI*		m_Owner;
 
 };
 
