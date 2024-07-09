@@ -85,6 +85,23 @@ void qGameObject::AddChild(qGameObject* _ChildObject)
 	_ChildObject->m_Parent = this;
 }
 
+
+bool qGameObject::IsAncestor(qGameObject* _Object)
+{
+	qGameObject* pObject = m_Parent;
+
+	while (pObject)
+	{
+		if (pObject == _Object)
+			return true;
+		else
+			pObject = pObject->GetParent();
+	}
+
+	return false;
+}
+
+
 void qGameObject::DisconnectWithLayer()
 {
 	if (nullptr == m_Parent)

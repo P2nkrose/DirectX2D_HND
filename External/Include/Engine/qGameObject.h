@@ -39,6 +39,7 @@ public:
 	const vector<qGameObject*>& GetChildren() { return m_vecChildUI; }
 	const vector<qScript*> GetScripts() { return m_vecScript; }
 
+	bool IsAncestor(qGameObject* _Object);
 	bool IsDead() { return m_Dead; }
 
 	void DisconnectWithLayer();

@@ -102,6 +102,14 @@ void qLayer::DisconnectWithObject(qGameObject* _Object)
 	assert(nullptr);
 }
 
+void qLayer::RegisterAsParent(qGameObject* _Object)
+{
+	assert(_Object->GetLayerIdx() == m_LayerIdx && !_Object->GetParent());
+
+	m_Parents.push_back(_Object);
+	return;
+}
+
 void qLayer::DeregisterObjectAsParent(qGameObject* _Object)
 {
 	vector<qGameObject*>::iterator iter = m_Parents.begin();

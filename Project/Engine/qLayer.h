@@ -27,6 +27,8 @@ public:
 	void ClearObject() { m_Objects.clear(); }
 	void RegisterGameObject(qGameObject* _Object) { m_Objects.push_back(_Object); }
 	void DisconnectWithObject(qGameObject* _Object);
+
+	void RegisterAsParent(qGameObject* _Object);
 	void DeregisterObjectAsParent(qGameObject* _Object);
 	void DeregisterObject(qGameObject* _Object);
 

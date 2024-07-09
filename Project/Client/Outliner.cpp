@@ -89,6 +89,38 @@ void Outliner::GameObjectAddChild(DWORD_PTR _Param1, DWORD_PTR _Param2)
 {
 	TreeNode* pDragNode = (TreeNode*)_Param1;
 	TreeNode* pDropNode = (TreeNode*)_Param2;
+
+	qGameObject* pDragObject = ((qGameObject*)pDragNode->GetData());
+	qGameObject* pDropObject = nullptr;
+
+	// Drag 오브젝트를 Drop 오브젝트의 자식으로 넣어 준다.
+	if (pDropNode)
+	{
+		pDropObject = ((qGameObject*)pDropNode->GetData());
+
+		// 자식으로 들어갈 오브젝트가 부모(조상) 중 하나였다면 무시한다.
+		if (pDropObject->IsAncestor(pDragObject))
+			return;
+
+		pDropObject->AddChild(pDragObject);
+	}
+
+	// Drop 목적지가 없는 경우 (공백에다가 드래그했을 경우)에는 Drag한 오브젝트를 최상위 부모로 넣어준다.
+	else
+	{
+		// 그래도 부모를 끌었을때는 그냥 아무일도 일어나지않게 한다.
+		if (!pDragObject->GetParent())
+			return;
+
+		// 부모 오브젝트랑 연결을 끊고
+		pDragObject->DeregisterChild();
+
+		// 본인 소속 레이어에 최상위 부모로써 등록한다.
+		qLevelMgr::GetInst()->GetCurrentLevel()->RegisterAsParent(pDragObject->GetLayerIdx(), pDragObject);
+	}
+
+	// 트리내용 갱신
+	RenewLevel();
 }
 
 void Outliner::DroppedFromOuter(DWORD_PTR _OuterData, DWORD_PTR _DropNode)

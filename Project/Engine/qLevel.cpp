@@ -58,6 +58,12 @@ void qLevel::AddObject(int LayerIdx, qGameObject* _Object, bool _bMoveChild)
 }
 
 
+void qLevel::RegisterAsParent(int LayerIdx, qGameObject* _Object)
+{
+	m_Layer[LayerIdx]->RegisterAsParent(_Object);
+}
+
+
 
 qGameObject* qLevel::FindObjectByName(const wstring& _Name)
 {

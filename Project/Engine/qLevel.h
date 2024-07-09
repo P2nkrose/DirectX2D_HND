@@ -22,6 +22,8 @@ public:
 
 public:
 	void AddObject(int LayerIdx, qGameObject* _Object, bool _bMoveChild = false);
+	void RegisterAsParent(int LayerIdx, qGameObject* _Object);
+
 	qLayer* GetLayer(int _LayerIdx) { return m_Layer[_LayerIdx]; }
 	LEVEL_STATE GetState() { return m_State; }
 	qGameObject* FindObjectByName(const wstring& _Name);
