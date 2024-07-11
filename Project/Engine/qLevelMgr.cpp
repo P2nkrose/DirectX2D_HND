@@ -99,25 +99,10 @@ void qLevelMgr::Init()
 	
 	pObject->Light2D()->SetLightType(LIGHT_TYPE::POINT);
 	pObject->Light2D()->SetLightColor(Vec3(1.f, 1.f, 1.f));
-	pObject->Light2D()->SetRadius(500.f);
-	pObject->Transform()->SetRelativePos(Vec3(-300.f, 0.f, 100.f));
+	pObject->Light2D()->SetRadius(1000.f);
+	pObject->Transform()->SetRelativePos(Vec3(0.f, 0.f, 100.f));
 
 	m_CurLevel->AddObject(0, pObject);
-
-
-
-	pObject = new qGameObject;
-	pObject->SetName(L"PointLight 2");
-	pObject->AddComponent(new qTransform);
-	pObject->AddComponent(new qLight2D);
-	
-	pObject->Light2D()->SetLightType(LIGHT_TYPE::POINT);
-	pObject->Light2D()->SetLightColor(Vec3(0.2f, 0.2f, 0.8f));
-	pObject->Light2D()->SetRadius(500.f);
-	pObject->Transform()->SetRelativePos(Vec3(300.f, 0.f, 100.f));
-	
-	m_CurLevel->AddObject(0, pObject);
-
 
 
 
@@ -203,7 +188,7 @@ void qLevelMgr::Init()
 
 	pTileMapObj->Transform()->SetRelativePos(Vec3(-500.f, 250.f, 500.f));
 
-	pTileMapObj->TileMap()->SetRowCol(4, 4);
+	pTileMapObj->TileMap()->SetRowCol(20, 20);
 	pTileMapObj->TileMap()->SetTileSize(Vec2(64.f, 64.f));
 
 	Ptr<qTexture> pTileAtlas = qAssetMgr::GetInst()->Load<qTexture>(L"TileAtlasTex", L"texture\\TILE.bmp");
@@ -214,6 +199,18 @@ void qLevelMgr::Init()
 	m_CurLevel->AddObject(2, pTileMapObj);
 
 
+	// Post Process Object : 후처리용 오브젝트
+	qGameObject* pGrayFilterObj = new qGameObject;
+	pGrayFilterObj->SetName(L"GrayFilter");
+	pGrayFilterObj->AddComponent(new qTransform);
+	pGrayFilterObj->AddComponent(new qMeshRender);
+
+	pGrayFilterObj->Transform()->SetRelativeScale(150.f, 150.f, 1.f);
+
+	pGrayFilterObj->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pGrayFilterObj->MeshRender()->SetMaterial(qAssetMgr::GetInst()->FindAsset<qMaterial>(L"DistortionMtrl"));
+
+	m_CurLevel->AddObject(0, pGrayFilterObj);
 
 
 

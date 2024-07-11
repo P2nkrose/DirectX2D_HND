@@ -40,8 +40,8 @@ int qEngine::Init(HWND _wnd, POINT _ptResolution)
 	qKeyMgr::GetInst()->Init();
 	qTimeMgr::GetInst()->Init();
 	qAssetMgr::GetInst()->Init();
-	qLevelMgr::GetInst()->Init();
 	qRenderMgr::GetInst()->Init();
+	qLevelMgr::GetInst()->Init();
 
 
 	return S_OK;

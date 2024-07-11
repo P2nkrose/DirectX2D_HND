@@ -132,6 +132,11 @@ void qCamera::SortGameObject()
 			case DOMAIN_PARTICLE:
 				m_vecParticles.push_back(vecObjects[j]);
 				break;
+			
+			// ÈÄÃ³¸®	
+			case DOMAIN_POSTPROCESS:
+				m_vecPostProcess.push_back(vecObjects[j]);
+				break;
 			}
 		}
 	}
@@ -172,9 +177,19 @@ void qCamera::Render()
 		m_vecParticles[i]->Render();
 	}
 
+
+	// Post Process
+	for (size_t i = 0; i < m_vecPostProcess.size(); ++i)
+	{
+		qRenderMgr::GetInst()->PostProcessCopy();
+		m_vecPostProcess[i]->Render();
+	}
+
+
 	m_vecOpaque.clear();
 	m_vecMasked.clear();
 	m_vecTransparent.clear();
 	m_vecParticles.clear();
+	m_vecPostProcess.clear();
 }
 

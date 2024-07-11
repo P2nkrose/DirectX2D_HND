@@ -19,6 +19,8 @@ public:
 	void AddDebugShapeInfo(const tDebugShapeInfo& _Info) { m_DebugShapeList.push_back(_Info); }
 	void RegisterLight2D(qLight2D* _Light) { m_vecLight2D.push_back(_Light); }
 
+	void PostProcessCopy();
+
 private:
 	void RenderStart();
 	void Clear();
@@ -36,5 +38,8 @@ private:
 	// Light
 	vector<qLight2D*>			m_vecLight2D;
 	qStructuredBuffer*			m_Light2DBuffer;
+
+	// Post Process
+	Ptr<qTexture>				m_PostProcessTex;
 };
 

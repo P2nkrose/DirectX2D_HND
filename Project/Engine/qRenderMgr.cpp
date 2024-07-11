@@ -40,6 +40,10 @@ qRenderMgr::~qRenderMgr()
 
 void qRenderMgr::Init()
 {
+	// Asset Manager가 초기화뙬때 만들어둔 후처리용 텍스처를 참조한다.
+	m_PostProcessTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"PostProcessTex");
+
+
 	// 디버그 렌더링용 게임 오브젝트
 	m_DebugObject = new qGameObject;
 	m_DebugObject->AddComponent(new qTransform);
@@ -93,6 +97,13 @@ void qRenderMgr::RegisterCamera(qCamera* _Cam, int _CamPriority)
 	m_vecCam[_CamPriority] = _Cam;
 }
 
+
+void qRenderMgr::PostProcessCopy()
+{
+	// RenderTarget -> PostProcessTex
+	Ptr<qTexture> pRTTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"RenderTargetTex");
+	CONTEXT->CopyResource(m_PostProcessTex->GetTex2D().Get(), pRTTex->GetTex2D().Get());
+}
 
 void qRenderMgr::RenderStart()
 {

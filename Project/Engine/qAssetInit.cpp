@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "qAssetMgr.h"
+#include "qDevice.h"
 
 void qAssetMgr::Init()
 {
@@ -118,6 +119,16 @@ void qAssetMgr::CreateEngineMesh()
 
 void qAssetMgr::CreateEngineTexture()
 {
+	// Post Process 용도 텍스처 생성
+	Vec2 Resolution = qDevice::GetInst()->GetResolution();
+	CreateTexture(L"PostProcessTex", (UINT)Resolution.x, (UINT)Resolution.y
+				, DXGI_FORMAT_R8G8B8A8_UNORM, D3D11_BIND_SHADER_RESOURCE);
+
+
+	// Noise Texture 를 미리 만들어놓기
+	Load<qTexture>(L"texture\\noise\\noise_01.png", L"texture\\noise\\noise_01.png");
+	Load<qTexture>(L"texture\\noise\\noise_02.png", L"texture\\noise\\noise_02.png");
+	Load<qTexture>(L"texture\\noise\\noise_03.jpg", L"texture\\noise\\noise_03.jpg");
 }
 
 void qAssetMgr::CreateEngineSprite()
@@ -233,6 +244,28 @@ void qAssetMgr::CreateEngineGraphicShader()
 	AddAsset(L"TileMapShader", pShader);
 
 
+	// GrayFilterShader
+	pShader = new qGraphicShader;
+	pShader->CreateVertexShader(L"shader\\postprocess.fx", "VS_GrayFilter");
+	pShader->CreatePixelShader(L"shader\\postprocess.fx", "PS_GrayFilter");
+	pShader->SetRSType(RS_TYPE::CULL_NONE);
+	pShader->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
+	pShader->SetBSType(BS_TYPE::DEFAULT);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_POSTPROCESS);
+	AddAsset(L"GrayFilterShader", pShader);
+
+
+	// DistortionShader
+	pShader = new qGraphicShader;
+	pShader->CreateVertexShader(L"shader\\postprocess.fx", "VS_Distortion");
+	pShader->CreatePixelShader(L"shader\\postprocess.fx", "PS_Distortion");
+	pShader->SetRSType(RS_TYPE::CULL_NONE);
+	pShader->SetDSType(DS_TYPE::NO_TEST_NO_WRITE);
+	pShader->SetBSType(BS_TYPE::DEFAULT);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_POSTPROCESS);
+	AddAsset(L"DistortionShader", pShader);
+
+
 }
 
 void qAssetMgr::CreateEngineComputeShader()
@@ -263,4 +296,22 @@ void qAssetMgr::CreateEngineMaterial()
 	pMtrl = new qMaterial();
 	pMtrl->SetShader(FindAsset<qGraphicShader>(L"TileMapShader"));
 	AddAsset(L"TileMapMtrl", pMtrl);
+
+	// GrayFilterMtrl
+	pMtrl = new qMaterial();
+	pMtrl->SetShader(FindAsset<qGraphicShader>(L"GrayFilterShader"));
+	pMtrl->SetTexParam(TEX_0, FindAsset<qTexture>(L"PostProcessTex"));
+	pMtrl->SetTexParam(TEX_1, FindAsset<qTexture>(L"texture\\noise\\noise_01.png"));
+	pMtrl->SetTexParam(TEX_2, FindAsset<qTexture>(L"texture\\noise\\noise_02.png"));
+	pMtrl->SetTexParam(TEX_3, FindAsset<qTexture>(L"texture\\noise\\noise_03.jpg"));
+	AddAsset(L"GrayFilterMtrl", pMtrl);
+
+	// DistortionMtrl
+	pMtrl = new qMaterial();
+	pMtrl->SetShader(FindAsset<qGraphicShader>(L"DistortionShader"));
+	pMtrl->SetTexParam(TEX_0, FindAsset<qTexture>(L"PostProcessTex"));
+	pMtrl->SetTexParam(TEX_1, FindAsset<qTexture>(L"texture\\noise\\noise_01.png"));
+	pMtrl->SetTexParam(TEX_2, FindAsset<qTexture>(L"texture\\noise\\noise_02.png"));
+	pMtrl->SetTexParam(TEX_3, FindAsset<qTexture>(L"texture\\noise\\noise_03.jpg"));
+	AddAsset(L"DistortionMtrl", pMtrl);
 }
