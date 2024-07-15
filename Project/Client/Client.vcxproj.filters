@@ -101,6 +101,12 @@
     <Filter Include="EditorUI\06. MenuUI">
       <UniqueIdentifier>{45dd7bcd-353c-495d-8c35-9771a7aa9807}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Manager\02. TestLevel">
+      <UniqueIdentifier>{beb5d49a-befd-4509-9359-b7d291b865d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorUI\07. Module">
+      <UniqueIdentifier>{80116437-18c1-4410-931a-5aa60b149140}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -231,6 +237,12 @@
     </ClInclude>
     <ClInclude Include="MenuUI.h">
       <Filter>EditorUI\06. MenuUI</Filter>
+    </ClInclude>
+    <ClInclude Include="qTestLevel.h">
+      <Filter>Manager\02. TestLevel</Filter>
+    </ClInclude>
+    <ClInclude Include="ParamUI.h">
+      <Filter>EditorUI\07. Module</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -370,6 +382,12 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuUI.cpp">
       <Filter>EditorUI\06. MenuUI</Filter>
+    </ClCompile>
+    <ClCompile Include="qTestLevel.cpp">
+      <Filter>Manager\02. TestLevel</Filter>
+    </ClCompile>
+    <ClCompile Include="ParamUI.cpp">
+      <Filter>EditorUI\07. Module</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

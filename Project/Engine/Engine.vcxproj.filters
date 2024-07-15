@@ -118,20 +118,8 @@
     <Filter Include="08. Component\Script">
       <UniqueIdentifier>{60632b66-931b-4f9c-ad8a-451e4011454b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripts">
-      <UniqueIdentifier>{85d51d25-b4b9-4721-b615-42c9e0367320}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\01. PlayerScript">
-      <UniqueIdentifier>{3dcf5a91-2d6f-462c-8349-bad69f3fc32f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\02. CameraMoveScript">
-      <UniqueIdentifier>{90bc1b27-1358-4022-a846-44ac873e33a0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="04. Manager\07. CollisionMgr">
       <UniqueIdentifier>{ea69862e-a3f0-42e6-acf1-63ae9c3c7dcb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\03. MissileScript">
-      <UniqueIdentifier>{9f7f4032-bb9c-4279-8e81-67d14533bca7}</UniqueIdentifier>
     </Filter>
     <Filter Include="06. Asset\09. Shader">
       <UniqueIdentifier>{df7abf6f-d65e-47ab-8e12-372cc2c68310}</UniqueIdentifier>
@@ -282,12 +270,6 @@
     <ClInclude Include="qScript.h">
       <Filter>08. Component\Script</Filter>
     </ClInclude>
-    <ClInclude Include="qPlayerScript.h">
-      <Filter>Scripts\01. PlayerScript</Filter>
-    </ClInclude>
-    <ClInclude Include="qCameraMoveScript.h">
-      <Filter>Scripts\02. CameraMoveScript</Filter>
-    </ClInclude>
     <ClInclude Include="qTexture.h">
       <Filter>06. Asset\05. Texture</Filter>
     </ClInclude>
@@ -302,9 +284,6 @@
     </ClInclude>
     <ClInclude Include="qTaskMgr.h">
       <Filter>04. Manager\TaskMgr</Filter>
-    </ClInclude>
-    <ClInclude Include="qMissileScript.h">
-      <Filter>Scripts\03. MissileScript</Filter>
     </ClInclude>
     <ClInclude Include="qSprite.h">
       <Filter>06. Asset\07. Sprite</Filter>
@@ -407,12 +386,6 @@
     <ClCompile Include="qScript.cpp">
       <Filter>08. Component\Script</Filter>
     </ClCompile>
-    <ClCompile Include="qPlayerScript.cpp">
-      <Filter>Scripts\01. PlayerScript</Filter>
-    </ClCompile>
-    <ClCompile Include="qCameraMoveScript.cpp">
-      <Filter>Scripts\02. CameraMoveScript</Filter>
-    </ClCompile>
     <ClCompile Include="qTexture.cpp">
       <Filter>06. Asset\05. Texture</Filter>
     </ClCompile>
@@ -433,9 +406,6 @@
     </ClCompile>
     <ClCompile Include="qTaskMgr.cpp">
       <Filter>04. Manager\TaskMgr</Filter>
-    </ClCompile>
-    <ClCompile Include="qMissileScript.cpp">
-      <Filter>Scripts\03. MissileScript</Filter>
     </ClCompile>
     <ClCompile Include="qSprite.cpp">
       <Filter>06. Asset\07. Sprite</Filter>

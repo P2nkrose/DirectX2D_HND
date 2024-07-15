@@ -36,6 +36,17 @@ void ChangeLevelState(LEVEL_STATE _NextState)
 	qTaskMgr::GetInst()->AddTask(task);
 }
 
+void ChangeLevel(qLevel* _Level, LEVEL_STATE _NextLevelState)
+{
+	tTask task = {};
+	task.Type = TASK_TYPE::CHANGE_LEVEL;
+
+	task.Param_0 = (DWORD_PTR)_Level;
+	task.Param_1 = (DWORD_PTR)_NextLevelState;
+
+	qTaskMgr::GetInst()->AddTask(task);
+}
+
 
 bool IsVaild(qGameObject*& _Object)
 {

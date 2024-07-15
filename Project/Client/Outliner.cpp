@@ -45,6 +45,8 @@ Outliner::~Outliner()
 
 void Outliner::Update()
 {
+	if (qLevelMgr::GetInst()->IsLevelChanged())
+		RenewLevel();
 }
 
 void Outliner::RenewLevel()
@@ -118,9 +120,6 @@ void Outliner::GameObjectAddChild(DWORD_PTR _Param1, DWORD_PTR _Param2)
 		// 본인 소속 레이어에 최상위 부모로써 등록한다.
 		qLevelMgr::GetInst()->GetCurrentLevel()->RegisterAsParent(pDragObject->GetLayerIdx(), pDragObject);
 	}
-
-	// 트리내용 갱신
-	RenewLevel();
 }
 
 void Outliner::DroppedFromOuter(DWORD_PTR _OuterData, DWORD_PTR _DropNode)

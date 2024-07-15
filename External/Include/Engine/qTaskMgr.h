@@ -7,7 +7,7 @@ class qTaskMgr : public qSingleton<qTaskMgr>
 
 public:
 	void Tick();
-	void AddTask(const tTask& _Task) { m_vecTask.push_back(_Task); }
+	void AddTask(const tTask& _Task);
 
 private:
 	void ClearGC();

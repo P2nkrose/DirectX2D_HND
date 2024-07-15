@@ -80,9 +80,10 @@ void qGameObject::AddChild(qGameObject* _ChildObject)
 		}
 	}
 
-
 	m_vecChildUI.push_back(_ChildObject);
 	_ChildObject->m_Parent = this;
+
+	qLevelMgr::GetInst()->LevelChanged();
 }
 
 
@@ -116,6 +117,8 @@ void qGameObject::DisconnectWithLayer()
 
 void qGameObject::DeregisterChild()
 {
+	qLevelMgr::GetInst()->LevelChanged();
+
 	vector<qGameObject*>::iterator iter = m_Parent->m_vecChildUI.begin();
 
 	for (; iter != m_Parent->m_vecChildUI.end(); ++iter)

@@ -27,6 +27,9 @@ public:
 	void SetScalarParam(SCALAR_PARAM _Param, const T& _Data);
 	void SetTexParam(TEX_PARAM _Param, Ptr<qTexture> _Tex) { m_arrTex[_Param] = _Tex; }
 
+	void* GetScalarParam(SCALAR_PARAM _Param);
+	Ptr<qTexture> GetTexParam(TEX_PARAM _Param) { return m_arrTex[(UINT)_Param]; }
+
 
 private:
 	Ptr<qGraphicShader>			m_Shader;

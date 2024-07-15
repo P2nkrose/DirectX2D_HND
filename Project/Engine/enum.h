@@ -138,6 +138,7 @@ enum SHADER_DOMAIN
 	DOMAIN_TRANSPARENT, // 반투명
 	DOMAIN_PARTICLE,	// 파티클
 	DOMAIN_POSTPROCESS,	// 후처리
+	DOMAIN_UI,			// UI
 	DOMAIN_DEBUG,		// 디버그
 };
 
@@ -164,8 +165,10 @@ enum TASK_TYPE
 	// Param_0 : Next Level State
 	CHANGE_LEVELSTATE,
 
+	// Param_0 : Level Adress, 
 	CHANGE_LEVEL,
 
+	LEVLEL_CHANGED,
 	ASSET_CHANGED,
 
 	ADD_CHILD,

@@ -173,7 +173,6 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="qAsset.h" />
     <ClInclude Include="qAssetMgr.h" />
     <ClInclude Include="qCamera.h" />
-    <ClInclude Include="qCameraMoveScript.h" />
     <ClInclude Include="qCollider2D.h" />
     <ClInclude Include="qCollisionMgr.h" />
     <ClInclude Include="qComponent.h" />
@@ -193,9 +192,7 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="qMaterial.h" />
     <ClInclude Include="qMesh.h" />
     <ClInclude Include="qMeshRender.h" />
-    <ClInclude Include="qMissileScript.h" />
     <ClInclude Include="qPathMgr.h" />
-    <ClInclude Include="qPlayerScript.h" />
     <ClInclude Include="qRenderComponent.h" />
     <ClInclude Include="qRenderMgr.h" />
     <ClInclude Include="qScript.h" />
@@ -226,7 +223,6 @@ call EngineHeaderCopy.bat</Command>
     <ClCompile Include="qAssetInit.cpp" />
     <ClCompile Include="qAssetMgr.cpp" />
     <ClCompile Include="qCamera.cpp" />
-    <ClCompile Include="qCameraMoveScript.cpp" />
     <ClCompile Include="qCollider2D.cpp" />
     <ClCompile Include="qCollisionMgr.cpp" />
     <ClCompile Include="qComponent.cpp" />
@@ -246,9 +242,7 @@ call EngineHeaderCopy.bat</Command>
     <ClCompile Include="qMaterial.cpp" />
     <ClCompile Include="qMesh.cpp" />
     <ClCompile Include="qMeshRender.cpp" />
-    <ClCompile Include="qMissileScript.cpp" />
     <ClCompile Include="qPathMgr.cpp" />
-    <ClCompile Include="qPlayerScript.cpp" />
     <ClCompile Include="qRenderComponent.cpp" />
     <ClCompile Include="qRenderMgr.cpp" />
     <ClCompile Include="qScript.cpp" />

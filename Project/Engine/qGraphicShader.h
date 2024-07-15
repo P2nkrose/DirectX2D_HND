@@ -1,6 +1,20 @@
 #pragma once
 #include "qShader.h"
 
+struct tScalarParam
+{
+	SCALAR_PARAM	ParamType;
+	string			strDesc;
+};
+
+
+struct tTexParam
+{
+	TEX_PARAM		ParamType;
+	string			strDesc;
+};
+
+
 class qGraphicShader : public qShader
 {
 public:
@@ -23,6 +37,13 @@ public:
 	void SetRSType(RS_TYPE _Type) { m_RSType = _Type; }
 	void SetDSType(DS_TYPE _Type) { m_DSType = _Type; }
 	void SetBSType(BS_TYPE _Type) { m_BSType = _Type; }
+
+	// shader parameter
+	void AddScalarParam(SCALAR_PARAM _Type, const string& _Desc) { m_ScalarParam.push_back(tScalarParam{ _Type, _Desc }); }
+	void AddTexParam(TEX_PARAM _Type, const string& _Desc)	{ m_TexParam.push_back(tTexParam{ _Type, _Desc }); }
+	
+	const vector<tScalarParam>& GetScalarParam() { return m_ScalarParam; }
+	const vector<tTexParam>& GetTexParam() { return m_TexParam; }
 
 	SHADER_DOMAIN GetDomain() { return m_Domain; }
 	RS_TYPE GetRSType() { return m_RSType; }
@@ -49,6 +70,11 @@ private:
 
 
 	SHADER_DOMAIN					m_Domain;		// ½¦ÀÌ´õÀÇ ·»´õ¸µ ¹æ½Ä
+
+
+	// Shader Parameter
+	vector<tScalarParam>			m_ScalarParam;
+	vector<tTexParam>				m_TexParam;
 
 };
 

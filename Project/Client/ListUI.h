@@ -21,6 +21,7 @@ public:
 
 	string GetSelectName() { return m_SelectedName; }
 
+	virtual void Activate() override;
 	virtual void Deactivate() override;
 
 private:

@@ -22,6 +22,11 @@ void qTaskMgr::Tick()
 	ExecuteTask();
 }
 
+void qTaskMgr::AddTask(const tTask& _Task)
+{
+	m_vecTask.push_back(_Task);
+}
+
 void qTaskMgr::ClearGC()
 {
 	Delete_Vec(m_GC);
@@ -70,13 +75,24 @@ void qTaskMgr::ExecuteTask()
 
 		case TASK_TYPE::CHANGE_LEVEL:
 		{
+			// Param_0 : Level Adress, Param_1 : Level State
+			qLevel* pLevel = (qLevel*)task.Param_0;
+			LEVEL_STATE NextState = (LEVEL_STATE)task.Param_1;
 
+			qLevelMgr::GetInst()->ChangedLevel(pLevel);
+			pLevel->ChangeState(NextState);
 		}
 		break;
 
 		case TASK_TYPE::ASSET_CHANGED:
 		{
 			qAssetMgr::GetInst()->m_Changed = true;
+		}
+		break;
+
+		case TASK_TYPE::LEVLEL_CHANGED:
+		{
+			qLevelMgr::GetInst()->m_LevelChanged = true;
 		}
 		break;
 		}

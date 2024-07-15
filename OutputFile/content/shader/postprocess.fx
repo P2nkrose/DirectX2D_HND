@@ -97,18 +97,63 @@ VS_OUT VS_Distortion(VS_IN _in)
 float4 PS_Distortion(VS_OUT _in) : SV_Target
 {
     // 1. 렌더타겟 해상도 정보 (전역 상수버퍼)
-    
     // 2. 픽셀 쉐이더의 픽셀 좌표
     float2 vScreenUV = _in.vPosition.xy / g_Resolution;
     
-    // Gray Filter
+    float2 vNoiseUV = vScreenUV;
+    vNoiseUV.x += g_EngineTime * 0.1;
+    float4 vNoise = g_tex_3.Sample(g_sam_0, vNoiseUV);
+    
+    vNoise = (vNoise * 2.f - 1.f) * 0.01f;
+    vScreenUV = vScreenUV + vNoise.xy;
     float4 vColor = g_tex_0.Sample(g_sam_0, vScreenUV);
-    vColor.r *= 2.f;
+   
+    
+    // 캐릭터 속도 체감
+    //float2 vScreenUV = _in.vPosition.xy / g_Resolution;
+    //
+    //float2 vNoiseUV = vScreenUV;
+    ////vNoiseUV.y += g_EngineTime * 0.5;
+    //vNoiseUV.y += tan((vNoiseUV.y + g_EngineTime * 0.9f) * PI * 12.f) * 0.01;
+    //float4 vNoise = g_tex_4.Sample(g_sam_0, vNoiseUV);
+    //
+    //vNoise = (vNoise * 2.f - 1.f) * 0.01f;
+    //vScreenUV = vScreenUV + vNoise.xy;
+    //float4 vColor = g_tex_0.Sample(g_sam_0, vScreenUV);
+    
+   
+    // 티비화면 지지직
+    //float2 vScreenUV = _in.vPosition.xy / g_Resolution;
+    //
+    //float2 vNoiseUV = vScreenUV;
+    ////vNoiseUV.y += g_EngineTime * 0.3;
+    //vNoiseUV.y += tan((vNoiseUV.y + g_EngineTime * 0.1f) * PI * 5.f) * 0.01;
+    //float4 vNoise = g_tex_5.Sample(g_sam_0, vNoiseUV);
+    //
+    //vNoise = (vNoise * 2.f - 1.f) * 0.01f;
+    //vScreenUV = vScreenUV + vNoise.xy;
+    //float4 vColor = g_tex_0.Sample(g_sam_0, vScreenUV);
+    
+    
+    
+    // 포탈 앞에 빨려들어가는
+    //float2 vScreenUV = _in.vPosition.xy / g_Resolution;
+    //
+    //float2 vNoiseUV = vScreenUV;
+    //vNoiseUV.x += g_EngineTime * 0.5;
+    //vNoiseUV.y += tan((vNoiseUV.y + g_EngineTime * 0.1f) * PI * 5.f) * 0.01;
+    //float4 vNoise = g_tex_2.Sample(g_sam_0, vNoiseUV);
+    //
+    //vNoise = (vNoise * 2.f - 1.f) * 0.01f;
+    //vScreenUV = vScreenUV + vNoise.xy;
+    //float4 vColor = g_tex_0.Sample(g_sam_0, vScreenUV);
+   
+    
+    
+    
+    
+    
     
     return vColor;
 }
-
-
-
-
 #endif

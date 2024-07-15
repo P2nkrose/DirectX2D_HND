@@ -129,6 +129,8 @@ void qAssetMgr::CreateEngineTexture()
 	Load<qTexture>(L"texture\\noise\\noise_01.png", L"texture\\noise\\noise_01.png");
 	Load<qTexture>(L"texture\\noise\\noise_02.png", L"texture\\noise\\noise_02.png");
 	Load<qTexture>(L"texture\\noise\\noise_03.jpg", L"texture\\noise\\noise_03.jpg");
+	Load<qTexture>(L"texture\\noise\\noise_04.jpg", L"texture\\noise\\noise_04.jpg");
+	Load<qTexture>(L"texture\\noise\\noise_05.jpg", L"texture\\noise\\noise_05.jpg");
 }
 
 void qAssetMgr::CreateEngineSprite()
@@ -194,6 +196,9 @@ void qAssetMgr::CreateEngineGraphicShader()
 	pShader->SetBSType(BS_TYPE::DEFAULT);
 
 	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_MASKED);
+
+	pShader->AddScalarParam(INT_0, "Test Parameter");
+	//pShader->AddTexParam(TEX_0, "OutputTexture");
 
 	AddAsset(L"Std2DShader", pShader);
 
@@ -304,6 +309,8 @@ void qAssetMgr::CreateEngineMaterial()
 	pMtrl->SetTexParam(TEX_1, FindAsset<qTexture>(L"texture\\noise\\noise_01.png"));
 	pMtrl->SetTexParam(TEX_2, FindAsset<qTexture>(L"texture\\noise\\noise_02.png"));
 	pMtrl->SetTexParam(TEX_3, FindAsset<qTexture>(L"texture\\noise\\noise_03.jpg"));
+	pMtrl->SetTexParam(TEX_4, FindAsset<qTexture>(L"texture\\noise\\noise_04.jpg"));
+	pMtrl->SetTexParam(TEX_5, FindAsset<qTexture>(L"texture\\noise\\noise_05.jpg"));
 	AddAsset(L"GrayFilterMtrl", pMtrl);
 
 	// DistortionMtrl
@@ -313,5 +320,7 @@ void qAssetMgr::CreateEngineMaterial()
 	pMtrl->SetTexParam(TEX_1, FindAsset<qTexture>(L"texture\\noise\\noise_01.png"));
 	pMtrl->SetTexParam(TEX_2, FindAsset<qTexture>(L"texture\\noise\\noise_02.png"));
 	pMtrl->SetTexParam(TEX_3, FindAsset<qTexture>(L"texture\\noise\\noise_03.jpg"));
+	pMtrl->SetTexParam(TEX_4, FindAsset<qTexture>(L"texture\\noise\\noise_04.jpg"));
+	pMtrl->SetTexParam(TEX_5, FindAsset<qTexture>(L"texture\\noise\\noise_05.jpg"));
 	AddAsset(L"DistortionMtrl", pMtrl);
 }

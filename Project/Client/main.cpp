@@ -6,6 +6,8 @@
 #include <Engine/qDevice.h>
 #include "ImGui/imgui_impl_win32.h"
 
+#include "qTestLevel.h"
+
 // 전역 변수:
 HINSTANCE g_hInst = nullptr;
 
@@ -48,6 +50,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         return 0;
     }
 
+
+    // 테스트용 레벨 초기상태 만들기
+    qTestLevel::CreateTestLevel();
 
 #ifdef _DEBUG
    // Editor Manager 초기화

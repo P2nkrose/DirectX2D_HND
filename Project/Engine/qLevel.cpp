@@ -4,6 +4,8 @@
 #include "qLayer.h"
 #include "qGameObject.h"
 
+#include "qLevelMgr.h"
+
 qLevel::qLevel()
 	: m_Layer{}
 	, m_State(LEVEL_STATE::STOP)
@@ -55,6 +57,8 @@ void qLevel::ClearObject()
 void qLevel::AddObject(int LayerIdx, qGameObject* _Object, bool _bMoveChild)
 {
 	m_Layer[LayerIdx]->AddObject(_Object, _bMoveChild);
+
+	qLevelMgr::GetInst()->LevelChanged();
 }
 
 
@@ -113,10 +117,13 @@ void qLevel::ChangeState(LEVEL_STATE _NextState)
 	// Stop -> Play (정지 상태의 레벨이 시작되면, 레벨에 있던 물체들은 Begin 이 호출되어야 한다.)
 	if (STOP == m_State && PLAY == _NextState)
 	{
+		m_State = _NextState;
 		Begin();
 	}
-
-	m_State = _NextState;
+	else
+	{
+		m_State = _NextState;
+	}
 
 	// Play -> Stop (최초 레벨이 시작되던 시점으로 복구가 가능해야 한다.)
 }
