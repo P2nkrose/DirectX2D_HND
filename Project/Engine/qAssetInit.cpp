@@ -107,9 +107,9 @@ void qAssetMgr::CreateEngineMesh()
 	// CircleMesh_Debug
 	vecIdx.clear();
 	
-	for (size_t i = 0; i < vecVtx.size() - 1; ++i)
+	for (size_t i = 0; i < vecVtx.size(); ++i)
 	{
-		vecIdx.push_back(i + 1);
+		vecIdx.push_back((UINT)i);
 	}
 	
 	pMesh = new qMesh;

@@ -22,6 +22,7 @@ public:
 
 private:
 	class qScript*			m_Script;
-	uintptr_t				m_UIHeight;
+
+	UINT					m_UIHeight;
 };
 

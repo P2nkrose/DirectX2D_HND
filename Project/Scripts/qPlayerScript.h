@@ -15,6 +15,7 @@ public:
 	virtual void BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider) override;
 
 private:
-	float		m_Speed;
+	float				m_Speed;
+	Ptr<qTexture>		m_Texture;
 };
 

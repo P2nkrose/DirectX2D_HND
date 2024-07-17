@@ -42,7 +42,7 @@ void qTaskMgr::ExecuteTask()
 		case TASK_TYPE::CREATE_OBJECT:
 		{
 			qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
-			int LayerIndex = task.Param_0;
+			int LayerIndex = (int)task.Param_0;
 			qGameObject* pObject = (qGameObject*)task.Param_1;
 			pCurLevel->AddObject(LayerIndex, pObject);
 

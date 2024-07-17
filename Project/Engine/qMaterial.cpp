@@ -54,6 +54,8 @@ void* qMaterial::GetScalarParam(SCALAR_PARAM _Param)
 		return m_Const.matArr + (_Param - MAT_0);
 		break;
 	}
+
+	return nullptr;
 }
 
 

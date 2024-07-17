@@ -247,7 +247,9 @@
     <ClInclude Include="ParamUI.h">
       <Filter>EditorUI\07. Module</Filter>
     </ClInclude>
-    <ClInclude Include="ScriptUI.h" />
+    <ClInclude Include="ScriptUI.h">
+      <Filter>EditorUI\01. Inspector\ComponentUI\09. ScriptUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -393,7 +395,9 @@
     <ClCompile Include="ParamUI.cpp">
       <Filter>EditorUI\07. Module</Filter>
     </ClCompile>
-    <ClCompile Include="ScriptUI.cpp" />
+    <ClCompile Include="ScriptUI.cpp">
+      <Filter>EditorUI\01. Inspector\ComponentUI\09. ScriptUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ImGui\LICENSE.txt">
