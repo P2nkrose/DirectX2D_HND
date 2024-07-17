@@ -89,7 +89,7 @@ void qTestLevel::CreateTestLevel()
 	pPlayer->AddComponent(new qTransform);
 	pPlayer->AddComponent(new qMeshRender);
 	pPlayer->AddComponent(new qCollider2D);
-	pPlayer->AddComponent(new qFlipBookComponent);
+	//pPlayer->AddComponent(new qFlipBookComponent);
 	pPlayer->AddComponent(new qPlayerScript);
 
 	pPlayer->Transform()->SetRelativePos(0.f, 0.0f, 100.f);
@@ -101,8 +101,9 @@ void qTestLevel::CreateTestLevel()
 
 	pPlayer->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
 	pPlayer->MeshRender()->SetMaterial(pMtrl);
-	pPlayer->FlipBookComponent()->AddFlipBook(5, qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Link_MoveDown"));
-	pPlayer->FlipBookComponent()->Play(5, 10, true);
+	
+	//pPlayer->FlipBookComponent()->AddFlipBook(5, qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Link_MoveDown"));
+	//pPlayer->FlipBookComponent()->Play(5, 10, true);
 
 	pLevel->AddObject(3, pPlayer);
 
