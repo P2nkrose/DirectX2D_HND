@@ -9,7 +9,7 @@
 class qScript : public qComponent
 {
 public:
-	qScript();
+	qScript(UINT _Type);
 	~qScript();
 
 	virtual void Tick() PURE;
@@ -21,6 +21,10 @@ public:
 
 public:
 	qRenderComponent* GetRenderComponent() { return GetOwner()->GetRenderComponent(); }
+	UINT GetScriptType() { return m_ScriptType; }
+
+private:
+	UINT		m_ScriptType;
 
 };
 

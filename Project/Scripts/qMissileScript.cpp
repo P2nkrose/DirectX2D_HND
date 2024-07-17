@@ -2,7 +2,8 @@
 #include "qMissileScript.h"
 
 qMissileScript::qMissileScript()
-	: m_Speed(1000.f)
+	: qScript(UINT(SCRIPT_TYPE::MISSILESCRIPT))
+	, m_Speed(1000.f)
 {
 }
 

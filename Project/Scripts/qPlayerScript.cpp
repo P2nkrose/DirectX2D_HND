@@ -3,7 +3,8 @@
 #include "qMissileScript.h"
 
 qPlayerScript::qPlayerScript()
-	: m_Speed(500.f)
+	: qScript(UINT(SCRIPT_TYPE::PLAYERSCRIPT))
+	, m_Speed(500.f)
 {
 }
 

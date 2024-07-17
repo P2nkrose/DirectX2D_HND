@@ -14,6 +14,7 @@ public:
 	void SetTargetObject(qGameObject* _Object);
 	qGameObject* GetTargetObject() { return m_TargetObject; }
 
+	COMPONENT_TYPE GetComponentUIType() { return m_Type; }
 
 protected:
 	void Title();

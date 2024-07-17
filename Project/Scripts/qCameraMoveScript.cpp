@@ -2,7 +2,8 @@
 #include "qCameraMoveScript.h"
 
 qCameraMoveScript::qCameraMoveScript()
-	: m_CamSpeed(500.f)
+	: qScript(UINT(SCRIPT_TYPE::CAMERAMOVESCRIPT))
+	, m_CamSpeed(500.f)
 {
 }
 

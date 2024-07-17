@@ -2,7 +2,8 @@
 #include "qEditorCameraScript.h"
 
 qEditorCameraScript::qEditorCameraScript()
-	: m_Speed(500.f)
+	: qScript(-1)
+	, m_Speed(500.f)
 {
 }
 

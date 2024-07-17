@@ -130,7 +130,9 @@
     </Link>
     <PreBuildEvent>
       <Command>cd $(SolutionDir)
-call ScriptsHeaderCopy.bat</Command>
+call ScriptsHeaderCopy.bat
+cd $(SolutionDir)CodeGen\
+call CodeGen.exe</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -151,6 +153,12 @@ call ScriptsHeaderCopy.bat</Command>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>cd $(SolutionDir)
+call ScriptsHeaderCopy.bat
+cd $(SolutionDir)CodeGen\
+call CodeGen.exe</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
@@ -158,6 +166,7 @@ call ScriptsHeaderCopy.bat</Command>
     <ClInclude Include="qCameraMoveScript.h" />
     <ClInclude Include="qMissileScript.h" />
     <ClInclude Include="qPlayerScript.h" />
+    <ClInclude Include="qScriptMgr.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -169,6 +178,7 @@ call ScriptsHeaderCopy.bat</Command>
     <ClCompile Include="qCameraMoveScript.cpp" />
     <ClCompile Include="qMissileScript.cpp" />
     <ClCompile Include="qPlayerScript.cpp" />
+    <ClCompile Include="qScriptMgr.cpp" />
     <ClCompile Include="Scripts.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

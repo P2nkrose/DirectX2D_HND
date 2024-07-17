@@ -19,4 +19,6 @@
 #include <Engine/global.h>
 #include <Engine/qEngine.h>
 
+#include "qScriptMgr.h"
+
 #endif //PCH_H
