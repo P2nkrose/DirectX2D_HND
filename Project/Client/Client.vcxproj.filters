@@ -107,6 +107,9 @@
     <Filter Include="EditorUI\07. Module">
       <UniqueIdentifier>{80116437-18c1-4410-931a-5aa60b149140}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EditorUI\01. Inspector\ComponentUI\09. ScriptUI">
+      <UniqueIdentifier>{e67841ae-8207-4c77-ae23-766f170a4834}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -244,6 +247,7 @@
     <ClInclude Include="ParamUI.h">
       <Filter>EditorUI\07. Module</Filter>
     </ClInclude>
+    <ClInclude Include="ScriptUI.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -389,6 +393,7 @@
     <ClCompile Include="ParamUI.cpp">
       <Filter>EditorUI\07. Module</Filter>
     </ClCompile>
+    <ClCompile Include="ScriptUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ImGui\LICENSE.txt">

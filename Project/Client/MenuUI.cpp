@@ -5,6 +5,11 @@
 #include <Engine/assets.h>
 
 #include <Scripts/qScriptMgr.h>
+#include <Engine/qGameObject.h>
+#include <Engine/qScript.h>
+
+#include "qEditorMgr.h"
+#include "Inspector.h"
 
 MenuUI::MenuUI()
 {
@@ -102,7 +107,7 @@ void MenuUI::GameObject()
 		ImGui::EndMenu();
 	}
 }
-
+  
 
 void MenuUI::AddScript()
 {
@@ -115,12 +120,21 @@ void MenuUI::AddScript()
 		{
 			if (ImGui::MenuItem(string(vecScriptsName[i].begin(), vecScriptsName[i].end()).c_str()))
 			{
+				qScript* pScript = qScriptMgr::GetScript(vecScriptsName[i]);
+
 				// 인스펙터
+				Inspector* pInspector = (Inspector*)qEditorMgr::GetInst()->FindEditorUI("Inspector");
 
 				// 타겟 오브젝트 알아냄
+				qGameObject* pObject = pInspector->GetTargetObject();
 
-				// 오브젝트에, 선택한 스크립트를 추가해줌
-				qScriptMgr::GetScript(vecScriptsName[i]);
+				if (nullptr != pObject)
+				{
+					// 오브젝트에, 선택한 스크립트를 추가해줌
+					qScript* pScript = qScriptMgr::GetScript(vecScriptsName[i]);
+					pObject->AddComponent(pScript);
+				}
+
 			}
 		}
 

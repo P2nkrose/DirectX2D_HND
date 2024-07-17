@@ -7,7 +7,7 @@
     <Filter Include="Scripts">
       <UniqueIdentifier>{aa913ddb-a92e-401d-b820-7646569eba1a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Manager">
+    <Filter Include="ScriptMgr">
       <UniqueIdentifier>{b4fa1c93-17d8-4717-bea1-cb9bd32d848e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -28,7 +28,7 @@
       <Filter>Scripts</Filter>
     </ClInclude>
     <ClInclude Include="qScriptMgr.h">
-      <Filter>Manager</Filter>
+      <Filter>ScriptMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -48,7 +48,7 @@
       <Filter>Scripts</Filter>
     </ClCompile>
     <ClCompile Include="qScriptMgr.cpp">
-      <Filter>Manager</Filter>
+      <Filter>ScriptMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

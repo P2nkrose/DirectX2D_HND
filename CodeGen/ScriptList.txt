@@ -1,3 +1,4 @@
+CScriptMgr
 qCameraMoveScript
 qMissileScript
 qPlayerScript

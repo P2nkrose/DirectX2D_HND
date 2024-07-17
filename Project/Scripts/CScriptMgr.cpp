@@ -1,19 +1,23 @@
 #include "pch.h"
-#include "qScriptMgr.h"
+#include "CScriptMgr.h"
 
+#include "CScriptMgr.h"
 #include "qCameraMoveScript.h"
 #include "qMissileScript.h"
 #include "qPlayerScript.h"
 
-void qScriptMgr::GetScriptInfo(vector<wstring>& _vec)
+void CScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
+	_vec.push_back(L"CScriptMgr");
 	_vec.push_back(L"qCameraMoveScript");
 	_vec.push_back(L"qMissileScript");
 	_vec.push_back(L"qPlayerScript");
 }
 
-qScript* qScriptMgr::GetScript(const wstring& _strScriptName)
+CScript * CScriptMgr::GetScript(const wstring& _strScriptName)
 {
+	if (L"CScriptMgr" == _strScriptName)
+		return new CScriptMgr;
 	if (L"qCameraMoveScript" == _strScriptName)
 		return new qCameraMoveScript;
 	if (L"qMissileScript" == _strScriptName)
@@ -23,10 +27,13 @@ qScript* qScriptMgr::GetScript(const wstring& _strScriptName)
 	return nullptr;
 }
 
-qScript* qScriptMgr::GetScript(UINT _iScriptType)
+CScript * CScriptMgr::GetScript(UINT _iScriptType)
 {
 	switch (_iScriptType)
 	{
+	case (UINT)SCRIPT_TYPE::SCRIPTMGR:
+		return new CScriptMgr;
+		break;
 	case (UINT)SCRIPT_TYPE::CAMERAMOVESCRIPT:
 		return new qCameraMoveScript;
 		break;
@@ -35,14 +42,19 @@ qScript* qScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::PLAYERSCRIPT:
 		return new qPlayerScript;
+		break;
 	}
 	return nullptr;
 }
 
-const wchar_t* qScriptMgr::GetScriptName(qScript* _pScript)
+const wchar_t * CScriptMgr::GetScriptName(CScript * _pScript)
 {
 	switch ((SCRIPT_TYPE)_pScript->GetScriptType())
 	{
+	case SCRIPT_TYPE::SCRIPTMGR:
+		return L"CScriptMgr";
+		break;
+
 	case SCRIPT_TYPE::CAMERAMOVESCRIPT:
 		return L"qCameraMoveScript";
 		break;
