@@ -110,6 +110,9 @@
     <Filter Include="EditorUI\01. Inspector\ComponentUI\09. ScriptUI">
       <UniqueIdentifier>{e67841ae-8207-4c77-ae23-766f170a4834}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EditorUI\08. AnimationUI">
+      <UniqueIdentifier>{cf53b366-708b-40ad-ac39-1b9b91be6bd4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -249,6 +252,9 @@
     </ClInclude>
     <ClInclude Include="ScriptUI.h">
       <Filter>EditorUI\01. Inspector\ComponentUI\09. ScriptUI</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationUI.h">
+      <Filter>EditorUI\08. AnimationUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -397,6 +403,9 @@
     </ClCompile>
     <ClCompile Include="ScriptUI.cpp">
       <Filter>EditorUI\01. Inspector\ComponentUI\09. ScriptUI</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationUI.cpp">
+      <Filter>EditorUI\08. AnimationUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

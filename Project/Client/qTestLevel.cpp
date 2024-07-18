@@ -31,7 +31,7 @@ void qTestLevel::CreateTestLevel()
 	// Level »ý¼º
 	qLevel* pLevel = new qLevel;
 
-	ChangeLevel(pLevel, LEVEL_STATE::PLAY);
+	ChangeLevel(pLevel, LEVEL_STATE::STOP);
 
 	pLevel->GetLayer(0)->SetName(L"Default");
 	pLevel->GetLayer(1)->SetName(L"Background");
@@ -107,6 +107,8 @@ void qTestLevel::CreateTestLevel()
 
 	pLevel->AddObject(3, pPlayer);
 
+
+	//qGameObject* pClonePlayer = pPlayer->Clone();
 
 
 	// ======================================================

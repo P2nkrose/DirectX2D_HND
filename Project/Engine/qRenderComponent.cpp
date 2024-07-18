@@ -12,18 +12,37 @@ qRenderComponent::qRenderComponent(COMPONENT_TYPE _Type)
 {
 }
 
+qRenderComponent::qRenderComponent(const qRenderComponent& _Origin)
+	: qComponent(_Origin)
+	, m_Mesh(_Origin.m_Mesh)
+	, m_Mtrl(_Origin.m_Mtrl)
+	, m_SharedMtrl(_Origin.m_Mtrl)
+{
+	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+	if (nullptr != pCurLevel)
+	{
+		assert(!(pCurLevel->GetState() != LEVEL_STATE::PLAY
+			&& nullptr != _Origin.m_DynamicMtrl));
+	}
+
+	if (nullptr != _Origin.m_DynamicMtrl)
+	{
+		GetDynamicMaterial();
+	}
+}
+
 qRenderComponent::~qRenderComponent()
 {
 }
 
 void qRenderComponent::SetMaterial(Ptr<qMaterial> _Mtrl)
 {
-	m_Mtrl = m_ShareMtrl = _Mtrl;
+	m_Mtrl = m_SharedMtrl = _Mtrl;
 }
 
 Ptr<qMaterial> qRenderComponent::GetSharedMtrl()
 {
-	m_Mtrl = m_ShareMtrl;
+	m_Mtrl = m_SharedMtrl;
 	return m_Mtrl;
 }
 
@@ -35,7 +54,7 @@ Ptr<qMaterial> qRenderComponent::GetDynamicMaterial()
 	if (nullptr != m_DynamicMtrl)
 		return m_Mtrl = m_DynamicMtrl;
 
-	m_Mtrl = m_DynamicMtrl = m_ShareMtrl->Clone();
+	m_Mtrl = m_DynamicMtrl = m_SharedMtrl->Clone();
 
 	return m_Mtrl;
 }

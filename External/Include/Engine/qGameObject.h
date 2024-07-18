@@ -19,6 +19,7 @@ public:
 
 	CLONE(qGameObject);
 	qGameObject();
+	qGameObject(const qGameObject& _Origin);
 	~qGameObject();
 
 	void Begin();
@@ -36,7 +37,7 @@ public:
 	
 public:
 	void AddChild(qGameObject* _ChildObject);
-	const vector<qGameObject*>& GetChildren() { return m_vecChildUI; }
+	const vector<qGameObject*>& GetChildren() { return m_vecChildren; }
 	const vector<qScript*> GetScripts() { return m_vecScript; }
 
 	bool IsAncestor(qGameObject* _Object);
@@ -64,7 +65,7 @@ private:
 	vector<qScript*>		m_vecScript;
 
 	qGameObject*			m_Parent;
-	vector<qGameObject*>	m_vecChildUI;
+	vector<qGameObject*>	m_vecChildren;
 
 	int						m_LayerIdx;		// 소속 레이어의 인덱스 번호
 

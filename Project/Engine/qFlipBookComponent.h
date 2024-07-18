@@ -8,6 +8,7 @@ class qFlipBookComponent : public qComponent
 public:
 	CLONE(qFlipBookComponent);
 	qFlipBookComponent();
+	qFlipBookComponent(const qFlipBookComponent& _Origin);
 	~qFlipBookComponent();
 
 public:

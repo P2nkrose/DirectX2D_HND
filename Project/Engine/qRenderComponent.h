@@ -5,6 +5,7 @@ class qRenderComponent : public qComponent
 {
 public:
 	qRenderComponent(COMPONENT_TYPE _Type);
+	qRenderComponent(const qRenderComponent& _Origin);
 	~qRenderComponent();
 
 public:
@@ -29,7 +30,7 @@ private:
 	Ptr<qMesh>					m_Mesh;
 
 	Ptr<qMaterial>				m_Mtrl;			// 현재 사용중인 재질
-	Ptr<qMaterial>				m_ShareMtrl;	// 공유 재질 (마스터)
+	Ptr<qMaterial>				m_SharedMtrl;	// 공유 재질 (마스터)
 	Ptr<qMaterial>				m_DynamicMtrl;	// 임시(동적) 재질
 };
 

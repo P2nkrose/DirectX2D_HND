@@ -22,7 +22,7 @@ public:
 	void AddChild(EditorUI* _UI);
 
 	EditorUI* GetParent() { return m_Parent; }
-	const vector<EditorUI*>& GetChildren() { return m_vecChildUI; }
+	const vector<EditorUI*>& GetChildren() { return m_vecChildren; }
 
 	void SetName(const string& _Name);
 	const string& GetName() { return m_Name; }
@@ -60,7 +60,7 @@ private:
 	bool				m_Active;
 
 	EditorUI*			m_Parent;
-	vector<EditorUI*>	m_vecChildUI;
+	vector<EditorUI*>	m_vecChildren;
 
 	ImVec2				m_ChildSize;
 

@@ -11,6 +11,7 @@ public:
 
 	virtual qLevel* Clone() { return new qLevel(*this); }
 	qLevel();
+	qLevel(const qLevel& _Origin);
 	~qLevel();
 
 public:

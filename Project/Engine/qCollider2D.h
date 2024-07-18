@@ -6,6 +6,7 @@ class qCollider2D : public qComponent
 public:
 	CLONE(qCollider2D);
 	qCollider2D();
+	qCollider2D(const qCollider2D& _Origin);
 	~qCollider2D();
 
 

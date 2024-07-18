@@ -7,6 +7,12 @@ qComponent::qComponent(COMPONENT_TYPE _Type)
 {
 }
 
+qComponent::qComponent(const qComponent& _Origin)
+	: m_Type(_Origin.m_Type)
+	, m_Owner(nullptr)
+{
+}
+
 qComponent::~qComponent()
 {
 }

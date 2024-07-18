@@ -20,6 +20,26 @@ qTileMap::qTileMap()
 	m_Buffer = new qStructuredBuffer;
 }
 
+qTileMap::qTileMap(const qTileMap& _Origin)
+	: qRenderComponent(_Origin)
+	, m_Row(_Origin.m_Row)
+	, m_Col(_Origin.m_Col)
+	, m_TileSize(_Origin.m_TileSize)
+	, m_TileAtlas(_Origin.m_TileAtlas)
+	, m_AtlasResolution(_Origin.m_AtlasResolution)
+	, m_AtlasTileSize(_Origin.m_AtlasTileSize)
+	, m_AtlasTileSliceUV(_Origin.m_AtlasTileSliceUV)
+	, m_AtlasMaxRow(_Origin.m_AtlasMaxRow)
+	, m_AtlasMaxCol(_Origin.m_AtlasMaxCol)
+	, m_vecTileInfo(_Origin.m_vecTileInfo)
+	, m_Buffer(nullptr)
+{
+	m_Buffer = new qStructuredBuffer;
+
+	// 행, 렬 설정해서 구조화버퍼 크기 조정
+	SetRowCol(m_Row, m_Col);
+}
+
 qTileMap::~qTileMap()
 {
 	delete m_Buffer;

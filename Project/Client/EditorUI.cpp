@@ -18,7 +18,7 @@ EditorUI::EditorUI()
 
 EditorUI::~EditorUI()
 {
-	Delete_Vec(m_vecChildUI);
+	Delete_Vec(m_vecChildren);
 }
 
 void EditorUI::Tick()
@@ -45,11 +45,11 @@ void EditorUI::Tick()
 
 			Update();
 
-			for (size_t i = 0; i < m_vecChildUI.size(); ++i)
+			for (size_t i = 0; i < m_vecChildren.size(); ++i)
 			{
-				m_vecChildUI[i]->Tick();
+				m_vecChildren[i]->Tick();
 
-				if (m_vecChildUI[i]->m_ChildBorder && i == m_vecChildUI.size() - 1)
+				if (m_vecChildren[i]->m_ChildBorder && i == m_vecChildren.size() - 1)
 					ImGui::Separator();
 			}
 
@@ -65,11 +65,11 @@ void EditorUI::Tick()
 			{
 				Update();
 
-				for (size_t i = 0; i < m_vecChildUI.size(); ++i)
+				for (size_t i = 0; i < m_vecChildren.size(); ++i)
 				{
-					m_vecChildUI[i]->Tick();
+					m_vecChildren[i]->Tick();
 
-					if (m_vecChildUI[i]->m_ChildBorder && i == m_vecChildUI.size() - 1)
+					if (m_vecChildren[i]->m_ChildBorder && i == m_vecChildren.size() - 1)
 						ImGui::Separator();
 				}
 
@@ -97,14 +97,14 @@ void EditorUI::Tick()
 
 		Update();
 
-		for (size_t i = 0; i < m_vecChildUI.size(); ++i)
+		for (size_t i = 0; i < m_vecChildren.size(); ++i)
 		{
-			if (m_vecChildUI[i]->m_ChildBorder)
+			if (m_vecChildren[i]->m_ChildBorder)
 				ImGui::Separator();
 
-			m_vecChildUI[i]->Tick();
+			m_vecChildren[i]->Tick();
 
-			if (m_vecChildUI[i]->m_ChildBorder && i == m_vecChildUI.size() - 1)
+			if (m_vecChildren[i]->m_ChildBorder && i == m_vecChildren.size() - 1)
 				ImGui::Separator();
 		}
 		
@@ -115,7 +115,7 @@ void EditorUI::Tick()
 void EditorUI::AddChild(EditorUI* _UI)
 {
 	_UI->m_Parent = this;
-	m_vecChildUI.push_back(_UI);
+	m_vecChildren.push_back(_UI);
 }
 
 void EditorUI::SetName(const string& _Name)

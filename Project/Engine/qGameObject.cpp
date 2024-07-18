@@ -19,11 +19,41 @@ qGameObject::qGameObject()
 {
 }
 
+qGameObject::qGameObject(const qGameObject& _Origin)
+	: qEntity(_Origin)
+	, m_arrCom{}
+	, m_RenderCom(nullptr)
+	, m_Parent(nullptr)
+	, m_LayerIdx(_Origin.m_LayerIdx)
+	, m_Dead(false)
+{
+	// 컴포넌트 복사
+	for (UINT i = 0; i < (UINT)COMPONENT_TYPE::END; ++i)
+	{
+		if (nullptr == _Origin.m_arrCom[i])
+			continue;
+
+		AddComponent(_Origin.m_arrCom[i]->Clone());
+	}
+
+	// Script 복사
+	for (size_t i = 0; i < _Origin.m_vecScript.size(); ++i)
+	{
+		AddComponent(_Origin.m_vecScript[i]->Clone());
+	}
+
+	// 자식 오브젝트 복사
+	for (size_t i = 0; i < _Origin.m_vecChildren.size(); ++i)
+	{
+		AddChild(_Origin.m_vecChildren[i]->Clone());
+	}
+}
+
 qGameObject::~qGameObject()
 {
 	Delete_Array(m_arrCom);
 	Delete_Vec(m_vecScript);
-	Delete_Vec(m_vecChildUI);
+	Delete_Vec(m_vecChildren);
 }
 
 
@@ -80,7 +110,7 @@ void qGameObject::AddChild(qGameObject* _ChildObject)
 		}
 	}
 
-	m_vecChildUI.push_back(_ChildObject);
+	m_vecChildren.push_back(_ChildObject);
 	_ChildObject->m_Parent = this;
 
 	qLevelMgr::GetInst()->LevelChanged();
@@ -119,13 +149,13 @@ void qGameObject::DeregisterChild()
 {
 	qLevelMgr::GetInst()->LevelChanged();
 
-	vector<qGameObject*>::iterator iter = m_Parent->m_vecChildUI.begin();
+	vector<qGameObject*>::iterator iter = m_Parent->m_vecChildren.begin();
 
-	for (; iter != m_Parent->m_vecChildUI.end(); ++iter)
+	for (; iter != m_Parent->m_vecChildren.end(); ++iter)
 	{
 		if ((*iter) == this)
 		{
-			m_Parent->m_vecChildUI.erase(iter);
+			m_Parent->m_vecChildren.erase(iter);
 			m_Parent = nullptr;
 			return;
 		}
@@ -152,9 +182,9 @@ void qGameObject::Begin()
 	}
 
 	// 자식 오브젝트
-	for (size_t i = 0; i < m_vecChildUI.size(); ++i)
+	for (size_t i = 0; i < m_vecChildren.size(); ++i)
 	{
-		m_vecChildUI[i]->Begin();
+		m_vecChildren[i]->Begin();
 	}
 }
 
@@ -172,9 +202,9 @@ void qGameObject::Tick()
 	}
 
 	// 자식 오브젝트
-	for (size_t i = 0; i < m_vecChildUI.size(); ++i)
+	for (size_t i = 0; i < m_vecChildren.size(); ++i)
 	{
-		m_vecChildUI[i]->Tick();
+		m_vecChildren[i]->Tick();
 	}
 }
 
@@ -195,13 +225,13 @@ void qGameObject::FinalTick()
 
 
 	// 자식 오브젝트
-	vector<qGameObject*>::iterator iter = m_vecChildUI.begin();
-	for (; iter != m_vecChildUI.end(); )
+	vector<qGameObject*>::iterator iter = m_vecChildren.begin();
+	for (; iter != m_vecChildren.end(); )
 	{
 		(*iter)->FinalTick();
 
 		if ((*iter)->IsDead())
-			iter = m_vecChildUI.erase(iter);
+			iter = m_vecChildren.erase(iter);
 		else
 			++iter;
 	}

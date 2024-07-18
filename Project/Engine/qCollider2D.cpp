@@ -12,6 +12,15 @@ qCollider2D::qCollider2D()
 {
 }
 
+qCollider2D::qCollider2D(const qCollider2D& _Origin)
+	: qComponent(_Origin)
+	, m_Offset(_Origin.m_Offset)
+	, m_Scale(_Origin.m_Scale)
+	, m_OverlapCount(0)
+	, m_IndependentScale(_Origin.m_IndependentScale)
+{
+}
+
 qCollider2D::~qCollider2D()
 {
 }

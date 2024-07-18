@@ -16,6 +16,7 @@ class qTileMap : public qRenderComponent
 public:
 	CLONE(qTileMap);
 	qTileMap();
+	qTileMap(const qTileMap& _Origin);
 	~qTileMap();
 
 public:

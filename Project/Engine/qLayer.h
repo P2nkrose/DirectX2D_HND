@@ -8,6 +8,7 @@ class qLayer : public qEntity
 public:
 	CLONE(qLayer);
 	qLayer(int _LayerIdx);
+	qLayer(const qLayer& _Origin);
 	~qLayer();
 
 public:

@@ -11,6 +11,7 @@ public:
 
 	virtual qComponent* Clone() = 0;
 	qComponent(COMPONENT_TYPE _Type);
+	qComponent(const qComponent& _Origin);
 	~qComponent();
 
 	virtual void Begin();

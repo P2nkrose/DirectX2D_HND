@@ -8,6 +8,16 @@ qLayer::qLayer(int _LayerIdx)
 {
 }
 
+qLayer::qLayer(const qLayer& _Origin)
+	: qEntity(_Origin)
+	, m_LayerIdx(_Origin.m_LayerIdx)
+{
+	for (size_t i = 0; i < _Origin.m_Parents.size(); ++i)
+	{
+		AddObject(_Origin.m_Parents[i]->Clone(), false);
+	}
+}
+
 qLayer::~qLayer()
 {
 	Delete_Vec(m_Parents);
