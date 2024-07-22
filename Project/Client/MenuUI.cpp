@@ -11,6 +11,7 @@
 #include "qEditorMgr.h"
 #include "Inspector.h"
 
+
 MenuUI::MenuUI()
 {
 }
@@ -154,6 +155,18 @@ void MenuUI::Assets()
 			qAssetMgr::GetInst()->AddAsset<qMaterial>(Key, pMtrl);
 			pMtrl->Save(Key);
 		}
+
+		if (ImGui::MenuItem("Create Empty FlipBook"))
+		{
+			EditorUI* pUI = nullptr;
+
+			
+
+			//Ptr<qFlipBook> pFlipBook = new qFlipBook;
+			//wstring Key = GetAssetKey(ASSET_TYPE::FLIPBOOK, L"Default FlipBook");
+			//qAssetMgr::GetInst()->AddAsset<qFlipBook>(Key, pFlipBook);
+		}
+
 
 		ImGui::EndMenu();
 	}

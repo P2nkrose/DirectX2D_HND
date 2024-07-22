@@ -28,10 +28,14 @@ void qTestLevel::CreateTestLevel()
 
 	pAlphaBlendMtrl->SetTexParam(TEX_0, pTexture);
 
+
+	CreatePrefab();
+
+
 	// Level 생성
 	qLevel* pLevel = new qLevel;
 
-	ChangeLevel(pLevel, LEVEL_STATE::STOP);
+	ChangeLevel(pLevel, LEVEL_STATE::PLAY);
 
 	pLevel->GetLayer(0)->SetName(L"Default");
 	pLevel->GetLayer(1)->SetName(L"Background");
@@ -89,7 +93,7 @@ void qTestLevel::CreateTestLevel()
 	pPlayer->AddComponent(new qTransform);
 	pPlayer->AddComponent(new qMeshRender);
 	pPlayer->AddComponent(new qCollider2D);
-	//pPlayer->AddComponent(new qFlipBookComponent);
+	pPlayer->AddComponent(new qFlipBookComponent);
 	pPlayer->AddComponent(new qPlayerScript);
 
 	pPlayer->Transform()->SetRelativePos(0.f, 0.0f, 100.f);
@@ -102,8 +106,8 @@ void qTestLevel::CreateTestLevel()
 	pPlayer->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
 	pPlayer->MeshRender()->SetMaterial(pMtrl);
 	
-	//pPlayer->FlipBookComponent()->AddFlipBook(5, qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Link_MoveDown"));
-	//pPlayer->FlipBookComponent()->Play(5, 10, true);
+	pPlayer->FlipBookComponent()->AddFlipBook(5, qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Link_MoveDown"));
+	pPlayer->FlipBookComponent()->Play(5, 10, true);
 
 	pLevel->AddObject(3, pPlayer);
 
@@ -203,4 +207,23 @@ void qTestLevel::CreateTestLevel()
 
 	// 레벨 시작
 	//m_CurLevel->Begin();
+}
+
+void qTestLevel::CreatePrefab()
+{
+	qGameObject* pProto = new qGameObject;
+
+	pProto->AddComponent(new qTransform);
+	pProto->AddComponent(new qMeshRender);
+	pProto->AddComponent(new qMissileScript);
+
+	pProto->Transform()->SetRelativeScale(100.f, 100.f, 1.f);
+
+	pProto->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pProto->MeshRender()->SetMaterial(qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl"));
+
+	Ptr<qPrefab> pPrefab = new qPrefab;
+	pPrefab->SetProtoObject(pProto);
+
+	qAssetMgr::GetInst()->AddAsset<qPrefab>(L"MissilePref", pPrefab);
 }

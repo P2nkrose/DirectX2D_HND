@@ -14,6 +14,7 @@ public:
 	qComponent(const qComponent& _Origin);
 	~qComponent();
 
+	virtual void Init() {}
 	virtual void Begin();
 	virtual void Tick();
 	virtual void FinalTick() = 0;

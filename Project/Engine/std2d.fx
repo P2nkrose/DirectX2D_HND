@@ -49,7 +49,7 @@ float4 PS_Std2D(VTX_OUT _in) : SV_Target
     // FlipBook 을 사용한다.
     if (UseFlipbook)
     {
-        // _in.vUV : 스프라이를 참조할 위치를 비율로 환산한 값
+        // _in.vUV : 스프라이트를 참조할 위치를 비율로 환산한 값
         float2 BackGroundLeftTop = LeftTopUV - (BackGroundUV - SliceUV) / 2.f;
         float2 vSpriteUV = BackGroundLeftTop + (_in.vUV * BackGroundUV);
         vSpriteUV -= OffsetUV;

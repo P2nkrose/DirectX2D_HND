@@ -9,6 +9,7 @@
 #include "qLayer.h"
 
 #include "components.h"
+#include "qScript.h"
 
 qGameObject::qGameObject()
 	: m_arrCom{}
@@ -24,7 +25,7 @@ qGameObject::qGameObject(const qGameObject& _Origin)
 	, m_arrCom{}
 	, m_RenderCom(nullptr)
 	, m_Parent(nullptr)
-	, m_LayerIdx(_Origin.m_LayerIdx)
+	, m_LayerIdx(-1)
 	, m_Dead(false)
 {
 	// 컴포넌트 복사
@@ -33,7 +34,11 @@ qGameObject::qGameObject(const qGameObject& _Origin)
 		if (nullptr == _Origin.m_arrCom[i])
 			continue;
 
-		AddComponent(_Origin.m_arrCom[i]->Clone());
+		qComponent* pClonedCom = _Origin.m_arrCom[i]->Clone();
+
+		AddComponent(pClonedCom);
+
+		pClonedCom->Init();
 	}
 
 	// Script 복사

@@ -17,6 +17,8 @@ qPlayerScript::~qPlayerScript()
 void qPlayerScript::Begin()
 {
 	GetRenderComponent()->GetDynamicMaterial();
+
+	m_MissilePref = qAssetMgr::GetInst()->FindAsset<qPrefab>(L"MissilePref");
 }
 
 void qPlayerScript::Tick()
@@ -62,22 +64,27 @@ void qPlayerScript::Tick()
 
 	if (KEY_TAP(KEY::SPACE))
 	{
-		// 미사일 발사
-		qGameObject* pMissileObject = new qGameObject;
-		pMissileObject->AddComponent(new qTransform);
-		pMissileObject->AddComponent(new qMeshRender);
-		pMissileObject->AddComponent(new qCollider2D);
-		pMissileObject->AddComponent(new qMissileScript);
+		if (nullptr != m_MissilePref)
+		{
+			Instantiate(m_MissilePref, 5, Transform()->GetWorldPos(), L"Missile");
+		}
 
-		Vec3 vMissilePos = Transform()->GetRelativePos();
-		vMissilePos.y += Transform()->GetRelativeScale().y / 2.f;
+		//// 미사일 발사
+		//qGameObject* pMissileObject = new qGameObject;
+		//pMissileObject->AddComponent(new qTransform);
+		//pMissileObject->AddComponent(new qMeshRender);
+		//pMissileObject->AddComponent(new qCollider2D);
+		//pMissileObject->AddComponent(new qMissileScript);
 
-		pMissileObject->Transform()->SetRelativePos(vMissilePos);
-		pMissileObject->Transform()->SetRelativeScale(Vec3(50.f, 50.f, 1.f));
+		//Vec3 vMissilePos = Transform()->GetRelativePos();
+		//vMissilePos.y += Transform()->GetRelativeScale().y / 2.f;
 
-		pMissileObject->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+		//pMissileObject->Transform()->SetRelativePos(vMissilePos);
+		//pMissileObject->Transform()->SetRelativeScale(Vec3(50.f, 50.f, 1.f));
 
-		CreateObject(pMissileObject, 5);
+		//pMissileObject->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+
+		//CreateObject(pMissileObject, 5);
 	}
 
 

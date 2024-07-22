@@ -17,6 +17,9 @@ void DrawDebugCircle(Vec3 _Pos, float _Radius, Vec4 _Color, float _Life, bool _D
 //void DrawDebugSphere();
 
 
+string ToString(const wstring& _str);
+wstring ToWString(const string& _str);
+
 void SaveWString(const wstring& _String, FILE* _File);
 void LoadWString(wstring& _String, FILE* _File);
 
@@ -66,8 +69,8 @@ ASSET_TYPE GetAssetType()
 	//	return ASSET_TYPE::MESH_DATA;
 	if constexpr (std::is_same_v<T, qMaterial>)
 		return ASSET_TYPE::MATERIAL;
-	//if constexpr (std::is_same_v<T, qPrefab>)
-	//	return ASSET_TYPE::PREFAB;
+	if constexpr (std::is_same_v<T, qPrefab>)
+		return ASSET_TYPE::PREFAB;
 	if constexpr (std::is_same_v<T, qTexture>)
 		return ASSET_TYPE::TEXTURE;
 	//if constexpr (std::is_same_v<T, qSound>)

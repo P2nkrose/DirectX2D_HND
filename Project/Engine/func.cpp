@@ -117,6 +117,17 @@ void DrawDebugCircle(Vec3 _Pos, float _Radius, Vec4 _Color, float _Life, bool _D
 	qRenderMgr::GetInst()->AddDebugShapeInfo(Info);
 }
 
+string ToString(const wstring& _str)
+{
+	return string(_str.begin(), _str.end());
+}
+
+wstring ToWString(const string& _str)
+{
+	return wstring(_str.begin(), _str.end());
+}
+
+
 void SaveWString(const wstring& _String, FILE* _File)
 {
 	size_t len = _String.length();

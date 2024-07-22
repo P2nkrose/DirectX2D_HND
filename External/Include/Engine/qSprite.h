@@ -15,15 +15,15 @@ public:
 	virtual int Save(const wstring& _FilePath) override;
 	
 public:
-	Ptr<qTexture> GetAtlasTexture() { return m_Atlas; }
+	Ptr<qTexture> GetAtlasTexture() { return m_Atlas; }		// 이 Sprite 조각이 어느 아틀라스에서 나온 조각인지
 
-	void SetLeftTop(Vec2 _LeftTop);
-	void SetSlice(Vec2 _Slice);
+	void SetLeftTop(Vec2 _LeftTop);			
+	void SetSlice(Vec2 _Slice);				
 	void SetBackground(Vec2 _Background);
 	void SetOffset(Vec2 _Offset);
 
-	Vec2 GetLeftTopUV() { return m_LeftTopUV; }
-	Vec2 GetSliceUV() { return m_SliceUV; }
+	Vec2 GetLeftTopUV() { return m_LeftTopUV; }				// 좌상단 UV 지점
+	Vec2 GetSliceUV() { return m_SliceUV; }					// 자를 UV 사이즈
 	Vec2 GetBackgroundUV() { return m_BackgroundUV; }
 	Vec2 GetOffsetUV() { return m_OffsetUV; }
 

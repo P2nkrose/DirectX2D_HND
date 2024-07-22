@@ -35,14 +35,17 @@ qTileMap::qTileMap(const qTileMap& _Origin)
 	, m_Buffer(nullptr)
 {
 	m_Buffer = new qStructuredBuffer;
-
-	// 행, 렬 설정해서 구조화버퍼 크기 조정
-	SetRowCol(m_Row, m_Col);
 }
 
 qTileMap::~qTileMap()
 {
 	delete m_Buffer;
+}
+
+void qTileMap::Init()
+{
+	// 행, 렬 설정해서 구조화버퍼 크기 조정
+	SetRowCol(m_Row, m_Col);
 }
 
 void qTileMap::FinalTick()

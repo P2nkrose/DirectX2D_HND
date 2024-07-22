@@ -17,5 +17,6 @@ public:
 private:
 	float				m_Speed;
 	Ptr<qTexture>		m_Texture;
+	Ptr<qPrefab>		m_MissilePref;
 };
 

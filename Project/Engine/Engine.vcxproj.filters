@@ -303,6 +303,9 @@
     <ClInclude Include="qLight2D.h">
       <Filter>08. Component\08. Light2D</Filter>
     </ClInclude>
+    <ClInclude Include="qPrefab.h">
+      <Filter>06. Asset\04. Prefab</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -424,6 +427,9 @@
     </ClCompile>
     <ClCompile Include="qLight2D.cpp">
       <Filter>08. Component\08. Light2D</Filter>
+    </ClCompile>
+    <ClCompile Include="qPrefab.cpp">
+      <Filter>06. Asset\04. Prefab</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

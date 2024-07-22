@@ -17,6 +17,7 @@
 
 
 
+
 void qEditorMgr::InitImGui()
 {
 	// Setup Dear ImGui context
@@ -106,6 +107,8 @@ void qEditorMgr::CreateEditorUI()
 	pUI->Init();
 	pUI->SetName("MainMenu");
 	m_mapUI.insert(make_pair(pUI->GetName(), pUI));
+
+
 }
 
 

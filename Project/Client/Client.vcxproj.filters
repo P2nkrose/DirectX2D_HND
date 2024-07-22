@@ -113,6 +113,9 @@
     <Filter Include="EditorUI\08. AnimationUI">
       <UniqueIdentifier>{cf53b366-708b-40ad-ac39-1b9b91be6bd4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EditorUI\08. AnimationUI\01. Popup">
+      <UniqueIdentifier>{76b5652c-e39b-4aad-aca6-b67191c63f7b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">

@@ -10,3 +10,13 @@ qScript::qScript(UINT _ScriptType)
 qScript::~qScript()
 {
 }
+
+void qScript::Instantiate(Ptr<qPrefab> _Pref, int _LayerIdx, Vec3 _WorldPos, const wstring& _Name)
+{
+	qGameObject* pInst = _Pref->Instantiate();
+
+	pInst->SetName(_Name);
+	pInst->Transform()->SetRelativePos(_WorldPos);
+
+	CreateObject(pInst, _LayerIdx);
+}

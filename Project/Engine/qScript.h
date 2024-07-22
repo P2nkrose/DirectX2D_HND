@@ -31,6 +31,7 @@ public:
 	qScript(UINT _Type);
 	~qScript();
 
+	virtual void Begin() override {}
 	virtual void Tick() PURE;
 	virtual void FinalTick() final override {}
 
@@ -48,6 +49,9 @@ protected:
 	{
 		m_ScriptParam.push_back(tScriptParam{ _Type, _pData, _Desc, _Param0, _Param1 });
 	}
+
+	void Instantiate(Ptr<qPrefab> _Pref, int _LayerIdx, Vec3 _WorldPos, const wstring& _Name = L"");
+
 
 
 private:
