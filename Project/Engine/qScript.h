@@ -14,6 +14,7 @@ enum class SCRIPT_PARAM
 	VEC3,
 	VEC4,
 	TEXTURE,
+	PREFAB,
 };
 
 struct tScriptParam

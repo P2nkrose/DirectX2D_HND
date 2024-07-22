@@ -8,6 +8,7 @@ qPlayerScript::qPlayerScript()
 {
 	AddScriptParam(SCRIPT_PARAM::FLOAT, "PlayerSpeed", &m_Speed);
 	AddScriptParam(SCRIPT_PARAM::TEXTURE, "Test", &m_Texture);
+	AddScriptParam(SCRIPT_PARAM::PREFAB, "Missile", &m_MissilePref);
 }
 
 qPlayerScript::~qPlayerScript()
@@ -18,7 +19,7 @@ void qPlayerScript::Begin()
 {
 	GetRenderComponent()->GetDynamicMaterial();
 
-	m_MissilePref = qAssetMgr::GetInst()->FindAsset<qPrefab>(L"MissilePref");
+	//m_MissilePref = qAssetMgr::GetInst()->FindAsset<qPrefab>(L"MissilePref");
 }
 
 void qPlayerScript::Tick()

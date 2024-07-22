@@ -21,8 +21,13 @@ public:
 
 
 private:
+	void SelectPrefab(DWORD_PTR _ListUI);
+
+private:
 	class qScript*			m_Script;
 
 	UINT					m_UIHeight;
+
+	Ptr<qPrefab>*			m_SelectedPrefab;
 };
 

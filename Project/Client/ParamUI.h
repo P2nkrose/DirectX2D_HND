@@ -24,6 +24,11 @@ public:
 	static bool InputTexture(Ptr<qTexture>& _CurTex, const string& _Desc, EditorUI* _Inst = nullptr, DELEGATE_1 _MemFunc = nullptr);
 
 public:
+	// Prefab Parameter
+	static bool InputPrefab(Ptr<qPrefab>& _CurPrefab, const string& _Desc, EditorUI* _Inst = nullptr, DELEGATE_1 _MemFunc = nullptr);
+
+
+public:
 	static void ResetID() { g_ID = 0; }
 
 

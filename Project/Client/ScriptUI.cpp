@@ -4,6 +4,9 @@
 #include <Scripts/qScriptMgr.h>
 #include <Engine/qScript.h>
 
+#include "ParamUI.h"
+#include "ListUI.h"
+
 ScriptUI::ScriptUI()
 	: ComponentUI(COMPONENT_TYPE::SCRIPT)
 	, m_Script(nullptr)
@@ -59,6 +62,18 @@ void ScriptUI::Update()
 			Ptr<qTexture>& pTex = *((Ptr<qTexture>*)vecParam[i].pData);
 			ParamUI::InputTexture(pTex, vecParam[i].Desc);
 			m_UIHeight += 8;
+			break;
+		}
+		case SCRIPT_PARAM::PREFAB:
+		{
+			Ptr<qPrefab>& pPrefab = *((Ptr<qPrefab>*)vecParam[i].pData);
+
+			if (ParamUI::InputPrefab(pPrefab, vecParam[i].Desc, this, (DELEGATE_1)&ScriptUI::SelectPrefab))
+			{
+				m_SelectedPrefab = &pPrefab;
+			}
+			m_UIHeight += 8;
+			break;
 		}
 		break;
 		}
@@ -78,4 +93,23 @@ void ScriptUI::SetTargetScript(qScript* _Script)
 		SetActive(true);
 	else
 		SetActive(false);
+}
+
+void ScriptUI::SelectPrefab(DWORD_PTR _ListUI)
+{
+	ListUI* pListUI = (ListUI*)_ListUI;
+	string strName = pListUI->GetSelectName();
+
+	if ("None" == strName)
+	{
+		*m_SelectedPrefab = nullptr;
+		return;
+	}
+
+	wstring strAssetName = wstring(strName.begin(), strName.end());
+	Ptr<qPrefab> pPrefab = qAssetMgr::GetInst()->FindAsset<qPrefab>(strAssetName);
+
+	assert(pPrefab.Get());
+
+	*m_SelectedPrefab = pPrefab;
 }
