@@ -14,6 +14,10 @@ public:
 	virtual void FinalTick() override;
 
 public:
+	virtual void SaveToFile(FILE* _File) override;
+	virtual void LoadFromFile(FILE* _File) override;
+
+public:
 	virtual void BeginOverlap(qCollider2D* _Other);
 	virtual void Overlap(qCollider2D* _Other);
 	virtual void EndOverlap(qCollider2D* _Other);

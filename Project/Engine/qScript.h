@@ -36,6 +36,9 @@ public:
 	virtual void Tick() PURE;
 	virtual void FinalTick() final override {}
 
+	virtual void SaveToFile(FILE* _File) = 0;
+	virtual void LoadFromFile(FILE* _File) = 0;
+
 	virtual void BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider){}
 	virtual void Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider){}
 	virtual void EndOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider){}

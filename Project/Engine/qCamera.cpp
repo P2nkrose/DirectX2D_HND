@@ -204,3 +204,30 @@ void qCamera::Render()
 	m_vecUI.clear();
 }
 
+
+void qCamera::SaveToFile(FILE* _File)
+{
+	fwrite(&m_Priority, sizeof(int), 1, _File);
+	fwrite(&m_LayerCheck, sizeof(UINT), 1, _File);
+	fwrite(&m_ProjType, sizeof(PROJ_TYPE), 1, _File);
+	fwrite(&m_Width, sizeof(float), 1, _File);
+	fwrite(&m_Height, sizeof(float), 1, _File);
+	fwrite(&m_AspectRatio, sizeof(float), 1, _File);
+	fwrite(&m_Far, sizeof(float), 1, _File);
+	fwrite(&m_FOV, sizeof(float), 1, _File);
+	fwrite(&m_ProjectionScale, sizeof(float), 1, _File);
+}
+
+void qCamera::LoadFromFile(FILE* _File)
+{
+	fread(&m_Priority, sizeof(int), 1, _File);
+	fread(&m_LayerCheck, sizeof(UINT), 1, _File);
+	fread(&m_ProjType, sizeof(PROJ_TYPE), 1, _File);
+	fread(&m_Width, sizeof(float), 1, _File);
+	fread(&m_Height, sizeof(float), 1, _File);
+	fread(&m_AspectRatio, sizeof(float), 1, _File);
+	fread(&m_Far, sizeof(float), 1, _File);
+	fread(&m_FOV, sizeof(float), 1, _File);
+	fread(&m_ProjectionScale, sizeof(float), 1, _File);
+}
+

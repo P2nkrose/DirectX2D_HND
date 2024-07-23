@@ -13,6 +13,12 @@ public:
 public:
 	virtual void Tick() override;
 
+
+public:
+	virtual void SaveToFile(FILE* _File) override {}
+	virtual void LoadFromFile(FILE* _File) override {}
+
+
 private:
 	void OrthoGraphicMove();		// 직교 투영
 	void PerspectiveMove();			// 원근 투영

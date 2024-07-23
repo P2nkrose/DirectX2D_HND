@@ -11,7 +11,7 @@ public:
 	void SetProtoObject(qGameObject* _Object) { m_ProtoObject = _Object; }
 	qGameObject* Instantiate();
 
-private:
+public:
 	virtual int Load(const wstring& _FilePath) override;
 	virtual int Save(const wstring& _FilePath) override;
 

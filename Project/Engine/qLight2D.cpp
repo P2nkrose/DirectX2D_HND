@@ -23,7 +23,19 @@ void qLight2D::FinalTick()
 	qRenderMgr::GetInst()->RegisterLight2D(this);
 }
 
+
 void qLight2D::SetLightType(LIGHT_TYPE _Type)
 {
 	m_Info.Type = _Type;
+}
+
+
+void qLight2D::SaveToFile(FILE* _File)
+{
+	fwrite(&m_Info, sizeof(tLightInfo), 1, _File);
+}
+
+void qLight2D::LoadFromFile(FILE* _File)
+{
+	fread(&m_Info, sizeof(tLightInfo), 1, _File);
 }

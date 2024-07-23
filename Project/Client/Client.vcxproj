@@ -181,6 +181,7 @@
     <ClInclude Include="qEditorCameraScript.h" />
     <ClInclude Include="qEditorMgr.h" />
     <ClInclude Include="qGameObjectEx.h" />
+    <ClInclude Include="qLevelSaveLoad.h" />
     <ClInclude Include="qTestLevel.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ScriptUI.h" />
@@ -234,6 +235,7 @@
     <ClCompile Include="qEditorMgr_EditorObject.cpp" />
     <ClCompile Include="qEditorMgr_EditorUI.cpp" />
     <ClCompile Include="qGameObjectEx.cpp" />
+    <ClCompile Include="qLevelSaveLoad.cpp" />
     <ClCompile Include="qTestLevel.cpp" />
     <ClCompile Include="ScriptUI.cpp" />
     <ClCompile Include="SoundUI.cpp" />

@@ -25,6 +25,15 @@ public:
 	void Binding();
 	static void Clear();
 
+public:
+	virtual void SaveToFile(FILE* _File) override;
+	virtual void LoadFromFile(FILE* _File) override;
+
+// 추가
+public:
+	vector<Ptr<qFlipBook>>& GetFlipBook() { return m_vecFlipBook; }
+	bool IsCurFlipBookFinished();
+
 
 private:
 	vector<Ptr<qFlipBook>>			m_vecFlipBook;		// FlipBook 컴포넌트가 보유한 모든 FlipBook 목록

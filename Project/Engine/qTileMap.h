@@ -30,6 +30,10 @@ public:
 	void SetAtlasTexture(Ptr<qTexture> _Atlas);
 	void SetAtlasTileSize(Vec2 _TileSize);
 
+public:
+	virtual void SaveToFile(FILE* _File) override;
+	virtual void LoadFromFile(FILE* _File) override;
+
 	
 private:
 	void ChangeTileMapSize();

@@ -38,6 +38,7 @@ void qCameraMoveScript::Tick()
 
 }
 
+
 void qCameraMoveScript::OrthoGraphicMove()
 {
 	float Speed = m_CamSpeed;
@@ -130,6 +131,16 @@ void qCameraMoveScript::PerspectiveMove()
 	{
 		qKeyMgr::GetInst()->MouseCapture(false);
 	}
+}
 
 
+
+void qCameraMoveScript::SaveToFile(FILE* _File)
+{
+	fwrite(&m_CamSpeed, sizeof(float), 1, _File);
+}
+
+void qCameraMoveScript::LoadFromFile(FILE* _File)
+{
+	fread(&m_CamSpeed, sizeof(float), 1, _File);
 }

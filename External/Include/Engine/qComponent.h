@@ -20,6 +20,10 @@ public:
 	virtual void FinalTick() = 0;
 
 public:
+	virtual void SaveToFile(FILE* _File) = 0;		// 파일에 컴포넌트의 정보를 저장
+	virtual void LoadFromFile(FILE* _File) = 0;		// 파일에 컴포넌트의 정보를 로드
+
+public:
 	COMPONENT_TYPE GetComponentType() { return m_Type; }
 	qGameObject* GetOwner() { return m_Owner; }
 

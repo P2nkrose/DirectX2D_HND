@@ -15,9 +15,6 @@
 #include "MenuUI.h"
 
 
-
-
-
 void qEditorMgr::InitImGui()
 {
 	// Setup Dear ImGui context

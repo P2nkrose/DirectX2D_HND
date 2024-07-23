@@ -117,3 +117,21 @@ Vec3 qTransform::GetWorldScale()
 
 	return vWorldScale;
 }
+
+
+
+void qTransform::SaveToFile(FILE* _File)
+{
+	fwrite(&m_RelativePos, sizeof(Vec3), 1, _File);
+	fwrite(&m_RelativeScale, sizeof(Vec3), 1, _File);
+	fwrite(&m_RelativeRotation, sizeof(Vec3), 1, _File);
+	fwrite(&m_IndependentScale, sizeof(bool), 1, _File);
+}
+
+void qTransform::LoadFromFile(FILE* _File)
+{
+	fread(&m_RelativePos, sizeof(Vec3), 1, _File);
+	fread(&m_RelativeScale, sizeof(Vec3), 1, _File);
+	fread(&m_RelativeRotation, sizeof(Vec3), 1, _File);
+	fread(&m_IndependentScale, sizeof(bool), 1, _File);
+}

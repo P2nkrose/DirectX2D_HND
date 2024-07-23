@@ -13,4 +13,6 @@ SpriteUI::~SpriteUI()
 void SpriteUI::Update()
 {
 	Title();
+
+
 }

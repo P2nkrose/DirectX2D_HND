@@ -12,6 +12,11 @@ public:
 	virtual void FinalTick() override;
 
 public:
+	virtual void SaveToFile(FILE* _File) override;
+	virtual void LoadFromFile(FILE* _File) override;
+
+
+public:
 	void SetLightType(LIGHT_TYPE _Type);
 	void SetRadius(float _Radius) { m_Info.Radius = _Radius; }
 	void SetAngle(float _Angle) { m_Info.Angle = _Angle; }

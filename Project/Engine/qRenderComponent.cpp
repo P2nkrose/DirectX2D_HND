@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "qRenderComponent.h"
 
+#include "qAssetMgr.h"
 #include "qLevelMgr.h"
 #include "qLevel.h"
 
@@ -57,4 +58,18 @@ Ptr<qMaterial> qRenderComponent::GetDynamicMaterial()
 	m_Mtrl = m_DynamicMtrl = m_SharedMtrl->Clone();
 
 	return m_Mtrl;
+}
+
+void qRenderComponent::SaveDataToFile(FILE* _File)
+{
+	SaveAssetRef(m_Mesh, _File);
+	SaveAssetRef(m_Mtrl, _File);
+	SaveAssetRef(m_SharedMtrl, _File);
+}
+
+void qRenderComponent::LoadDataFromFile(FILE* _File)
+{
+	LoadAssetRef(m_Mesh, _File);
+	LoadAssetRef(m_Mtrl, _File);
+	LoadAssetRef(m_SharedMtrl, _File);
 }

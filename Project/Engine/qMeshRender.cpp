@@ -39,3 +39,14 @@ void qMeshRender::Render()
 	// 버텍스버퍼, 인덱스버퍼 바인딩 및 렌더링 호출
 	GetMesh()->Render();
 }
+
+
+void qMeshRender::SaveToFile(FILE* _File)
+{
+	SaveDataToFile(_File);
+}
+
+void qMeshRender::LoadFromFile(FILE* _File)
+{
+	LoadDataFromFile(_File);
+}

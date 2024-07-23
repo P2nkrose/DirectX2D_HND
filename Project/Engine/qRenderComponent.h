@@ -26,6 +26,11 @@ public:
 	Ptr<qMaterial> GetDynamicMaterial();
 
 
+protected:
+	void SaveDataToFile(FILE* _File);
+	void LoadDataFromFile(FILE* _File);
+
+
 private:
 	Ptr<qMesh>					m_Mesh;
 

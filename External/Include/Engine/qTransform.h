@@ -24,20 +24,24 @@ public:
 	void SetWorldMatrix(const Matrix& _matWorld) { m_matWorld = _matWorld; }
 
 	void SetIndependentScale(bool _Set) { m_IndependentScale = _Set; }
-	Vec3 GetWorldScale();
-
+	bool IsIndependentScale() { return m_IndependentScale; }
+	
 	Vec3 GetRelativePos() { return m_RelativePos; }
 	Vec3 GetWorldPos() { return m_matWorld.Translation(); }
 
 	Vec3 GetRelativeScale() { return m_RelativeScale; }
+	Vec3 GetWorldScale();
+
 	Vec3 GetRelativeRotation() { return m_RelativeRotation; }
-
-	const Matrix& GetWorldMat() { return m_matWorld; }
-
 	Vec3 GetRelativeDir(DIR _Type) { return m_RelativeDir[_Type]; }
 	Vec3 GetWorldDir(DIR _Type) { return m_WorldDir[_Type]; }
 
-	bool IsIndependentScale() { return m_IndependentScale; }
+	const Matrix& GetWorldMat() { return m_matWorld; }
+
+
+public:
+	virtual void SaveToFile(FILE* _File) override;
+	virtual void LoadFromFile(FILE* _File) override;
 
 
 private:

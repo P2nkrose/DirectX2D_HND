@@ -158,13 +158,9 @@ void MenuUI::Assets()
 
 		if (ImGui::MenuItem("Create Empty FlipBook"))
 		{
-			EditorUI* pUI = nullptr;
-
-			
-
-			//Ptr<qFlipBook> pFlipBook = new qFlipBook;
-			//wstring Key = GetAssetKey(ASSET_TYPE::FLIPBOOK, L"Default FlipBook");
-			//qAssetMgr::GetInst()->AddAsset<qFlipBook>(Key, pFlipBook);
+			Ptr<qFlipBook> pFlipBook = new qFlipBook;
+			wstring Key = GetAssetKey(ASSET_TYPE::FLIPBOOK, L"Default FlipBook");
+			qAssetMgr::GetInst()->AddAsset<qFlipBook>(Key, pFlipBook);
 		}
 
 

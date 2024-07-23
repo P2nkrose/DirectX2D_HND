@@ -38,3 +38,15 @@ void qMissileScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _Other
 {
 	DeleteObject(_OtherObject);
 }
+
+
+
+void qMissileScript::SaveToFile(FILE* _File)
+{
+	fwrite(&m_Speed, 4, 1, _File);
+}
+
+void qMissileScript::LoadFromFile(FILE* _File)
+{
+	fread(&m_Speed, 4, 1, _File);
+}
