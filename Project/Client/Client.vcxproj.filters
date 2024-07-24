@@ -122,6 +122,18 @@
     <Filter Include="EditorUI\09. AnimationUI\01. Popup">
       <UniqueIdentifier>{76b5652c-e39b-4aad-aca6-b67191c63f7b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EditorUI\08. SpriteEditor">
+      <UniqueIdentifier>{1b43d7a7-d19a-44df-9175-968b93764b30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorUI\08. SpriteEditor\SE_Sub">
+      <UniqueIdentifier>{d641b3fc-14c0-45eb-9ede-475eb0a617c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorUI\08. SpriteEditor\SE_Sub\SE_AtlasView">
+      <UniqueIdentifier>{26920cc3-7023-4f6c-87c3-21dc085d3c5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorUI\08. SpriteEditor\SE_Sub\SE_Detail">
+      <UniqueIdentifier>{b3198dca-5b96-44d6-9a92-462fcee16a07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -267,6 +279,18 @@
     </ClInclude>
     <ClInclude Include="qLevelSaveLoad.h">
       <Filter>Manager\03. LevelSaveLoad</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteEditor.h">
+      <Filter>EditorUI\08. SpriteEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="SE_Sub.h">
+      <Filter>EditorUI\08. SpriteEditor\SE_Sub</Filter>
+    </ClInclude>
+    <ClInclude Include="SE_Detail.h">
+      <Filter>EditorUI\08. SpriteEditor\SE_Sub\SE_Detail</Filter>
+    </ClInclude>
+    <ClInclude Include="SE_AtlasView.h">
+      <Filter>EditorUI\08. SpriteEditor\SE_Sub\SE_AtlasView</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -421,6 +445,18 @@
     </ClCompile>
     <ClCompile Include="qLevelSaveLoad.cpp">
       <Filter>Manager\03. LevelSaveLoad</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteEditor.cpp">
+      <Filter>EditorUI\08. SpriteEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="SE_Sub.cpp">
+      <Filter>EditorUI\08. SpriteEditor\SE_Sub</Filter>
+    </ClCompile>
+    <ClCompile Include="SE_Detail.cpp">
+      <Filter>EditorUI\08. SpriteEditor\SE_Sub\SE_Detail</Filter>
+    </ClCompile>
+    <ClCompile Include="SE_AtlasView.cpp">
+      <Filter>EditorUI\08. SpriteEditor\SE_Sub\SE_AtlasView</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
