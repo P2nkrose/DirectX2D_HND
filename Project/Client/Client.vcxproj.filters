@@ -107,17 +107,20 @@
     <Filter Include="EditorUI\01. Inspector\ComponentUI\09. ScriptUI">
       <UniqueIdentifier>{e67841ae-8207-4c77-ae23-766f170a4834}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EditorUI\08. AnimationUI">
-      <UniqueIdentifier>{cf53b366-708b-40ad-ac39-1b9b91be6bd4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="EditorUI\08. AnimationUI\01. Popup">
-      <UniqueIdentifier>{76b5652c-e39b-4aad-aca6-b67191c63f7b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="EditorUI\01. Inspector\ComponentUI\04. FlipBookComponentUI">
       <UniqueIdentifier>{71502068-105f-452c-a0d2-86e3ec560eea}</UniqueIdentifier>
     </Filter>
     <Filter Include="Manager\03. LevelSaveLoad">
       <UniqueIdentifier>{2bcf02db-747e-48c9-ba01-88df8eedf585}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorUI\01. Inspector\ComponentUI\10. RigidBodyUI">
+      <UniqueIdentifier>{04c4c3fd-92fa-4fdf-99a4-a302bd1d4643}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorUI\09. AnimationUI">
+      <UniqueIdentifier>{cf53b366-708b-40ad-ac39-1b9b91be6bd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorUI\09. AnimationUI\01. Popup">
+      <UniqueIdentifier>{76b5652c-e39b-4aad-aca6-b67191c63f7b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -260,7 +263,7 @@
       <Filter>EditorUI\01. Inspector\ComponentUI\09. ScriptUI</Filter>
     </ClInclude>
     <ClInclude Include="AnimationUI.h">
-      <Filter>EditorUI\08. AnimationUI</Filter>
+      <Filter>EditorUI\09. AnimationUI</Filter>
     </ClInclude>
     <ClInclude Include="qLevelSaveLoad.h">
       <Filter>Manager\03. LevelSaveLoad</Filter>
@@ -414,7 +417,7 @@
       <Filter>EditorUI\01. Inspector\ComponentUI\09. ScriptUI</Filter>
     </ClCompile>
     <ClCompile Include="AnimationUI.cpp">
-      <Filter>EditorUI\08. AnimationUI</Filter>
+      <Filter>EditorUI\09. AnimationUI</Filter>
     </ClCompile>
     <ClCompile Include="qLevelSaveLoad.cpp">
       <Filter>Manager\03. LevelSaveLoad</Filter>

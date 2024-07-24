@@ -169,6 +169,7 @@ namespace DirectX
             void Clamp(const Vector2& vmin, const Vector2& vmax);
             void Clamp(const Vector2& vmin, const Vector2& vmax, Vector2& result) const;
 
+
             // Static functions
             static float Distance(const Vector2& v1, const Vector2& v2);
             static float DistanceSquared(const Vector2& v1, const Vector2& v2);

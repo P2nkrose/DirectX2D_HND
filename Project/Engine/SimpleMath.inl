@@ -420,6 +420,8 @@ inline void Vector2::Clamp(const Vector2& vmin, const Vector2& vmax, Vector2& re
     XMStoreFloat2(&result, X);
 }
 
+
+
 //------------------------------------------------------------------------------
 // Static functions
 //------------------------------------------------------------------------------

@@ -16,6 +16,8 @@
 #include <Scripts/qMissileScript.h>
 #include <Scripts/qCameraMoveScript.h>
 
+#include "qLevelSaveLoad.h"
+
 void qTestLevel::CreateTestLevel()
 {
 	// Material
@@ -31,11 +33,18 @@ void qTestLevel::CreateTestLevel()
 
 	CreatePrefab();
 
+	//wstring StrLevelLoadPath = qPathMgr::GetInst()->GetContentPath();
+	//StrLevelLoadPath += L"level\\Temp.lv";
+	//qLevel* pLoadedLevel = qLevelSaveLoad::LoadLevel(StrLevelLoadPath);
+	//
+	//ChangeLevel(pLoadedLevel, LEVEL_STATE::PLAY);
+	//
+	//return;
 
 	// Level »ý¼º
 	qLevel* pLevel = new qLevel;
 
-	ChangeLevel(pLevel, LEVEL_STATE::PLAY);
+	//ChangeLevel(pLevel, LEVEL_STATE::STOP);
 
 	pLevel->GetLayer(0)->SetName(L"Default");
 	pLevel->GetLayer(1)->SetName(L"Background");
@@ -195,6 +204,14 @@ void qTestLevel::CreateTestLevel()
 	pGrayFilterObj->MeshRender()->SetMaterial(qAssetMgr::GetInst()->FindAsset<qMaterial>(L"DistortionMtrl"));
 
 	pLevel->AddObject(0, pGrayFilterObj);
+
+
+	// Level Save
+	//wstring strLevelPath = qPathMgr::GetInst()->GetContentPath();
+	//strLevelPath += L"level\\Temp.lv";
+	//qLevelSaveLoad::SaveLevel(strLevelPath, pLevel);
+	
+	ChangeLevel(pLevel, LEVEL_STATE::STOP);
 
 
 

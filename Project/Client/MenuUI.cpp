@@ -1,15 +1,17 @@
 #include "pch.h"
 #include "MenuUI.h"
 
+#include <Engine/qLevelMgr.h>
+#include <Engine/qLevel.h>
 #include <Engine/qAssetMgr.h>
 #include <Engine/assets.h>
-
 #include <Scripts/qScriptMgr.h>
 #include <Engine/qGameObject.h>
 #include <Engine/qScript.h>
 
 #include "qEditorMgr.h"
 #include "Inspector.h"
+#include "qLevelSaveLoad.h"
 
 
 MenuUI::MenuUI()
@@ -64,25 +66,56 @@ void MenuUI::File()
 
 void MenuUI::Level()
 {
+
+	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+
+	ImGui::BeginDisabled(!pCurLevel);
+
 	if (ImGui::BeginMenu("Level"))
 	{
+		LEVEL_STATE State = LEVEL_STATE::STOP;
+		if (nullptr != pCurLevel)
+			State = pCurLevel->GetState();
+
+		ImGui::BeginDisabled(LEVEL_STATE::PLAY == State);
 		if (ImGui::MenuItem("Play"))
 		{
-
+			if (LEVEL_STATE::STOP == State)
+			{
+				wstring strLevelPath = qPathMgr::GetInst()->GetContentPath();
+				strLevelPath += L"level\\Temp.lv";
+				qLevelSaveLoad::SaveLevel(strLevelPath, pCurLevel);
+			}
+			
+			ChangeLevelState(LEVEL_STATE::PLAY);
 		}
+		ImGui::EndDisabled();
 
+		ImGui::BeginDisabled(LEVEL_STATE::PLAY != State);
 		if (ImGui::MenuItem("Pause"))
 		{
-
+			ChangeLevelState(LEVEL_STATE::PAUSE);
 		}
+		ImGui::EndDisabled();
 
+		ImGui::BeginDisabled(LEVEL_STATE::STOP == State);
 		if (ImGui::MenuItem("Stop"))
 		{
+			wstring StrLevelLoadPath = qPathMgr::GetInst()->GetContentPath();
+			StrLevelLoadPath += L"level\\Temp.lv";
+			qLevel* pLoadedLevel = qLevelSaveLoad::LoadLevel(StrLevelLoadPath);
+			ChangeLevel(pLoadedLevel, LEVEL_STATE::STOP);
 
+			// Inspector Clear 하기 (이전 오브젝트 정보를 보여주고 있을 수가 있기 때문에)				
+			Inspector* pInspector = (Inspector*)qEditorMgr::GetInst()->FindEditorUI("Inspector");
+			pInspector->SetTargetObject(nullptr);
+			pInspector->SetTargetAsset(nullptr);
 		}
+		ImGui::EndDisabled();
 
 		ImGui::EndMenu();
 	}
+	ImGui::EndDisabled();
 }
 
 void MenuUI::GameObject()
