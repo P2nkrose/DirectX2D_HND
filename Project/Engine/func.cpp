@@ -132,7 +132,7 @@ void SaveWString(const wstring& _String, FILE* _File)
 {
 	size_t len = _String.length();
 	fwrite(&len, sizeof(size_t), 1, _File);
-	fwrite(_String.c_str(), sizeof(wchar_t), len, _File);
+	fwrite(_String.c_str(), sizeof(wchar_t), _String.length(), _File);
 }
 
 void LoadWString(wstring& _String, FILE* _File)

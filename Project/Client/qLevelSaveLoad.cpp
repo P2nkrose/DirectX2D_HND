@@ -12,6 +12,7 @@
 
 void qLevelSaveLoad::SaveLevel(const wstring& _FilePath, qLevel* _Level)
 {
+
 	assert(_Level && _Level->GetState() == LEVEL_STATE::STOP);
 
 	FILE* File = nullptr;

@@ -29,6 +29,7 @@ private:
 	void CreateEditorUI();
 
 
+
 private:
 	vector<qGameObject*>		m_vecEditorObject;
 	map<string, EditorUI*>		m_mapUI;

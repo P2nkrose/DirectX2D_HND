@@ -12,6 +12,7 @@
 
 void qEditorMgr::CreateEditorObject()
 {
+	// 에디터용 카메라 오브젝트 생성
 	qGameObject* pEditorCamera = new qGameObjectEx;
 	pEditorCamera->SetName(L"EditorCamera");
 	pEditorCamera->AddComponent(new qTransform);
@@ -25,5 +26,6 @@ void qEditorMgr::CreateEditorObject()
 
 	m_vecEditorObject.push_back(pEditorCamera);
 
+	// Editor 용 카메라로서 렌더매니저에 등록
 	qRenderMgr::GetInst()->RegisterEditorCamera(pEditorCamera->Camera());
 }

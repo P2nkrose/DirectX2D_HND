@@ -8,6 +8,7 @@ class qLevel : public qEntity
 {
 public:
 	friend class qTaskMgr;
+	friend class qLevelMgr;
 
 	virtual qLevel* Clone() { return new qLevel(*this); }
 	qLevel();

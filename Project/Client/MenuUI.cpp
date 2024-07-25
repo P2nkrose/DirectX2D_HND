@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "MenuUI.h"
 
+#include <Engine/qPathMgr.h>
 #include <Engine/qLevelMgr.h>
 #include <Engine/qLevel.h>
 #include <Engine/qAssetMgr.h>
@@ -52,12 +53,65 @@ void MenuUI::File()
 	{
 		if (ImGui::MenuItem("Level Save"))
 		{
+			WCHAR szSelect[256] = {};
 
+			OPENFILENAME filename = {};
+
+			filename.lStructSize = sizeof(filename);
+			filename.hwndOwner = nullptr;
+			filename.lpstrFile = szSelect;
+			filename.lpstrFile[0] = '\0';
+			filename.nMaxFile = sizeof(szSelect);
+			filename.lpstrFilter = L"ALL\0*.*\0Level\0*.lv";
+			filename.nFilterIndex = 1;
+			filename.lpstrFileTitle = NULL;
+			filename.nMaxFileTitle = 0;
+
+			// 탐색창 초기 위치 지정
+			wstring strInitPath = qPathMgr::GetInst()->GetContentPath();
+			strInitPath += L"level\\";
+			filename.lpstrInitialDir = strInitPath.c_str();
+
+			filename.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+
+			if (GetSaveFileName(&filename))
+			{
+				qLevelSaveLoad::SaveLevel(qPathMgr::GetRelativePath(szSelect), qLevelMgr::GetInst()->GetCurrentLevel());
+			}
 		}
 
 		if (ImGui::MenuItem("Level Load"))
 		{
+			wchar_t szSelect[256] = {};
 
+			OPENFILENAME filename = {};
+
+			filename.lStructSize = sizeof(filename);
+			filename.hwndOwner = nullptr;
+			filename.lpstrFile = szSelect;
+			filename.lpstrFile[0] = '\0';
+			filename.nMaxFile = sizeof(szSelect);
+			filename.lpstrFilter = L"ALL\0*.*\0Level\0*.lv";
+			filename.nFilterIndex = 1;
+			filename.lpstrFileTitle = NULL;
+			filename.nMaxFileTitle = 0;
+
+			// 탐색창 초기 위치 지정
+			wstring strInitPath = qPathMgr::GetInst()->GetContentPath();
+			strInitPath += L"level\\";
+			filename.lpstrInitialDir = strInitPath.c_str();
+
+			filename.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+
+			if (GetOpenFileName(&filename))
+			{
+				qLevel* pLevel = qLevelSaveLoad::LoadLevel(qPathMgr::GetRelativePath(szSelect));
+				ChangeLevel(pLevel, LEVEL_STATE::STOP);
+
+				// Inspector 의 타겟정보를 nullptr 로 되돌리기
+				Inspector* pInspector = (Inspector*)qEditorMgr::GetInst()->FindEditorUI("Inspector");
+				pInspector->SetTargetObject(nullptr);
+			}
 		}
 
 		ImGui::EndMenu();

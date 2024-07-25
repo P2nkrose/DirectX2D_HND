@@ -3,6 +3,7 @@
 
 #include "qEngine.h"
 
+
 qPathMgr::qPathMgr()	
 {
 }
@@ -22,7 +23,7 @@ void qPathMgr::Init()
 
 	// \\Content\\ ¸¦ ºÙ¿©µÐ´Ù
 	m_Content = szBuffer;
-	m_Content += L"\\content\\";	
+	m_Content += L"\\content\\";
 }
 
 void qPathMgr::Render()
@@ -41,4 +42,11 @@ void qPathMgr::GetParentPath(_Inout_ wchar_t* _Buffer)
 			break;
 		}
 	}
+}
+
+wstring qPathMgr::GetRelativePath(const wstring& _AbsolutePath)
+{
+	path AbsolutePath = _AbsolutePath;
+
+	return AbsolutePath.c_str();
 }
