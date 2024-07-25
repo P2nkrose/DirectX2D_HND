@@ -235,6 +235,7 @@ void MenuUI::Assets()
 {
 	if (ImGui::BeginMenu("Assets"))
 	{
+		// Defaul Material 만들기
 		if (ImGui::MenuItem("Create Empty Material"))
 		{
 			Ptr<qMaterial> pMtrl = new qMaterial;
@@ -243,6 +244,20 @@ void MenuUI::Assets()
 			pMtrl->Save(Key);
 		}
 
+
+		// Sprite Editor 켜고 끄기
+		EditorUI* pSpriteEditor = qEditorMgr::GetInst()->FindEditorUI("SpriteEditor");
+		bool IsActive = pSpriteEditor->IsActive();
+
+		if (ImGui::MenuItem("Sprite Editor", nullptr, &IsActive))
+		{
+			qEditorMgr::GetInst()->FindEditorUI("SpriteEditor")->SetActive(IsActive);
+		}
+
+
+
+
+		// Default FlipBook 만들기
 		if (ImGui::MenuItem("Create Empty FlipBook"))
 		{
 			Ptr<qFlipBook> pFlipBook = new qFlipBook;

@@ -3,10 +3,6 @@
 class qPathMgr : public qSingleton<qPathMgr>
 {
 	SINGLE(qPathMgr);
-private:
-	wstring		m_Content;
-	wstring		m_Solution;
-
 
 public:
 	void Init();
@@ -21,6 +17,7 @@ private:
 	void GetParentPath(_Inout_ wchar_t* _Buffer);
 
 private:
-	//static path g_ContentPath;
+	wstring		m_Content;
+	wstring		m_Solution;
 };
 

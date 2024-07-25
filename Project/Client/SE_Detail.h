@@ -10,5 +10,19 @@ public:
 public:
 	virtual void Init() override;
 	virtual void Update() override;
+
+public:
+	void SetAtlasTex(Ptr<qTexture> _Tex);
+
+
+private:
+	void SelectTexture(DWORD_PTR _ListUI);
+
+private:
+	void Atlas();
+	void AtlasInfo();
+
+private:
+	Ptr<qTexture>		m_AtlasTex;
 };
 

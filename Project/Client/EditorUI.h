@@ -46,6 +46,9 @@ public:
 	EditorUI* GetOwner() { return m_Owner; }
 	void SetOwner(EditorUI* _Owner) { m_Owner = _Owner; }
 
+	void UseMenuBar(bool _Use) { m_UseMenuBar = _Use; }
+	void SetMove(bool _Move) { m_Move = _Move; }
+
 private:
 	virtual void Activate() {}
 	virtual void Deactivate() {}
@@ -67,8 +70,11 @@ private:
 	bool				m_Modal;
 	bool				m_ChildBorder;
 
-	bool				m_ShowNameOnly;
+	bool				m_UseMenuBar;
+	bool				m_Move;
 
+
+	bool				m_ShowNameOnly;
 
 	class EditorUI*		m_Owner;
 
