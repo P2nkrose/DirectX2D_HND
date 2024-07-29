@@ -48,6 +48,14 @@ struct tLightInfo
 };
 
 
+struct tPixel
+{
+	BYTE b;
+	BYTE g;
+	BYTE r;
+	BYTE a;
+};
+
 
 
 // ======================

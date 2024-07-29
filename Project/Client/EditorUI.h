@@ -43,8 +43,8 @@ public:
 	void ShowNameOnly(bool _NameOnly) { m_ShowNameOnly = _NameOnly; }
 	bool IsShowNameOnly() { return m_ShowNameOnly; }
 
-	EditorUI* GetOwner() { return m_Owner; }
-	void SetOwner(EditorUI* _Owner) { m_Owner = _Owner; }
+	//EditorUI* GetOwner() { return m_Owner; }
+	//void SetOwner(EditorUI* _Owner) { m_Owner = _Owner; }
 
 	void UseMenuBar(bool _Use) { m_UseMenuBar = _Use; }
 	void SetMove(bool _Move) { m_Move = _Move; }
@@ -76,7 +76,7 @@ private:
 
 	bool				m_ShowNameOnly;
 
-	class EditorUI*		m_Owner;
+	//class EditorUI*		m_Owner;
 
 };
 

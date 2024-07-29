@@ -76,7 +76,7 @@ void MenuUI::File()
 
 			if (GetSaveFileName(&filename))
 			{
-				qLevelSaveLoad::SaveLevel(qPathMgr::GetRelativePath(szSelect), qLevelMgr::GetInst()->GetCurrentLevel());
+				qLevelSaveLoad::SaveLevel(qPathMgr::GetReturnPath(szSelect), qLevelMgr::GetInst()->GetCurrentLevel());
 			}
 		}
 
@@ -105,7 +105,7 @@ void MenuUI::File()
 
 			if (GetOpenFileName(&filename))
 			{
-				qLevel* pLevel = qLevelSaveLoad::LoadLevel(qPathMgr::GetRelativePath(szSelect));
+				qLevel* pLevel = qLevelSaveLoad::LoadLevel(qPathMgr::GetReturnPath(szSelect));
 				ChangeLevel(pLevel, LEVEL_STATE::STOP);
 
 				// Inspector 의 타겟정보를 nullptr 로 되돌리기
@@ -195,7 +195,7 @@ void MenuUI::GameObject()
 		ImGui::EndMenu();
 	}
 }
-  
+
 
 void MenuUI::AddScript()
 {

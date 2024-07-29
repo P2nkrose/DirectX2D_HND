@@ -89,7 +89,7 @@ void MeshRenderUI::Update()
 	string strName = MtrlName;
 	
 	// NameOnly
-	if (GetOwner()->IsShowNameOnly())
+	if (IsShowNameOnly())
 	{
 		path Path = MtrlName;
 		strName = Path.stem().string();

@@ -18,6 +18,8 @@ private:
 	void WheelCheck();
 	void SelectCheck();
 	void DrawSelectRect();
+	void CalcSpriteSize(Vec2 _PixelPos);
+	bool IsPixelOk(Vec2 _PixelPos);
 
 
 private:
@@ -29,6 +31,7 @@ private:
 	ImVec2				m_MouseLT;			// 마우스 위치에 해당하는 Texture의 픽셀 좌표 Left Top
 	ImVec2				m_MouseRB;			// 마우스 위치에 해당하는 Texture의 픽셀 좌표 Right Bottom
 
+	set<Vec2>			m_PixelID;			// 등록된 적이 있는 픽셀인지 확인하는 용도
 
 	float				m_WidthSize;
 	float				m_WheelScale;

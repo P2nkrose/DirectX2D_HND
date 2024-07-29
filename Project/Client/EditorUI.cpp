@@ -15,7 +15,7 @@ EditorUI::EditorUI()
 	, m_UseMenuBar(false)
 	, m_Move(true)
 {
-	SetOwner(this);
+	
 }
 
 EditorUI::~EditorUI()
@@ -30,7 +30,7 @@ void EditorUI::Tick()
 
 	bool bActive = m_Active;
 
-	UINT flag = 0;
+	UINT flag = ImGuiWindowFlags_HorizontalScrollbar;
 	if (m_UseMenuBar)
 		flag = ImGuiWindowFlags_MenuBar;
 	if (!m_Move)

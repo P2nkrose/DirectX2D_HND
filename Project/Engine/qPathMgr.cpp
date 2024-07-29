@@ -44,7 +44,7 @@ void qPathMgr::GetParentPath(_Inout_ wchar_t* _Buffer)
 	}
 }
 
-wstring qPathMgr::GetRelativePath(const wstring& _AbsolutePath)
+wstring qPathMgr::GetReturnPath(const wstring& _AbsolutePath)
 {
 	path AbsolutePath = _AbsolutePath;
 
