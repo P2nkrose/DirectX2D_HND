@@ -76,7 +76,7 @@ void MenuUI::File()
 
 			if (GetSaveFileName(&filename))
 			{
-				qLevelSaveLoad::SaveLevel(qPathMgr::GetReturnPath(szSelect), qLevelMgr::GetInst()->GetCurrentLevel());
+				qLevelSaveLoad::SaveLevel(qPathMgr::GetAbsolutePath(szSelect), qLevelMgr::GetInst()->GetCurrentLevel());
 			}
 		}
 
@@ -105,7 +105,7 @@ void MenuUI::File()
 
 			if (GetOpenFileName(&filename))
 			{
-				qLevel* pLevel = qLevelSaveLoad::LoadLevel(qPathMgr::GetReturnPath(szSelect));
+				qLevel* pLevel = qLevelSaveLoad::LoadLevel(qPathMgr::GetAbsolutePath(szSelect));
 				ChangeLevel(pLevel, LEVEL_STATE::STOP);
 
 				// Inspector 의 타겟정보를 nullptr 로 되돌리기

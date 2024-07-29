@@ -44,9 +44,19 @@ void qPathMgr::GetParentPath(_Inout_ wchar_t* _Buffer)
 	}
 }
 
-wstring qPathMgr::GetReturnPath(const wstring& _AbsolutePath)
+wstring qPathMgr::GetAbsolutePath(const wstring& _AbsolutePath)
 {
 	path AbsolutePath = _AbsolutePath;
 
 	return AbsolutePath.c_str();
+}
+
+
+wstring qPathMgr::GetRelativePath(const wstring& _FilePath)
+{
+	size_t FindPos = _FilePath.find(m_Content);
+	if (FindPos == wstring::npos)
+		return L"";
+
+	return _FilePath.substr(FindPos + m_Content.length(), _FilePath.length());
 }

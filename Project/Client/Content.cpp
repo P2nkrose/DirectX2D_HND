@@ -28,6 +28,11 @@ Content::~Content()
 {
 }
 
+void Content::Init()
+{
+	Reload();
+}
+
 void Content::Update()
 {
 	// Separator : 구분선
@@ -43,6 +48,7 @@ void Content::Update()
 	}
 
 }
+
 
 void Content::RenewContent()
 {
@@ -79,4 +85,52 @@ void Content::AssetClicked(DWORD_PTR _Param)
 	Inspector* pInspector = (Inspector*)qEditorMgr::GetInst()->FindEditorUI("Inspector");
 	pInspector->SetTargetAsset(pAsset);
 	ImGui::SetWindowFocus(nullptr);
+}
+
+
+void Content::Reload()
+{
+	// Content 폴더에 있는 에셋 파일들의 경로를 전부 알아낸다.
+	wstring ContentPath = qPathMgr::GetInst()->GetContentPath();
+	FindAssetName(ContentPath, L"*.*");
+
+	// 알아낸 에셋 파일들의 경로를 통해서 Asset 들을 AssetMgr 에 로딩한다.
+	for (size_t i = 0; i < m_vecAssetPath.size(); ++i)
+	{
+		m_vecAssetPath[i];
+	}
+	
+	// 에셋 매니저에는 로딩되어 있지만, content 폴더에는 없는 에셋은 AssetMgr에서 삭제하기
+}
+
+
+void Content::FindAssetName(const wstring& _FolderPath, const wstring& _Filter)
+{
+	WIN32_FIND_DATA tFindData = {};
+
+	// 경로에 맞는 파일 및 폴더를 탐색할 수 있는 커널오브젝트 생성
+	wstring strFindPath = _FolderPath + _Filter;
+	HANDLE hFinder = FindFirstFile(strFindPath.c_str(), &tFindData);
+	assert(hFinder != INVALID_HANDLE_VALUE);
+
+	// 탐색 커널오브젝트를 이용해서 다음 파일을 반복해서 찾아나감
+	while (FindNextFile(hFinder, &tFindData))
+	{
+		wstring strFindName = tFindData.cFileName;
+
+		if (tFindData.dwFileAttributes == FILE_ATTRIBUTE_DIRECTORY)
+		{
+			if (strFindName == L"..")
+				continue;
+
+			FindAssetName(_FolderPath + strFindName + L"\\", _Filter);
+		}
+		else
+		{
+			wstring RelativePath = qPathMgr::GetInst()->GetRelativePath(_FolderPath + strFindName);
+			m_vecAssetPath.push_back(RelativePath);
+		}
+	}
+
+	FindClose(hFinder);
 }

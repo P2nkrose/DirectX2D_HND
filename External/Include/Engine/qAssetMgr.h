@@ -134,7 +134,7 @@ void SaveAssetRef(Ptr<T> Asset, FILE* _File)
 	if (bAsset)
 	{
 		SaveWString(Asset->GetKey(), _File);
-		SaveWString(Asset->GetReturnPath(), _File);
+		SaveWString(Asset->GetAbsolutePath(), _File);
 	}
 }
 

@@ -11,7 +11,8 @@ public:
 public:
 	const wstring& GetContentPath() { return m_Content; }
 	const wstring& GetSolutionPath() { return m_Solution; }	
-	static wstring GetReturnPath(const wstring& _AbsolutePath);
+	static wstring GetAbsolutePath(const wstring& _AbsolutePath);
+	wstring GetRelativePath(const wstring& _FilePath);
 
 private:
 	void GetParentPath(_Inout_ wchar_t* _Buffer);

@@ -78,6 +78,7 @@ void qEditorMgr::CreateEditorUI()
 
 	// Content
 	pUI = new Content;
+	pUI->Init();
 	pUI->SetName("Content");
 	m_mapUI.insert(make_pair(pUI->GetName(), pUI));
 
@@ -124,6 +125,7 @@ void qEditorMgr::CreateEditorUI()
 	pUI = new SpriteEditor;
 	pUI->Init();
 	pUI->SetName("SpriteEditor");
+	pUI->SetActive(false);
 	m_mapUI.insert(make_pair(pUI->GetName(), pUI));
 
 }

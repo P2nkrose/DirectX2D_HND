@@ -20,7 +20,7 @@ public:
 
 public:
 	const wstring& GetKey() { return m_Key; }
-	const wstring& GetReturnPath() { return m_RelativePath; }
+	const wstring& GetAbsolutePath() { return m_RelativePath; }
 	ASSET_TYPE GetAssetType() { return m_Type; }
 
 protected:
