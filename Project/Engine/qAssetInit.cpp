@@ -53,6 +53,7 @@ void qAssetMgr::CreateEngineMesh()
 	
 	pMesh = new qMesh;
 	pMesh->Create(arrVtx, 4, arrIdx, 6);
+	pMesh->SetEngineAsset();
 	AddAsset(L"RectMesh", pMesh);
 	
 	// RectMesh_Debug
@@ -60,6 +61,7 @@ void qAssetMgr::CreateEngineMesh()
 	
 	pMesh = new qMesh;
 	pMesh->Create(arrVtx, 4, arrIdx, 5);
+	pMesh->SetEngineAsset();
 	AddAsset(L"RectMesh_Debug", pMesh);
 	
 	
@@ -101,6 +103,7 @@ void qAssetMgr::CreateEngineMesh()
 	
 	pMesh = new qMesh;
 	pMesh->Create(vecVtx.data(), (UINT)vecVtx.size(), vecIdx.data(), (UINT)vecIdx.size());
+	pMesh->SetEngineAsset();
 	AddAsset(L"CircleMesh", pMesh);
 	
 	
@@ -114,6 +117,7 @@ void qAssetMgr::CreateEngineMesh()
 	
 	pMesh = new qMesh;
 	pMesh->Create(vecVtx.data(), (UINT)vecVtx.size(), vecIdx.data(), (UINT)vecIdx.size());
+	pMesh->SetEngineAsset();
 	AddAsset(L"CircleMesh_Debug", pMesh);
 }
 
@@ -121,24 +125,24 @@ void qAssetMgr::CreateEngineTexture()
 {
 	// Post Process 용도 텍스처 생성
 	Vec2 Resolution = qDevice::GetInst()->GetResolution();
-	CreateTexture(L"PostProcessTex", (UINT)Resolution.x, (UINT)Resolution.y
+	Ptr<qTexture> pPostProcessTex = CreateTexture(L"PostProcessTex", (UINT)Resolution.x, (UINT)Resolution.y
 				, DXGI_FORMAT_R8G8B8A8_UNORM, D3D11_BIND_SHADER_RESOURCE);
 
 
 	// Noise Texture 를 미리 만들어놓기
-	Load<qTexture>(L"texture\\noise\\noise_01.png", L"texture\\noise\\noise_01.png");
-	Load<qTexture>(L"texture\\noise\\noise_02.png", L"texture\\noise\\noise_02.png");
-	Load<qTexture>(L"texture\\noise\\noise_03.jpg", L"texture\\noise\\noise_03.jpg");
-	Load<qTexture>(L"texture\\noise\\noise_04.jpg", L"texture\\noise\\noise_04.jpg");
-	Load<qTexture>(L"texture\\noise\\noise_05.jpg", L"texture\\noise\\noise_05.jpg");
+	//Load<qTexture>(L"texture\\noise\\noise_01.png", L"texture\\noise\\noise_01.png");
+	//Load<qTexture>(L"texture\\noise\\noise_02.png", L"texture\\noise\\noise_02.png");
+	//Load<qTexture>(L"texture\\noise\\noise_03.jpg", L"texture\\noise\\noise_03.jpg");
+	//Load<qTexture>(L"texture\\noise\\noise_04.jpg", L"texture\\noise\\noise_04.jpg");
+	//Load<qTexture>(L"texture\\noise\\noise_05.jpg", L"texture\\noise\\noise_05.jpg");
 }
 
 void qAssetMgr::CreateEngineSprite()
 {
-	wstring strContentPath = qPathMgr::GetInst()->GetContentPath();
+	//wstring strContentPath = qPathMgr::GetInst()->GetContentPath();
 
-	Ptr<qFlipBook> pFlipBook = new qFlipBook;
-	Load<qFlipBook>(L"Link_MoveDown", L"Animation\\Link_MoveDown.flip");
+	//Ptr<qFlipBook> pFlipBook = new qFlipBook;
+	//Load<qFlipBook>(L"Link_MoveDown", L"Animation\\Link_MoveDown.flip");
 	//AddAsset(L"Link_MoveDown", pFlipBook);
 
 	//Ptr<qFlipBook> pFlipBook = new qFlipBook;
@@ -277,33 +281,35 @@ void qAssetMgr::CreateEngineComputeShader()
 {
 }
 
+
+
 void qAssetMgr::CreateEngineMaterial()
 {
 	Ptr<qMaterial> pMtrl = nullptr;
 
 	// Std2DMtrl
-	pMtrl = new qMaterial();
+	pMtrl = new qMaterial(true);
 	pMtrl->SetShader(FindAsset<qGraphicShader>(L"Std2DShader"));
 	AddAsset(L"Std2DMtrl", pMtrl);
 
 
 	// Std2DAlphaBlendMtrl
-	pMtrl = new qMaterial();
+	pMtrl = new qMaterial(true);
 	pMtrl->SetShader(FindAsset<qGraphicShader>(L"Std2DAlphaBlendShader"));
 	AddAsset(L"Std2DAlphaBlendMtrl", pMtrl);
 
 	// DebugShapeMtrl
-	pMtrl = new qMaterial();
+	pMtrl = new qMaterial(true);
 	pMtrl->SetShader(FindAsset<qGraphicShader>(L"DebugShapeShader"));
 	AddAsset(L"DebugShapeMtrl", pMtrl);
 
 	// TileMapMtrl
-	pMtrl = new qMaterial();
+	pMtrl = new qMaterial(true);
 	pMtrl->SetShader(FindAsset<qGraphicShader>(L"TileMapShader"));
 	AddAsset(L"TileMapMtrl", pMtrl);
 
 	// GrayFilterMtrl
-	pMtrl = new qMaterial();
+	pMtrl = new qMaterial(true);
 	pMtrl->SetShader(FindAsset<qGraphicShader>(L"GrayFilterShader"));
 	pMtrl->SetTexParam(TEX_0, FindAsset<qTexture>(L"PostProcessTex"));
 	pMtrl->SetTexParam(TEX_1, FindAsset<qTexture>(L"texture\\noise\\noise_01.png"));
@@ -314,7 +320,7 @@ void qAssetMgr::CreateEngineMaterial()
 	AddAsset(L"GrayFilterMtrl", pMtrl);
 
 	// DistortionMtrl
-	pMtrl = new qMaterial();
+	pMtrl = new qMaterial(true);
 	pMtrl->SetShader(FindAsset<qGraphicShader>(L"DistortionShader"));
 	pMtrl->SetTexParam(TEX_0, FindAsset<qTexture>(L"PostProcessTex"));
 	pMtrl->SetTexParam(TEX_1, FindAsset<qTexture>(L"texture\\noise\\noise_01.png"));

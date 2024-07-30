@@ -8,7 +8,7 @@ class qMaterial : public qAsset
 {
 public:
 	CLONE(qMaterial);
-	qMaterial();
+	qMaterial(bool _IsEngine = false);
 	~qMaterial();
 
 public:

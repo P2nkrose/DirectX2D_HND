@@ -7,6 +7,7 @@
 
 #include <Engine/qAssetMgr.h>
 #include <Engine/assets.h>
+#include <Engine/qTaskMgr.h>
 
 Content::Content()
 {
@@ -97,10 +98,44 @@ void Content::Reload()
 	// 알아낸 에셋 파일들의 경로를 통해서 Asset 들을 AssetMgr 에 로딩한다.
 	for (size_t i = 0; i < m_vecAssetPath.size(); ++i)
 	{
-		m_vecAssetPath[i];
+		LoadAsset(m_vecAssetPath[i]);
 	}
 	
 	// 에셋 매니저에는 로딩되어 있지만, content 폴더에는 없는 에셋은 AssetMgr에서 삭제하기
+	// 로딩된 에셋에 해당하는 원본 파일이 Content 폴더에 있는지 Exist 체크
+	wstring strContentPath = qPathMgr::GetInst()->GetContentPath();
+
+	for (UINT i = 0; i < (UINT)ASSET_TYPE::END; ++i)
+	{
+		const map<wstring, Ptr<qAsset>>& mapAsset = qAssetMgr::GetInst()->GetAssets((ASSET_TYPE)i);
+		for (const auto pair : mapAsset)
+		{
+			// 엔진에서 제작한 에셋은 원래 원본파일이 없기 때문에 넘어간다.
+			if (pair.second->IsEngineAsset())
+				continue;
+
+
+			wstring strRelativePath = pair.second->GetRelativePath();
+
+			if (false == std::filesystem::exists(strContentPath + strRelativePath))
+			{
+				if (pair.second->GetRefCount() <= 1)
+				{
+					// 에셋 삭제요청
+					qTaskMgr::GetInst()->AddTask(tTask{ TASK_TYPE::DEL_ASSET, (DWORD_PTR)pair.second.Get() });
+				}
+				else
+				{
+					int ret = MessageBox(nullptr, L"다른 곳에서 참조되고 있을 수 있습니다.\n에셋을 삭제하시겠습니까?", L"에셋 삭제 에러", MB_YESNO);
+					if (ret == IDYES)
+					{
+						// 에셋 삭제요청
+						qTaskMgr::GetInst()->AddTask(tTask{ TASK_TYPE::DEL_ASSET, (DWORD_PTR)pair.second.Get(), });
+					}
+				}
+			}
+		}
+	}
 }
 
 
@@ -133,4 +168,28 @@ void Content::FindAssetName(const wstring& _FolderPath, const wstring& _Filter)
 	}
 
 	FindClose(hFinder);
+}
+
+void Content::LoadAsset(const path& _Path)
+{
+	path ext = _Path.extension();
+
+	if (ext == L".mesh")
+		qAssetMgr::GetInst()->Load<qMesh>(_Path, _Path);
+	//else if (ext == L".mdat")
+		//qAssetMgr::GetInst()->Load<qMeshData>(_Path, _Path);
+	else if (ext == L".mtrl")
+		qAssetMgr::GetInst()->Load<qMaterial>(_Path, _Path);
+	else if (ext == L".pref")
+		qAssetMgr::GetInst()->Load<qPrefab>(_Path, _Path);
+	else if (ext == L".png" || ext == L".jpg" || ext == L".jpeg" || ext == L".bmp" || ext == L".dds" || ext == L".tga"
+		|| ext == L".PNG" || ext == L".JPG" || ext == L".JPEG" || ext == L".BMP" || ext == L".DDS" || ext == L".TGA")
+		qAssetMgr::GetInst()->Load<qTexture>(_Path, _Path);
+	//else if (ext == L".mp3" || ext == L".mp4" || ext == L".ogg" || ext == L".wav" 
+	//	|| ext == L".MP3" || ext == L".MP4" || ext == L".OGG" || ext == L".WAV")
+	//	qAssetMgr::GetInst()->Load<qSound>(_Path, _Path);
+	else if (ext == L".sprite")
+		qAssetMgr::GetInst()->Load<qSprite>(_Path, _Path);
+	else if (ext == L".flip")
+		qAssetMgr::GetInst()->Load<qFlipBook>(_Path, _Path);
 }

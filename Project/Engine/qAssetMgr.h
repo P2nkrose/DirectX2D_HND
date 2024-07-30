@@ -48,6 +48,9 @@ private:
 	void CreateEngineComputeShader();
 
 
+private:
+	void DeleteAsset(ASSET_TYPE _Type, const wstring& _Key);
+
 
 private:
 	map<wstring, Ptr<qAsset>>	m_mapAsset[(UINT)ASSET_TYPE::END];
@@ -134,7 +137,7 @@ void SaveAssetRef(Ptr<T> Asset, FILE* _File)
 	if (bAsset)
 	{
 		SaveWString(Asset->GetKey(), _File);
-		SaveWString(Asset->GetAbsolutePath(), _File);
+		SaveWString(Asset->GetRelativePath(), _File);
 	}
 }
 

@@ -46,6 +46,7 @@ Ptr<qTexture> qAssetMgr::CreateTexture(wstring _strKey, UINT _Width, UINT _Heigh
 	}
 
 	pTexture->m_Key = _strKey;
+	pTexture->SetEngineAsset();
 	m_mapAsset[(UINT)ASSET_TYPE::TEXTURE].insert(make_pair(_strKey, pTexture.Get()));
 
 	return pTexture;
@@ -66,6 +67,7 @@ Ptr<qTexture> qAssetMgr::CreateTexture(wstring _strKey, ComPtr<ID3D11Texture2D> 
 	}
 
 	pTexture->m_Key = _strKey;
+	pTexture->SetEngineAsset();
 	m_mapAsset[(UINT)ASSET_TYPE::TEXTURE].insert(make_pair(_strKey, pTexture.Get()));
 
 	return pTexture;
@@ -80,3 +82,12 @@ void qAssetMgr::GetAssetNames(ASSET_TYPE _Type, vector<string>& _vecOut)
 }
 
 
+void qAssetMgr::DeleteAsset(ASSET_TYPE _Type, const wstring& _Key)
+{
+	map<wstring, Ptr<qAsset>>::iterator iter = m_mapAsset[(UINT)_Type].find(_Key);
+	assert(iter != m_mapAsset[(UINT)_Type].end());
+	m_mapAsset[(UINT)_Type].erase(iter);
+
+	// Asset 변경 알림
+	qTaskMgr::GetInst()->AddTask(tTask{ ASSET_CHANGED });
+}

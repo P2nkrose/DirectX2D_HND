@@ -7,9 +7,13 @@
 #include "qAssetMgr.h"
 #include "qPathMgr.h"
 
-qMaterial::qMaterial()
+qMaterial::qMaterial(bool _IsEngine)
 	: qAsset(ASSET_TYPE::MATERIAL)
 {
+	if (_IsEngine)
+	{
+		SetEngineAsset();
+	}
 }
 
 qMaterial::~qMaterial()

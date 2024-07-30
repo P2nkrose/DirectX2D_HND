@@ -15,6 +15,8 @@ public:
 	void SetAtlasTex(Ptr<qTexture> _Tex);
 
 
+
+
 private:
 	void SelectTexture(DWORD_PTR _ListUI);
 

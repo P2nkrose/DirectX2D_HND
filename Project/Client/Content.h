@@ -20,6 +20,7 @@ private:
 
 	void AssetClicked(DWORD_PTR _Param);
 	void FindAssetName(const wstring& _FolderPath, const wstring& _Filter);
+	void LoadAsset(const path& _Path);
 
 private:
 	class TreeUI*		m_Tree;

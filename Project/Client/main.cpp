@@ -51,13 +51,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     }
 
 
-    // 테스트용 레벨 초기상태 만들기
-    qTestLevel::CreateTestLevel();
+
 
 #ifdef _DEBUG
    // Editor Manager 초기화
     qEditorMgr::GetInst()->Init();
 #endif
+
+    // 테스트용 레벨 초기상태 만들기
+    qTestLevel::CreateTestLevel();
 
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));

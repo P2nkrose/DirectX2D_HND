@@ -95,6 +95,14 @@ void qTaskMgr::ExecuteTask()
 			qLevelMgr::GetInst()->m_LevelChanged = true;
 		}
 		break;
+
+		case TASK_TYPE::DEL_ASSET:
+		{
+			qAsset* pAsset = (qAsset*)task.Param_0;
+			ASSET_TYPE Type = pAsset->GetAssetType();
+			qAssetMgr::GetInst()->DeleteAsset(Type, pAsset->GetKey());
+		}
+		break;
 		}
 	}
 

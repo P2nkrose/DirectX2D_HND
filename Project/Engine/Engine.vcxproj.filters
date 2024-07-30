@@ -31,9 +31,6 @@
     <Filter Include="04. Manager\03. KeyMgr">
       <UniqueIdentifier>{eee3427c-f3d7-40db-a373-bc896cc27109}</UniqueIdentifier>
     </Filter>
-    <Filter Include="04. Manager\TaskMgr">
-      <UniqueIdentifier>{3ccef5f2-8118-4039-b84d-8dbb082b4c09}</UniqueIdentifier>
-    </Filter>
     <Filter Include="04. Manager\04. LevelMgr">
       <UniqueIdentifier>{51ee27bc-cb97-46e0-a012-2cc210a8c129}</UniqueIdentifier>
     </Filter>
@@ -160,6 +157,9 @@
     <Filter Include="HLSL\02. Render\03. PostProcess">
       <UniqueIdentifier>{c0389faa-918c-4790-b5dd-488f2e3dc7f8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. Manager\08. TaskMgr">
+      <UniqueIdentifier>{3ccef5f2-8118-4039-b84d-8dbb082b4c09}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -283,7 +283,7 @@
       <Filter>04. Manager\07. CollisionMgr</Filter>
     </ClInclude>
     <ClInclude Include="qTaskMgr.h">
-      <Filter>04. Manager\TaskMgr</Filter>
+      <Filter>04. Manager\08. TaskMgr</Filter>
     </ClInclude>
     <ClInclude Include="qSprite.h">
       <Filter>06. Asset\07. Sprite</Filter>
@@ -411,7 +411,7 @@
       <Filter>04. Manager\07. CollisionMgr</Filter>
     </ClCompile>
     <ClCompile Include="qTaskMgr.cpp">
-      <Filter>04. Manager\TaskMgr</Filter>
+      <Filter>04. Manager\08. TaskMgr</Filter>
     </ClCompile>
     <ClCompile Include="qSprite.cpp">
       <Filter>06. Asset\07. Sprite</Filter>

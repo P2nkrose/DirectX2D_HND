@@ -25,7 +25,7 @@ void qTestLevel::CreateTestLevel()
 	Ptr<qMaterial> pAlphaBlendMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DAlphaBlendMtrl");
 	Ptr<qMaterial> pDebugShapeMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"DebugShapeMtrl");
 
-	Ptr<qTexture> pTexture = qAssetMgr::GetInst()->Load<qTexture>(L"PlayerTex", L"texture\\Character.png");
+	Ptr<qTexture> pTexture = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\Character.png");
 
 
 	pAlphaBlendMtrl->SetTexParam(TEX_0, pTexture);
@@ -115,7 +115,9 @@ void qTestLevel::CreateTestLevel()
 	pPlayer->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
 	pPlayer->MeshRender()->SetMaterial(pMtrl);
 	
-	pPlayer->FlipBookComponent()->AddFlipBook(5, qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Link_MoveDown"));
+	Ptr<qFlipBook> pFlipBook = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\Link_MoveDown.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(5, pFlipBook);
+	
 	pPlayer->FlipBookComponent()->Play(5, 10, true);
 
 	pLevel->AddObject(3, pPlayer);
@@ -184,7 +186,7 @@ void qTestLevel::CreateTestLevel()
 	pTileMapObj->TileMap()->SetRowCol(20, 20);
 	pTileMapObj->TileMap()->SetTileSize(Vec2(64.f, 64.f));
 
-	Ptr<qTexture> pTileAtlas = qAssetMgr::GetInst()->Load<qTexture>(L"TileAtlasTex", L"texture\\TILE.bmp");
+	Ptr<qTexture> pTileAtlas = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\TILE.bmp");
 	pTileMapObj->TileMap()->SetAtlasTexture(pTileAtlas);
 	pTileMapObj->TileMap()->SetAtlasTileSize(Vec2(64.f, 64.f));
 
