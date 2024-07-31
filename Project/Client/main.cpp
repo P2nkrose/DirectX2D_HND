@@ -6,6 +6,7 @@
 #include <Engine/qDevice.h>
 #include "ImGui/imgui_impl_win32.h"
 
+#include "qLevelSaveLoad.h"
 #include "qTestLevel.h"
 
 // 전역 변수:
@@ -44,7 +45,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UpdateWindow(hWnd);
 
     // qEngine 객체 초기화
-    if (FAILED(qEngine::GetInst()->Init(hWnd, POINT{1280, 768})))
+    if (FAILED(qEngine::GetInst()->Init(hWnd
+                                      , POINT{ 1600, 900 }
+                                      , (OBJECT_SAVE)&qLevelSaveLoad::SaveGameObject
+                                      , (OBJECT_LOAD)&qLevelSaveLoad::LoadGameObject)))
     {
         MessageBox(nullptr, L"qEngine 초기화 실패", L"엔진 초기화 실패", MB_OK);
         return 0;

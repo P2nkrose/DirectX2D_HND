@@ -10,6 +10,7 @@
 #include "qRenderMgr.h"
 #include "qCollisionMgr.h"
 #include "qTaskMgr.h"
+#include "qPrefab.h"
 
 
 qEngine::qEngine()
@@ -23,7 +24,7 @@ qEngine::~qEngine()
 
 }
 
-int qEngine::Init(HWND _wnd, POINT _ptResolution)
+int qEngine::Init(HWND _wnd, POINT _ptResolution, OBJECT_SAVE _SaveFunc, OBJECT_LOAD _Func)
 {
 	m_hWnd = _wnd;
 	m_ptResolution = _ptResolution;
@@ -44,8 +45,15 @@ int qEngine::Init(HWND _wnd, POINT _ptResolution)
 	qLevelMgr::GetInst()->Init();
 
 
+	// Prefab Function µî·Ï
+	qPrefab::g_ObjectSaveFunc = _SaveFunc;
+	qPrefab::g_ObjectLoadFunc = _Func;
+
+
 	return S_OK;
 }
+
+
 
 void qEngine::Progress()
 {

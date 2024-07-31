@@ -13,8 +13,7 @@ public:
 
 public:
 	void SetAtlasTex(Ptr<qTexture> _Tex);
-
-
+	string GetSpriteName() { return m_SpriteName; }
 
 
 private:
@@ -23,8 +22,22 @@ private:
 private:
 	void Atlas();
 	void AtlasInfo();
+	void SpriteInfo();
+	void CreateSprite();
 
 private:
 	Ptr<qTexture>		m_AtlasTex;
+
+	string             m_SpriteName;
+
+	ImVec2				ImageRectMin;		// Image 위젯 좌상단 실제 위치
+
+	ImVec2				m_MousePos;			// 실제 마우스 위치
+
+	ImVec2				m_MouseLT;			// 마우스 위치에 해당하는 Texture의 픽셀 좌표 Left Top
+	ImVec2				m_MouseRB;			// 마우스 위치에 해당하는 Texture의 픽셀 좌표 Right Bottom
+
+	ImVec2				LeftTop;
+	ImVec2				RightBottom;
 };
 

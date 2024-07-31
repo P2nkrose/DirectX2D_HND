@@ -55,7 +55,7 @@ void SE_AtlasView::SetAtlasTex(Ptr<qTexture> _Tex)
 
 	m_AtlasTex = _Tex;
 
-	m_WidthSize = m_AtlasTex->Width();
+	m_WidthSize = (float)m_AtlasTex->Width();
 }
 
 void SE_AtlasView::WheelCheck()

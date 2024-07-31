@@ -230,19 +230,23 @@ void qTestLevel::CreateTestLevel()
 
 void qTestLevel::CreatePrefab()
 {
-	qGameObject* pProto = new qGameObject;
-
-	pProto->AddComponent(new qTransform);
-	pProto->AddComponent(new qMeshRender);
-	pProto->AddComponent(new qMissileScript);
-
-	pProto->Transform()->SetRelativeScale(100.f, 100.f, 1.f);
-
-	pProto->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	pProto->MeshRender()->SetMaterial(qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl"));
-
-	Ptr<qPrefab> pPrefab = new qPrefab;
-	pPrefab->SetProtoObject(pProto);
-
-	qAssetMgr::GetInst()->AddAsset<qPrefab>(L"MissilePref", pPrefab);
+	//qGameObject* pProto = new qGameObject;
+	//pProto->SetName(L"Missile");
+	//pProto->AddComponent(new qTransform);
+	//pProto->AddComponent(new qMeshRender);
+	//pProto->AddComponent(new qMissileScript);
+	//
+	//pProto->Transform()->SetRelativeScale(100.f, 100.f, 1.f);
+	//
+	//pProto->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	//pProto->MeshRender()->SetMaterial(qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl"));
+	//
+	//Ptr<qPrefab> pPrefab = new qPrefab;
+	//pPrefab->SetProtoObject(pProto);
+	//
+	//qAssetMgr::GetInst()->AddAsset<qPrefab>(L"MissilePref", pPrefab);
+	//
+	//wstring FilePath = qPathMgr::GetInst()->GetContentPath();
+	//FilePath += L"prefab\\Missile.pref";
+	//pPrefab->Save(FilePath);
 }

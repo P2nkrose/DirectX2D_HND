@@ -143,9 +143,8 @@ void qEditorMgr::CreateEditorUI()
 	pUI = new SpriteEditor;
 	pUI->Init();
 	pUI->SetName("SpriteEditor");
-	pUI->SetActive(false);
+	pUI->SetActive(true);
 	m_mapUI.insert(make_pair(pUI->GetName(), pUI));
-
 }
 
 

@@ -1,9 +1,11 @@
 #pragma once
 #include "SE_Sub.h"
 
+
 class SE_AtlasView : public SE_Sub
 {
 public:
+	friend class SE_Detail;
 	SE_AtlasView();
 	~SE_AtlasView();
 
@@ -13,6 +15,10 @@ public:
 
 public:
 	void SetAtlasTex(Ptr<qTexture> _Tex);
+
+public:
+	ImVec2 GetLeftTop() { return m_MouseLT; }
+	ImVec2 GetRightBottom() { return m_MouseRB; }
 
 private:
 	void WheelCheck();

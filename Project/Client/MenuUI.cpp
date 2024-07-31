@@ -45,6 +45,8 @@ void MenuUI::Update()
 	GameObject();
 
 	Assets();
+
+	Editor();
 }
 
 void MenuUI::File()
@@ -244,17 +246,14 @@ void MenuUI::Assets()
 			pMtrl->Save(Key);
 		}
 
+		//// Sprite Editor ÄÑ°í ²ô±â
+		//EditorUI* pSpriteEditor = qEditorMgr::GetInst()->FindEditorUI("SpriteEditor");
+		//bool IsActive = pSpriteEditor->IsActive();
 
-		// Sprite Editor ÄÑ°í ²ô±â
-		EditorUI* pSpriteEditor = qEditorMgr::GetInst()->FindEditorUI("SpriteEditor");
-		bool IsActive = pSpriteEditor->IsActive();
-
-		if (ImGui::MenuItem("Sprite Editor", nullptr, &IsActive))
-		{
-			qEditorMgr::GetInst()->FindEditorUI("SpriteEditor")->SetActive(IsActive);
-		}
-
-
+		//if (ImGui::MenuItem("Sprite Editor", nullptr, &IsActive))
+		//{
+		//	qEditorMgr::GetInst()->FindEditorUI("SpriteEditor")->SetActive(IsActive);
+		//}
 
 
 		// Default FlipBook ¸¸µé±â
@@ -265,6 +264,24 @@ void MenuUI::Assets()
 			qAssetMgr::GetInst()->AddAsset<qFlipBook>(Key, pFlipBook);
 		}
 
+
+		ImGui::EndMenu();
+	}
+}
+
+void MenuUI::Editor()
+{
+	if (ImGui::BeginMenu("Editor"))
+	{
+
+		// Sprite Editor ÄÑ°í ²ô±â
+		EditorUI* pSpriteEditor = qEditorMgr::GetInst()->FindEditorUI("SpriteEditor");
+		bool IsActive = pSpriteEditor->IsActive();
+
+		if (ImGui::MenuItem("Sprite Editor", nullptr, &IsActive))
+		{
+			qEditorMgr::GetInst()->FindEditorUI("SpriteEditor")->SetActive(IsActive);
+		}
 
 		ImGui::EndMenu();
 	}

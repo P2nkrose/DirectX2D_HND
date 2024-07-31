@@ -24,10 +24,10 @@ public:
 	ASSET_TYPE GetAssetType() { return m_Type; }
 	UINT GetRefCount() { return m_RefCount; }
 	bool IsEngineAsset() { return m_Engine; }
+	void SetRelativePath(const wstring& _path) { m_RelativePath = _path; }
 
 protected:
 	void SetKey(const wstring& _Key) { m_Key = _Key; }
-	void SetRelativePath(const wstring& _path) { m_RelativePath = _path; }
 	void SetEngineAsset() { m_Engine = true; }
 
 private:

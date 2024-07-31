@@ -137,7 +137,7 @@ void Outliner::GameObjectClicked(DWORD_PTR _Param)
 
 	Inspector* pInspector = (Inspector*)qEditorMgr::GetInst()->FindEditorUI("Inspector");
 	pInspector->SetTargetObject(pObject);
-	ImGui::SetWindowFocus(nullptr);
+	//ImGui::SetWindowFocus(nullptr);
 }
 
 
