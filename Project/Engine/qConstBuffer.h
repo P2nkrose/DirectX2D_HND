@@ -13,6 +13,7 @@ public:
 
 	void SetData(void* _pData);
 	void Binding();
+	void Binding_CS();
 
 	virtual qConstBuffer* Clone() { return nullptr; }
 

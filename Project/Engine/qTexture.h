@@ -10,7 +10,10 @@ public:
 
 public:
 	void Binding(UINT _RegisterNum);
+	void Binding_CS_UAV(UINT _RegisterNum);
+
 	static void Clear(UINT _RegisterNum);
+	void Clear_CS_UAV();
 
 	virtual int Load(const wstring& _FilePath) override;
 	virtual int Save(const wstring& _FilePath) override;
@@ -45,7 +48,9 @@ private:
 	ComPtr<ID3D11ShaderResourceView>	m_SRV;		// Shader Resource View
 	ComPtr<ID3D11UnorderedAccessView>	m_UAV;		// Unordered Access View
 
-	D3D11_TEXTURE2D_DESC			m_Desc;
+	D3D11_TEXTURE2D_DESC				m_Desc;
+
+	UINT								m_RecentBindingRegisterNum;
 
 };
 

@@ -48,5 +48,9 @@ void qConstBuffer::Binding()
 	CONTEXT->DSSetConstantBuffers((UINT)m_CBType, 1, m_CB.GetAddressOf());
 	CONTEXT->GSSetConstantBuffers((UINT)m_CBType, 1, m_CB.GetAddressOf());
 	CONTEXT->PSSetConstantBuffers((UINT)m_CBType, 1, m_CB.GetAddressOf());
+}
+
+void qConstBuffer::Binding_CS()
+{
 	CONTEXT->CSSetConstantBuffers((UINT)m_CBType, 1, m_CB.GetAddressOf());
 }

@@ -192,11 +192,13 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="qMaterial.h" />
     <ClInclude Include="qMesh.h" />
     <ClInclude Include="qMeshRender.h" />
+    <ClInclude Include="qParticleSystem.h" />
     <ClInclude Include="qPathMgr.h" />
     <ClInclude Include="qPrefab.h" />
     <ClInclude Include="qRenderComponent.h" />
     <ClInclude Include="qRenderMgr.h" />
     <ClInclude Include="qScript.h" />
+    <ClInclude Include="qSetColorCS.h" />
     <ClInclude Include="qShader.h" />
     <ClInclude Include="qSprite.h" />
     <ClInclude Include="qStructuredBuffer.h" />
@@ -244,12 +246,14 @@ call EngineHeaderCopy.bat</Command>
     <ClCompile Include="qMaterial.cpp" />
     <ClCompile Include="qMesh.cpp" />
     <ClCompile Include="qMeshRender.cpp" />
+    <ClCompile Include="qParticleSystem.cpp" />
     <ClCompile Include="qPathMgr.cpp" />
     <ClCompile Include="qPrefab.cpp" />
     <ClCompile Include="qRenderComponent.cpp" />
     <ClCompile Include="qRenderMgr.cpp" />
     <ClCompile Include="qRigidBody.cpp" />
     <ClCompile Include="qScript.cpp" />
+    <ClCompile Include="qSetColorCS.cpp" />
     <ClCompile Include="qShader.cpp" />
     <ClCompile Include="qSprite.cpp" />
     <ClCompile Include="qStructuredBuffer.cpp" />
@@ -276,6 +280,12 @@ call EngineHeaderCopy.bat</Command>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
     <FxCompile Include="postprocess.fx">
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+    </FxCompile>
+    <FxCompile Include="setcolor.fx">
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Effect</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Effect</ShaderType>

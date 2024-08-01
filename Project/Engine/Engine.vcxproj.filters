@@ -160,6 +160,12 @@
     <Filter Include="04. Manager\08. TaskMgr">
       <UniqueIdentifier>{3ccef5f2-8118-4039-b84d-8dbb082b4c09}</UniqueIdentifier>
     </Filter>
+    <Filter Include="HLSL\03. Compute">
+      <UniqueIdentifier>{6bb9bf2d-1fbe-4f1b-a153-63cdefc9a8de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HLSL\03. Compute\01. SetColorShader">
+      <UniqueIdentifier>{6bf94827-2d59-41eb-a109-6c219d71c0e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -309,6 +315,12 @@
     <ClInclude Include="qRigidBody.h">
       <Filter>08. Component\06. RigidBody</Filter>
     </ClInclude>
+    <ClInclude Include="qParticleSystem.h">
+      <Filter>08. Component\RenderComponent\03. ParticleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="qSetColorCS.h">
+      <Filter>HLSL\03. Compute\01. SetColorShader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -437,6 +449,12 @@
     <ClCompile Include="qRigidBody.cpp">
       <Filter>08. Component\06. RigidBody</Filter>
     </ClCompile>
+    <ClCompile Include="qParticleSystem.cpp">
+      <Filter>08. Component\RenderComponent\03. ParticleSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="qSetColorCS.cpp">
+      <Filter>HLSL\03. Compute\01. SetColorShader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -464,6 +482,9 @@
     </FxCompile>
     <FxCompile Include="postprocess.fx">
       <Filter>HLSL\02. Render\03. PostProcess</Filter>
+    </FxCompile>
+    <FxCompile Include="setcolor.fx">
+      <Filter>HLSL\03. Compute</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

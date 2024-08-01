@@ -16,6 +16,8 @@
 #include <Scripts/qMissileScript.h>
 #include <Scripts/qCameraMoveScript.h>
 
+#include <Engine/qSetColorCS.h>
+
 #include "qLevelSaveLoad.h"
 
 void qTestLevel::CreateTestLevel()
@@ -26,12 +28,24 @@ void qTestLevel::CreateTestLevel()
 	Ptr<qMaterial> pDebugShapeMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"DebugShapeMtrl");
 
 	Ptr<qTexture> pTexture = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\Character.png");
-
-
 	pAlphaBlendMtrl->SetTexParam(TEX_0, pTexture);
 
 
 	CreatePrefab();
+
+
+	// 컴퓨트 쉐이더 테스트용 텍스쳐 생성
+	Ptr<qTexture> pTestTex = qAssetMgr::GetInst()->CreateTexture(L"ComputeShaderTestTex"
+										, 1026, 1026, DXGI_FORMAT_R8G8B8A8_UNORM
+										, D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_UNORDERED_ACCESS);
+
+
+	qSetColorCS cs;
+	cs.SetTargetTexture(pTestTex);
+	cs.SetClearColor(Vec4(0.f, 1.f, 0.f, 1.f));
+	cs.Execute();
+	pMtrl->SetTexParam(TEX_0, pTestTex);
+
 
 	//wstring StrLevelLoadPath = qPathMgr::GetInst()->GetContentPath();
 	//StrLevelLoadPath += L"level\\Temp.lv";
@@ -153,24 +167,24 @@ void qTestLevel::CreateTestLevel()
 
 
 
-	//// Monster Object
-	//qGameObject* pMonster = new qGameObject;
-	//pMonster->SetName(L"Monster");
-	//
-	//pMonster->AddComponent(new qTransform);
-	//pMonster->AddComponent(new qMeshRender);
-	//pMonster->AddComponent(new qCollider2D);
-	//
-	//pMonster->Transform()->SetRelativePos(-400.f, 0.f, 100.f);
-	//pMonster->Transform()->SetRelativeScale(150.f, 150.f, 1.f);
-	//
-	//pMonster->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
-	//pMonster->Collider2D()->SetScale(Vec3(1.2f, 1.2f, 1.f));
-	//
-	//pMonster->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	//pMonster->MeshRender()->SetMaterial(pMtrl);
-	//
-	//m_CurLevel->AddObject(4, pMonster);
+	// Monster Object
+	qGameObject* pMonster = new qGameObject;
+	pMonster->SetName(L"Monster");
+	
+	pMonster->AddComponent(new qTransform);
+	pMonster->AddComponent(new qMeshRender);
+	pMonster->AddComponent(new qCollider2D);
+	
+	pMonster->Transform()->SetRelativePos(-400.f, 0.f, 100.f);
+	pMonster->Transform()->SetRelativeScale(150.f, 150.f, 1.f);
+	
+	pMonster->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pMonster->Collider2D()->SetScale(Vec3(1.2f, 1.2f, 1.f));
+	
+	pMonster->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pMonster->MeshRender()->SetMaterial(pMtrl);
+	
+	pLevel->AddObject(4, pMonster);
 
 
 

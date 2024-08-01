@@ -17,7 +17,7 @@ private:
 
 private:
 	void SelectShader(DWORD_PTR _ListUI);
-
+	void SaveMaterialToFile();
 	
 private:
 	TEX_PARAM		m_SelectTexParam;
