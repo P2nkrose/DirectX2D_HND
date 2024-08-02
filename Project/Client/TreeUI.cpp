@@ -274,13 +274,18 @@ void TreeUI::SetDroppedNode(TreeNode* _Node)
 
 void TreeUI::PopupMenu(TreeNode* _Node)
 {
+	//if (m_PopupInst && m_PopupFunc)
+	//{
+	//	(m_PopupInst->*m_PopupFunc)((DWORD_PTR)_Node);
+	//	
+	//	// 함수포인터
+	//	//Content* pUI = (Content*)CEditorMgr::GetInst()->FindEditorUI("Content");
+	//	//pUI->ClikedFunc((DWORD_PTR)_Node);
+	//}
+
 	if (m_PopupInst && m_PopupFunc)
 	{
 		(m_PopupInst->*m_PopupFunc)((DWORD_PTR)_Node);
-		
-		// 함수포인터
-		//Content* pUI = (Content*)CEditorMgr::GetInst()->FindEditorUI("Content");
-		//pUI->ClikedFunc((DWORD_PTR)_Node);
 	}
 }
 

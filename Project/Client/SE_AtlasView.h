@@ -41,6 +41,6 @@ private:
 
 	float				m_WidthSize;
 	float				m_WheelScale;
-	float				m_Ratio;		// 실제 해상도 대비 출력 이미지의 비율
+	float				m_Ratio;			// 실제 해상도 대비 출력 이미지의 비율
 };
 

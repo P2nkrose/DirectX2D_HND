@@ -28,7 +28,7 @@ void SpriteEditor::Init()
 	m_Detail->m_Owner = this;
 
 	// 임시로 두는것
-	m_Detail->SetAtlasTex(qAssetMgr::GetInst()->Load<qTexture>(L"texture\\link.png", L"texture\\link.png"));
+	//m_Detail->SetAtlasTex(qAssetMgr::GetInst()->Load<qTexture>(L"texture\\link.png", L"texture\\link.png"));
 }
 
 void SpriteEditor::Update()

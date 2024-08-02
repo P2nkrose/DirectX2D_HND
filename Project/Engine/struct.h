@@ -57,6 +57,19 @@ struct tPixel
 };
 
 
+// 파티클
+struct tParticle
+{
+	Vec3	vLocalPos;
+	Vec3	vWorldPos;
+	Vec4	vColor;
+
+	float	Mass;
+	int		Active;
+};
+
+
+
 
 // ======================
 //  상수 버퍼 연동 구조체

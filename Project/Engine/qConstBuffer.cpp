@@ -14,6 +14,8 @@ qConstBuffer::~qConstBuffer()
 
 int qConstBuffer::Create(CB_TYPE _type, UINT _BufferSize)
 {
+	assert(0 == (_BufferSize % 16));
+
 	m_CBType = _type;
 
 	m_Desc.ByteWidth = _BufferSize;

@@ -16,6 +16,7 @@ public:
 	
 public:
 	Ptr<qTexture> GetAtlasTexture() { return m_Atlas; }		// 이 Sprite 조각이 어느 아틀라스에서 나온 조각인지
+	Ptr<qTexture> GetSprite() { return m_Sprite; }
 
 	void SetLeftTop(Vec2 _LeftTop);			
 	void SetSlice(Vec2 _Slice);				
@@ -31,6 +32,8 @@ public:
 
 private:
 	Ptr<qTexture>		m_Atlas;
+	Ptr<qTexture>		m_Sprite;
+
 	Vec2				m_LeftTopUV;	// UV 좌표계
 	Vec2				m_SliceUV;		// UV 좌표계
 	Vec2				m_BackgroundUV;

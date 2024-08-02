@@ -28,7 +28,7 @@ private:
 private:
 	Ptr<qTexture>		m_AtlasTex;
 
-	string             m_SpriteName;
+	string				m_SpriteName;
 
 	ImVec2				ImageRectMin;		// Image À§Á¬ ÁÂ»ó´Ü ½ÇÁ¦ À§Ä¡
 

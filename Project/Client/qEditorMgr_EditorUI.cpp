@@ -13,9 +13,15 @@
 #include "Outliner.h"
 #include "ListUI.h"
 #include "MenuUI.h"
+
 #include "SpriteEditor.h"
 #include "SE_AtlasView.h"
 #include "SE_Detail.h"
+
+#include "AnimationEditor.h"
+#include "AE_Detail.h"
+#include "AE_Preview.h"
+#include "AE_SpriteView.h"
 
 
 void qEditorMgr::InitImGui()
@@ -143,7 +149,7 @@ void qEditorMgr::CreateEditorUI()
 	pUI = new SpriteEditor;
 	pUI->Init();
 	pUI->SetName("SpriteEditor");
-	pUI->SetActive(true);
+	pUI->SetActive(false);
 	m_mapUI.insert(make_pair(pUI->GetName(), pUI));
 }
 

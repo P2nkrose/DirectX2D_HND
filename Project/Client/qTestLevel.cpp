@@ -17,6 +17,7 @@
 #include <Scripts/qCameraMoveScript.h>
 
 #include <Engine/qSetColorCS.h>
+#include <Engine/qStructuredBuffer.h>
 
 #include "qLevelSaveLoad.h"
 
@@ -28,6 +29,8 @@ void qTestLevel::CreateTestLevel()
 	Ptr<qMaterial> pDebugShapeMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"DebugShapeMtrl");
 
 	Ptr<qTexture> pTexture = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\Character.png");
+
+
 	pAlphaBlendMtrl->SetTexParam(TEX_0, pTexture);
 
 
@@ -45,6 +48,20 @@ void qTestLevel::CreateTestLevel()
 	cs.SetClearColor(Vec4(0.f, 1.f, 0.f, 1.f));
 	cs.Execute();
 	pMtrl->SetTexParam(TEX_0, pTestTex);
+
+	// Set Data 
+	//qStructuredBuffer* pBuffer = new qStructuredBuffer;
+	//pBuffer->Create(sizeof(tParticle), 1, SB_TYPE::SRV_UAV, true);
+
+	//tParticle Particle = {};
+	//tParticle Particle2 = {};
+
+	//Particle.Active = true;
+	//Particle.vColor = Vec4(1.f, 0.f, 0.f, 1.f);
+	//pBuffer->SetData(&Particle);
+
+	//pBuffer->GetData(&Particle2);
+	//delete pBuffer;
 
 
 	//wstring StrLevelLoadPath = qPathMgr::GetInst()->GetContentPath();
@@ -236,7 +253,7 @@ void qTestLevel::CreateTestLevel()
 	qCollisionMgr::GetInst()->CollisionCheck(5, 4);		// Player Projectile vs Monster
 
 
-	pMtrl->Save(L"material\\std2d.mtrl");
+	//pMtrl->Save(L"material\\std2d.mtrl");
 
 	// 레벨 시작
 	//m_CurLevel->Begin();

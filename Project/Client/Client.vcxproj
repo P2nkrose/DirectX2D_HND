@@ -144,7 +144,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AnimationUI.h" />
+    <ClInclude Include="AE_Detail.h" />
+    <ClInclude Include="AE_Preview.h" />
+    <ClInclude Include="AE_SpriteView.h" />
+    <ClInclude Include="AE_Sub.h" />
+    <ClInclude Include="AnimationEditor.h" />
     <ClInclude Include="AssetUI.h" />
     <ClInclude Include="CameraUI.h" />
     <ClInclude Include="Client.h" />
@@ -198,7 +202,11 @@
     <ClInclude Include="TreeUI.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AnimationUI.cpp" />
+    <ClCompile Include="AE_Detail.cpp" />
+    <ClCompile Include="AE_Preview.cpp" />
+    <ClCompile Include="AE_SpriteView.cpp" />
+    <ClCompile Include="AE_Sub.cpp" />
+    <ClCompile Include="AnimationEditor.cpp" />
     <ClCompile Include="AssetUI.cpp" />
     <ClCompile Include="CameraUI.cpp" />
     <ClCompile Include="Collider2DUI.cpp" />

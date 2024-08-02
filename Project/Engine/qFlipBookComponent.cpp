@@ -138,7 +138,7 @@ void qFlipBookComponent::Binding()
 		CB->SetData(&tInfo);
 		CB->Binding();
 
-		// FlipBook Sprite 아틀라스 텍스쳐 전용 레지스터번호 t10 에 바인딩
+		// FlipBook Sprite 아틀라스 텍스쳐 전용 레지스터번호 t10 에 바인딩		
 		Ptr<qTexture> pAtlas = m_CurFrmSprite->GetAtlasTexture();
 		pAtlas->Binding(10);
 	}

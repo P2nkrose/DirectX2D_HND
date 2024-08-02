@@ -29,17 +29,17 @@ void TextureUI::Update()
 	// 텍스처 이름
 	OutputAssetName();
 
-	// 해상도
+	//// 해상도
 	UINT width = pTexture->Width();
 	UINT height = pTexture->Height();
-
+	
 	char buff[50] = {};
 	sprintf_s(buff, "%d", width);
-
+	
 	ImGui::Text("Width");
 	ImGui::SameLine(100);
 	ImGui::InputText("##TextureWidth", buff, 50, ImGuiInputTextFlags_ReadOnly);
-
+	
 	sprintf_s(buff, "%d", height);
 	ImGui::Text("Height");
 	ImGui::SameLine(100);

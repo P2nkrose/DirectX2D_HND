@@ -116,12 +116,6 @@
     <Filter Include="EditorUI\01. Inspector\ComponentUI\10. RigidBodyUI">
       <UniqueIdentifier>{04c4c3fd-92fa-4fdf-99a4-a302bd1d4643}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EditorUI\09. AnimationUI">
-      <UniqueIdentifier>{cf53b366-708b-40ad-ac39-1b9b91be6bd4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="EditorUI\09. AnimationUI\01. Popup">
-      <UniqueIdentifier>{76b5652c-e39b-4aad-aca6-b67191c63f7b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="EditorUI\08. SpriteEditor">
       <UniqueIdentifier>{1b43d7a7-d19a-44df-9175-968b93764b30}</UniqueIdentifier>
     </Filter>
@@ -133,6 +127,21 @@
     </Filter>
     <Filter Include="EditorUI\08. SpriteEditor\SE_Sub\SE_Detail">
       <UniqueIdentifier>{b3198dca-5b96-44d6-9a92-462fcee16a07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorUI\09. AnimationEditor">
+      <UniqueIdentifier>{cf53b366-708b-40ad-ac39-1b9b91be6bd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorUI\09. AnimationEditor\AE_Sub">
+      <UniqueIdentifier>{76b5652c-e39b-4aad-aca6-b67191c63f7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorUI\09. AnimationEditor\AE_Sub\AE_Detail">
+      <UniqueIdentifier>{4dd7b595-aecf-41d5-adc6-eda5ff066c07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorUI\09. AnimationEditor\AE_Sub\AE_Preview">
+      <UniqueIdentifier>{eecf7c6c-8479-4257-b75c-64911edd2489}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EditorUI\09. AnimationEditor\AE_Sub\AE_SpriteView">
+      <UniqueIdentifier>{8cb8b705-455b-492c-bf0a-b58129f84dec}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -274,8 +283,8 @@
     <ClInclude Include="ScriptUI.h">
       <Filter>EditorUI\01. Inspector\ComponentUI\09. ScriptUI</Filter>
     </ClInclude>
-    <ClInclude Include="AnimationUI.h">
-      <Filter>EditorUI\09. AnimationUI</Filter>
+    <ClInclude Include="AnimationEditor.h">
+      <Filter>EditorUI\09. AnimationEditor</Filter>
     </ClInclude>
     <ClInclude Include="qLevelSaveLoad.h">
       <Filter>Manager\03. LevelSaveLoad</Filter>
@@ -291,6 +300,18 @@
     </ClInclude>
     <ClInclude Include="SE_AtlasView.h">
       <Filter>EditorUI\08. SpriteEditor\SE_Sub\SE_AtlasView</Filter>
+    </ClInclude>
+    <ClInclude Include="AE_Sub.h">
+      <Filter>EditorUI\09. AnimationEditor\AE_Sub</Filter>
+    </ClInclude>
+    <ClInclude Include="AE_Detail.h">
+      <Filter>EditorUI\09. AnimationEditor\AE_Sub\AE_Detail</Filter>
+    </ClInclude>
+    <ClInclude Include="AE_Preview.h">
+      <Filter>EditorUI\09. AnimationEditor\AE_Sub\AE_Preview</Filter>
+    </ClInclude>
+    <ClInclude Include="AE_SpriteView.h">
+      <Filter>EditorUI\09. AnimationEditor\AE_Sub\AE_SpriteView</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -440,8 +461,8 @@
     <ClCompile Include="ScriptUI.cpp">
       <Filter>EditorUI\01. Inspector\ComponentUI\09. ScriptUI</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationUI.cpp">
-      <Filter>EditorUI\09. AnimationUI</Filter>
+    <ClCompile Include="AnimationEditor.cpp">
+      <Filter>EditorUI\09. AnimationEditor</Filter>
     </ClCompile>
     <ClCompile Include="qLevelSaveLoad.cpp">
       <Filter>Manager\03. LevelSaveLoad</Filter>
@@ -457,6 +478,18 @@
     </ClCompile>
     <ClCompile Include="SE_AtlasView.cpp">
       <Filter>EditorUI\08. SpriteEditor\SE_Sub\SE_AtlasView</Filter>
+    </ClCompile>
+    <ClCompile Include="AE_Sub.cpp">
+      <Filter>EditorUI\09. AnimationEditor\AE_Sub</Filter>
+    </ClCompile>
+    <ClCompile Include="AE_Detail.cpp">
+      <Filter>EditorUI\09. AnimationEditor\AE_Sub\AE_Detail</Filter>
+    </ClCompile>
+    <ClCompile Include="AE_Preview.cpp">
+      <Filter>EditorUI\09. AnimationEditor\AE_Sub\AE_Preview</Filter>
+    </ClCompile>
+    <ClCompile Include="AE_SpriteView.cpp">
+      <Filter>EditorUI\09. AnimationEditor\AE_Sub\AE_SpriteView</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
