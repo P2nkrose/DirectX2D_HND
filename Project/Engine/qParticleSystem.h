@@ -1,6 +1,8 @@
 #pragma once
 #include "qRenderComponent.h"
 
+#include "qParticleTickCS.h"
+
 class qStructuredBuffer;
 
 class qParticleSystem : public qRenderComponent
@@ -22,7 +24,7 @@ public:
 
 private:
 	qStructuredBuffer*			m_ParticleBuffer;
-
 	int							m_MaxParticleCount;
+	Ptr<qParticleTickCS>		m_TickCS;
 };
 

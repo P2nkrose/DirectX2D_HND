@@ -50,18 +50,18 @@ void qTestLevel::CreateTestLevel()
 	pMtrl->SetTexParam(TEX_0, pTestTex);
 
 	// Set Data 
-	//qStructuredBuffer* pBuffer = new qStructuredBuffer;
-	//pBuffer->Create(sizeof(tParticle), 1, SB_TYPE::SRV_UAV, true);
+	qStructuredBuffer* pBuffer = new qStructuredBuffer;
+	pBuffer->Create(sizeof(tParticle), 1, SB_TYPE::SRV_UAV, true);
 
-	//tParticle Particle = {};
-	//tParticle Particle2 = {};
+	tParticle Particle = {};
+	tParticle Particle2 = {};
 
-	//Particle.Active = true;
-	//Particle.vColor = Vec4(1.f, 0.f, 0.f, 1.f);
-	//pBuffer->SetData(&Particle);
+	Particle.Active = true;
+	Particle.vColor = Vec4(1.f, 0.f, 0.f, 1.f);
+	pBuffer->SetData(&Particle);
 
-	//pBuffer->GetData(&Particle2);
-	//delete pBuffer;
+	pBuffer->GetData(&Particle2);
+	delete pBuffer;
 
 
 	//wstring StrLevelLoadPath = qPathMgr::GetInst()->GetContentPath();
@@ -221,8 +221,20 @@ void qTestLevel::CreateTestLevel()
 	pTileMapObj->TileMap()->SetAtlasTexture(pTileAtlas);
 	pTileMapObj->TileMap()->SetAtlasTileSize(Vec2(64.f, 64.f));
 
-
 	pLevel->AddObject(2, pTileMapObj);
+
+
+	// Particle Object
+	qGameObject* pParticleObj = new qGameObject;
+
+	pParticleObj->SetName(L"Particle");
+	pParticleObj->AddComponent(new qTransform);
+	pParticleObj->AddComponent(new qParticleSystem);
+
+	pParticleObj->Transform()->SetRelativePos(Vec3(0.f, 0.f, 0.f));
+
+	pLevel->AddObject(0, pParticleObj);
+
 
 
 	// Post Process Object : 후처리용 오브젝트

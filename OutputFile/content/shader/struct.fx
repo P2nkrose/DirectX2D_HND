@@ -9,14 +9,26 @@ struct tLight
 
 struct tLightInfo
 {
-    tLight light;       // 광원 색상정보
-    float3 WorldPos;    // 광원 위치
-    float3 WorldDir;    // 광윈이 진행하는 방향
-    float Radius;       // 광원의 반경
-    float Angle;        // 광원 범위 각도
-    uint Type;          // 광원 종류
-    int3 padding;       // 패딩
+    tLight  light;        // 광원 색상정보
+    float3  WorldPos;     // 광원 위치
+    float3  WorldDir;     // 광윈이 진행하는 방향
+    float   Radius;       // 광원의 반경
+    float   Angle;        // 광원 범위 각도
+    uint    Type;         // 광원 종류
+    int3    padding;      // 패딩
 };
+
+
+// Particle
+struct tParticle
+{
+    float3  vLocalPos;
+    float3  vWorldPos;
+    float4  vColor;
+    float   Mass;
+    int     Active;
+};
+
 
 
 #endif

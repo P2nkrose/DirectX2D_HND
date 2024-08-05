@@ -127,11 +127,13 @@ void qEditorMgr::CreateEditorUI()
 	pUI->SetName("Inspector");
 	m_mapUI.insert(make_pair(pUI->GetName(), pUI));
 
+
 	// Menu
 	pUI = new MenuUI;
 	pUI->Init();
 	pUI->SetName("MainMenu");
 	m_mapUI.insert(make_pair(pUI->GetName(), pUI));
+
 
 	// SE_AtlasView
 	pUI = new SE_AtlasView;
@@ -139,11 +141,13 @@ void qEditorMgr::CreateEditorUI()
 	pUI->SetName("SE_AtlasView");
 	m_mapUI.insert(make_pair(pUI->GetName(), pUI));
 
+
 	// SE_Detail
 	pUI = new SE_Detail;
 	pUI->Init();
 	pUI->SetName("SE_Detail");
 	m_mapUI.insert(make_pair(pUI->GetName(), pUI));
+
 
 	// SpriteEditor
 	pUI = new SpriteEditor;
@@ -151,6 +155,37 @@ void qEditorMgr::CreateEditorUI()
 	pUI->SetName("SpriteEditor");
 	pUI->SetActive(false);
 	m_mapUI.insert(make_pair(pUI->GetName(), pUI));
+
+
+	// AE_Preview
+	pUI = new AE_Preview;
+	pUI->Init();
+	pUI->SetName("AE_Preview");
+	m_mapUI.insert(make_pair(pUI->GetName(), pUI));
+
+
+	// AE_SpriteView
+	pUI = new AE_SpriteView;
+	pUI->Init();
+	pUI->SetName("AE_SpriteView");
+	m_mapUI.insert(make_pair(pUI->GetName(), pUI));
+
+
+	// AE_Detail
+	pUI = new AE_Detail;
+	pUI->Init();
+	pUI->SetName("AE_Detail");
+	m_mapUI.insert(make_pair(pUI->GetName(), pUI));
+
+
+	// Animation Editor
+	pUI = new AnimationEditor;
+	pUI->Init();
+	pUI->SetName("AnimationEditor");
+	pUI->SetActive(true);
+	m_mapUI.insert(make_pair(pUI->GetName(), pUI));
+
+
 }
 
 

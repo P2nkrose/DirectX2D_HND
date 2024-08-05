@@ -148,12 +148,6 @@
     <Filter Include="08. Component\08. Light2D">
       <UniqueIdentifier>{26f02a90-06c5-4631-8167-31ff85b1e673}</UniqueIdentifier>
     </Filter>
-    <Filter Include="HLSL\02. Render\01. 2d">
-      <UniqueIdentifier>{50eddc20-f3d5-44e2-9fb4-1769067aa21d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="HLSL\02. Render\02. 3d">
-      <UniqueIdentifier>{6a0ebd66-6e5c-4ca6-afee-8d002c5a07eb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="HLSL\02. Render\03. PostProcess">
       <UniqueIdentifier>{c0389faa-918c-4790-b5dd-488f2e3dc7f8}</UniqueIdentifier>
     </Filter>
@@ -165,6 +159,15 @@
     </Filter>
     <Filter Include="HLSL\03. Compute\01. SetColorShader">
       <UniqueIdentifier>{6bf94827-2d59-41eb-a109-6c219d71c0e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HLSL\02. Render\01. 2D">
+      <UniqueIdentifier>{50eddc20-f3d5-44e2-9fb4-1769067aa21d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HLSL\02. Render\02. 3D">
+      <UniqueIdentifier>{6a0ebd66-6e5c-4ca6-afee-8d002c5a07eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HLSL\03. Compute\02. ParticleTick">
+      <UniqueIdentifier>{b48532bd-5306-4949-9155-f36a2102bdcc}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -321,6 +324,9 @@
     <ClInclude Include="qSetColorCS.h">
       <Filter>HLSL\03. Compute\01. SetColorShader</Filter>
     </ClInclude>
+    <ClInclude Include="qParticleTickCS.h">
+      <Filter>HLSL\03. Compute\02. ParticleTick</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -455,6 +461,9 @@
     <ClCompile Include="qSetColorCS.cpp">
       <Filter>HLSL\03. Compute\01. SetColorShader</Filter>
     </ClCompile>
+    <ClCompile Include="qParticleTickCS.cpp">
+      <Filter>HLSL\03. Compute\02. ParticleTick</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
@@ -472,19 +481,25 @@
       <Filter>HLSL\01. Header</Filter>
     </FxCompile>
     <FxCompile Include="tilemap.fx">
-      <Filter>HLSL\02. Render\01. 2d</Filter>
+      <Filter>HLSL\02. Render\01. 2D</Filter>
     </FxCompile>
     <FxCompile Include="std2d.fx">
-      <Filter>HLSL\02. Render\01. 2d</Filter>
+      <Filter>HLSL\02. Render\01. 2D</Filter>
     </FxCompile>
     <FxCompile Include="debug.fx">
-      <Filter>HLSL\02. Render\01. 2d</Filter>
+      <Filter>HLSL\02. Render\01. 2D</Filter>
     </FxCompile>
     <FxCompile Include="postprocess.fx">
       <Filter>HLSL\02. Render\03. PostProcess</Filter>
     </FxCompile>
     <FxCompile Include="setcolor.fx">
-      <Filter>HLSL\03. Compute</Filter>
+      <Filter>HLSL\03. Compute\01. SetColorShader</Filter>
+    </FxCompile>
+    <FxCompile Include="particle.fx">
+      <Filter>HLSL\02. Render\01. 2D</Filter>
+    </FxCompile>
+    <FxCompile Include="particletick.fx">
+      <Filter>HLSL\03. Compute\02. ParticleTick</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

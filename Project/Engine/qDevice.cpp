@@ -294,6 +294,18 @@ int qDevice::CreateDepthStencilState()
 	}
 
 
+	// NO_WRITE
+	Desc.DepthEnable = true;							// 깊이 판정을 진행
+	Desc.DepthFunc = D3D11_COMPARISON_LESS;				// 깊이 판정 방식
+	Desc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ZERO;	// 깊이 판정을 성공 시 깊이 기록 여부 (깊이 기록을 하지 않는다)
+	Desc.StencilEnable = false;
+
+	if (FAILED(DEVICE->CreateDepthStencilState(&Desc, m_DSState[(UINT)DS_TYPE::NO_WRITE].GetAddressOf())))
+	{
+		return E_FAIL;
+	}
+
+
 	// NO_TEST_NO_WRITE
 	Desc.DepthEnable = true;
 	Desc.DepthFunc = D3D11_COMPARISON_ALWAYS;				// 모두 통과시키지만

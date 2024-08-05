@@ -130,11 +130,11 @@ void qAssetMgr::CreateEngineTexture()
 
 
 	// Noise Texture 를 미리 만들어놓기
-	//Load<qTexture>(L"texture\\noise\\noise_01.png", L"texture\\noise\\noise_01.png");
-	//Load<qTexture>(L"texture\\noise\\noise_02.png", L"texture\\noise\\noise_02.png");
-	//Load<qTexture>(L"texture\\noise\\noise_03.jpg", L"texture\\noise\\noise_03.jpg");
-	//Load<qTexture>(L"texture\\noise\\noise_04.jpg", L"texture\\noise\\noise_04.jpg");
-	//Load<qTexture>(L"texture\\noise\\noise_05.jpg", L"texture\\noise\\noise_05.jpg");
+	Load<qTexture>(L"texture\\noise\\noise_01.png", L"texture\\noise\\noise_01.png");
+	Load<qTexture>(L"texture\\noise\\noise_02.png", L"texture\\noise\\noise_02.png");
+	Load<qTexture>(L"texture\\noise\\noise_03.jpg", L"texture\\noise\\noise_03.jpg");
+	Load<qTexture>(L"texture\\noise\\noise_04.jpg", L"texture\\noise\\noise_04.jpg");
+	Load<qTexture>(L"texture\\noise\\noise_05.jpg", L"texture\\noise\\noise_05.jpg");
 }
 
 void qAssetMgr::CreateEngineSprite()
@@ -253,6 +253,19 @@ void qAssetMgr::CreateEngineGraphicShader()
 	AddAsset(L"TileMapShader", pShader);
 
 
+	// Particle Shader
+	pShader = new qGraphicShader;
+	pShader->CreateVertexShader(L"shader\\particle.fx", "VS_Particle");
+	pShader->CreatePixelShader(L"shader\\particle.fx", "PS_Particle");
+	pShader->SetRSType(RS_TYPE::CULL_NONE);
+	pShader->SetDSType(DS_TYPE::NO_WRITE);
+	pShader->SetBSType(BS_TYPE::ALPHABLEND);
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_PARTICLE);
+	AddAsset(L"ParticleRenderShader", pShader);
+
+
+
+
 	// GrayFilterShader
 	pShader = new qGraphicShader;
 	pShader->CreateVertexShader(L"shader\\postprocess.fx", "VS_GrayFilter");
@@ -277,8 +290,15 @@ void qAssetMgr::CreateEngineGraphicShader()
 
 }
 
+#include "qParticleTickCS.h"
+
 void qAssetMgr::CreateEngineComputeShader()
 {
+	// ParticleTick
+	Ptr<qComputeShader> pCS = nullptr;
+
+	pCS = new qParticleTickCS;
+	AddAsset<qComputeShader>(L"ParticleTickCS", pCS);
 }
 
 
@@ -307,6 +327,12 @@ void qAssetMgr::CreateEngineMaterial()
 	pMtrl = new qMaterial(true);
 	pMtrl->SetShader(FindAsset<qGraphicShader>(L"TileMapShader"));
 	AddAsset(L"TileMapMtrl", pMtrl);
+
+	// ParticleRenderMtrl
+	pMtrl = new qMaterial(true);
+	pMtrl->SetShader(FindAsset<qGraphicShader>(L"ParticleRenderShader"));
+	AddAsset(L"ParticleRenderMtrl", pMtrl);
+
 
 	// GrayFilterMtrl
 	pMtrl = new qMaterial(true);

@@ -85,6 +85,7 @@ enum class DS_TYPE
 	GREATER,				// 깊이가 더 멀어야 투영 (3D에서 쓰임)
 
 	NO_TEST,				// 깊이판정은 하지만, 무조건 다 투영시킴
+	NO_WRITE,				// 깊이판정은 하고, 자신의 깊이 기록을 하지 않는다. (파티클 시 사용)
 	NO_TEST_NO_WRITE,		// 깊이판정도 항상 통과시키고, 자신의 깊이 기록도 안함
 
 	END,
