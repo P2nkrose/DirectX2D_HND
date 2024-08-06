@@ -276,12 +276,23 @@ void MenuUI::Editor()
 
 		// Sprite Editor ÄÑ°í ²ô±â
 		EditorUI* pSpriteEditor = qEditorMgr::GetInst()->FindEditorUI("SpriteEditor");
-		bool IsActive = pSpriteEditor->IsActive();
+		bool IsActive_SE = pSpriteEditor->IsActive();
 
-		if (ImGui::MenuItem("Sprite Editor", nullptr, &IsActive))
+		if (ImGui::MenuItem("Sprite Editor", nullptr, &IsActive_SE))
 		{
-			qEditorMgr::GetInst()->FindEditorUI("SpriteEditor")->SetActive(IsActive);
+			pSpriteEditor->SetActive(IsActive_SE);
 		}
+
+		// Animation Editor ÄÑ°í ²ô±â
+		EditorUI* pAnimationEditor = qEditorMgr::GetInst()->FindEditorUI("AnimationEditor");
+		bool IsActive_AE = pAnimationEditor->IsActive();
+
+		if (ImGui::MenuItem("Animation Editor", nullptr, &IsActive_AE))
+		{
+			pAnimationEditor->SetActive(IsActive_AE);
+		}
+
+
 
 		ImGui::EndMenu();
 	}

@@ -15,9 +15,18 @@ public:
 	virtual void Update() override;
 
 public:
-	void SetSprite(Ptr<qSprite> _Tex);
-	string GetAnimationName() { return m_AnimationName; }
+	void Animation();
+	void SpriteList();
+	void AddAnimation();
+	void DeleteAnimation();
 
+public:
+	void SetAnim(Ptr<qFlipBook> _FlipBook);
+	string GetAnimName() { return m_AnimName; }
+
+
+private:
+	void SelectAnim(DWORD_PTR _ListUI);
 
 
 private:
@@ -25,7 +34,7 @@ private:
 	Ptr<qFlipBook>				m_CurFlipBook;
 	Ptr<qSprite>				m_CurFrmSprite;
 
-	string						m_AnimationName;
+	string						m_AnimName;
 
 	int							m_CurFrmIdx;
 	int							m_MaxFrm;

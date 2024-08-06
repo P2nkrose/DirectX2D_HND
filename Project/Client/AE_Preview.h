@@ -14,9 +14,11 @@ public:
 	virtual void Init() override;
 	virtual void Update() override;
 
+public:
+	void SetAnim(Ptr<qFlipBook> _FlipBook);
 
 private:
-	Ptr<qSprite>		m_CurSprite;
+	Ptr<qFlipBook>		m_CurFlipBook;
 
 };
 

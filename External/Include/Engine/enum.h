@@ -95,6 +95,7 @@ enum class DS_TYPE
 enum class BS_TYPE
 {
 	DEFAULT,		// 자기 색상을 그대로 그려줌
+	ALPHABLEND_COVERAGE,
 	ALPHABLEND,		// 알파값을 적용시키는 알파블랜드
 	ONE_ONE,		// 1:1로 합산출력함
 	END,

@@ -312,7 +312,6 @@ void qAssetMgr::CreateEngineMaterial()
 	pMtrl->SetShader(FindAsset<qGraphicShader>(L"Std2DShader"));
 	AddAsset(L"Std2DMtrl", pMtrl);
 
-
 	// Std2DAlphaBlendMtrl
 	pMtrl = new qMaterial(true);
 	pMtrl->SetShader(FindAsset<qGraphicShader>(L"Std2DAlphaBlendShader"));
@@ -356,3 +355,4 @@ void qAssetMgr::CreateEngineMaterial()
 	pMtrl->SetTexParam(TEX_5, FindAsset<qTexture>(L"texture\\noise\\noise_05.jpg"));
 	AddAsset(L"DistortionMtrl", pMtrl);
 }
+

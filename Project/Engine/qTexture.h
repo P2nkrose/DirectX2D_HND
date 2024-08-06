@@ -9,10 +9,16 @@ public:
 	~qTexture();
 
 public:
+	// Graphic Shader - t register
 	void Binding(UINT _RegisterNum);
-	void Binding_CS_UAV(UINT _RegisterNum);
-
 	static void Clear(UINT _RegisterNum);
+
+	// Compute Shader - t register
+	void Binding_CS_SRV(UINT _RegisterNum);
+	void Clear_CS_SRV();
+
+	// Compute Shader - u register
+	void Binding_CS_UAV(UINT _RegisterNum);
 	void Clear_CS_UAV();
 
 	virtual int Load(const wstring& _FilePath) override;

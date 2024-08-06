@@ -11,7 +11,7 @@
 qParticleSystem::qParticleSystem()
 	: qRenderComponent(COMPONENT_TYPE::PARTICLESYSTEM)
 	, m_ParticleBuffer(nullptr)
-	, m_MaxParticleCount(100)
+	, m_MaxParticleCount(30)
 {
 	// Mesh / Material
 	SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
@@ -20,18 +20,26 @@ qParticleSystem::qParticleSystem()
 	// ParticleTick ComputeShader
 	m_TickCS = (qParticleTickCS*)qAssetMgr::GetInst()->FindAsset<qComputeShader>(L"ParticleTickCS").Get();
 
+	m_ParticleTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\particle\\CartoonSmoke.png");
+
 	// 파티클 100개 초기 설정
 	tParticle arrParticle[100] = {};
-	Vec2 vResolution = qDevice::GetInst()->GetResolution();
-	Vec3 vStart = Vec3(-vResolution.x / 2.f, 0.f, 100.f);	// 시작 지점을 화면 맨 왼쪽으로
-	float step = vResolution.x / (float)m_MaxParticleCount;	// step(파티클이 띄워져있는 거리)를 전체 해상도에서 파티클 갯수만큼 나눔
+
+	float Angle = XM_2PI / m_MaxParticleCount;
+	//Vec2 vResolution = qDevice::GetInst()->GetResolution();
+	//Vec3 vStart = Vec3(-vResolution.x / 2.f, 0.f, 100.f);	// 시작 지점을 화면 맨 왼쪽으로
+	//float step = vResolution.x / (float)m_MaxParticleCount;	// step(파티클이 띄워져있는 거리)를 전체 해상도에서 파티클 갯수만큼 나눔
+	
+
 
 	for (int i = 0; i < m_MaxParticleCount; ++i)
 	{
 		arrParticle[i].Active = true;
 		arrParticle[i].Mass = 1.f;
 		arrParticle[i].vLocalPos = Vec3(0.f, 0.f, 0.f);
-		arrParticle[i].vWorldPos = vStart + Vec3(step * (float)i, 0.f, 0.f);
+		arrParticle[i].vWorldPos = Vec3(0.f, 0.f, 0.f);
+		arrParticle[i].vColor = Vec4(0.9, 0.34f, 0.5, 1.f);
+		arrParticle[i].vVelocity = Vec3(cosf(Angle * (float)i), sinf(Angle * (float)i), 0.f) * 200.f;
 	}
 
 	//tParticle Particle = {};
@@ -61,13 +69,17 @@ void qParticleSystem::Render()
 	Transform()->Binding();
 
 	// 파티클 버퍼 바인딩
-	m_ParticleBuffer->Binding(20);
+	m_ParticleBuffer->Binding(20);	// t20
 
 	// 재질 정보 바인딩
+	GetMaterial()->SetTexParam(TEX_0, m_ParticleTex);
 	GetMaterial()->Binding();
 
 	// 랜더링
 	GetMesh()->Render_Particle(m_MaxParticleCount);
+
+	// 파티클 버퍼 바인딩 해제
+	m_ParticleBuffer->Clear(20);
 
 }
 

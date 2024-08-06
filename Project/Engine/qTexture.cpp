@@ -23,12 +23,6 @@ void qTexture::Binding(UINT _RegisterNum)
 	CONTEXT->PSSetShaderResources(_RegisterNum, 1, m_SRV.GetAddressOf());
 }
 
-void qTexture::Binding_CS_UAV(UINT _RegisterNum)
-{
-	UINT i = -1;
-	CONTEXT->CSSetUnorderedAccessViews(_RegisterNum, 1, m_UAV.GetAddressOf(), &i);
-	m_RecentBindingRegisterNum = _RegisterNum;
-}
 
 void qTexture::Clear(UINT _RegisterNum)
 {
@@ -39,6 +33,29 @@ void qTexture::Clear(UINT _RegisterNum)
 	CONTEXT->GSSetShaderResources(_RegisterNum, 1, &pSRV);
 	CONTEXT->PSSetShaderResources(_RegisterNum, 1, &pSRV);
 }
+
+
+void qTexture::Binding_CS_SRV(UINT _RegisterNum)
+{
+	m_RecentBindingRegisterNum = _RegisterNum;
+	CONTEXT->CSSetShaderResources(_RegisterNum, 1, m_SRV.GetAddressOf());
+}
+
+void qTexture::Clear_CS_SRV()
+{
+	ID3D11ShaderResourceView* pSRV = nullptr;
+	CONTEXT->CSSetShaderResources(m_RecentBindingRegisterNum, 1, &pSRV);
+}
+
+
+
+void qTexture::Binding_CS_UAV(UINT _RegisterNum)
+{
+	UINT i = -1;
+	CONTEXT->CSSetUnorderedAccessViews(_RegisterNum, 1, m_UAV.GetAddressOf(), &i);
+	m_RecentBindingRegisterNum = _RegisterNum;
+}
+
 
 void qTexture::Clear_CS_UAV()
 {

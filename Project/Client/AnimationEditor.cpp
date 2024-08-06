@@ -8,7 +8,11 @@
 #include "AE_SpriteView.h"
 
 AnimationEditor::AnimationEditor()
+	: m_Preview(nullptr)
+	, m_SpriteView(nullptr)
+	, m_Detail(nullptr)
 {
+	UseMenuBar(true);
 }
 
 AnimationEditor::~AnimationEditor()
@@ -65,18 +69,24 @@ void AnimationEditor::Update()
 
 void AnimationEditor::Activate()
 {
-	//m_AtlasView->SetActive(true);
-	//m_Detail->SetActive(true);
+	m_Preview->SetActive(true);
+	m_SpriteView->SetActive(true);
+	m_Detail->SetActive(true);
 }
 
 void AnimationEditor::Deactivate()
 {
+	m_Preview->SetActive(false);
+	m_SpriteView->SetActive(false);
+	m_Detail->SetActive(false);
 }
 
 void AnimationEditor::AddAnimation()
 {
+
 }
 
 void AnimationEditor::DeleteAnimation(const wstring& _strAnimationName)
 {
+
 }

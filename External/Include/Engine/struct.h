@@ -64,8 +64,13 @@ struct tParticle
 	Vec3	vWorldPos;
 	Vec4	vColor;
 
+	Vec3	vForce;
+	Vec3	vVelocity;
+
 	float	Mass;
 	int		Active;
+
+	int		Padding[2];
 };
 
 
