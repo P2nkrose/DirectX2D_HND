@@ -11,10 +11,10 @@
 qParticleSystem::qParticleSystem()
 	: qRenderComponent(COMPONENT_TYPE::PARTICLESYSTEM)
 	, m_ParticleBuffer(nullptr)
-	, m_MaxParticleCount(30)
+	, m_MaxParticleCount(100)
 {
 	// Mesh / Material
-	SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"PointMesh"));
 	SetMaterial(qAssetMgr::GetInst()->FindAsset<qMaterial>(L"ParticleRenderMtrl"));
 
 	// ParticleTick ComputeShader
@@ -38,7 +38,9 @@ qParticleSystem::qParticleSystem()
 		arrParticle[i].Mass = 1.f;
 		arrParticle[i].vLocalPos = Vec3(0.f, 0.f, 0.f);
 		arrParticle[i].vWorldPos = Vec3(0.f, 0.f, 0.f);
+		arrParticle[i].vWorldScale = Vec3(20.f, 20.f, 0.f);
 		arrParticle[i].vColor = Vec4(0.9, 0.34f, 0.5, 1.f);
+
 		arrParticle[i].vVelocity = Vec3(cosf(Angle * (float)i), sinf(Angle * (float)i), 0.f) * 200.f;
 	}
 

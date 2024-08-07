@@ -18,7 +18,7 @@ public:
 	void SetAnim(Ptr<qFlipBook> _FlipBook);
 
 private:
-	Ptr<qFlipBook>		m_CurFlipBook;
+	Ptr<qFlipBook>			m_CurFlipBook;
 
 };
 

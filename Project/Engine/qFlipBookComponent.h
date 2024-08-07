@@ -16,11 +16,6 @@ public:
 
 
 public:
-	void AddFlipBook(int _Idx, Ptr<qFlipBook> _FlipBook);
-	Ptr<qFlipBook> FindFlipBook(const wstring& _Key);
-	void Play(int _FliBookIdx, float _FPS, bool _Repeat);
-	Ptr<qSprite> GetCurSprite() { return m_CurFrmSprite; }
-
 	void Reset();
 	void Binding();
 	static void Clear();
@@ -29,10 +24,22 @@ public:
 	virtual void SaveToFile(FILE* _File) override;
 	virtual void LoadFromFile(FILE* _File) override;
 
+public:
+	void AddFlipBook(int _Idx, Ptr<qFlipBook> _FlipBook);
+	Ptr<qFlipBook> FindFlipBook(const wstring& _Key);
+	void Play(int _FliBookIdx, float _FPS, bool _Repeat);
+	Ptr<qSprite> GetCurSprite() { return m_CurFrmSprite; }
+
 // Ãß°¡
 public:
 	vector<Ptr<qFlipBook>>& GetFlipBook() { return m_vecFlipBook; }
 	bool IsCurFlipBookFinished();
+
+public:
+	int GetMaxFrm() { return m_MaxFrm; }
+	int GetCurFrmIdx() { return m_CurFrmIdx; }
+	float GetFPS() { return m_FPS; }
+
 
 
 private:

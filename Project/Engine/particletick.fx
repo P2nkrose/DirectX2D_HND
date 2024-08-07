@@ -15,6 +15,9 @@ void CS_ParticleTick(int3 _ID : SV_DispatchThreadID)
     if(MAX_COUNT <= _ID.x)
         return;
     
+    if(false == Particle.Active)
+        return;
+    
     Particle.vWorldPos += Particle.vVelocity * g_EngineDT;
 }
 

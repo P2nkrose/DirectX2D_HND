@@ -92,7 +92,7 @@ void qEditorMgr::EditorObjectProgress()
 
 void qEditorMgr::ImGuiTick()
 {
-	//ImGui::ShowDemoWindow();
+	ImGui::ShowDemoWindow();
 
 	for (const auto& pair : m_mapUI)
 	{

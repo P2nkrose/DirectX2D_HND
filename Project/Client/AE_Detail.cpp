@@ -15,6 +15,8 @@
 #include <Engine/qFlipBook.h>
 #include <Engine/qFlipBookComponent.h>
 
+#include <Engine/qGameObject.h>
+
 AE_Detail::AE_Detail()
 {
 }
@@ -30,6 +32,14 @@ void AE_Detail::Init()
 void AE_Detail::Update()
 {
 	Animation();
+
+	ImGui::Text("");
+
+	ImGui::Separator();
+
+	ImGui::Text("");
+
+	AnimInfo();
 
 	SpriteList();
 
@@ -86,18 +96,52 @@ void AE_Detail::Animation()
 		pListUI->SetActive(true);
 	}
 
+
+}
+
+void AE_Detail::AnimInfo()
+{
+	if (nullptr == m_CurFlipBook)
+		return;
+
 	ImGui::Text("");
+	ImGui::SameLine();
+	ImGui::Text("Frame Size");
+	ImGui::SameLine(150);
+	ImGui::SetNextItemWidth(200);
+	m_MaxFrm = m_CurFlipBook->GetMaxFrameCount();
+	ImGui::DragInt("##FrameSize", &m_MaxFrm, 0.1f);
 
-	ImGui::Separator();
-
-	ImGui::Text("");
-
+	//ImGui::DragInt("##FrameIdx", &m_CurFrmIdx, 0.1f);
+	
+	
 
 
 }
 
 void AE_Detail::SpriteList()
 {
+
+	//m_CurFrmSprite = m_CurFlipBook->GetSprite(m_CurFrmIdx);
+	//
+	//
+	//for (size_t i = 0; i < m_MaxFrm; ++i)
+	//{
+	//	m_vecSprite.push_back(m_CurFrmSprite);
+	//}
+	//
+	//
+	//
+	//const char* sprites[] = m_CurFlipBook->GetName();
+	//
+	//m_CurFrmIdx;
+	//
+	//const char* list_preview_value = sprites[(UINT)Type];
+	//
+	//
+	//m_MaxFrm;
+	//
+	//ImGui::BeginListBox;
 }
 
 void AE_Detail::AddAnimation()
@@ -115,10 +159,11 @@ void AE_Detail::SetAnim(Ptr<qFlipBook> _FlipBook)
 	GetPreview()->SetAnim(_FlipBook);
 }
 
+
 void AE_Detail::SelectAnim(DWORD_PTR _ListUI)
 {
-	ListUI* pListUI = (ListUI*)_ListUI;
-	string strName = pListUI->GetSelectName();
+	m_List = (ListUI*)_ListUI;
+	string strName = m_List->GetSelectName();
 
 	if (strName == "None")
 	{

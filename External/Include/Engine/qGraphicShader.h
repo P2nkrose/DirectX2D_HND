@@ -24,6 +24,7 @@ public:
 
 public:
 	int CreateVertexShader(const wstring& _RelativePath, const string& _FuncName);
+	int CreateGeometryShader(const wstring& _RelativePath, const string& _FuncName);
 	int CreatePixelShader(const wstring& _RelativePath, const string& _FuncName);
 
 	void Binding();
@@ -59,6 +60,10 @@ private:
 	// «»ºø Ω¶¿Ã¥ı (Pixel Shader)	
 	ComPtr<ID3DBlob>				m_PSBlob;
 	ComPtr<ID3D11PixelShader>		m_PS;
+
+	// ¡ˆø¿∏ﬁ∆Æ∏Æ Ω¶¿Ã¥ı (Geometry Shader)
+	ComPtr<ID3DBlob>				m_GSBlob;
+	ComPtr<ID3D11GeometryShader>	m_GS;
 
 	ComPtr<ID3D11InputLayout>		m_Layout;
 

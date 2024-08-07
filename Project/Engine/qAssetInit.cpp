@@ -20,6 +20,18 @@ void qAssetMgr::Init()
 void qAssetMgr::CreateEngineMesh()
 {
 	Ptr<qMesh> pMesh = nullptr;
+	Vtx v;
+
+	// Point Mesh
+	pMesh = new qMesh;
+	v.vPos = Vec3(0.f, 0.f, 0.f);
+	v.vColor = Vec3(0.f, 0.f, 0.f);
+	v.vUV = Vec2(0.f, 0.f);
+
+	UINT i = 0;
+	pMesh->Create(&v, 1, &i, 1);
+	AddAsset(L"PointMesh", pMesh);
+
 	
 	// RectMesh »ý¼º
 	// 0 --- 1
@@ -68,7 +80,7 @@ void qAssetMgr::CreateEngineMesh()
 	// CircleMesh
 	vector<Vtx> vecVtx;
 	vector<UINT> vecIdx;
-	Vtx v;
+
 	
 	int Slice = 40;
 	float fTheta = XM_2PI / Slice;
@@ -256,7 +268,10 @@ void qAssetMgr::CreateEngineGraphicShader()
 	// Particle Shader
 	pShader = new qGraphicShader;
 	pShader->CreateVertexShader(L"shader\\particle.fx", "VS_Particle");
+	pShader->CreateGeometryShader(L"shader\\particle.fx", "GS_Particle");
 	pShader->CreatePixelShader(L"shader\\particle.fx", "PS_Particle");
+
+	pShader->SetTopology(D3D11_PRIMITIVE_TOPOLOGY_POINTLIST);
 	pShader->SetRSType(RS_TYPE::CULL_NONE);
 	pShader->SetDSType(DS_TYPE::NO_WRITE);
 	pShader->SetBSType(BS_TYPE::ALPHABLEND);

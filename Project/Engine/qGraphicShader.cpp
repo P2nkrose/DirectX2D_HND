@@ -10,6 +10,7 @@ qGraphicShader::qGraphicShader()
 	, m_RSType(RS_TYPE::CULL_BACK)
 	, m_DSType(DS_TYPE::LESS)
 	, m_BSType(BS_TYPE::DEFAULT)
+	, m_Domain(SHADER_DOMAIN::DOMAIN_NONE)
 {
 	SetEngineAsset();
 }
@@ -89,6 +90,38 @@ int qGraphicShader::CreateVertexShader(const wstring& _RelativePath, const strin
 	return S_OK;
 }
 
+int qGraphicShader::CreateGeometryShader(const wstring& _RelativePath, const string& _FuncName)
+{
+	wstring strFilePath = qPathMgr::GetInst()->GetContentPath();
+	strFilePath += _RelativePath;
+
+	HRESULT hr = D3DCompileFromFile(strFilePath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
+		, _FuncName.c_str(), "gs_5_0", D3DCOMPILE_DEBUG, 0
+		, m_GSBlob.GetAddressOf(), m_ErrBlob.GetAddressOf());
+
+	if (FAILED(hr))
+	{
+		if (nullptr != m_ErrBlob)
+		{
+			MessageBoxA(nullptr, (char*)m_ErrBlob->GetBufferPointer(), "쉐이더 컴파일 실패", MB_OK);
+		}
+		else
+		{
+			errno_t err = GetLastError();
+			wchar_t szErrMsg[255] = {};
+			swprintf_s(szErrMsg, 255, L"Error Code : %d", err);
+			MessageBox(nullptr, szErrMsg, L"쉐이더 컴파일 실패", MB_OK);
+		}
+
+		return E_FAIL;
+	}
+
+	DEVICE->CreateGeometryShader(m_GSBlob->GetBufferPointer()
+		, m_GSBlob->GetBufferSize(), nullptr, m_GS.GetAddressOf());
+
+	return S_OK;
+}
+
 int qGraphicShader::CreatePixelShader(const wstring& _RelativePath, const string& _FuncName)
 {
 	wstring strFilePath = qPathMgr::GetInst()->GetContentPath();
@@ -128,6 +161,7 @@ void qGraphicShader::Binding()
 	CONTEXT->IASetInputLayout(m_Layout.Get());
 
 	CONTEXT->VSSetShader(m_VS.Get(), nullptr, 0);
+	CONTEXT->GSSetShader(m_GS.Get(), nullptr, 0);
 	CONTEXT->PSSetShader(m_PS.Get(), nullptr, 0);
 
 	CONTEXT->RSSetState(qDevice::GetInst()->GetRSState(m_RSType));

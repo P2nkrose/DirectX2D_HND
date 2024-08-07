@@ -4,6 +4,7 @@
 class qAsset : public qEntity
 {
 public:
+	friend class qGameObject;
 
 	template<typename T>
 	friend class Ptr;

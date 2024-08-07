@@ -62,6 +62,7 @@ struct tParticle
 {
 	Vec3	vLocalPos;
 	Vec3	vWorldPos;
+	Vec3	vWorldScale;
 	Vec4	vColor;
 
 	Vec3	vForce;
@@ -70,7 +71,7 @@ struct tParticle
 	float	Mass;
 	int		Active;
 
-	int		Padding[2];
+	int		Padding[3];
 };
 
 

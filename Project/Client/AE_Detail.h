@@ -1,6 +1,8 @@
 #pragma once
 #include "AE_Sub.h"
 
+#include "ListUI.h"
+
 class AE_Detail : public AE_Sub
 {
 public:
@@ -16,6 +18,7 @@ public:
 
 public:
 	void Animation();
+	void AnimInfo();
 	void SpriteList();
 	void AddAnimation();
 	void DeleteAnimation();
@@ -24,13 +27,20 @@ public:
 	void SetAnim(Ptr<qFlipBook> _FlipBook);
 	string GetAnimName() { return m_AnimName; }
 
+public:
+	void AddSprite(Ptr<qSprite> _Sprite) { m_vecSprite.push_back(_Sprite); }
+	Ptr<qSprite> GetSprite(int _Idx) { return m_vecSprite[_Idx]; }
+
+
 
 private:
 	void SelectAnim(DWORD_PTR _ListUI);
 
-
 private:
+	ListUI*						m_List;
+
 	vector<Ptr<qFlipBook>>		m_vecFlipBook;
+	vector<Ptr<qSprite>>		m_vecSprite;
 	Ptr<qFlipBook>				m_CurFlipBook;
 	Ptr<qSprite>				m_CurFrmSprite;
 
