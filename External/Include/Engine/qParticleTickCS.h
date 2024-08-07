@@ -16,9 +16,11 @@ public:
 
 public:
 	void SetParticleBuffer(qStructuredBuffer* _Buffer) { m_ParticleBuffer = _Buffer; }
-
+	void SetSpawnCount(qStructuredBuffer* _Buffer) { m_SpawnCountBuffer = _Buffer; }
 
 private:
 	qStructuredBuffer*		m_ParticleBuffer;
+	qStructuredBuffer*		m_SpawnCountBuffer;
+
 };
 

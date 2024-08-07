@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "qParticleSystem.h"
 
+#include "qTimeMgr.h"
+
 #include "qDevice.h"
 #include "qAssetMgr.h"
 #include "qStructuredBuffer.h"
@@ -11,6 +13,8 @@
 qParticleSystem::qParticleSystem()
 	: qRenderComponent(COMPONENT_TYPE::PARTICLESYSTEM)
 	, m_ParticleBuffer(nullptr)
+	, m_SpawnCountBuffer(nullptr)
+	, m_Time(0.f)
 	, m_MaxParticleCount(100)
 {
 	// Mesh / Material
@@ -41,7 +45,8 @@ qParticleSystem::qParticleSystem()
 		arrParticle[i].vWorldScale = Vec3(20.f, 20.f, 0.f);
 		arrParticle[i].vColor = Vec4(0.9, 0.34f, 0.5, 1.f);
 
-		arrParticle[i].vVelocity = Vec3(cosf(Angle * (float)i), sinf(Angle * (float)i), 0.f) * 200.f;
+		arrParticle[i].vVelocity = Vec3(cosf(Angle * (float)i), sinf(Angle * (float)i), 0.f) * 10.f;
+
 	}
 
 	//tParticle Particle = {};
@@ -51,6 +56,8 @@ qParticleSystem::qParticleSystem()
 	m_ParticleBuffer = new qStructuredBuffer;
 	m_ParticleBuffer->Create(sizeof(tParticle), m_MaxParticleCount, SB_TYPE::SRV_UAV, true, arrParticle);
 
+	m_SpawnCountBuffer = new qStructuredBuffer;
+	m_SpawnCountBuffer->Create(sizeof(tSpawnCount), 1, SB_TYPE::SRV_UAV, true, nullptr);
 }
 
 qParticleSystem::~qParticleSystem()
@@ -61,7 +68,19 @@ qParticleSystem::~qParticleSystem()
 
 void qParticleSystem::FinalTick()
 {
+	// SpawnCount
+	m_Time += EngineDT;
+	if (1.f <= m_Time)
+	{
+		tSpawnCount count = {};
+		count.iSpawnCount = 1;
+		m_SpawnCountBuffer->SetData(&count);
+		m_Time = 0.f;
+	}
+
+
 	m_TickCS->SetParticleBuffer(m_ParticleBuffer);
+	m_TickCS->SetSpawnCount(m_SpawnCountBuffer);
 	m_TickCS->Execute();
 }
 

@@ -14,11 +14,11 @@ qParticleTickCS::~qParticleTickCS()
 
 int qParticleTickCS::Binding()
 {
-	if (nullptr == m_ParticleBuffer)
+	if (nullptr == m_ParticleBuffer || nullptr == m_SpawnCountBuffer)
 		return E_FAIL;
 
 	m_ParticleBuffer->Binding_CS_UAV(0);
-
+	m_SpawnCountBuffer->Binding_CS_UAV(1);
 	m_Const.iArr[0] = m_ParticleBuffer->GetElementCount();
 
 	return S_OK;

@@ -5,6 +5,13 @@
 
 class qStructuredBuffer;
 
+struct tSpawnCount
+{
+	UINT    iSpawnCount;
+	UINT    padding[3];
+};
+
+
 class qParticleSystem : public qRenderComponent
 {
 public:
@@ -24,10 +31,13 @@ public:
 	void SetParticleTexture(Ptr<qTexture> _Texture) { m_ParticleTex = _Texture; }
 
 private:
-	qStructuredBuffer*			m_ParticleBuffer;
-	int							m_MaxParticleCount;
 	Ptr<qParticleTickCS>		m_TickCS;
+	qStructuredBuffer*			m_ParticleBuffer;       // 모든 파티클 정보
+	qStructuredBuffer*			m_SpawnCountBuffer;     // 파티클 활성화 숫자 전달용 버퍼
 
 	Ptr<qTexture>				m_ParticleTex;
+	float						m_Time;                 // 누적시간
+
+	int							m_MaxParticleCount;
 };
 

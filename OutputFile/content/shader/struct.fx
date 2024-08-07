@@ -37,5 +37,12 @@ struct tParticle
 };
 
 
+struct tSpawnCount
+{
+    uint iSpawnCount;
+    uint3 padding;
+};
+
+
 
 #endif
