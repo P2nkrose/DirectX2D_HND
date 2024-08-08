@@ -142,11 +142,12 @@ void SE_Detail::SpriteInfo()
 	{
 		LeftTop = GetAtlasView()->GetLeftTop();
 		RightBottom = GetAtlasView()->GetRightBottom();
+		
 	}
 
 	ImGui::Text("Left Top");
 	ImGui::SameLine(150);
-	float LT[] = { LeftTop.x, LeftTop.y };
+	float LT[] = { LeftTop.x, LeftTop.y};
 	ImGui::SetNextItemWidth(200.f);
 	ImGui::InputFloat2("##LT", LT);
 
@@ -155,8 +156,7 @@ void SE_Detail::SpriteInfo()
 	float Slice[] = { RightBottom.x - LeftTop.x, RightBottom.y - LeftTop.y };
 	ImGui::SetNextItemWidth(200.f);
 	ImGui::InputFloat2("##Slice", Slice);
-
-
+		
 }
 
 void SE_Detail::CreateSprite()
@@ -197,6 +197,7 @@ void SE_Detail::SetAtlasTex(Ptr<qTexture> _Tex)
 	m_AtlasTex = _Tex;
 	GetAtlasView()->SetAtlasTex(m_AtlasTex);
 }
+
 
 void SE_Detail::SelectTexture(DWORD_PTR _ListUI)
 {

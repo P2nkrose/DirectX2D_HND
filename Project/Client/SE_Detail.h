@@ -39,5 +39,6 @@ private:
 
 	ImVec2				LeftTop;
 	ImVec2				RightBottom;
+
 };
 

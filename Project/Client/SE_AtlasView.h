@@ -20,6 +20,7 @@ public:
 	ImVec2 GetLeftTop() { return m_MouseLT; }
 	ImVec2 GetRightBottom() { return m_MouseRB; }
 
+
 private:
 	void WheelCheck();
 	void SelectCheck();
@@ -42,5 +43,7 @@ private:
 	float				m_WidthSize;
 	float				m_WheelScale;
 	float				m_Ratio;			// 실제 해상도 대비 출력 이미지의 비율
+
+
 };
 

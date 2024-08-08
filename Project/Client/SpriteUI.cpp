@@ -2,6 +2,10 @@
 #include "SpriteUI.h"
 
 #include <Engine/qTexture.h>
+#include <Engine/qAssetMgr.h>
+
+#include <Engine/qSprite.h>
+#include <Engine/qTexture.h>
 
 SpriteUI::SpriteUI()
 	: AssetUI(ASSET_TYPE::SPRITE)
@@ -19,6 +23,8 @@ void SpriteUI::Update()
 	ImGui::Text("");
 
 	Sprite();
+
+
 }
 
 void SpriteUI::Sprite()
@@ -69,13 +75,60 @@ void SpriteUI::Sprite()
 	ImGui::Text("Offset");
 	ImGui::SameLine(105);
 	ImGui::SetNextItemWidth(300.f);
-	ImGui::InputFloat2("##Offset", (float*)&OffsetUV);
+	ImGui::DragFloat2("##Offset", (float*)&OffsetUV);
 
 	ImGui::Text("BackGround");
 	ImGui::SameLine(105);
 	ImGui::SetNextItemWidth(300);
 	ImGui::InputFloat2("##BackGround", (float*)&BGSize);
 
+	pTexture->SetLeftTop(Vec2(LTSize.x, LTSize.y));
+	pTexture->SetSlice(Vec2(SliceSize.x, SliceSize.y));
+	pTexture->SetOffset(Vec2(OffsetUV.x, OffsetUV.y));
+	pTexture->SetBackground(Vec2(BGSize.x, BGSize.y));
+
+
+	ImGui::Text("");
+
+	ImGui::Separator();
+
+	ImGui::Text("");
+
+
+	// 스프라이트 저장
+
+	ImGui::Text("New Sprite Name");
+	ImGui::SameLine(150);
+	ImGui::SetNextItemWidth(200.f);
+
+	char szName[255] = {};
+
+	if (ImGui::InputText("##Sprite Name", szName, 255))
+	{
+		m_SpriteName = szName;
+	}
+
+	ImGui::SameLine();
+	if (ImGui::Button("Create", ImVec2(50.f, 19.f)))
+	{
+
+		// wb
+		Ptr<qSprite> pSprite = new qSprite;
+		wstring strName = wstring(m_SpriteName.begin(), m_SpriteName.end());
+
+		pTexture->Create(pTexture->GetAtlasTexture(), Vec2(LTSize.x * OffsetUV.x, LTSize.y * OffsetUV.y), Vec2(SliceSize.x, SliceSize.y));
+		pTexture->SetBackground(Vec2(BGSize.x, BGSize.y));
+
+		pTexture->SetRelativePath(wstring(L"sprite\\") + strName + L".sprite");
+		qAssetMgr::GetInst()->AddAsset(strName, pTexture);
+
+		wstring ContentPath = qPathMgr::GetInst()->GetContentPath();
+
+		pTexture->Save(ContentPath + L"sprite\\" + strName + L".sprite");
+
+	}
+
 }
+
 
 

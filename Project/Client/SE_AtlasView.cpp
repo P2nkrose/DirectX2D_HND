@@ -58,6 +58,8 @@ void SE_AtlasView::SetAtlasTex(Ptr<qTexture> _Tex)
 	m_WidthSize = (float)m_AtlasTex->Width();
 }
 
+
+
 void SE_AtlasView::WheelCheck()
 {
 	if (0 < ImGui::GetIO().MouseWheel)
@@ -225,3 +227,28 @@ bool SE_AtlasView::IsPixelOk(Vec2 _PixelPos)
 
 	return true;
 }
+
+
+//void SE_AtlasView::SetLeftTop(Vec2 _LeftTop)
+//{
+//	Vec2 AtlasResolution = Vec2((float)m_AtlasTex->Width(), (float)m_AtlasTex->Height());
+//	m_MouseLT = _LeftTop / AtlasResolution;
+//}
+//
+//void SE_AtlasView::SetSlice(Vec2 _Slice)
+//{
+//	Vec2 AtlasResolution = Vec2((float)m_AtlasTex->Width(), (float)m_AtlasTex->Height());
+//	m_Slice = _Slice / AtlasResolution;
+//}
+//
+//void SE_AtlasView::SetBackground(Vec2 _Background)
+//{
+//	Vec2 AtlasResolution = Vec2((float)m_AtlasTex->Width(), (float)m_AtlasTex->Height());
+//	m_Background = _Background / AtlasResolution;
+//}
+//
+//void SE_AtlasView::SetOffset(Vec2 _Offset)
+//{
+//	Vec2 AtlasResolution = Vec2((float)m_AtlasTex->Width(), (float)m_AtlasTex->Height());
+//	m_Offset = _Offset / AtlasResolution;
+//}

@@ -12,5 +12,9 @@ public:
 
 public:
 	void Sprite();
+
+
+private:
+	string		m_SpriteName;
 };
 
