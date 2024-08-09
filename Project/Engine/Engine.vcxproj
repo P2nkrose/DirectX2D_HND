@@ -182,6 +182,7 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="qEngine.h" />
     <ClInclude Include="qEntity.h" />
     <ClInclude Include="qFlipBook.h" />
+    <ClInclude Include="qFSM.h" />
     <ClInclude Include="qGameObject.h" />
     <ClInclude Include="qGraphicShader.h" />
     <ClInclude Include="qKeyMgr.h" />
@@ -237,6 +238,7 @@ call EngineHeaderCopy.bat</Command>
     <ClCompile Include="qEngine.cpp" />
     <ClCompile Include="qEntity.cpp" />
     <ClCompile Include="qFlipBook.cpp" />
+    <ClCompile Include="qFSM.cpp" />
     <ClCompile Include="qGameObject.cpp" />
     <ClCompile Include="qGraphicShader.cpp" />
     <ClCompile Include="qKeyMgr.cpp" />

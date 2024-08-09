@@ -197,6 +197,7 @@ void qTestLevel::CreateTestLevel()
 	
 	pMonster->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
 	pMonster->Collider2D()->SetScale(Vec3(1.2f, 1.2f, 1.f));
+
 	
 	pMonster->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
 	pMonster->MeshRender()->SetMaterial(pMtrl);

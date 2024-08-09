@@ -45,7 +45,7 @@ qParticleSystem::qParticleSystem()
 		arrParticle[i].vWorldScale = Vec3(20.f, 20.f, 0.f);
 		arrParticle[i].vColor = Vec4(0.9, 0.34f, 0.5, 1.f);
 
-		arrParticle[i].vVelocity = Vec3(cosf(Angle * (float)i), sinf(Angle * (float)i), 0.f) * 200.f;
+		//arrParticle[i].vVelocity = Vec3(cosf(Angle * (float)i), sinf(Angle * (float)i), 0.f) * 200.f;
 
 	}
 
@@ -82,6 +82,7 @@ void qParticleSystem::FinalTick()
 
 	m_SpawnCountBuffer->SetData(&count);
 
+	m_TickCS->SetParticleWorldPos(Transform()->GetWorldPos());
 	m_TickCS->SetParticleBuffer(m_ParticleBuffer);
 	m_TickCS->SetSpawnCount(m_SpawnCountBuffer);
 	m_TickCS->Execute();

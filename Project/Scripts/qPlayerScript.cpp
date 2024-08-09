@@ -96,12 +96,12 @@ void qPlayerScript::Tick()
 void qPlayerScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)
 {
 	DeleteObject(_OtherObject);
-
+	
 	Vec3 vScale = Transform()->GetRelativeScale();
-
+	
 	vScale += Vec3(10.f, 10.f, 0.f);
 	Collider2D()->SetScale(Collider2D()->GetScale() + Vec3(10.f, 10.f, 0.f));
-
+	
 	Transform()->SetRelativeScale(vScale);
 }
 

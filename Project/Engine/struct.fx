@@ -33,7 +33,11 @@ struct tParticle
     float   Mass;
     int     Active;
     
-    int3    Padding;
+    float   Age;
+    float   Life;
+    float   NormalizedAge;
+    
+    int4    Padding;
 };
 
 

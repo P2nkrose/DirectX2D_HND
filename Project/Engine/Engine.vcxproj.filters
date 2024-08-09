@@ -169,6 +169,9 @@
     <Filter Include="HLSL\03. Compute\02. ParticleTick">
       <UniqueIdentifier>{b48532bd-5306-4949-9155-f36a2102bdcc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="08. Component\09. FSM">
+      <UniqueIdentifier>{18107fec-06d2-40c1-aff8-1d5a5c36e1a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -327,6 +330,9 @@
     <ClInclude Include="qParticleTickCS.h">
       <Filter>HLSL\03. Compute\02. ParticleTick</Filter>
     </ClInclude>
+    <ClInclude Include="qFSM.h">
+      <Filter>08. Component\09. FSM</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -463,6 +469,9 @@
     </ClCompile>
     <ClCompile Include="qParticleTickCS.cpp">
       <Filter>HLSL\03. Compute\02. ParticleTick</Filter>
+    </ClCompile>
+    <ClCompile Include="qFSM.cpp">
+      <Filter>08. Component\09. FSM</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
