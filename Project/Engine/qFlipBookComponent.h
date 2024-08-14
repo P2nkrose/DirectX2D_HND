@@ -28,19 +28,28 @@ public:
 	void AddFlipBook(int _Idx, Ptr<qFlipBook> _FlipBook);
 	Ptr<qFlipBook> FindFlipBook(const wstring& _Key);
 	void Play(int _FliBookIdx, float _FPS, bool _Repeat);
+
 	Ptr<qSprite> GetCurSprite() { return m_CurFrmSprite; }
+	void SetCurSprite(Ptr<qSprite> _Sprite) { m_CurFrmSprite = _Sprite; }
+
+	Ptr<qFlipBook> GetCurFlipBook() { return m_CurFlipBook; }
+	void SetCurFlipBook(Ptr<qFlipBook> _FlipBook) { m_CurFlipBook = _FlipBook; }
+
 
 // 추가
 public:
-	vector<Ptr<qFlipBook>>& GetFlipBook() { return m_vecFlipBook; }
+	vector<Ptr<qFlipBook>>& GetVecFlipBook() { return m_vecFlipBook; }
 	bool IsCurFlipBookFinished();
 
 public:
 	int GetMaxFrm() { return m_MaxFrm; }
 	int GetCurFrmIdx() { return m_CurFrmIdx; }
+
+	bool GetRepeat() { return m_Repeat; }
+	void SetRepeat(bool _Repeat) { m_Repeat = _Repeat; }
+
 	float GetFPS() { return m_FPS; }
-
-
+	void SetFPS(float _fps) { m_FPS = _fps; }
 
 private:
 	vector<Ptr<qFlipBook>>			m_vecFlipBook;		// FlipBook 컴포넌트가 보유한 모든 FlipBook 목록

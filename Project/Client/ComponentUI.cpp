@@ -4,6 +4,8 @@
 #include <Engine/qGameObject.h>
 #include <Engine/qComponent.h>
 
+
+
 ComponentUI::ComponentUI(COMPONENT_TYPE _Type)
 	: m_TargetObject(nullptr)
 	, m_Type(_Type)

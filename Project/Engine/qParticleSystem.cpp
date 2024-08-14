@@ -15,7 +15,7 @@ qParticleSystem::qParticleSystem()
 	, m_ParticleBuffer(nullptr)
 	, m_SpawnCountBuffer(nullptr)
 	, m_Time(0.f)
-	, m_MaxParticleCount(100)
+	, m_MaxParticleCount(1000)
 {
 	// Mesh / Material
 	SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"PointMesh"));
@@ -27,7 +27,7 @@ qParticleSystem::qParticleSystem()
 	m_ParticleTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\particle\\CartoonSmoke.png");
 
 	// 파티클 100개 초기 설정
-	tParticle arrParticle[100] = {};
+	tParticle arrParticle[1000] = {};
 
 	float Angle = XM_2PI / m_MaxParticleCount;
 	//Vec2 vResolution = qDevice::GetInst()->GetResolution();
@@ -74,9 +74,9 @@ void qParticleSystem::FinalTick()
 
 	tSpawnCount count = {};
 
-	if (1.f <= m_Time)
+	if (0.2f <= m_Time)
 	{
-		count.iSpawnCount = 5;
+		count.iSpawnCount = 2;
 		m_Time = 0.f;
 	}
 

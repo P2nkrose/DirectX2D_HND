@@ -10,8 +10,17 @@
 
 qFlipBookComponent::qFlipBookComponent()
 	: qComponent(COMPONENT_TYPE::FLIPBOOKCOMPONENT)
+	, m_vecFlipBook{}
 	, m_CurFlipBook(nullptr)
+	, m_CurFrmSprite(nullptr)
 	, m_CurFrmIdx(0)
+	, m_MaxFrm(0)
+	, m_FPS(0.f)
+	, m_AccTime(0.f)
+	, m_Repeat(false)
+	, m_Finish(false)
+
+
 {
 	
 }
@@ -21,6 +30,7 @@ qFlipBookComponent::qFlipBookComponent(const qFlipBookComponent& _Origin)
 	, m_vecFlipBook(_Origin.m_vecFlipBook)
 	, m_CurFlipBook(_Origin.m_CurFlipBook)
 	, m_CurFrmIdx(0)
+	, m_MaxFrm(_Origin.m_MaxFrm)
 	, m_FPS(_Origin.m_FPS)
 	, m_AccTime(0.f)
 	, m_Repeat(_Origin.m_Repeat)

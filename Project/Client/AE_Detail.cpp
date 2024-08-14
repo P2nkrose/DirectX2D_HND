@@ -89,6 +89,7 @@ void AE_Detail::Animation()
 	{
 		ListUI* pListUI = (ListUI*)qEditorMgr::GetInst()->FindEditorUI("List");
 		pListUI->SetName("AnimList");
+		pListUI->ShowNameOnly(true);
 		vector<string> vecAnimNames;
 		qAssetMgr::GetInst()->GetAssetNames(ASSET_TYPE::FLIPBOOK, vecAnimNames);
 		pListUI->AddList(vecAnimNames);

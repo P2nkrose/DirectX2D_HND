@@ -1,6 +1,10 @@
 #pragma once
 #include "EditorUI.h"
 
+#include <Engine/qGameObject.h>
+#include <Engine/qTimeMgr.h>
+#include <Engine/qAssetMgr.h>
+
 class qGameObject;
 
 class ComponentUI : public EditorUI
