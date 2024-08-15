@@ -19,8 +19,6 @@ qFlipBookComponent::qFlipBookComponent()
 	, m_AccTime(0.f)
 	, m_Repeat(false)
 	, m_Finish(false)
-
-
 {
 	
 }
@@ -169,6 +167,12 @@ void qFlipBookComponent::Clear()
 bool qFlipBookComponent::IsCurFlipBookFinished()
 {
 	return m_CurFlipBook->IsFinish();
+}
+
+
+void qFlipBookComponent::SetRepeat(bool _Repeat)
+{
+	m_Repeat = _Repeat;
 }
 
 

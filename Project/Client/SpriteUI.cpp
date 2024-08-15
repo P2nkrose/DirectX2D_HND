@@ -97,7 +97,7 @@ void SpriteUI::Sprite()
 
 	// 스프라이트 저장
 
-	ImGui::Text("New Sprite Name");
+	ImGui::Text("Add Prefab Name");
 	ImGui::SameLine(150);
 	ImGui::SetNextItemWidth(200.f);
 

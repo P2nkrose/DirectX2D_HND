@@ -46,7 +46,7 @@ public:
 	int GetCurFrmIdx() { return m_CurFrmIdx; }
 
 	bool GetRepeat() { return m_Repeat; }
-	void SetRepeat(bool _Repeat) { m_Repeat = _Repeat; }
+	void SetRepeat(bool _Repeat);
 
 	float GetFPS() { return m_FPS; }
 	void SetFPS(float _fps) { m_FPS = _fps; }
