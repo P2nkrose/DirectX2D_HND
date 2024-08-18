@@ -6,9 +6,9 @@
 
 class AE_Sub : public EditorUI
 {
+public:
 	friend class AnimationEditor;
 
-public:
 	AE_Sub();
 	~AE_Sub();
 
@@ -18,7 +18,7 @@ public:
 
 	class AE_Detail* GetDetail() { return m_Owner->GetDetail(); }
 	class AE_Preview* GetPreview() { return m_Owner->GetPreview(); }
-	class AE_SpriteView* GetSpriteView() { return m_Owner->GetSpriteView(); }
+	class AE_SpriteList* GetSpriteList() { return m_Owner->GetSpriteList(); }
 
 
 private:

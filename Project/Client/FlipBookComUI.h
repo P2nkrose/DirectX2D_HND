@@ -28,7 +28,7 @@ private:
 	UINT							m_UIHeight;
 	
 	float							m_AccTime;
-	UINT							m_CurFrmIdx;
+	UINT							m_CurSpriteIndex;
 	bool							m_Repeat;
 	bool							m_Playing;
 };

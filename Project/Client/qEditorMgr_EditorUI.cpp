@@ -21,7 +21,7 @@
 #include "AnimationEditor.h"
 #include "AE_Detail.h"
 #include "AE_Preview.h"
-#include "AE_SpriteView.h"
+#include "AE_SpriteList.h"
 
 
 void qEditorMgr::InitImGui()
@@ -164,10 +164,10 @@ void qEditorMgr::CreateEditorUI()
 	m_mapUI.insert(make_pair(pUI->GetName(), pUI));
 
 
-	// AE_SpriteView
-	pUI = new AE_SpriteView;
+	// AE_SpriteList
+	pUI = new AE_SpriteList;
 	pUI->Init();
-	pUI->SetName("AE_SpriteView");
+	pUI->SetName("AE_SpriteList");
 	m_mapUI.insert(make_pair(pUI->GetName(), pUI));
 
 
@@ -182,7 +182,7 @@ void qEditorMgr::CreateEditorUI()
 	pUI = new AnimationEditor;
 	pUI->Init();
 	pUI->SetName("AnimationEditor");
-	pUI->SetActive(false);
+	pUI->SetActive(true);
 	m_mapUI.insert(make_pair(pUI->GetName(), pUI));
 
 

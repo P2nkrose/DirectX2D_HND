@@ -5,7 +5,7 @@ class AE_Preview : public AE_Sub
 {
 public:
 	friend class AE_Detail;
-	friend class AE_SpriteView;
+	friend class AE_SpriteList;
 
 	AE_Preview();
 	~AE_Preview();
@@ -15,10 +15,33 @@ public:
 	virtual void Update() override;
 
 public:
-	void SetAnim(Ptr<qFlipBook> _FlipBook);
+	void SetCurSprite(Ptr<qSprite> _Sprite) { m_CurSprite = _Sprite; }
+
 
 private:
-	Ptr<qFlipBook>			m_CurFlipBook;
+
+	void SetImage();
+
+
+private:
+	Ptr<qFlipBook>						m_CurFlipBook;
+	Ptr<qSprite>						m_CurSprite;
+	Ptr<qTexture>						m_AtlasTex;
+
+	ImVec2								m_ImageRectMin;
+	ImVec2								m_ViewerSize;
+
+	int									m_CurSpriteIndex;
+
+	bool								m_Playing;
+
+
+	//int								m_MaxSpriteIndex;
+	//bool								m_Repeat;
+	//bool								m_Finish;
+
+
+
 
 };
 

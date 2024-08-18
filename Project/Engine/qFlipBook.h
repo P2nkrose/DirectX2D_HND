@@ -21,17 +21,18 @@ public:
 	Ptr<qSprite> GetSprite(int _Idx) { return m_vecSprite[_Idx]; }
 	int GetMaxFrameCount() { return (int)m_vecSprite.size(); }
 
+	vector<Ptr<qSprite>>& GetVecSprite() { return m_vecSprite; }
 
-// 추가
+	void SetFPS(int _FPS) { m_FPS = _FPS; }
+	float GetFPS() { return m_FPS; }
+
 	bool IsFinish() { return m_bFinish; }
-
 
 
 private:
 	vector<Ptr<qSprite>>	m_vecSprite;
 
-// 추가
-private:
+	float					m_FPS;
 	bool					m_bFinish;
 };
 

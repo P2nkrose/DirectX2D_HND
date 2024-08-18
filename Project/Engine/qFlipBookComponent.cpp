@@ -13,8 +13,8 @@ qFlipBookComponent::qFlipBookComponent()
 	, m_vecFlipBook{}
 	, m_CurFlipBook(nullptr)
 	, m_CurFrmSprite(nullptr)
-	, m_CurFrmIdx(0)
-	, m_MaxFrm(0)
+	, m_CurSpriteIndex(0)
+	, m_MaxSpriteIndex(0)
 	, m_FPS(0.f)
 	, m_AccTime(0.f)
 	, m_Repeat(false)
@@ -27,8 +27,8 @@ qFlipBookComponent::qFlipBookComponent(const qFlipBookComponent& _Origin)
 	: qComponent(_Origin)
 	, m_vecFlipBook(_Origin.m_vecFlipBook)
 	, m_CurFlipBook(_Origin.m_CurFlipBook)
-	, m_CurFrmIdx(0)
-	, m_MaxFrm(_Origin.m_MaxFrm)
+	, m_CurSpriteIndex(0)
+	, m_MaxSpriteIndex(_Origin.m_MaxSpriteIndex)
 	, m_FPS(_Origin.m_FPS)
 	, m_AccTime(0.f)
 	, m_Repeat(_Origin.m_Repeat)
@@ -70,16 +70,16 @@ void qFlipBookComponent::FinalTick()
 		if (MaxTime < m_AccTime)
 		{
 			m_AccTime -= MaxTime;
-			++m_CurFrmIdx;
+			++m_CurSpriteIndex;
 
-			if (m_CurFlipBook->GetMaxFrameCount() <= m_CurFrmIdx)
+			if (m_CurFlipBook->GetMaxFrameCount() <= m_CurSpriteIndex)
 			{
-				--m_CurFrmIdx;
+				--m_CurSpriteIndex;
 				m_Finish = true;
 			}
 		}
 
-		m_CurFrmSprite = m_CurFlipBook->GetSprite(m_CurFrmIdx);
+		m_CurFrmSprite = m_CurFlipBook->GetSprite(m_CurSpriteIndex);
 	}
 }
 
@@ -114,7 +114,7 @@ void qFlipBookComponent::Play(int _FliBookIdx, float _FPS, bool _Repeat)
 		return;
 	}
 
-	m_CurFrmIdx = 0;
+	m_CurSpriteIndex = 0;
 	m_AccTime = 0.f;
 	m_FPS = _FPS;
 	m_Repeat = _Repeat;
@@ -123,7 +123,7 @@ void qFlipBookComponent::Play(int _FliBookIdx, float _FPS, bool _Repeat)
 
 void qFlipBookComponent::Reset()
 {
-	m_CurFrmIdx = 0;
+	m_CurSpriteIndex = 0;
 	m_AccTime = 0.f;
 	m_Finish = false;
 }
@@ -193,7 +193,7 @@ void qFlipBookComponent::SaveToFile(FILE* _File)
 	SaveAssetRef(m_CurFrmSprite, _File);
 
 	// 현재 재생중인 FlipBook 내에서 지정된 Sprite 가 몇 번째 인덱스인지
-	fwrite(&m_CurFrmIdx, sizeof(int), 1, _File);
+	fwrite(&m_CurSpriteIndex, sizeof(int), 1, _File);
 	fwrite(&m_FPS, sizeof(float), 1, _File);
 	fwrite(&m_AccTime, sizeof(float), 1, _File);
 	fwrite(&m_Repeat, sizeof(bool), 1, _File);
@@ -219,7 +219,7 @@ void qFlipBookComponent::LoadFromFile(FILE* _File)
 	LoadAssetRef(m_CurFrmSprite, _File);
 
 	// 현재 재생중인 FlipBook 내에서 지정된 Sprite 가 몇번째 인덱스인지
-	fread(&m_CurFrmIdx, sizeof(int), 1, _File);
+	fread(&m_CurSpriteIndex, sizeof(int), 1, _File);
 	fread(&m_FPS, sizeof(float), 1, _File);
 	fread(&m_AccTime, sizeof(float), 1, _File);
 	fread(&m_Repeat, sizeof(bool), 1, _File);

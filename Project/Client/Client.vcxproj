@@ -146,7 +146,7 @@
   <ItemGroup>
     <ClInclude Include="AE_Detail.h" />
     <ClInclude Include="AE_Preview.h" />
-    <ClInclude Include="AE_SpriteView.h" />
+    <ClInclude Include="AE_SpriteList.h" />
     <ClInclude Include="AE_Sub.h" />
     <ClInclude Include="AnimationEditor.h" />
     <ClInclude Include="AssetUI.h" />
@@ -204,7 +204,7 @@
   <ItemGroup>
     <ClCompile Include="AE_Detail.cpp" />
     <ClCompile Include="AE_Preview.cpp" />
-    <ClCompile Include="AE_SpriteView.cpp" />
+    <ClCompile Include="AE_SpriteList.cpp" />
     <ClCompile Include="AE_Sub.cpp" />
     <ClCompile Include="AnimationEditor.cpp" />
     <ClCompile Include="AssetUI.cpp" />

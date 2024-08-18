@@ -18,7 +18,7 @@ FlipBookComUI::FlipBookComUI()
 	, m_FBCom(nullptr)
 	, m_UIHeight(0)
 	, m_AccTime(0)
-	, m_CurFrmIdx(0)
+	, m_CurSpriteIndex(0)
 	, m_Playing(false)
 	, m_Repeat(false)
 {
@@ -40,7 +40,7 @@ void FlipBookComUI::Update()
 	m_CurFB = m_FBCom->GetCurFlipBook();
 	if (nullptr != m_CurFB.Get())
 	{
-		m_CurSprite = m_CurFB->GetSprite(m_CurFrmIdx);
+		m_CurSprite = m_CurFB->GetSprite(m_CurSpriteIndex);
 		m_Repeat = m_FBCom->GetRepeat();
 	}
 
@@ -118,7 +118,7 @@ void FlipBookComUI::Update()
 
 
 	// Show Current FlipBook Sprite
-	ShowFlipBookSprite(m_CurFB.Get(), m_CurFrmIdx);
+	ShowFlipBookSprite(m_CurFB.Get(), m_CurSpriteIndex);
 	if (m_Playing)
 	{
 		m_AccTime += EngineDT;
@@ -134,7 +134,7 @@ void FlipBookComUI::Update()
 	if (ImGui::Button("STOP", ImVec2(95.f, 18.f)))
 	{
 		m_Playing = false;
-		m_CurFrmIdx = 0;
+		m_CurSpriteIndex = 0;
 		m_AccTime = 0;
 	}
 
@@ -148,7 +148,7 @@ void FlipBookComUI::Update()
 	ImGui::Text("Current Frame");
 	ImGui::SameLine(120);
 	ImGui::SetNextItemWidth(30.f);
-	ImGui::InputInt("##FlipBookFrmIdx", (int*)&m_CurFrmIdx, 0, 0, ImGuiInputTextFlags_::ImGuiInputTextFlags_ReadOnly);
+	ImGui::InputInt("##FlipBookFrmIdx", (int*)&m_CurSpriteIndex, 0, 0, ImGuiInputTextFlags_::ImGuiInputTextFlags_ReadOnly);
 
 	ImGui::SameLine(155.f);
 	ImGui::SetNextItemWidth(200.f);
@@ -160,19 +160,19 @@ void FlipBookComUI::Update()
 	ImGui::PushButtonRepeat(true);
 	if (ImGui::ArrowButton("##left", ImGuiDir_Left))
 	{
-		if (0 == m_CurFrmIdx)
-			m_CurFrmIdx = 0;
+		if (0 == m_CurSpriteIndex)
+			m_CurSpriteIndex = 0;
 		else
-			m_CurFrmIdx--;
+			m_CurSpriteIndex--;
 	}
 
 	ImGui::SameLine(0.0f, 5.f);
 	if (ImGui::ArrowButton("##right", ImGuiDir_Right))
 	{
-		if (m_CurFrmIdx >= m_CurFB->GetMaxFrameCount() - 1)
-			m_CurFrmIdx = m_CurFB->GetMaxFrameCount() - 1;
+		if (m_CurSpriteIndex >= m_CurFB->GetMaxFrameCount() - 1)
+			m_CurSpriteIndex = m_CurFB->GetMaxFrameCount() - 1;
 		else
-			m_CurFrmIdx++;
+			m_CurSpriteIndex++;
 	}
 
 	ImGui::PopButtonRepeat();
@@ -230,15 +230,15 @@ void FlipBookComUI::ShowFlipBookSprite(Ptr<qFlipBook> _CurFlipBook, int _CurInde
 	if (MaxTime < m_AccTime)
 	{
 		m_AccTime -= MaxTime;
-		++m_CurFrmIdx;
+		++m_CurSpriteIndex;
 
-		if (m_CurFB->GetMaxFrameCount() <= m_CurFrmIdx)
+		if (m_CurFB->GetMaxFrameCount() <= m_CurSpriteIndex)
 		{
-			m_CurFrmIdx = 0;
+			m_CurSpriteIndex = 0;
 		}
 	}
 
-	m_CurSprite = m_CurFB->GetSprite(m_CurFrmIdx);
+	m_CurSprite = m_CurFB->GetSprite(m_CurSpriteIndex);
 	Ptr<qTexture> pTexture = m_CurSprite->GetAtlasTexture();
 
 	// Image Size

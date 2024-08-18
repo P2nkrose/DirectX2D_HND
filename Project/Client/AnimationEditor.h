@@ -3,7 +3,7 @@
 
 class AE_Detail;
 class AE_Preview;
-class AE_SpriteView;
+class AE_SpriteList;
 
 class AnimationEditor : public EditorUI
 {
@@ -21,19 +21,21 @@ public:
 
 public:
 	AE_Preview* GetPreview() { return m_Preview; }
-	AE_SpriteView* GetSpriteView() { return m_SpriteView; }
+	AE_SpriteList* GetSpriteList() { return m_SpriteList; }
 	AE_Detail* GetDetail() { return m_Detail; }
 
 	
 private:
-	void AddAnimation();
-	void DeleteAnimation(const wstring& _strAnimationName);
+	void Window();
+	void Create();
 
+	wstring GetAssetKey(ASSET_TYPE _Type, const wstring& _Format);
 
+	
 private:
 	AE_Preview*			m_Preview;
-	AE_SpriteView*		m_SpriteView;
 	AE_Detail*			m_Detail;
+	AE_SpriteList*		m_SpriteList;
 
 
 };

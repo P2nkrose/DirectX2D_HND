@@ -42,8 +42,8 @@ public:
 	bool IsCurFlipBookFinished();
 
 public:
-	int GetMaxFrm() { return m_MaxFrm; }
-	int GetCurFrmIdx() { return m_CurFrmIdx; }
+	int GetMaxFrm() { return m_MaxSpriteIndex; }
+	int GetCurFrmIdx() { return m_CurSpriteIndex; }
 
 	bool GetRepeat() { return m_Repeat; }
 	void SetRepeat(bool _Repeat);
@@ -55,8 +55,8 @@ private:
 	vector<Ptr<qFlipBook>>			m_vecFlipBook;		// FlipBook 컴포넌트가 보유한 모든 FlipBook 목록
 	Ptr<qFlipBook>					m_CurFlipBook;		// 현재 재생중인 FlipBook
 	Ptr<qSprite>					m_CurFrmSprite;		// 현재 재생중인 FlipBook 에서 현재 프레임 인덱스에 해당하는 스프라이트
-	int								m_CurFrmIdx;		// 현재 재생중엔 FlipBook 에서 몇번째 Sprite가 재생중인지 인덱스 기록
-	int								m_MaxFrm;			// 현재 재생중인 FlipBook 의 최대 프레임
+	int								m_CurSpriteIndex;	// 현재 재생중엔 FlipBook 에서 몇번째 Sprite가 재생중인지 인덱스 기록
+	int								m_MaxSpriteIndex;	// 현재 재생중인 FlipBook 의 최대 프레임
 	float							m_FPS;				// 현재 재생중인 FlipBook 의 초당 프레임 진행 수
 	float							m_AccTime;			// 누적 시간값 체크
 	bool							m_Repeat;

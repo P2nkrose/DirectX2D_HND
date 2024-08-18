@@ -7,7 +7,7 @@ class AE_Detail : public AE_Sub
 {
 public:
 	friend class AE_Preivew;
-	friend class AE_SpriteView;
+	friend class AE_SpriteList;
 
 	AE_Detail();
 	~AE_Detail();
@@ -16,44 +16,62 @@ public:
 	virtual void Init() override;
 	virtual void Update() override;
 
-public:
-	void Animation();
-	void AnimInfo();
-	void SpriteList();
-	void AddAnimation();
-	void DeleteAnimation();
 
 public:
-	void SetAnim(Ptr<qFlipBook> _FlipBook);
-	string GetAnimName() { return m_AnimName; }
 
-public:
-	void AddSprite(Ptr<qSprite> _Sprite) { m_vecSprite.push_back(_Sprite); }
-	Ptr<qSprite> GetSprite(int _Idx) { return m_vecSprite[_Idx]; }
+	Ptr<qFlipBook> GetCurFlipBook() { return m_CurFlipBook; }
+	Ptr<qSprite> GetCurSprite() { return m_CurSprite; }
+	Ptr<qTexture> GetAtlasTex() { return m_AtlasTex; }
 
+	int GetCurSpriteIndex() { return m_CurSpriteIndex; }
+	bool* GetCurMode() { return m_Mode; }
+
+	void SetCurSprite(Ptr<qSprite> _Sprite)
+	{
+		m_CurSprite = _Sprite;
+		SetSpriteData();
+	}
+
+	
+	bool IsPlaying() { return m_Playing; }
+	void SetPlaying(bool _play) { m_Playing = _play; }
+
+private:
+	void SetFlipBookData();
+	void SetSpriteData();
+
+	void SelectMode();
+	void FlipBookInfo();
+	void FlipBookPlay();
+	void SpriteInfo();
+	void SaveFlipBook();
 
 
 private:
-	void SelectAnim(DWORD_PTR _ListUI);
+	void SelectFlipBook(DWORD_PTR _AssetName);
 
 private:
-	ListUI*						m_List;
+	//ListUI*						m_List;
 
-	vector<Ptr<qFlipBook>>		m_vecFlipBook;
-	vector<Ptr<qSprite>>		m_vecSprite;
 	Ptr<qFlipBook>				m_CurFlipBook;
-	Ptr<qSprite>				m_CurFrmSprite;
+	Ptr<qSprite>				m_CurSprite;
+	Ptr<qTexture>				m_AtlasTex;
 
-	string						m_AnimName;
-
-	int							m_CurFrmIdx;
-	int							m_MaxFrm;
+	string						m_CurFlipBookName;
+	string						m_CurSpriteName;
 	float						m_FPS;
-	float						m_AccTime;
+	Vec2						m_Offset;
+	Vec2						m_Background;
 	bool						m_Repeat;
-	bool						m_Finish;
-	
-	
+	int							m_CurSpriteIndex;
+	int							m_MaxSpriteIndex;
 
+	bool						m_Playing;
+	float						m_AccTime;
+	float						m_MaxTime;
+
+	bool						m_Mode[2];		// 0 : Create Mode  /  1 : Edit Mode
+	bool						m_IsActive;
+	path						Path;
 };
 

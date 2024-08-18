@@ -147,8 +147,11 @@ void qTestLevel::CreateTestLevel()
 	pPlayer->MeshRender()->SetMaterial(pMtrl);
 	
 	Ptr<qFlipBook> pFlipBook = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\Link_MoveDown.flip");
-	pPlayer->FlipBookComponent()->AddFlipBook(5, pFlipBook);
+	Ptr<qFlipBook> pDeath = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\death_idle.flip");
 	
+	pPlayer->FlipBookComponent()->AddFlipBook(5, pFlipBook);
+	pPlayer->FlipBookComponent()->AddFlipBook(6, pDeath);
+
 	pPlayer->FlipBookComponent()->Play(5, 10, true);
 
 	pLevel->AddObject(3, pPlayer);

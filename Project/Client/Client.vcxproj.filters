@@ -140,7 +140,7 @@
     <Filter Include="EditorUI\09. AnimationEditor\AE_Sub\AE_Preview">
       <UniqueIdentifier>{eecf7c6c-8479-4257-b75c-64911edd2489}</UniqueIdentifier>
     </Filter>
-    <Filter Include="EditorUI\09. AnimationEditor\AE_Sub\AE_SpriteView">
+    <Filter Include="EditorUI\09. AnimationEditor\AE_Sub\AE_SpriteList">
       <UniqueIdentifier>{8cb8b705-455b-492c-bf0a-b58129f84dec}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -310,8 +310,8 @@
     <ClInclude Include="AE_Preview.h">
       <Filter>EditorUI\09. AnimationEditor\AE_Sub\AE_Preview</Filter>
     </ClInclude>
-    <ClInclude Include="AE_SpriteView.h">
-      <Filter>EditorUI\09. AnimationEditor\AE_Sub\AE_SpriteView</Filter>
+    <ClInclude Include="AE_SpriteList.h">
+      <Filter>EditorUI\09. AnimationEditor\AE_Sub\AE_SpriteList</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -488,8 +488,8 @@
     <ClCompile Include="AE_Preview.cpp">
       <Filter>EditorUI\09. AnimationEditor\AE_Sub\AE_Preview</Filter>
     </ClCompile>
-    <ClCompile Include="AE_SpriteView.cpp">
-      <Filter>EditorUI\09. AnimationEditor\AE_Sub\AE_SpriteView</Filter>
+    <ClCompile Include="AE_SpriteList.cpp">
+      <Filter>EditorUI\09. AnimationEditor\AE_Sub\AE_SpriteList</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

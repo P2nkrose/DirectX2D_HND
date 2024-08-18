@@ -38,6 +38,8 @@ int qFlipBook::Save(const wstring& _FilePath)
 	return S_OK;
 }
 
+
+
 int qFlipBook::Load(const wstring& _FilePath)
 {
 	FILE* File = nullptr;

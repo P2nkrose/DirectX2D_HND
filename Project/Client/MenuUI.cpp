@@ -256,13 +256,13 @@ void MenuUI::Assets()
 		//}
 
 
-		// Default FlipBook 만들기
-		if (ImGui::MenuItem("Create Empty FlipBook"))
-		{
-			Ptr<qFlipBook> pFlipBook = new qFlipBook;
-			wstring Key = GetAssetKey(ASSET_TYPE::FLIPBOOK, L"Default FlipBook");
-			qAssetMgr::GetInst()->AddAsset<qFlipBook>(Key, pFlipBook);
-		}
+		//// Default FlipBook 만들기
+		//if (ImGui::MenuItem("Create Empty FlipBook"))
+		//{
+		//	Ptr<qFlipBook> pFlipBook = new qFlipBook;
+		//	wstring Key = GetAssetKey(ASSET_TYPE::FLIPBOOK, L"Default FlipBook");
+		//	qAssetMgr::GetInst()->AddAsset<qFlipBook>(Key, pFlipBook);
+		//}
 
 
 		ImGui::EndMenu();
