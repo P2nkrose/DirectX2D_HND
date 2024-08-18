@@ -43,8 +43,6 @@ void AnimationEditor::Update()
 	{
 		Window();
 
-		Create();
-
 		ImGui::EndMenuBar();
 	}
 }
@@ -90,23 +88,6 @@ void AnimationEditor::Window()
 	}
 }
 
-
-
-void AnimationEditor::Create()
-{
-	if (ImGui::BeginMenu("Create"))
-	{
-		// Default FlipBook ¸¸µé±â
-		if (ImGui::MenuItem("Create Empty FlipBook"))
-		{
-			Ptr<qFlipBook> pFlipBook = new qFlipBook;
-			wstring Key = GetAssetKey(ASSET_TYPE::FLIPBOOK, L"Default FlipBook");
-			qAssetMgr::GetInst()->AddAsset<qFlipBook>(Key, pFlipBook);
-		}
-
-		ImGui::EndMenu();
-	}
-}
 
 wstring AnimationEditor::GetAssetKey(ASSET_TYPE _Type, const wstring& _Format)
 {

@@ -29,6 +29,7 @@ private:
 	
 	float							m_AccTime;
 	UINT							m_CurSpriteIndex;
+	UINT							m_MaxSpriteIndex;
 	bool							m_Repeat;
 	bool							m_Playing;
 };

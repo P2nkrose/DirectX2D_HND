@@ -19,6 +19,7 @@ FlipBookComUI::FlipBookComUI()
 	, m_UIHeight(0)
 	, m_AccTime(0)
 	, m_CurSpriteIndex(0)
+	, m_MaxSpriteIndex(0)
 	, m_Playing(false)
 	, m_Repeat(false)
 {
@@ -226,6 +227,8 @@ void FlipBookComUI::SelectFlipBook(DWORD_PTR _ListUI)
 
 void FlipBookComUI::ShowFlipBookSprite(Ptr<qFlipBook> _CurFlipBook, int _CurIndex)
 {
+	m_MaxSpriteIndex = m_FBCom->GetCurFlipBook()->GetMaxFrameCount();
+
 	float MaxTime = 1.f / m_FBCom->GetFPS();
 	if (MaxTime < m_AccTime)
 	{
@@ -234,7 +237,15 @@ void FlipBookComUI::ShowFlipBookSprite(Ptr<qFlipBook> _CurFlipBook, int _CurInde
 
 		if (m_CurFB->GetMaxFrameCount() <= m_CurSpriteIndex)
 		{
-			m_CurSpriteIndex = 0;
+			if (m_Repeat)
+			{
+				m_CurSpriteIndex = 0;
+			}
+			else
+			{
+				m_Playing = false;
+				m_CurSpriteIndex = m_MaxSpriteIndex - 1;
+			}
 		}
 	}
 

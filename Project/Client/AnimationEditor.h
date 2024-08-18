@@ -27,7 +27,6 @@ public:
 	
 private:
 	void Window();
-	void Create();
 
 	wstring GetAssetKey(ASSET_TYPE _Type, const wstring& _Format);
 
