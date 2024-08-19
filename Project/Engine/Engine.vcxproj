@@ -209,7 +209,10 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="qTileMap.h" />
     <ClInclude Include="qTimeMgr.h" />
     <ClInclude Include="qTransform.h" />
-    <ClInclude Include="qRigidBody.h" />
+    <ClInclude Include="qRigidBody.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="SimpleMath.h" />
     <ClInclude Include="singleton.h" />
     <ClInclude Include="struct.h" />
@@ -255,7 +258,10 @@ call EngineHeaderCopy.bat</Command>
     <ClCompile Include="qPrefab.cpp" />
     <ClCompile Include="qRenderComponent.cpp" />
     <ClCompile Include="qRenderMgr.cpp" />
-    <ClCompile Include="qRigidBody.cpp" />
+    <ClCompile Include="qRigidBody.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="qScript.cpp" />
     <ClCompile Include="qSetColorCS.cpp" />
     <ClCompile Include="qShader.cpp" />

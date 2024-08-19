@@ -34,7 +34,7 @@ qGameObject* qLevelMgr::FindObjectByName(const wstring& _Name)
 
 void qLevelMgr::LevelChanged()
 {
-	qTaskMgr::GetInst()->AddTask(tTask{ TASK_TYPE::LEVLEL_CHANGED });
+	qTaskMgr::GetInst()->AddTask(tTask{ TASK_TYPE::LEVEL_CHANGED });
 }
 
 

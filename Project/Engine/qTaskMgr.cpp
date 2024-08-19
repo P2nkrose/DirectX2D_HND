@@ -90,7 +90,7 @@ void qTaskMgr::ExecuteTask()
 		}
 		break;
 
-		case TASK_TYPE::LEVLEL_CHANGED:
+		case TASK_TYPE::LEVEL_CHANGED:
 		{
 			qLevelMgr::GetInst()->m_LevelChanged = true;
 		}

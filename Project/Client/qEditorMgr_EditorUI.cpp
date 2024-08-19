@@ -182,7 +182,7 @@ void qEditorMgr::CreateEditorUI()
 	pUI = new AnimationEditor;
 	pUI->Init();
 	pUI->SetName("AnimationEditor");
-	pUI->SetActive(true);
+	pUI->SetActive(false);
 	m_mapUI.insert(make_pair(pUI->GetName(), pUI));
 
 

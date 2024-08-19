@@ -36,7 +36,7 @@ void qTestLevel::CreateTestLevel()
 
 	CreatePrefab();
 
-
+	// 파티클 주석
 	// 컴퓨트 쉐이더 테스트용 텍스쳐 생성
 	Ptr<qTexture> pTestTex = qAssetMgr::GetInst()->CreateTexture(L"ComputeShaderTestTex"
 										, 1026, 1026, DXGI_FORMAT_R8G8B8A8_UNORM
@@ -152,7 +152,7 @@ void qTestLevel::CreateTestLevel()
 	pPlayer->FlipBookComponent()->AddFlipBook(5, pFlipBook);
 	pPlayer->FlipBookComponent()->AddFlipBook(6, pDeath);
 
-	pPlayer->FlipBookComponent()->Play(5, 10, true);
+	pPlayer->FlipBookComponent()->Play(6, 10, true);
 
 	pLevel->AddObject(3, pPlayer);
 
@@ -235,7 +235,7 @@ void qTestLevel::CreateTestLevel()
 	pParticleObj->AddComponent(new qTransform);
 	pParticleObj->AddComponent(new qParticleSystem);
 
-	pParticleObj->Transform()->SetRelativePos(Vec3(0.f, 0.f, 0.f));
+	pParticleObj->Transform()->SetRelativePos(Vec3(0.f, 0.f, 300.f));
 
 	pLevel->AddObject(0, pParticleObj);
 

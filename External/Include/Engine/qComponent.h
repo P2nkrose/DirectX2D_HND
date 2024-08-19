@@ -35,6 +35,8 @@ public:
 	GET_OTHER_COMPONENT(TileMap);
 	GET_OTHER_COMPONENT(Light2D);
 	GET_OTHER_COMPONENT(ParticleSystem);
+	GET_OTHER_COMPONENT(RigidBody);
+	
 	
 
 private:

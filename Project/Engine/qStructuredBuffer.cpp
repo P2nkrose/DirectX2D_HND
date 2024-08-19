@@ -8,6 +8,8 @@ qStructuredBuffer::qStructuredBuffer()
 	, m_ElementCount(0)
 	, m_ElementSize(0)
 	, m_RecentRegisterNum(0)
+	, m_Type{}
+	, m_SysMemMove(false)
 {
 }
 
@@ -27,6 +29,7 @@ int qStructuredBuffer::Create(UINT _ElementSize, UINT _ElementCount
 	m_SB_Read = nullptr;
 
 	m_SRV = nullptr;
+	m_UAV = nullptr;
 
 	m_ElementSize = _ElementSize;
 	m_ElementCount = _ElementCount;
@@ -53,6 +56,9 @@ int qStructuredBuffer::Create(UINT _ElementSize, UINT _ElementCount
 		m_Desc.Usage = D3D11_USAGE_DEFAULT;
 		m_Desc.CPUAccessFlags = 0;
 	}
+
+	//m_Desc.Usage = D3D11_USAGE_DEFAULT;
+	//m_Desc.CPUAccessFlags = 0;
 
 
 	HRESULT hr = S_OK;
@@ -84,6 +90,7 @@ int qStructuredBuffer::Create(UINT _ElementSize, UINT _ElementCount
 		m_Desc.Usage = D3D11_USAGE_DYNAMIC;
 		m_Desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
+		// Write Buffer 持失
 		if (nullptr == _InitData)
 		{
 			hr = DEVICE->CreateBuffer(&tRWBufferDesc, nullptr, m_SB_Write.GetAddressOf());
@@ -95,6 +102,7 @@ int qStructuredBuffer::Create(UINT _ElementSize, UINT _ElementCount
 			hr = DEVICE->CreateBuffer(&tRWBufferDesc, &sub, m_SB_Write.GetAddressOf());
 		}
 
+		// Read Buffer 持失
 		tRWBufferDesc.Usage = D3D11_USAGE_DEFAULT;
 		tRWBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_READ;
 
@@ -151,6 +159,12 @@ void qStructuredBuffer::SetData(void* _pData, UINT _DataSize)
 	{
 		_DataSize = m_Desc.ByteWidth;
 	}
+
+	//D3D11_MAPPED_SUBRESOURCE tMapSub = {};
+	//CONTEXT->Map(m_SB_Write.Get(), 0, D3D11_MAP::D3D11_MAP_WRITE_DISCARD, 0, &tMapSub);
+	//memcpy(tMapSub.pData, _pData, _DataSize);
+	//CONTEXT->Unmap(m_SB_Write.Get(), 0);
+	//CONTEXT->CopyResource(m_SB.Get(), m_SB_Write.Get());
 
 	if (false == m_SysMemMove)
 	{
@@ -216,18 +230,20 @@ void qStructuredBuffer::Binding_CS_SRV(UINT _RegisterNum)
 	CONTEXT->CSSetShaderResources(_RegisterNum, 1, m_SRV.GetAddressOf());
 }
 
-void qStructuredBuffer::Clear_CS_SRV()
-{
-	ID3D11ShaderResourceView* pSRV = nullptr;
-	CONTEXT->CSSetShaderResources(m_RecentRegisterNum, 1, &pSRV);
-}
-
 void qStructuredBuffer::Binding_CS_UAV(UINT _RegisterNum)
 {
 	m_RecentRegisterNum = _RegisterNum;
 	UINT i = -1;
 	CONTEXT->CSSetUnorderedAccessViews(_RegisterNum, 1, m_UAV.GetAddressOf(), &i);
 }
+
+
+void qStructuredBuffer::Clear_CS_SRV()
+{
+	ID3D11ShaderResourceView* pSRV = nullptr;
+	CONTEXT->CSSetShaderResources(m_RecentRegisterNum, 1, &pSRV);
+}
+
 
 void qStructuredBuffer::Clear_CS_UAV()
 {

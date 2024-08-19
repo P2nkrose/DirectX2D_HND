@@ -227,7 +227,7 @@ qComponent* qLevelSaveLoad::GetComponent(COMPONENT_TYPE _Type)
 		break;
 
 	case COMPONENT_TYPE::RIGIDBODY:
-		break;
+		return new qRigidBody;
 
 	case COMPONENT_TYPE::CAMERA:
 		return  new qCamera;

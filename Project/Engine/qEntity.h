@@ -21,8 +21,8 @@ private:
 	static UINT		g_ID;
 
 private:
-	wstring		m_Name;
-	const UINT	m_ID;		// 상수화된 변수는 생성된 이니셜라이저만 넣을수있다.
+	wstring			m_Name;
+	const UINT		m_ID;		// 상수화된 변수는 생성된 이니셜라이저만 넣을수있다.
 
 
 };

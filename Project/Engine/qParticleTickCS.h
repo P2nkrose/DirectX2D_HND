@@ -17,6 +17,7 @@ public:
 public:
 	void SetParticleBuffer(qStructuredBuffer* _Buffer) { m_ParticleBuffer = _Buffer; }
 	void SetSpawnCount(qStructuredBuffer* _Buffer) { m_SpawnCountBuffer = _Buffer; }
+	void SetModuleBuffer(qStructuredBuffer* _ModuleBuffer) { m_ModuleBuffer = _ModuleBuffer; }
 
 	void SetParticleWorldPos(Vec3 _Pos) { m_ParticleWorldPos = _Pos; }
 	void SetNoiseTexture(Ptr<qTexture> _Noise) { m_NoiseTex = _Noise; }
@@ -24,6 +25,7 @@ public:
 private:
 	qStructuredBuffer*		m_ParticleBuffer;
 	qStructuredBuffer*		m_SpawnCountBuffer;
+	qStructuredBuffer*		m_ModuleBuffer;
 
 	Ptr<qTexture>			m_NoiseTex;
 	Vec3					m_ParticleWorldPos;

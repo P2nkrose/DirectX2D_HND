@@ -256,6 +256,11 @@ namespace DirectX
             operator f3() const { return (f3)x; }
 
 
+            //bool IsZero()
+            //{
+            //    return x == 0.f && y == 0.f && z == 0.f;
+            //}
+
             // Comparison operators
             bool operator == (const Vector3& V) const;
             bool operator != (const Vector3& V) const;
