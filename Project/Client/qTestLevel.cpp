@@ -36,32 +36,32 @@ void qTestLevel::CreateTestLevel()
 
 	CreatePrefab();
 
-	// 파티클 주석
-	// 컴퓨트 쉐이더 테스트용 텍스쳐 생성
-	Ptr<qTexture> pTestTex = qAssetMgr::GetInst()->CreateTexture(L"ComputeShaderTestTex"
-										, 1026, 1026, DXGI_FORMAT_R8G8B8A8_UNORM
-										, D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_UNORDERED_ACCESS);
+	//// 파티클 주석
+	//// 컴퓨트 쉐이더 테스트용 텍스쳐 생성
+	//Ptr<qTexture> pTestTex = qAssetMgr::GetInst()->CreateTexture(L"ComputeShaderTestTex"
+	//									, 1026, 1026, DXGI_FORMAT_R8G8B8A8_UNORM
+	//									, D3D11_BIND_SHADER_RESOURCE | D3D11_BIND_UNORDERED_ACCESS);
 
 
-	qSetColorCS cs;
-	cs.SetTargetTexture(pTestTex);
-	cs.SetClearColor(Vec4(0.f, 1.f, 0.f, 1.f));
-	cs.Execute();
-	pMtrl->SetTexParam(TEX_0, pTestTex);
+	//qSetColorCS cs;
+	//cs.SetTargetTexture(pTestTex);
+	//cs.SetClearColor(Vec4(0.f, 1.f, 0.f, 1.f));
+	//cs.Execute();
+	//pMtrl->SetTexParam(TEX_0, pTestTex);
 
-	// Set Data 
-	qStructuredBuffer* pBuffer = new qStructuredBuffer;
-	pBuffer->Create(sizeof(tParticle), 1, SB_TYPE::SRV_UAV, true);
+	//// Set Data 
+	//qStructuredBuffer* pBuffer = new qStructuredBuffer;
+	//pBuffer->Create(sizeof(tParticle), 1, SB_TYPE::SRV_UAV, true);
 
-	tParticle Particle = {};
-	tParticle Particle2 = {};
+	//tParticle Particle = {};
+	//tParticle Particle2 = {};
 
-	Particle.Active = true;
-	Particle.vColor = Vec4(1.f, 0.f, 0.f, 1.f);
-	pBuffer->SetData(&Particle);
+	//Particle.Active = true;
+	//Particle.vColor = Vec4(1.f, 0.f, 0.f, 1.f);
+	//pBuffer->SetData(&Particle);
 
-	pBuffer->GetData(&Particle2);
-	delete pBuffer;
+	//pBuffer->GetData(&Particle2);
+	//delete pBuffer;
 
 
 	//wstring StrLevelLoadPath = qPathMgr::GetInst()->GetContentPath();
@@ -135,6 +135,19 @@ void qTestLevel::CreateTestLevel()
 	pPlayer->AddComponent(new qCollider2D);
 	pPlayer->AddComponent(new qFlipBookComponent);
 	pPlayer->AddComponent(new qPlayerScript);
+	pPlayer->AddComponent(new qRigidBody);
+
+	// 리지드바디
+	pPlayer->RigidBody()->SetMass(1.f);
+	pPlayer->RigidBody()->SetMaxWalkSpeed(300.f);
+	pPlayer->RigidBody()->SetFriction(100.f);
+
+	pPlayer->RigidBody()->UseGravity(true);
+	pPlayer->RigidBody()->SetMaxGravitySpeed(1500.f);
+	pPlayer->RigidBody()->SetJumpSpeed(400.f);
+
+	pPlayer->RigidBody()->SetGround(false);
+
 
 	pPlayer->Transform()->SetRelativePos(0.f, 0.0f, 100.f);
 	pPlayer->Transform()->SetRelativeScale(200.f, 200.f, 1.f);
@@ -235,7 +248,7 @@ void qTestLevel::CreateTestLevel()
 	pParticleObj->AddComponent(new qTransform);
 	pParticleObj->AddComponent(new qParticleSystem);
 
-	pParticleObj->Transform()->SetRelativePos(Vec3(0.f, 0.f, 300.f));
+	pParticleObj->Transform()->SetRelativePos(Vec3(0.f, 0.f, 0.f));
 
 	pLevel->AddObject(0, pParticleObj);
 

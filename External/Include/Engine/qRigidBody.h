@@ -61,7 +61,7 @@ public:
 	{
 		m_UseGravity = _Use;
 		if (!m_UseGravity)
-			m_VelocityByGravity = Vec3(0.f, 0.f, 1.f);
+			m_VelocityByGravity = Vec3(0.f, -1.f, 1.f);
 	}
 
 	void SetGround(bool _Ground)
@@ -70,7 +70,7 @@ public:
 
 		if (m_Ground)
 		{
-			m_VelocityByGravity = Vec3(0.f, 0.f, 1.f);
+			m_VelocityByGravity = Vec3(0.f, -1.f, 1.f);
 
 			if (nullptr != m_GroundFunc)
 				m_GroundFunc();

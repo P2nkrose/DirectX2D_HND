@@ -166,7 +166,6 @@ void GS_Particle(point VS_OUT _in[1], inout TriangleStream<GS_OUT> _OutStream)
 
 
 
-
 float4 PS_Particle(GS_OUT _in) : SV_Target
 {
     float4 vParticleColor = float4(1.f, 0.f, 0.f, 1.f);

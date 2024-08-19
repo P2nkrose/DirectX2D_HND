@@ -30,6 +30,7 @@ qRigidBody::qRigidBody(const qRigidBody& _Origin)
 	, m_Mass(_Origin.m_Mass)
 	, m_InitWalkSpeed(_Origin.m_InitWalkSpeed)
 	, m_MaxWalkSpeed(_Origin.m_MaxWalkSpeed)
+	, m_MaxGravitySpeed(_Origin.m_MaxGravitySpeed)
 	, m_Friction(_Origin.m_Friction)
 	, m_GravityAccel(_Origin.m_GravityAccel)
 	, m_UseGravity(_Origin.m_UseGravity)
@@ -61,6 +62,7 @@ void qRigidBody::FinalTick()
 	if (m_UseGravity && !m_Ground)
 	{
 		m_Velocity += vAccel * DT * 0.5f;
+
 	}
 	else
 	{
@@ -108,13 +110,12 @@ void qRigidBody::FinalTick()
 
 		if (m_Velocity.x == 0.f && m_Velocity.y == 0.f && m_Velocity.z == 0.f)
 		{
-
+			
 		}
 		else
 		{
 			m_Velocity.Normalize();
 		}
-			
 
 		m_Velocity *= Speed;
 	}
@@ -123,7 +124,7 @@ void qRigidBody::FinalTick()
 	// 중력 가속도에 의한 속도 증가
 	if (m_UseGravity && !m_Ground)
 	{
-		m_VelocityByGravity += Vec3(0.0f, 1.f, 0.f) * m_GravityAccel * DT;
+		m_VelocityByGravity += Vec3(0.0f, -1.f, 1.f) * m_GravityAccel * DT;
 
 		if (0.f != m_MaxGravitySpeed && m_MaxGravitySpeed < m_VelocityByGravity.Length())
 		{
@@ -144,7 +145,6 @@ void qRigidBody::FinalTick()
 	// 이번 프레임 힘 초기화
 	m_Force = Vec3(0.f, 0.f, 1.f);
 	m_AddVelocity = Vec3(0.f, 0.f, 1.f);
-
 
 }
 
