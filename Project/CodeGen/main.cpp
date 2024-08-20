@@ -172,7 +172,7 @@ int main()
 
 
 	// 두번째 함수 작성
-	fwprintf_s(pFile, L"CScript * qScriptMgr::GetScript(const wstring& _strScriptName)\n{\n");
+	fwprintf_s(pFile, L"qScript * qScriptMgr::GetScript(const wstring& _strScriptName)\n{\n");
 
 	for (UINT i = 0; i < g_vecName.size(); ++i)
 	{

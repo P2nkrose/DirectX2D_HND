@@ -7,6 +7,7 @@ enum SCRIPT_TYPE
 {
 	CAMERAMOVESCRIPT,
 	MISSILESCRIPT,
+	PLATFORMSCRIPT,
 	PLAYERSCRIPT,
 };
 
@@ -18,8 +19,7 @@ class qScriptMgr
 {
 public:
 	static void GetScriptInfo(vector<wstring>& _vec);
-	static qScript* GetScript(const wstring& _strScriptName);
-	static qScript* GetScript(UINT _iScriptType);
-	static const wchar_t* GetScriptName(qScript* _pScript);
+	static qScript * GetScript(const wstring& _strScriptName);
+	static qScript * GetScript(UINT _iScriptType);
+	static const wchar_t * GetScriptName(qScript * _pScript);
 };
-

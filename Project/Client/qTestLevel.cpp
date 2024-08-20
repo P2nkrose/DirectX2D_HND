@@ -15,6 +15,7 @@
 #include <Scripts/qPlayerScript.h>
 #include <Scripts/qMissileScript.h>
 #include <Scripts/qCameraMoveScript.h>
+#include <Scripts/qPlatformScript.h>
 
 #include <Engine/qSetColorCS.h>
 #include <Engine/qStructuredBuffer.h>
@@ -79,7 +80,7 @@ void qTestLevel::CreateTestLevel()
 
 	pLevel->GetLayer(0)->SetName(L"Default");
 	pLevel->GetLayer(1)->SetName(L"Background");
-	pLevel->GetLayer(2)->SetName(L"Tile");
+	pLevel->GetLayer(2)->SetName(L"Platform");
 	pLevel->GetLayer(3)->SetName(L"Player");
 	pLevel->GetLayer(4)->SetName(L"Monster");
 	pLevel->GetLayer(5)->SetName(L"PlayerProjectile");		// 플레이어 투사체
@@ -124,6 +125,28 @@ void qTestLevel::CreateTestLevel()
 	pObject->Transform()->SetRelativePos(Vec3(0.f, 0.f, 100.f));
 
 	pLevel->AddObject(0, pObject);
+
+
+	// 플랫폼
+	qGameObject* pGround = new qGameObject;
+	pGround->SetName(L"Platform");
+	pGround->AddComponent(new qTransform);
+	pGround->AddComponent(new qCollider2D);
+	pGround->AddComponent(new qPlatformScript);
+
+	pGround->Transform()->SetRelativePos(0.f, -400.0f, 100.f);
+	pGround->Transform()->SetRelativeScale(600.f, 100.f, 1.f);
+
+	pGround->Collider2D()->SetIndependentScale(false);
+	pGround->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pGround->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+
+
+	//pGround->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	//pGround->MeshRender()->SetMaterial(pMtrl);
+
+	pLevel->AddObject(2, pGround);
+
 
 
 
@@ -225,19 +248,19 @@ void qTestLevel::CreateTestLevel()
 	// TileMap Object
 	qGameObject* pTileMapObj = new qGameObject;
 	pTileMapObj->SetName(L"TileMap");
-
+	
 	pTileMapObj->AddComponent(new qTransform);
 	pTileMapObj->AddComponent(new qTileMap);
-
+	
 	pTileMapObj->Transform()->SetRelativePos(Vec3(-500.f, 250.f, 500.f));
-
+	
 	pTileMapObj->TileMap()->SetRowCol(20, 20);
 	pTileMapObj->TileMap()->SetTileSize(Vec2(64.f, 64.f));
-
+	
 	Ptr<qTexture> pTileAtlas = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\TILE.bmp");
 	pTileMapObj->TileMap()->SetAtlasTexture(pTileAtlas);
 	pTileMapObj->TileMap()->SetAtlasTileSize(Vec2(64.f, 64.f));
-
+	
 	pLevel->AddObject(2, pTileMapObj);
 
 
@@ -279,6 +302,7 @@ void qTestLevel::CreateTestLevel()
 
 	// 충돌 지정
 	qCollisionMgr::GetInst()->CollisionCheck(3, 4);		// Player vs Monster
+	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Player vs Platform
 	qCollisionMgr::GetInst()->CollisionCheck(5, 4);		// Player Projectile vs Monster
 
 

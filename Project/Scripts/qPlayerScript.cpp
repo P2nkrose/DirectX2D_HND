@@ -2,6 +2,9 @@
 #include "qPlayerScript.h"
 #include "qMissileScript.h"
 
+#include <Engine/qLevelMgr.h>
+#include <Engine/qRigidBody.h>
+
 qPlayerScript::qPlayerScript()
 	: qScript(UINT(SCRIPT_TYPE::PLAYERSCRIPT))
 	, m_Speed(500.f)
@@ -95,7 +98,16 @@ void qPlayerScript::Tick()
 
 void qPlayerScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)
 {
-	DeleteObject(_OtherObject);
+	//if (_OtherObject->GetName() == L"Platform")
+	//{
+	//	qRigidBody* pRB = _OtherObject->GetComponent(COMPONENT_TYPE::RIGIDBODY)->RigidBody();
+	//
+	//	pRB->SetGround(true);
+	//
+	//
+	//}
+
+	//DeleteObject(_OtherObject);
 	
 	//Vec3 vScale = Transform()->GetRelativeScale();
 	//
