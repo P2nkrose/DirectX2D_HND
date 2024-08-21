@@ -39,6 +39,7 @@ public:
 	const map<wstring, Ptr<qAsset>>& GetAssets(ASSET_TYPE _Type) { return m_mapAsset[(UINT)_Type]; }
 	bool IsChanged() { return m_Changed; }
 
+
 private:
 	void CreateEngineMesh();
 	void CreateEngineMaterial();
@@ -55,6 +56,7 @@ private:
 private:
 	map<wstring, Ptr<qAsset>>	m_mapAsset[(UINT)ASSET_TYPE::END];
 	bool						m_Changed;		// Editor에서 만든 에셋 변경점 확인
+
 };
 
 

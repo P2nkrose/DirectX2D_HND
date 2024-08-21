@@ -203,10 +203,23 @@ void qParticleSystem::CaculateSpawnCount()
 	m_SpawnCountBuffer->SetData(&count);
 }
 
+
 void qParticleSystem::SaveToFile(FILE* _File)
 {
+	SaveDataToFile(_File);
+
+	fwrite(&m_MaxParticleCount, sizeof(UINT), 1, _File);
+	fwrite(&m_Module, sizeof(tParticleModule), 1, _File);
+
+	SaveAssetRef(m_ParticleTex, _File);
 }
 
 void qParticleSystem::LoadFromFile(FILE* _File)
 {
+	LoadDataFromFile(_File);
+
+	fread(&m_MaxParticleCount, sizeof(UINT), 1, _File);
+	fread(&m_Module, sizeof(tParticleModule), 1, _File);
+
+	LoadAssetRef(m_ParticleTex, _File);
 }

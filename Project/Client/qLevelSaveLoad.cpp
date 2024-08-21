@@ -239,7 +239,8 @@ qComponent* qLevelSaveLoad::GetComponent(COMPONENT_TYPE _Type)
 		return  new qTileMap;
 
 	case COMPONENT_TYPE::PARTICLESYSTEM:
-		break;
+		return new qParticleSystem;
+		
 
 	case COMPONENT_TYPE::DECAl:
 		break;

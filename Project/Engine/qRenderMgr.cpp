@@ -83,6 +83,9 @@ void qRenderMgr::Tick()
 	// Debug Render
 	RenderDebugShape();
 
+	// Time 정보 출력
+	qTimeMgr::GetInst()->Render();
+
 	// Clear
 	Clear();
 }

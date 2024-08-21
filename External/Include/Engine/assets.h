@@ -6,7 +6,7 @@
 #include "qComputeShader.h"
 #include "qMaterial.h"
 #include "qTexture.h"
-//#include "qSound.h"
+#include "qSound.h"
 #include "qPrefab.h"
 #include "qSprite.h"
 #include "qFlipBook.h"

@@ -9,6 +9,11 @@ qAssetMgr::qAssetMgr()
 
 qAssetMgr::~qAssetMgr()
 {
+	//if (nullptr != m_FMODSystem)
+	//{
+	//	m_FMODSystem->release();
+	//	m_FMODSystem = nullptr;
+	//}
 }
 
 
@@ -16,6 +21,7 @@ void qAssetMgr::Tick()
 {
 	if (m_Changed)
 		m_Changed = false;
+
 }
 
 

@@ -210,3 +210,25 @@ enum class PARTICLE_MODULE
 
 	END,
 };
+
+
+enum class STAGE_NAME
+{
+	STAGE1,
+	STAGE2,
+	BOSS,
+};
+
+
+enum class LEVEL_TYPE
+{
+	TITLE,
+	EDITOR,
+
+	STAGE1,
+	STAGE2,
+	BOSS,
+
+	END,
+};
+

@@ -4,6 +4,7 @@
 
 void qAssetMgr::Init()
 {
+
 	CreateEngineMesh();
 
 	CreateEngineTexture();

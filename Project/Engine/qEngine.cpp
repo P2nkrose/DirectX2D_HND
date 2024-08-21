@@ -10,6 +10,7 @@
 #include "qRenderMgr.h"
 #include "qCollisionMgr.h"
 #include "qTaskMgr.h"
+#include "qFontMgr.h"
 #include "qPrefab.h"
 
 
@@ -21,7 +22,11 @@ qEngine::qEngine()
 
 qEngine::~qEngine()
 {
-
+	if (nullptr != m_FMODSystem)
+	{
+		m_FMODSystem->release();
+		m_FMODSystem = nullptr;
+	}
 }
 
 int qEngine::Init(HWND _wnd, POINT _ptResolution, OBJECT_SAVE _SaveFunc, OBJECT_LOAD _Func)
@@ -36,6 +41,15 @@ int qEngine::Init(HWND _wnd, POINT _ptResolution, OBJECT_SAVE _SaveFunc, OBJECT_
 		return E_FAIL;
 	}
 
+	// FMOD 초기화		
+	FMOD::System_Create(&m_FMODSystem);
+	assert(m_FMODSystem);
+
+	// 32개 채널 생성
+	m_FMODSystem->init(32, FMOD_DEFAULT, nullptr);
+
+
+
 	// Manager 초기화
 	qPathMgr::GetInst()->Init();
 	qKeyMgr::GetInst()->Init();
@@ -43,7 +57,7 @@ int qEngine::Init(HWND _wnd, POINT _ptResolution, OBJECT_SAVE _SaveFunc, OBJECT_
 	qAssetMgr::GetInst()->Init();
 	qRenderMgr::GetInst()->Init();
 	qLevelMgr::GetInst()->Init();
-
+	qFontMgr::GetInst()->Init();
 
 	// Prefab Function 등록
 	qPrefab::g_ObjectSaveFunc = _SaveFunc;
@@ -57,6 +71,10 @@ int qEngine::Init(HWND _wnd, POINT _ptResolution, OBJECT_SAVE _SaveFunc, OBJECT_
 
 void qEngine::Progress()
 {
+	// FMOD Tick
+	m_FMODSystem->update();
+
+
 	// Manager
 	qKeyMgr::GetInst()->Tick();
 	qTimeMgr::GetInst()->Tick();

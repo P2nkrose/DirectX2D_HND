@@ -17,6 +17,7 @@ enum class SCRIPT_PARAM
 	PREFAB,
 };
 
+
 struct tScriptParam
 {
 	SCRIPT_PARAM	Type;

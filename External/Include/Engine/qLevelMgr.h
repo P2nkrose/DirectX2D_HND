@@ -24,6 +24,7 @@ private:
 	bool ChangedLevel(qLevel* _NextLevel);
 
 private:
+	qLevel*		m_arrLevel[(UINT)LEVEL_TYPE::END];
 	qLevel*		m_CurLevel;
 	bool		m_LevelChanged;		// 레벨이 변경된걸 알려주는 bool 값
 };

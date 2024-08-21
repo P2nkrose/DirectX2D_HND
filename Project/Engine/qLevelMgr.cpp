@@ -40,6 +40,7 @@ void qLevelMgr::LevelChanged()
 
 void qLevelMgr::Init()
 {
+	// 레벨 종류 넣기
 	
 }
 

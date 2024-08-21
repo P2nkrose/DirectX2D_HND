@@ -188,9 +188,9 @@ void Content::LoadAsset(const path& _Path)
 	else if (ext == L".png" || ext == L".jpg" || ext == L".jpeg" || ext == L".bmp" || ext == L".dds" || ext == L".tga"
 		|| ext == L".PNG" || ext == L".JPG" || ext == L".JPEG" || ext == L".BMP" || ext == L".DDS" || ext == L".TGA")
 		qAssetMgr::GetInst()->Load<qTexture>(_Path, _Path);
-	//else if (ext == L".mp3" || ext == L".mp4" || ext == L".ogg" || ext == L".wav" 
-	//	|| ext == L".MP3" || ext == L".MP4" || ext == L".OGG" || ext == L".WAV")
-	//	qAssetMgr::GetInst()->Load<qSound>(_Path, _Path);
+	else if (ext == L".mp3" || ext == L".mp4" || ext == L".ogg" || ext == L".wav" 
+		|| ext == L".MP3" || ext == L".MP4" || ext == L".OGG" || ext == L".WAV")
+		qAssetMgr::GetInst()->Load<qSound>(_Path, _Path);
 	else if (ext == L".sprite")
 		qAssetMgr::GetInst()->Load<qSprite>(_Path, _Path);
 	else if (ext == L".flip")

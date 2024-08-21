@@ -14,6 +14,8 @@ public:
 	void Progress();
 	void ChangeWindowScale(UINT _Width, UINT _Height);
 
+	FMOD::System* GetFMODSystem() { return m_FMODSystem; }
+
 public:
 	HWND GetMainWnd() { return m_hWnd; }
 
@@ -21,5 +23,7 @@ public:
 private:
 	HWND			m_hWnd;
 	POINT			m_ptResolution;
+
+	FMOD::System*	m_FMODSystem;  // FMOD 관리자 클래스
 };
 

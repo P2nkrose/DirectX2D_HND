@@ -169,8 +169,20 @@
     <Filter Include="HLSL\03. Compute\02. ParticleTick">
       <UniqueIdentifier>{b48532bd-5306-4949-9155-f36a2102bdcc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="08. Component\09. FSM">
-      <UniqueIdentifier>{18107fec-06d2-40c1-aff8-1d5a5c36e1a3}</UniqueIdentifier>
+    <Filter Include="05. Level\01. TITLE">
+      <UniqueIdentifier>{2ae74883-80fd-4cac-bdda-a88819c73312}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Level\02. STAGE_1">
+      <UniqueIdentifier>{5f3521ba-c098-496c-8bb1-f76b6875daba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Level\03. STAGE_2">
+      <UniqueIdentifier>{191ab49e-2178-4e79-a22c-ceb4926b30be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Level\04. BOSS">
+      <UniqueIdentifier>{0dcaf9f8-80dd-4d61-ac74-e68d30ebe19c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. Manager\09. FontMgr">
+      <UniqueIdentifier>{feb9b59c-fc6f-4dae-892c-ca8ce7ec85ef}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -330,8 +342,14 @@
     <ClInclude Include="qParticleTickCS.h">
       <Filter>HLSL\03. Compute\02. ParticleTick</Filter>
     </ClInclude>
-    <ClInclude Include="qFSM.h">
-      <Filter>08. Component\09. FSM</Filter>
+    <ClInclude Include="qSound.h">
+      <Filter>06. Asset\06. Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="qLevel_stage1.h">
+      <Filter>05. Level\02. STAGE_1</Filter>
+    </ClInclude>
+    <ClInclude Include="qFontMgr.h">
+      <Filter>04. Manager\09. FontMgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -470,8 +488,14 @@
     <ClCompile Include="qParticleTickCS.cpp">
       <Filter>HLSL\03. Compute\02. ParticleTick</Filter>
     </ClCompile>
-    <ClCompile Include="qFSM.cpp">
-      <Filter>08. Component\09. FSM</Filter>
+    <ClCompile Include="qSound.cpp">
+      <Filter>06. Asset\06. Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="qLevel_stage1.cpp">
+      <Filter>05. Level\02. STAGE_1</Filter>
+    </ClCompile>
+    <ClCompile Include="qFontMgr.cpp">
+      <Filter>04. Manager\09. FontMgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -37,6 +37,10 @@ void qTestLevel::CreateTestLevel()
 
 	CreatePrefab();
 
+	// Sound 재생
+	Ptr<qSound> pSound = qAssetMgr::GetInst()->FindAsset<qSound>(L"sound\\leshphon.mp3");
+	pSound->Play(0, 1.f, false);
+
 	//// 파티클 주석
 	//// 컴퓨트 쉐이더 테스트용 텍스쳐 생성
 	//Ptr<qTexture> pTestTex = qAssetMgr::GetInst()->CreateTexture(L"ComputeShaderTestTex"
@@ -265,15 +269,15 @@ void qTestLevel::CreateTestLevel()
 
 
 	// Particle Object
-	qGameObject* pParticleObj = new qGameObject;
-
-	pParticleObj->SetName(L"Particle");
-	pParticleObj->AddComponent(new qTransform);
-	pParticleObj->AddComponent(new qParticleSystem);
-
-	pParticleObj->Transform()->SetRelativePos(Vec3(0.f, 0.f, 0.f));
-
-	pLevel->AddObject(0, pParticleObj);
+	//qGameObject* pParticleObj = new qGameObject;
+	//
+	//pParticleObj->SetName(L"Particle");
+	//pParticleObj->AddComponent(new qTransform);
+	//pParticleObj->AddComponent(new qParticleSystem);
+	//
+	//pParticleObj->Transform()->SetRelativePos(Vec3(0.f, 0.f, 0.f));
+	//
+	//pLevel->AddObject(0, pParticleObj);
 
 
 
