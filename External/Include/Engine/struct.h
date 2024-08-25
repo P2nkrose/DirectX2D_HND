@@ -196,3 +196,19 @@ struct tGlobalData
 	int		g_Light3DCount;
 };
 extern tGlobalData g_GlobalData;
+
+
+
+
+// State
+struct tUnitInfo
+{
+	float		MaxHP;
+	float		HP;
+
+	float		Att;
+
+	float		Speed;
+
+	DIRECTION	Dir = DIRECTION::RIGHT;
+};

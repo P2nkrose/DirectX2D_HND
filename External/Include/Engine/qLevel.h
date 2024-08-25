@@ -2,7 +2,7 @@
 #include "qEntity.h"
 
 class qLayer;
-class qCollider;
+class qCollider2D;
 class qGameObject;
 
 class qLevel : public qEntity
@@ -11,7 +11,9 @@ public:
 	friend class qTaskMgr;
 	friend class qLevelMgr;
 
-	virtual qLevel* Clone() { return new qLevel(*this); }
+	CLONE(qLevel);
+
+	//virtual qLevel* Clone() { return new qLevel(*this); }
 	qLevel();
 	qLevel(const qLevel& _Origin);
 	~qLevel();
@@ -20,6 +22,7 @@ public:
 	void Begin();		// 레벨이 시작되는 순간 or 레벨에 추가(합류) 하는 순간
 	void Tick();
 	void FinalTick();
+
 
 	void ClearObject();
 

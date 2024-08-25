@@ -89,6 +89,7 @@ void qTestLevel::CreateTestLevel()
 	pLevel->GetLayer(4)->SetName(L"Monster");
 	pLevel->GetLayer(5)->SetName(L"PlayerProjectile");		// 플레이어 투사체
 	pLevel->GetLayer(6)->SetName(L"MonsterProjectile");		// 몬스터 투사체
+	pLevel->GetLayer(7)->SetName(L"Tile");					
 
 
 	// 카메라 오브젝트

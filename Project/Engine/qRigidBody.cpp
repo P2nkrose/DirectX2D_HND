@@ -124,7 +124,7 @@ void qRigidBody::FinalTick()
 	// 중력 가속도에 의한 속도 증가
 	if (m_UseGravity && !m_Ground)
 	{
-		m_VelocityByGravity += Vec3(0.0f, -1.f, 1.f) * m_GravityAccel * DT;
+		m_VelocityByGravity += Vec3(0.0f, -1.f, 0.f) * m_GravityAccel * DT;
 
 		if (0.f != m_MaxGravitySpeed && m_MaxGravitySpeed < m_VelocityByGravity.Length())
 		{
@@ -143,8 +143,8 @@ void qRigidBody::FinalTick()
 	GetOwner()->Transform()->SetRelativePos(vObjPos);
 
 	// 이번 프레임 힘 초기화
-	m_Force = Vec3(0.f, 0.f, 1.f);
-	m_AddVelocity = Vec3(0.f, 0.f, 1.f);
+	m_Force = Vec3(0.f, 0.f, 0.f);
+	m_AddVelocity = Vec3(0.f, 0.f, 0.f);
 
 }
 
@@ -160,8 +160,49 @@ void qRigidBody::doublejump()
 
 void qRigidBody::SaveToFile(FILE* _File)
 {
+	fwrite(&m_Velocity, sizeof(Vec3), 1, _File);
+	fwrite(&m_VelocityByGravity, sizeof(Vec3), 1, _File);
+	fwrite(&m_AddVelocity, sizeof(Vec3), 1, _File);
+	
+	fwrite(&m_Mass, sizeof(float), 1, _File);
+	fwrite(&m_Force, sizeof(Vec3), 1, _File);
+	
+	fwrite(&m_InitWalkSpeed, sizeof(float), 1, _File);
+	fwrite(&m_MaxWalkSpeed, sizeof(float), 1, _File);
+	fwrite(&m_MaxGravitySpeed, sizeof(float), 1, _File);
+	
+	fwrite(&m_Friction, sizeof(float), 1, _File);
+	
+	fwrite(&m_GravityAccel, sizeof(float), 1, _File);
+	fwrite(&m_UseGravity, sizeof(bool), 1, _File);
+	fwrite(&m_Ground, sizeof(bool), 1, _File);
+
+	fwrite(&m_JumpSpeed, sizeof(float), 1, _File);
+	fwrite(&m_DoubleJumpSpeed, sizeof(float), 1, _File);
+
+
+
 }
 
 void qRigidBody::LoadFromFile(FILE* _File)
 {
+	fread(&m_Velocity, sizeof(Vec3), 1, _File);
+	fread(&m_VelocityByGravity, sizeof(Vec3), 1, _File);
+	fread(&m_AddVelocity, sizeof(Vec3), 1, _File);
+
+	fread(&m_Mass, sizeof(float), 1, _File);
+	fread(&m_Force, sizeof(Vec3), 1, _File);
+
+	fread(&m_InitWalkSpeed, sizeof(float), 1, _File);
+	fread(&m_MaxWalkSpeed, sizeof(float), 1, _File);
+	fread(&m_MaxGravitySpeed, sizeof(float), 1, _File);
+
+	fread(&m_Friction, sizeof(float), 1, _File);
+
+	fread(&m_GravityAccel, sizeof(float), 1, _File);
+	fread(&m_UseGravity, sizeof(bool), 1, _File);
+	fread(&m_Ground, sizeof(bool), 1, _File);
+
+	fread(&m_JumpSpeed, sizeof(float), 1, _File);
+	fread(&m_DoubleJumpSpeed, sizeof(float), 1, _File);
 }

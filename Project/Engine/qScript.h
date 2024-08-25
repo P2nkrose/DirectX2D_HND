@@ -49,6 +49,12 @@ public:
 	UINT GetScriptType() { return m_ScriptType; }
 	const vector<tScriptParam>& GetScriptParam() { return m_ScriptParam; }
 
+public:
+	void SetDir(DIRECTION _Dir) { m_Dir = _Dir; }
+	DIRECTION GetDir() { return m_Dir; }
+
+
+
 protected:
 	void AddScriptParam(SCRIPT_PARAM _Type, const string& _Desc, void* _pData, DWORD_PTR _Param0 = 0, DWORD_PTR _Param1 = 0)
 	{
@@ -62,5 +68,7 @@ protected:
 private:
 	UINT					m_ScriptType;
 	vector<tScriptParam>	m_ScriptParam;
+
+	DIRECTION				m_Dir;
 };
 

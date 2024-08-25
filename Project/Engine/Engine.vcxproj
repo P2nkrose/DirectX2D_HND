@@ -169,6 +169,9 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="global.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Ptr.h" />
+    <ClInclude Include="qBlackboard.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="qFlipBookComponent.h" />
     <ClInclude Include="qAsset.h" />
     <ClInclude Include="qAssetMgr.h" />
@@ -183,6 +186,7 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="qEntity.h" />
     <ClInclude Include="qFlipBook.h" />
     <ClInclude Include="qFontMgr.h" />
+    <ClInclude Include="qFSM.h" />
     <ClInclude Include="qGameObject.h" />
     <ClInclude Include="qGraphicShader.h" />
     <ClInclude Include="qKeyMgr.h" />
@@ -204,7 +208,7 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="qShader.h" />
     <ClInclude Include="qSound.h" />
     <ClInclude Include="qSprite.h" />
-    <ClInclude Include="qLevel_stage1.h" />
+    <ClInclude Include="qState.h" />
     <ClInclude Include="qStructuredBuffer.h" />
     <ClInclude Include="qTaskMgr.h" />
     <ClInclude Include="qTexture.h" />
@@ -229,6 +233,9 @@ call EngineHeaderCopy.bat</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="qBlackboard.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="qFlipBookComponent.cpp" />
     <ClCompile Include="qAsset.cpp" />
     <ClCompile Include="qAssetInit.cpp" />
@@ -244,6 +251,7 @@ call EngineHeaderCopy.bat</Command>
     <ClCompile Include="qEntity.cpp" />
     <ClCompile Include="qFlipBook.cpp" />
     <ClCompile Include="qFontMgr.cpp" />
+    <ClCompile Include="qFSM.cpp" />
     <ClCompile Include="qGameObject.cpp" />
     <ClCompile Include="qGraphicShader.cpp" />
     <ClCompile Include="qKeyMgr.cpp" />
@@ -269,7 +277,7 @@ call EngineHeaderCopy.bat</Command>
     <ClCompile Include="qShader.cpp" />
     <ClCompile Include="qSound.cpp" />
     <ClCompile Include="qSprite.cpp" />
-    <ClCompile Include="qLevel_stage1.cpp" />
+    <ClCompile Include="qState.cpp" />
     <ClCompile Include="qStructuredBuffer.cpp" />
     <ClCompile Include="qTaskMgr.cpp" />
     <ClCompile Include="qTexture.cpp" />

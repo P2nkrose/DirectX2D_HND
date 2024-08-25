@@ -180,7 +180,6 @@ void qStructuredBuffer::SetData(void* _pData, UINT _DataSize)
 		CONTEXT->Map(m_SB_Write.Get(), 0, D3D11_MAP::D3D11_MAP_WRITE_DISCARD, 0, &tMapSub);
 		memcpy(tMapSub.pData, _pData, _DataSize);
 		CONTEXT->Unmap(m_SB_Write.Get(), 0);
-
 		CONTEXT->CopyResource(m_SB.Get(), m_SB_Write.Get());
 	}
 }

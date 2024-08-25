@@ -40,6 +40,8 @@ void MaterialUI::Update()
 	ImGui::SameLine(100);
 	ImGui::InputText("##ShaderName", (char*)Name.c_str(), Name.length(), ImGuiInputTextFlags_ReadOnly);
 
+	// Material 이름 바꾸기
+
 	if (ImGui::BeginDragDropTarget())
 	{
 		const ImGuiPayload* payload = ImGui::AcceptDragDropPayload("ContentTree");

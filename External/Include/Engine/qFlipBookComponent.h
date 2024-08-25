@@ -39,7 +39,7 @@ public:
 // Ãß°¡
 public:
 	vector<Ptr<qFlipBook>>& GetVecFlipBook() { return m_vecFlipBook; }
-	bool IsCurFlipBookFinished();
+	bool IsCurFlipBookFinished() { return m_Finish; }
 
 public:
 	int GetMaxFrm() { return m_MaxSpriteIndex; }

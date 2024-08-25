@@ -164,11 +164,6 @@ void qFlipBookComponent::Clear()
 	CB->Binding();
 }
 
-bool qFlipBookComponent::IsCurFlipBookFinished()
-{
-	return m_CurFlipBook->IsFinish();
-}
-
 
 void qFlipBookComponent::SetRepeat(bool _Repeat)
 {

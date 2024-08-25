@@ -26,13 +26,13 @@ public:
 	void SetFPS(int _FPS) { m_FPS = _FPS; }
 	float GetFPS() { return m_FPS; }
 
-	bool IsFinish() { return m_bFinish; }
+	//bool IsFinish() { return m_bFinish; }
 
 
 private:
 	vector<Ptr<qSprite>>	m_vecSprite;
 
 	float					m_FPS;
-	bool					m_bFinish;
+	//bool					m_bFinish;
 };
 

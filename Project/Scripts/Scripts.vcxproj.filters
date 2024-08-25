@@ -10,20 +10,26 @@
     <Filter Include="ScriptMgr">
       <UniqueIdentifier>{b4fa1c93-17d8-4717-bea1-cb9bd32d848e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripts\1. Player">
-      <UniqueIdentifier>{77ad6cc0-fb77-4cf5-a15f-10e0b4625d77}</UniqueIdentifier>
+    <Filter Include="Scripts\0. Camera">
+      <UniqueIdentifier>{4a21a2cd-bace-487c-9664-bea4dd4e602f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripts\2. Monster">
-      <UniqueIdentifier>{3c771f3b-cbfb-45d6-89ca-fd8546e73bc4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\3. Boss">
-      <UniqueIdentifier>{007a48a1-eed4-4e18-bf85-d685878b4b4a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\4. Background">
+    <Filter Include="Scripts\2. Background">
       <UniqueIdentifier>{162b3203-b5fe-45c4-bc50-cf068d8bec70}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripts\5. Platform">
+    <Filter Include="Scripts\3. Platform">
       <UniqueIdentifier>{9ab962cb-82b8-46a2-866e-9a5135de84b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\1. UNIT">
+      <UniqueIdentifier>{c34007ba-3630-4129-9db1-7c1ad6535505}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\1. UNIT\3. Boss">
+      <UniqueIdentifier>{007a48a1-eed4-4e18-bf85-d685878b4b4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\1. UNIT\2. Monster">
+      <UniqueIdentifier>{3c771f3b-cbfb-45d6-89ca-fd8546e73bc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\1. UNIT\1. Player">
+      <UniqueIdentifier>{77ad6cc0-fb77-4cf5-a15f-10e0b4625d77}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -33,9 +39,6 @@
     <ClInclude Include="pch.h">
       <Filter>Default</Filter>
     </ClInclude>
-    <ClInclude Include="qCameraMoveScript.h">
-      <Filter>Scripts</Filter>
-    </ClInclude>
     <ClInclude Include="qMissileScript.h">
       <Filter>Scripts</Filter>
     </ClInclude>
@@ -43,10 +46,13 @@
       <Filter>ScriptMgr</Filter>
     </ClInclude>
     <ClInclude Include="qPlayerScript.h">
-      <Filter>Scripts\1. Player</Filter>
+      <Filter>Scripts\1. UNIT\1. Player</Filter>
     </ClInclude>
     <ClInclude Include="qPlatformScript.h">
-      <Filter>Scripts\5. Platform</Filter>
+      <Filter>Scripts\3. Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="qCameraMoveScript.h">
+      <Filter>Scripts\0. Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -56,9 +62,6 @@
     <ClCompile Include="Scripts.cpp">
       <Filter>Default</Filter>
     </ClCompile>
-    <ClCompile Include="qCameraMoveScript.cpp">
-      <Filter>Scripts</Filter>
-    </ClCompile>
     <ClCompile Include="qMissileScript.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
@@ -66,10 +69,13 @@
       <Filter>ScriptMgr</Filter>
     </ClCompile>
     <ClCompile Include="qPlayerScript.cpp">
-      <Filter>Scripts\1. Player</Filter>
+      <Filter>Scripts\1. UNIT\1. Player</Filter>
     </ClCompile>
     <ClCompile Include="qPlatformScript.cpp">
-      <Filter>Scripts\5. Platform</Filter>
+      <Filter>Scripts\3. Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="qCameraMoveScript.cpp">
+      <Filter>Scripts\0. Camera</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

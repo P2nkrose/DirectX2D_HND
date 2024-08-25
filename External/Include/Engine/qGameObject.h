@@ -50,6 +50,22 @@ public:
 	void DeregisterChild();
 
 
+public:
+	template<typename T>
+	T* GetScript()
+	{
+		for (size_t i = 0; i < m_vecScript.size(); ++i)
+		{
+			if (dynamic_cast<T*>(m_vecScript[i]))
+				return (T*)m_vecScript[i];
+		}
+		return nullptr;
+	}
+
+
+
+public:
+
 	GET_COMPONENT(Transform, TRANSFORM);
 	GET_COMPONENT(MeshRender, MESHRENDER);
 	GET_COMPONENT(Camera, CAMERA);
@@ -59,10 +75,13 @@ public:
 	GET_COMPONENT(Light2D, LIGHT2D);
 	GET_COMPONENT(ParticleSystem, PARTICLESYSTEM);
 	GET_COMPONENT(RigidBody, RIGIDBODY);
-	
+	GET_COMPONENT(FSM, STATEMACHINE);
+
+
 
 
 private:
+
 	qComponent*				m_arrCom[(UINT)COMPONENT_TYPE::END];
 	qRenderComponent*		m_RenderCom;
 	vector<qScript*>		m_vecScript;

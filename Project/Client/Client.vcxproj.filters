@@ -143,6 +143,21 @@
     <Filter Include="3. Manager\03. LevelSaveLoad">
       <UniqueIdentifier>{2bcf02db-747e-48c9-ba01-88df8eedf585}</UniqueIdentifier>
     </Filter>
+    <Filter Include="3. Manager\04. Level">
+      <UniqueIdentifier>{e5642545-da02-485d-b7d6-011295a9ce56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Manager\04. Level\01. TITLE">
+      <UniqueIdentifier>{60b753e7-0760-47d0-bc3c-e29c53685488}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Manager\04. Level\02. STAGE_1">
+      <UniqueIdentifier>{a3c06b36-ba49-442f-bca4-07c532b4c8c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Manager\04. Level\03. STAGE_2">
+      <UniqueIdentifier>{26299745-f353-4a95-a620-a57e1a3f085a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Manager\04. Level\04. BOSS">
+      <UniqueIdentifier>{bc193344-479a-429d-a7f0-fdfa4b4256cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -312,6 +327,9 @@
     </ClInclude>
     <ClInclude Include="AE_SpriteList.h">
       <Filter>1. EditorUI\09. AnimationEditor\AE_Sub\AE_SpriteList</Filter>
+    </ClInclude>
+    <ClInclude Include="qLevel_stage1.h">
+      <Filter>3. Manager\04. Level\02. STAGE_1</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -490,6 +508,9 @@
     </ClCompile>
     <ClCompile Include="AE_SpriteList.cpp">
       <Filter>1. EditorUI\09. AnimationEditor\AE_Sub\AE_SpriteList</Filter>
+    </ClCompile>
+    <ClCompile Include="qLevel_stage1.cpp">
+      <Filter>3. Manager\04. Level\02. STAGE_1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

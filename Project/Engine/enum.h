@@ -39,7 +39,7 @@ enum class COMPONENT_TYPE
 	LIGHT3D,
 	FLIPBOOKCOMPONENT,
 	ANIMATOR3D,
-	STATE_MACHINE,
+	STATEMACHINE,
 	RIGIDBODY,
 	CAMERA,
 
@@ -232,3 +232,12 @@ enum class LEVEL_TYPE
 	END,
 };
 
+
+// 방향 정보 
+// Left -1, Right 1, End 0
+enum class DIRECTION
+{
+	LEFT = -1,
+	RIGHT = 1,
+	END = 0,
+};

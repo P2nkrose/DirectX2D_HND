@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Default">
+      <UniqueIdentifier>{717ae687-373a-4186-ab7a-7695020f35d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="StateMgr">
+      <UniqueIdentifier>{071a7efa-019c-45cf-9eb5-1e3a1a380d49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States">
+      <UniqueIdentifier>{d5b27d82-5b4d-484c-b494-7fe75c823111}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player">
+      <UniqueIdentifier>{8f96c760-0e35-4121-af4e-5b84a25a927f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\00. Idle">
+      <UniqueIdentifier>{2073a700-4e24-4415-ad0a-675fa4504ce6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\01. Wait">
+      <UniqueIdentifier>{f7ba32ba-e0df-4a2f-b19c-89df4965fecf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\02. Run">
+      <UniqueIdentifier>{3ca0c069-92f7-4749-be8e-13e31f31ed84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\03. IdleToRun">
+      <UniqueIdentifier>{eaa88620-3464-4611-9002-ffd68c39fd3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\04. RunToIdle">
+      <UniqueIdentifier>{7e514ac9-a8c9-4f85-b722-08e406c1d9bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\05. IdleUTurn">
+      <UniqueIdentifier>{4726fc76-4bb0-443a-80c0-81746426fcf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\06. RunUTurn">
+      <UniqueIdentifier>{1dd32c33-3a87-4715-991b-7fc7b3253c4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\07. Jump">
+      <UniqueIdentifier>{21b67c5b-d8a2-4140-8aee-4685cdf2b361}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\08. Dash">
+      <UniqueIdentifier>{d3f29e91-b3dc-47eb-801d-f9982159c8b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\09. Hit">
+      <UniqueIdentifier>{cbf38d21-daf3-464f-9999-4c68cd96ce78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\10. Elevator">
+      <UniqueIdentifier>{8a11822b-5d48-4f25-9d3c-2a326cdb7469}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\15. Book">
+      <UniqueIdentifier>{8bd66394-9ff5-4cfe-bcea-8939aa6bf07b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\16. Crash">
+      <UniqueIdentifier>{a590669c-eef1-4e14-9f7e-958e0948e6f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\17. Range">
+      <UniqueIdentifier>{51da11f6-0cb7-4efd-a6dd-ab71f1c63c9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\11. Combo_1">
+      <UniqueIdentifier>{037a8d3b-3bd0-4af7-a256-6469e486d522}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\12. Combo_2">
+      <UniqueIdentifier>{6951ec92-41b9-4044-b849-1e2c933dedf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\13. Combo_3">
+      <UniqueIdentifier>{756fad4e-6424-4877-a9b5-b8fb9242322e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\14. Combo_4">
+      <UniqueIdentifier>{07f29e61-39c1-4e47-a528-b52f90a63179}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="qStateMgr.h">
+      <Filter>StateMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerIdleState.h">
+      <Filter>States\01. Player\00. Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerIdleToRunState.h">
+      <Filter>States\01. Player\03. IdleToRun</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerRunState.h">
+      <Filter>States\01. Player\02. Run</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerRunToIdleState.h">
+      <Filter>States\01. Player\04. RunToIdle</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerIdleUTurnState.h">
+      <Filter>States\01. Player\05. IdleUTurn</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerRunUTurnState.h">
+      <Filter>States\01. Player\06. RunUTurn</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="States.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="qStateMgr.cpp">
+      <Filter>StateMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerIdleState.cpp">
+      <Filter>States\01. Player\00. Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerIdleToRunState.cpp">
+      <Filter>States\01. Player\03. IdleToRun</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerRunState.cpp">
+      <Filter>States\01. Player\02. Run</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerRunToIdleState.cpp">
+      <Filter>States\01. Player\04. RunToIdle</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerIdleUTurnState.cpp">
+      <Filter>States\01. Player\05. IdleUTurn</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerRunUTurnState.cpp">
+      <Filter>States\01. Player\06. RunUTurn</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

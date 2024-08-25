@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "qCameraMoveScript.h"
 
+#include <Engine/qLevelMgr.h>
+#include <Engine/qLevel.h>
+
 qCameraMoveScript::qCameraMoveScript()
 	: qScript(UINT(SCRIPT_TYPE::CAMERAMOVESCRIPT))
 	, m_CamSpeed(500.f)
@@ -9,7 +12,15 @@ qCameraMoveScript::qCameraMoveScript()
 
 qCameraMoveScript::~qCameraMoveScript()
 {
+	//DELETE(m_FollowObj);
 }
+
+void qCameraMoveScript::Begin()
+{
+	m_FollowObj = qLevelMgr::GetInst()->GetCurrentLevel()->FindObjectByName(L"Player");
+}
+
+
 
 void qCameraMoveScript::Tick()
 {
@@ -72,7 +83,21 @@ void qCameraMoveScript::OrthoGraphicMove()
 		vPos.x += DT * Speed;
 	}
 
+	//qGameObject* player = qLevelMgr::GetInst()->GetCurrentLevel()->FindObjectByName(L"Player");
+	if (m_FollowObj != nullptr)
+	{
+		vPos = m_FollowObj->Transform()->GetRelativePos();
+	}
+
+	//if (nullptr != player)
+	//{
+	//	vPos = player->Transform()->GetRelativePos();
+	//}
+
+
 	Transform()->SetRelativePos(vPos);
+
+	//qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 }
 
 void qCameraMoveScript::PerspectiveMove()
@@ -138,9 +163,12 @@ void qCameraMoveScript::PerspectiveMove()
 void qCameraMoveScript::SaveToFile(FILE* _File)
 {
 	fwrite(&m_CamSpeed, sizeof(float), 1, _File);
+	//fwrite(&m_FollowObj, sizeof(qGameObject), 1, _File);
 }
 
 void qCameraMoveScript::LoadFromFile(FILE* _File)
 {
 	fread(&m_CamSpeed, sizeof(float), 1, _File);
+	//fread(&m_FollowObj, sizeof(qGameObject), 1, _File);
 }
+

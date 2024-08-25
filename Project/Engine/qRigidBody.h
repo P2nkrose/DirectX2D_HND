@@ -61,7 +61,7 @@ public:
 	{
 		m_UseGravity = _Use;
 		if (!m_UseGravity)
-			m_VelocityByGravity = Vec3(0.f, -1.f, 1.f);
+			m_VelocityByGravity = Vec3(0.f, 0.f, 0.f);
 	}
 
 	void SetGround(bool _Ground)
@@ -70,7 +70,7 @@ public:
 
 		if (m_Ground)
 		{
-			m_VelocityByGravity = Vec3(0.f, -1.f, 1.f);
+			m_VelocityByGravity = Vec3(0.f, 0.f, 0.f);
 
 			if (nullptr != m_GroundFunc)
 				m_GroundFunc();
@@ -93,6 +93,10 @@ public:
 	bool IsGround() { return m_Ground; }
 
 
+public:
+	void SetVelocityX(float _XSpeed) { m_Velocity.x = _XSpeed; }
+
+
 
 private:
 	Vec3				m_Velocity;				// 속도 (방향, 크기정보를 갖고 있다. 그래서 vector 라 부른다.
@@ -111,6 +115,7 @@ private:
 	float				m_GravityAccel;			// 중력 가속도
 	bool				m_UseGravity;			// 중력 사용 <-> 미사용 bool
 	bool				m_Ground;				// 땅 위에 서있는지 체크
+
 	float				m_JumpSpeed;			// 점프 속력
 	float				m_DoubleJumpSpeed;		// 더플점프 속력
 
