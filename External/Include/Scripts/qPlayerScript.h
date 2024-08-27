@@ -30,6 +30,8 @@ public:
 	void SetDash(bool _IsDash) { m_IsDash = _IsDash; m_IsDashCoolTime = _IsDash; }
 	void SetLock(bool _Lock) { m_DirLock = _Lock; }
 
+	void ResetCombo() { m_NextCombo = 1; }
+
 	DIRECTION GetPlayerDir() { return m_CurUnitInfo.Dir; }
 	tUnitInfo& GetPrevInfo() { return m_PrevUnitInfo; }
 	tUnitInfo& GetUnitInfo() { return m_CurUnitInfo; }
@@ -40,11 +42,14 @@ public:
 	virtual void LoadFromFile(FILE* _File) override;
 	void PlayCombo();
 
+	
 	void Jump();
 	void RestoreJumpCount()
 	{
 		m_CurJumpCount = 0;
 	}
+
+
 
 
 private:

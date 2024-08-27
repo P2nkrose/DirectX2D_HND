@@ -120,6 +120,8 @@ private:
 	float				m_DoubleJumpSpeed;		// 더플점프 속력
 
 
+
+
 	// Ground, Air, Rope   On / Off 호출시킬 함수포인터
 	CALL_BACK			m_GroundFunc;
 	CALL_BACK			m_AirFunc;

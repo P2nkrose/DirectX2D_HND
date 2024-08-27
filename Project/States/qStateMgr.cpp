@@ -1,6 +1,11 @@
 #include "pch.h"
 #include "qStateMgr.h"
 
+#include "qPlayerCombo1EndState.h"
+#include "qPlayerCombo1State.h"
+#include "qPlayerCombo2State.h"
+#include "qPlayerCombo3State.h"
+#include "qPlayerCombo4State.h"
 #include "qPlayerDashState.h"
 #include "qPlayerFallingState.h"
 #include "qPlayerIdleState.h"
@@ -14,6 +19,11 @@
 
 void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 {
+	_vec.push_back(L"qPlayerCombo1EndState");
+	_vec.push_back(L"qPlayerCombo1State");
+	_vec.push_back(L"qPlayerCombo2State");
+	_vec.push_back(L"qPlayerCombo3State");
+	_vec.push_back(L"qPlayerCombo4State");
 	_vec.push_back(L"qPlayerDashState");
 	_vec.push_back(L"qPlayerFallingState");
 	_vec.push_back(L"qPlayerIdleState");
@@ -28,6 +38,16 @@ void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 
 qState * qStateMgr::GetState(const wstring& _strStateName)
 {
+	if (L"qPlayerCombo1EndState" == _strStateName)
+		return new qPlayerCombo1EndState;
+	if (L"qPlayerCombo1State" == _strStateName)
+		return new qPlayerCombo1State;
+	if (L"qPlayerCombo2State" == _strStateName)
+		return new qPlayerCombo2State;
+	if (L"qPlayerCombo3State" == _strStateName)
+		return new qPlayerCombo3State;
+	if (L"qPlayerCombo4State" == _strStateName)
+		return new qPlayerCombo4State;
 	if (L"qPlayerDashState" == _strStateName)
 		return new qPlayerDashState;
 	if (L"qPlayerFallingState" == _strStateName)
@@ -55,6 +75,21 @@ qState * qStateMgr::GetState(UINT _iStateType)
 {
 	switch (_iStateType)
 	{
+	case (UINT)STATE_TYPE::PLAYERCOMBO1ENDSTATE:
+		return new qPlayerCombo1EndState;
+		break;
+	case (UINT)STATE_TYPE::PLAYERCOMBO1STATE:
+		return new qPlayerCombo1State;
+		break;
+	case (UINT)STATE_TYPE::PLAYERCOMBO2STATE:
+		return new qPlayerCombo2State;
+		break;
+	case (UINT)STATE_TYPE::PLAYERCOMBO3STATE:
+		return new qPlayerCombo3State;
+		break;
+	case (UINT)STATE_TYPE::PLAYERCOMBO4STATE:
+		return new qPlayerCombo4State;
+		break;
 	case (UINT)STATE_TYPE::PLAYERDASHSTATE:
 		return new qPlayerDashState;
 		break;
@@ -93,6 +128,26 @@ const wchar_t * qStateMgr::GetStateName(qState * _pState)
 {
 	switch ((STATE_TYPE)_pState->GetStateType())
 	{
+	case STATE_TYPE::PLAYERCOMBO1ENDSTATE:
+		return L"qPlayerCombo1EndState";
+		break;
+
+	case STATE_TYPE::PLAYERCOMBO1STATE:
+		return L"qPlayerCombo1State";
+		break;
+
+	case STATE_TYPE::PLAYERCOMBO2STATE:
+		return L"qPlayerCombo2State";
+		break;
+
+	case STATE_TYPE::PLAYERCOMBO3STATE:
+		return L"qPlayerCombo3State";
+		break;
+
+	case STATE_TYPE::PLAYERCOMBO4STATE:
+		return L"qPlayerCombo4State";
+		break;
+
 	case STATE_TYPE::PLAYERDASHSTATE:
 		return L"qPlayerDashState";
 		break;

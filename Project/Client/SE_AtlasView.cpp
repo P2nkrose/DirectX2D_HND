@@ -97,15 +97,15 @@ void SE_AtlasView::SelectCheck()
 	float PixelPos[] = { vDiff.x, vDiff.y };
 	ImGui::InputFloat2("PixelPos", PixelPos);
 
-	// 마우스 왼쪽 TAP 체크
-	//if (ImGui::IsMouseClicked(ImGuiMouseButton_Left))
+	// 마우스 오른쪽 드래그 클릭
+	//if (ImGui::IsMouseClicked(ImGuiMouseButton_Right))
 	//{
 	//	m_MouseLT = ImGui::GetMousePos();
 	//	ImVec2 vDiff = ImVec2(m_MouseLT.x - ImageRectMin.x, m_MouseLT.y - ImageRectMin.y);
 	//	m_MouseLT = ImVec2(vDiff.x / m_Ratio, vDiff.y / m_Ratio);
 	//}
 	//
-	//if (ImGui::IsMouseDown(ImGuiMouseButton_Left))
+	//if (ImGui::IsMouseDown(ImGuiMouseButton_Right))
 	//{
 	//	m_MouseRB = ImGui::GetMousePos();
 	//	ImVec2 vDiff = ImVec2(m_MouseRB.x - ImageRectMin.x, m_MouseRB.y - ImageRectMin.y);
@@ -120,7 +120,7 @@ void SE_AtlasView::SelectCheck()
 	 	Vec2 vPixelPos = Vec2(ImGui::GetMousePos().x, ImGui::GetMousePos().y);
 		ImVec2 vDiff = ImVec2(vPixelPos.x - ImageRectMin.x, vPixelPos.y - ImageRectMin.y);
 		vPixelPos = Vec2(vDiff.x / m_Ratio, vDiff.y / m_Ratio);
-
+	
 		if (0.f <= vPixelPos.x && vPixelPos.x < m_AtlasTex->Width()
 			&& 0.f <= vPixelPos.y && vPixelPos.y < m_AtlasTex->Height())
 		{

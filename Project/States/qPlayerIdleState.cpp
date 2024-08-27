@@ -16,6 +16,10 @@ qPlayerIdleState::~qPlayerIdleState()
 
 void qPlayerIdleState::Enter()
 {
+	qPlayerScript* pPlayerScript = GetOwner()->GetScript<qPlayerScript>();
+
+	pPlayerScript->ResetCombo();
+
 	GetOwner()->FlipBookComponent()->Play(0, 15, true);
 }
 

@@ -17,5 +17,9 @@ public:
 private:
 	Vec3		OGScale;
 	Vec3		OGColScale;
+	Vec3		OGPos;
+
+	float		m_DashSpeed;
+	float		m_MaxRange;
 };
 

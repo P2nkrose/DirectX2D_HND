@@ -1,3 +1,8 @@
+qPlayerCombo1EndState
+qPlayerCombo1State
+qPlayerCombo2State
+qPlayerCombo3State
+qPlayerCombo4State
 qPlayerDashState
 qPlayerFallingState
 qPlayerIdleState

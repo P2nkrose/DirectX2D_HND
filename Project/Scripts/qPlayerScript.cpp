@@ -22,6 +22,7 @@ qPlayerScript::qPlayerScript()
 	, m_IsDash(false)
 	, m_DashCoolTime(0.f)
 	, m_IsDashCoolTime(false)
+	, m_NextCombo(1)
 {
 	AddScriptParam(SCRIPT_PARAM::FLOAT, "PlayerSpeed", &m_Speed);
 	AddScriptParam(SCRIPT_PARAM::TEXTURE, "Test", &m_Texture);
@@ -36,11 +37,11 @@ void qPlayerScript::PlayCombo()
 {
 	if (m_NextCombo == 1)
 	{
-		//FSM()->ChangeState(L"");
+		FSM()->ChangeState(L"Combo1");
 	}
 	else if (m_NextCombo == 2)
 	{
-		//FSM()->ChangeState(L"");
+		FSM()->ChangeState(L"Combo2");
 	}
 	else if (m_NextCombo == 3)
 	{
@@ -63,9 +64,6 @@ void qPlayerScript::Jump()
 {
 	RigidBody()->jump();
 }
-
-
-
 
 
 
@@ -129,6 +127,11 @@ void qPlayerScript::Tick()
 		}
 	}
 
+	if (KEY_TAP(KEY::A))
+	{
+		//FSM()->ChangeState(L"Combo1");
+		PlayCombo();
+	}
 
 
 

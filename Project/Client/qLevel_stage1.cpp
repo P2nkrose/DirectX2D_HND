@@ -37,6 +37,14 @@
 #include <States/qPlayerLandingState.h>			// 9
 #include <States/qPlayerDashState.h>			// 10
 
+#include <States/qPlayerCombo1State.h>			// 13
+#include <States/qPlayerCombo1EndState.h>		// 14
+#include <States/qPlayerCombo2State.h>			// 15
+
+#include <States/qPlayerCombo3State.h>			// 17
+
+#include <States/qPlayerCombo4State.h>			// 19
+
 
 #include "qLevelSaveLoad.h"
 
@@ -188,6 +196,15 @@ void qLevel_stage1::CreateStage1()
 	Ptr<qFlipBook> pDeathDash = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\dash_3.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(10, pDeathDash);
 
+	Ptr<qFlipBook> pDeathCombo1 = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\combo1_4.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(13, pDeathCombo1);
+
+	Ptr<qFlipBook> pDeathCombo1End = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\combo1end_2.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(14, pDeathCombo1End);
+
+	Ptr<qFlipBook> pDeathCombo2 = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\combo_2.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(15, pDeathCombo2);
+
 	pPlayer->FlipBookComponent()->Play(0, 10, true);
 
 	pPlayer->AddComponent(new qRigidBody);
@@ -218,6 +235,9 @@ void qLevel_stage1::CreateStage1()
 	pPlayer->FSM()->AddState(L"Landing", new qPlayerLandingState);			// 9
 	pPlayer->FSM()->AddState(L"Dash", new qPlayerDashState);				// 10
 
+	pPlayer->FSM()->AddState(L"Combo1", new qPlayerCombo1State);			// 13
+	pPlayer->FSM()->AddState(L"Combo1End", new qPlayerCombo1EndState);		// 14
+	pPlayer->FSM()->AddState(L"Combo2", new qPlayerCombo2State);			// 15
 
 	pPlayer->FSM()->ChangeState(L"Idle");
 

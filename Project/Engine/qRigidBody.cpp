@@ -14,7 +14,7 @@ qRigidBody::qRigidBody()
 	, m_GravityAccel(980.f)
 	, m_UseGravity(false)
 	, m_Ground(true)
-	, m_JumpSpeed(400.f)
+	, m_JumpSpeed(500.f)
 	, m_DoubleJumpSpeed(500.f)
 	, m_GroundFunc(nullptr)
 	, m_AirFunc(nullptr)
@@ -147,6 +147,8 @@ void qRigidBody::FinalTick()
 	m_AddVelocity = Vec3(0.f, 0.f, 0.f);
 
 }
+
+
 
 
 void qRigidBody::jump()

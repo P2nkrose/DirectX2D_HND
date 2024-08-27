@@ -4,6 +4,7 @@
 #include <Scripts/qPlayerScript.h>
 
 qPlayerDashState::qPlayerDashState()
+	: m_DashSpeed(800.f)
 {
 	
 }
@@ -13,10 +14,8 @@ qPlayerDashState::~qPlayerDashState()
 }
 
 void qPlayerDashState::Enter()
-{
-	qPlayerScript* pPlayerScript = GetOwner()->GetScript<qPlayerScript>();
-
-
+{	
+	OGPos = GetOwner()->Transform()->GetRelativePos();
 	OGScale = GetOwner()->Transform()->GetRelativeScale();
 	OGColScale = GetOwner()->Collider2D()->GetScale();
 
@@ -29,6 +28,36 @@ void qPlayerDashState::Enter()
 
 void qPlayerDashState::FinalTick()
 {
+	qPlayerScript* pPlayerScript = GetOwner()->GetScript<qPlayerScript>();
+	Vec3 PlayerPos = GetOwner()->Transform()->GetRelativePos();
+
+	if (KEY_PRESSED(KEY::LSHIFT))
+	{
+		if (pPlayerScript->GetPlayerDir() == DIRECTION::LEFT)
+		{
+			m_MaxRange += m_DashSpeed * DT;
+			PlayerPos += Vec3(-1.f, 0.f, 0.f) * m_DashSpeed * DT;
+		}
+		else if (pPlayerScript->GetPlayerDir() == DIRECTION::RIGHT)
+		{
+			m_MaxRange += m_DashSpeed * DT;
+			PlayerPos += Vec3(1.f, 0.f, 0.f) * m_DashSpeed * DT;
+		}
+
+		if (350.f < m_MaxRange)
+		{
+			m_MaxRange = 0.f;
+			//ChangeState(L"RunToIdle");
+		}
+		
+	}
+
+	GetOwner()->Transform()->SetRelativePos(PlayerPos);
+
+
+
+
+
 	if (GetOwner()->FlipBookComponent()->IsCurFlipBookFinished())
 	{
 		if (GetOwner()->RigidBody()->IsGround())
@@ -47,8 +76,6 @@ void qPlayerDashState::FinalTick()
 			ChangeState(L"Falling");
 		}
 	}
-
-
 }
 
 void qPlayerDashState::Exit()

@@ -385,6 +385,8 @@ void AE_Detail::SpriteInfo()
 	ImGui::SetNextItemWidth(180);
 	ImGui::InputFloat2("##CurSpriteOffset", offset, "%.2f");
 
+	//m_AtlasTex->SetOffset(Vec2(OffsetUV.x, OffsetUV.y));
+
 	float background[2] = { m_Background.x, m_Background.y };
 	ImGui::Text("Background");
 	ImGui::SameLine(120);

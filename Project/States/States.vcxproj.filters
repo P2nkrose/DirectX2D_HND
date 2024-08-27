@@ -49,29 +49,41 @@
     <Filter Include="States\01. Player\12. Elevator">
       <UniqueIdentifier>{8a11822b-5d48-4f25-9d3c-2a326cdb7469}</UniqueIdentifier>
     </Filter>
+    <Filter Include="States\01. Player\08. Falling">
+      <UniqueIdentifier>{54bf9d45-04be-42b0-8b16-3a01767e936d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\14. Combo_1_End">
+      <UniqueIdentifier>{fa3a6801-4bbc-41ac-b909-a5afa8432a01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\15. Combo_2">
+      <UniqueIdentifier>{6951ec92-41b9-4044-b849-1e2c933dedf3}</UniqueIdentifier>
+    </Filter>
     <Filter Include="States\01. Player\13. Combo_1">
       <UniqueIdentifier>{037a8d3b-3bd0-4af7-a256-6469e486d522}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States\01. Player\14. Combo_2">
-      <UniqueIdentifier>{6951ec92-41b9-4044-b849-1e2c933dedf3}</UniqueIdentifier>
+    <Filter Include="States\01. Player\16. Combo_2_End">
+      <UniqueIdentifier>{3e606490-8d64-429a-ad86-6977886b2d8e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States\01. Player\15. Combo_3">
+    <Filter Include="States\01. Player\17. Combo_3">
       <UniqueIdentifier>{756fad4e-6424-4877-a9b5-b8fb9242322e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States\01. Player\16. Combo_4">
+    <Filter Include="States\01. Player\19. Combo_4">
       <UniqueIdentifier>{07f29e61-39c1-4e47-a528-b52f90a63179}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States\01. Player\17. Book">
+    <Filter Include="States\01. Player\18. Combo_3_End">
+      <UniqueIdentifier>{766be1c8-d663-4e40-bbe2-8f8598e1e5ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\20. Combo_4_End">
+      <UniqueIdentifier>{5a9d240f-73ed-4f9f-99ea-20d5116e5c0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\21. Book">
       <UniqueIdentifier>{8bd66394-9ff5-4cfe-bcea-8939aa6bf07b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States\01. Player\18. Crash">
+    <Filter Include="States\01. Player\22. Crash">
       <UniqueIdentifier>{a590669c-eef1-4e14-9f7e-958e0948e6f8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States\01. Player\19. Range">
+    <Filter Include="States\01. Player\23. Range">
       <UniqueIdentifier>{51da11f6-0cb7-4efd-a6dd-ab71f1c63c9a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="States\01. Player\08. Falling">
-      <UniqueIdentifier>{54bf9d45-04be-42b0-8b16-3a01767e936d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +126,21 @@
     <ClInclude Include="qPlayerDashState.h">
       <Filter>States\01. Player\10. Dash</Filter>
     </ClInclude>
+    <ClInclude Include="qPlayerCombo2State.h">
+      <Filter>States\01. Player\15. Combo_2</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerCombo3State.h">
+      <Filter>States\01. Player\17. Combo_3</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerCombo4State.h">
+      <Filter>States\01. Player\19. Combo_4</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerCombo1EndState.h">
+      <Filter>States\01. Player\14. Combo_1_End</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerCombo1State.h">
+      <Filter>States\01. Player\13. Combo_1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="States.cpp">
@@ -154,6 +181,21 @@
     </ClCompile>
     <ClCompile Include="qPlayerDashState.cpp">
       <Filter>States\01. Player\10. Dash</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerCombo2State.cpp">
+      <Filter>States\01. Player\15. Combo_2</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerCombo3State.cpp">
+      <Filter>States\01. Player\17. Combo_3</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerCombo4State.cpp">
+      <Filter>States\01. Player\19. Combo_4</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerCombo1EndState.cpp">
+      <Filter>States\01. Player\14. Combo_1_End</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerCombo1State.cpp">
+      <Filter>States\01. Player\13. Combo_1</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
