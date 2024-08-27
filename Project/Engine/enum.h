@@ -174,6 +174,9 @@ enum TASK_TYPE
 	// Param_0 : AssetAddress
 	DEL_ASSET,
 
+	// Param1: Parent Object    |   Param2: Next State
+	CHANGE_STATE,
+
 	LEVEL_CHANGED,
 	ASSET_CHANGED,
 

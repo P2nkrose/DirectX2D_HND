@@ -31,6 +31,16 @@ void qPlayerRunState::FinalTick()
 	{
 		ChangeState(L"RunUTurn");
 	}
+
+	if (KEY_TAP(KEY::SPACE))
+	{
+		ChangeState(L"Jump");
+	}
+
+	if (KEY_TAP(KEY::LSHIFT) && !(pPlayerScript->IsDashCoolTime()))
+	{
+		ChangeState(L"Dash");
+	}
 }
 
 

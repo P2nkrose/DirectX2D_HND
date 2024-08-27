@@ -21,8 +21,14 @@ public:
 
 public:
 	void SetPlayerDir(DIRECTION _Dir) { m_CurUnitInfo.Dir = _Dir; }
+
 	bool IsDirChanged() { return m_DirChanged; }
+
 	bool IsDash() { return m_IsDash; }
+	bool IsDashCoolTime() { return m_IsDashCoolTime; }
+
+	void SetDash(bool _IsDash) { m_IsDash = _IsDash; m_IsDashCoolTime = _IsDash; }
+	void SetLock(bool _Lock) { m_DirLock = _Lock; }
 
 	DIRECTION GetPlayerDir() { return m_CurUnitInfo.Dir; }
 	tUnitInfo& GetPrevInfo() { return m_PrevUnitInfo; }
@@ -32,8 +38,13 @@ public:
 public:
 	virtual void SaveToFile(FILE* _File) override;
 	virtual void LoadFromFile(FILE* _File) override;
-	bool IsDashCoolTime() { return m_IsDashCoolTime; }
 	void PlayCombo();
+
+	void Jump();
+	void RestoreJumpCount()
+	{
+		m_CurJumpCount = 0;
+	}
 
 
 private:
@@ -51,6 +62,7 @@ private:
 	DIRECTION			m_PlayerDir;
 	float				m_Dir;
 
+	bool				m_DirLock;
 	bool				m_DirChanged;
 	bool				m_IsDash;
 	bool				m_IsDashCoolTime;
@@ -58,5 +70,8 @@ private:
 	float				m_DashCoolTime;
 
 	int					m_NextCombo;
+
+	int					m_CurJumpCount;
+	int					m_DoubleJumpCount;
 };
 

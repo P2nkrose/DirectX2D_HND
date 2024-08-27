@@ -37,35 +37,41 @@
     <Filter Include="States\01. Player\07. Jump">
       <UniqueIdentifier>{21b67c5b-d8a2-4140-8aee-4685cdf2b361}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States\01. Player\08. Dash">
+    <Filter Include="States\01. Player\09. Landing">
+      <UniqueIdentifier>{329b8d2c-4c26-49bd-95a9-3c934761f743}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\10. Dash">
       <UniqueIdentifier>{d3f29e91-b3dc-47eb-801d-f9982159c8b4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States\01. Player\09. Hit">
+    <Filter Include="States\01. Player\11. Hit">
       <UniqueIdentifier>{cbf38d21-daf3-464f-9999-4c68cd96ce78}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States\01. Player\10. Elevator">
+    <Filter Include="States\01. Player\12. Elevator">
       <UniqueIdentifier>{8a11822b-5d48-4f25-9d3c-2a326cdb7469}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States\01. Player\15. Book">
-      <UniqueIdentifier>{8bd66394-9ff5-4cfe-bcea-8939aa6bf07b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="States\01. Player\16. Crash">
-      <UniqueIdentifier>{a590669c-eef1-4e14-9f7e-958e0948e6f8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="States\01. Player\17. Range">
-      <UniqueIdentifier>{51da11f6-0cb7-4efd-a6dd-ab71f1c63c9a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="States\01. Player\11. Combo_1">
+    <Filter Include="States\01. Player\13. Combo_1">
       <UniqueIdentifier>{037a8d3b-3bd0-4af7-a256-6469e486d522}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States\01. Player\12. Combo_2">
+    <Filter Include="States\01. Player\14. Combo_2">
       <UniqueIdentifier>{6951ec92-41b9-4044-b849-1e2c933dedf3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States\01. Player\13. Combo_3">
+    <Filter Include="States\01. Player\15. Combo_3">
       <UniqueIdentifier>{756fad4e-6424-4877-a9b5-b8fb9242322e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States\01. Player\14. Combo_4">
+    <Filter Include="States\01. Player\16. Combo_4">
       <UniqueIdentifier>{07f29e61-39c1-4e47-a528-b52f90a63179}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\17. Book">
+      <UniqueIdentifier>{8bd66394-9ff5-4cfe-bcea-8939aa6bf07b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\18. Crash">
+      <UniqueIdentifier>{a590669c-eef1-4e14-9f7e-958e0948e6f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\19. Range">
+      <UniqueIdentifier>{51da11f6-0cb7-4efd-a6dd-ab71f1c63c9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\08. Falling">
+      <UniqueIdentifier>{54bf9d45-04be-42b0-8b16-3a01767e936d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +102,18 @@
     <ClInclude Include="qPlayerRunUTurnState.h">
       <Filter>States\01. Player\06. RunUTurn</Filter>
     </ClInclude>
+    <ClInclude Include="qPlayerJumpState.h">
+      <Filter>States\01. Player\07. Jump</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerFallingState.h">
+      <Filter>States\01. Player\08. Falling</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerLandingState.h">
+      <Filter>States\01. Player\09. Landing</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerDashState.h">
+      <Filter>States\01. Player\10. Dash</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="States.cpp">
@@ -124,6 +142,18 @@
     </ClCompile>
     <ClCompile Include="qPlayerRunUTurnState.cpp">
       <Filter>States\01. Player\06. RunUTurn</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerJumpState.cpp">
+      <Filter>States\01. Player\07. Jump</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerFallingState.cpp">
+      <Filter>States\01. Player\08. Falling</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerLandingState.cpp">
+      <Filter>States\01. Player\09. Landing</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerDashState.cpp">
+      <Filter>States\01. Player\10. Dash</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -8,6 +8,8 @@
 
 #include "qAssetMgr.h"
 
+#include "qAsset.h"
+
 
 qTaskMgr::qTaskMgr()
 {}
@@ -103,6 +105,16 @@ void qTaskMgr::ExecuteTask()
 			qAssetMgr::GetInst()->DeleteAsset(Type, pAsset->GetKey());
 		}
 		break;
+
+		case TASK_TYPE::CHANGE_STATE:
+		{
+			// Param1: Parent Object    |   Param2: Next State
+			qGameObject* pObj = (qGameObject*)m_vecTask[i].Param_0;
+			qState* pNextState = (qState*)m_vecTask[i].Param_1;
+			pObj->FSM()->ChangeState_proc(pNextState);
+
+			break;
+		}
 		}
 	}
 

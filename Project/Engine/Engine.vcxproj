@@ -171,6 +171,7 @@ call EngineHeaderCopy.bat</Command>
     <ClInclude Include="Ptr.h" />
     <ClInclude Include="qBlackboard.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="qFlipBookComponent.h" />
     <ClInclude Include="qAsset.h" />
@@ -235,6 +236,7 @@ call EngineHeaderCopy.bat</Command>
     </ClCompile>
     <ClCompile Include="qBlackboard.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="qFlipBookComponent.cpp" />
     <ClCompile Include="qAsset.cpp" />

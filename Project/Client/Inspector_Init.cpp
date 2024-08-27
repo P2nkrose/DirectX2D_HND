@@ -27,6 +27,7 @@
 #include "SoundUI.h"
 #include "GraphicShaderUI.h"
 #include "ComputeShaderUI.h"
+#include "FSMUI.h"
 
 #include "ScriptUI.h"
 
@@ -90,6 +91,11 @@ void Inspector::CreateComponentUI()
 	m_arrComUI[(UINT)COMPONENT_TYPE::PARTICLESYSTEM]->SetName("ParticleSystemUI");
 	m_arrComUI[(UINT)COMPONENT_TYPE::PARTICLESYSTEM]->SetChildSize(ImVec2(0.f, 100.f));
 	AddChild(m_arrComUI[(UINT)COMPONENT_TYPE::PARTICLESYSTEM]);
+
+	m_arrComUI[(UINT)COMPONENT_TYPE::STATEMACHINE] = new FSMUI;
+	m_arrComUI[(UINT)COMPONENT_TYPE::STATEMACHINE]->SetName("FSMUI");
+	m_arrComUI[(UINT)COMPONENT_TYPE::STATEMACHINE]->SetChildSize(ImVec2(0.f, 100.f));
+	AddChild(m_arrComUI[(UINT)COMPONENT_TYPE::STATEMACHINE]);
 }
 
 
@@ -164,4 +170,5 @@ void Inspector::CreateAssetUI()
 	UI->SetName("ComputeShaderUI");
 	AddChild(UI);
 	m_arrAssetUI[(UINT)ASSET_TYPE::COMPUTE_SHADER] = UI;
+
 }

@@ -41,8 +41,8 @@ private:
 			delete this;
 	}
 
-	virtual int Save(const wstring& _RelativePath) PURE;
-	virtual int Load(const wstring& _FilePath) PURE;
+	virtual int Save(const wstring& _RelativePath) { return E_FAIL; }
+	virtual int Load(const wstring& _FilePath) { return E_FAIL; }
 
 
 private:

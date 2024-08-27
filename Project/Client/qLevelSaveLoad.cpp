@@ -224,7 +224,7 @@ qComponent* qLevelSaveLoad::GetComponent(COMPONENT_TYPE _Type)
 		break;
 
 	case COMPONENT_TYPE::STATEMACHINE:
-		break;
+		return new qFSM;
 
 	case COMPONENT_TYPE::RIGIDBODY:
 		return new qRigidBody;

@@ -110,7 +110,7 @@ void qRigidBody::FinalTick()
 
 		if (m_Velocity.x == 0.f && m_Velocity.y == 0.f && m_Velocity.z == 0.f)
 		{
-			
+
 		}
 		else
 		{
@@ -151,6 +151,12 @@ void qRigidBody::FinalTick()
 
 void qRigidBody::jump()
 {
+	if (L"Player" == GetOwner()->GetName())
+	{
+		m_VelocityByGravity += Vec3(0.f, 1.3f, 0.f) * m_JumpSpeed;
+	}
+
+	SetGround(false);
 }
 
 void qRigidBody::doublejump()
@@ -163,16 +169,16 @@ void qRigidBody::SaveToFile(FILE* _File)
 	fwrite(&m_Velocity, sizeof(Vec3), 1, _File);
 	fwrite(&m_VelocityByGravity, sizeof(Vec3), 1, _File);
 	fwrite(&m_AddVelocity, sizeof(Vec3), 1, _File);
-	
+
 	fwrite(&m_Mass, sizeof(float), 1, _File);
 	fwrite(&m_Force, sizeof(Vec3), 1, _File);
-	
+
 	fwrite(&m_InitWalkSpeed, sizeof(float), 1, _File);
 	fwrite(&m_MaxWalkSpeed, sizeof(float), 1, _File);
 	fwrite(&m_MaxGravitySpeed, sizeof(float), 1, _File);
-	
+
 	fwrite(&m_Friction, sizeof(float), 1, _File);
-	
+
 	fwrite(&m_GravityAccel, sizeof(float), 1, _File);
 	fwrite(&m_UseGravity, sizeof(bool), 1, _File);
 	fwrite(&m_Ground, sizeof(bool), 1, _File);

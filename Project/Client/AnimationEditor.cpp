@@ -25,9 +25,9 @@ void AnimationEditor::Init()
 	m_SpriteList = (AE_SpriteList*)qEditorMgr::GetInst()->FindEditorUI("AE_SpriteList");
 	m_Detail = (AE_Detail*)qEditorMgr::GetInst()->FindEditorUI("AE_Detail");
 
-	m_Preview->SetMove(false);
+	m_Preview->SetMove(true);
 	m_SpriteList->SetMove(true);
-	m_Detail->SetMove(false);
+	m_Detail->SetMove(true);
 
 	m_Preview->m_Owner = this;
 	m_SpriteList->m_Owner = this;

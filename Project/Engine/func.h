@@ -83,5 +83,36 @@ ASSET_TYPE GetAssetType()
 		return ASSET_TYPE::SPRITE;
 	if constexpr (std::is_same_v<T, qFlipBook>)
 		return ASSET_TYPE::FLIPBOOK;
+}
 
+
+#include "qAssetMgr.h"
+// File 에 Asset 참조정보 저장 불러오기
+template<typename T>
+void SaveAssetRef(Ptr<T> Asset, FILE* _File)
+{
+	bool bAsset = Asset.Get();
+	fwrite(&bAsset, 1, 1, _File);
+
+	if (bAsset)
+	{
+		SaveWString(Asset->GetKey(), _File);
+		SaveWString(Asset->GetRelativePath(), _File);
+	}
+}
+
+template<typename T>
+void LoadAssetRef(Ptr<T>& Asset, FILE* _File)
+{
+	bool bAsset = false;
+	fread(&bAsset, 1, 1, _File);
+
+	if (bAsset)
+	{
+		wstring key, relativepath;
+		LoadWString(key, _File);
+		LoadWString(relativepath, _File);
+
+		Asset = qAssetMgr::GetInst()->Load<T>(key, relativepath);
+	}
 }

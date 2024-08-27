@@ -8,6 +8,7 @@
 #include <Engine/qState.h>
 
 #include <States/qStateMgr.h>
+#include <Engine/qStateMachine.h>
 
 qPlayerScript::qPlayerScript()
 	: qScript(SCRIPT_TYPE::PLAYERSCRIPT)
@@ -15,6 +16,12 @@ qPlayerScript::qPlayerScript()
 	, m_DirChanged(false)
 	, m_Dir(0.f)
 	, m_PlayerDir(DIRECTION::RIGHT)
+	, m_CurJumpCount(0)
+	, m_DoubleJumpCount(2)
+	, m_DirLock(false)
+	, m_IsDash(false)
+	, m_DashCoolTime(0.f)
+	, m_IsDashCoolTime(false)
 {
 	AddScriptParam(SCRIPT_PARAM::FLOAT, "PlayerSpeed", &m_Speed);
 	AddScriptParam(SCRIPT_PARAM::TEXTURE, "Test", &m_Texture);
@@ -29,19 +36,19 @@ void qPlayerScript::PlayCombo()
 {
 	if (m_NextCombo == 1)
 	{
-		FSM()->ChangeState(L"");
+		//FSM()->ChangeState(L"");
 	}
 	else if (m_NextCombo == 2)
 	{
-		FSM()->ChangeState(L"");
+		//FSM()->ChangeState(L"");
 	}
 	else if (m_NextCombo == 3)
 	{
-		FSM()->ChangeState(L"");
+		//FSM()->ChangeState(L"");
 	}
 	else if (m_NextCombo == 4)
 	{
-		FSM()->ChangeState(L"");
+		//FSM()->ChangeState(L"");
 	}
 	else
 	{
@@ -51,6 +58,13 @@ void qPlayerScript::PlayCombo()
 	++m_NextCombo;
 
 }
+
+void qPlayerScript::Jump()
+{
+	RigidBody()->jump();
+}
+
+
 
 
 
@@ -92,6 +106,7 @@ void qPlayerScript::Tick()
 	if (KEY_TAP(KEY::LEFT) || KEY_PRESSED(KEY::LEFT))
 	{
 		m_CurUnitInfo.Dir = DIRECTION::LEFT;
+		m_PlayerDir = DIRECTION::LEFT;
 		vRot.y = 3.141592f;
 		vPos.x -= DT * m_Speed;
 	}
@@ -99,9 +114,24 @@ void qPlayerScript::Tick()
 	if (KEY_TAP(KEY::RIGHT) || KEY_PRESSED(KEY::RIGHT))
 	{
 		m_CurUnitInfo.Dir = DIRECTION::RIGHT;
+		m_PlayerDir = DIRECTION::RIGHT;
 		vRot.y = 0.f;
 		vPos.x += DT * m_Speed;
 	}
+
+	if (KEY_TAP(KEY::SPACE))
+	{
+		if (m_DoubleJumpCount > m_CurJumpCount)
+		{
+			Jump();
+
+			m_CurJumpCount += 1;
+		}
+	}
+
+
+
+
 
 	Transform()->SetRelativePos(vPos);
 	Transform()->SetRelativeRotation(vRot);
@@ -131,7 +161,12 @@ void qPlayerScript::Tick()
 	}
 
 
-	// 애니매이션 방향정보 갱신
+	if (RigidBody()->IsGround())
+	{
+		m_CurJumpCount = 0;
+	}
+
+	// 애니메이션 방향정보 갱신
 	GetRenderComponent()->GetMaterial()->SetScalarParam(SCALAR_PARAM::INT_0, (int)m_CurUnitInfo.Dir);
 
 
@@ -154,30 +189,30 @@ void qPlayerScript::Tick()
 	//	//MeshRender()->GetMaterial()->SetScalarParam(INT_0, 0);
 	//}
 
-	if (KEY_TAP(KEY::SPACE))
-	{
-		if (nullptr != m_MissilePref)
-		{
-			Instantiate(m_MissilePref, 5, Transform()->GetWorldPos(), L"Missile");
-		}
-
-		//// 미사일 발사
-		//qGameObject* pMissileObject = new qGameObject;
-		//pMissileObject->AddComponent(new qTransform);
-		//pMissileObject->AddComponent(new qMeshRender);
-		//pMissileObject->AddComponent(new qCollider2D);
-		//pMissileObject->AddComponent(new qMissileScript);
-
-		//Vec3 vMissilePos = Transform()->GetRelativePos();
-		//vMissilePos.y += Transform()->GetRelativeScale().y / 2.f;
-
-		//pMissileObject->Transform()->SetRelativePos(vMissilePos);
-		//pMissileObject->Transform()->SetRelativeScale(Vec3(50.f, 50.f, 1.f));
-
-		//pMissileObject->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
-
-		//CreateObject(pMissileObject, 5);
-	}
+	//if (KEY_TAP(KEY::SPACE))
+	//{
+	//	if (nullptr != m_MissilePref)
+	//	{
+	//		Instantiate(m_MissilePref, 5, Transform()->GetWorldPos(), L"Missile");
+	//	}
+	//
+	//	//// 미사일 발사
+	//	//qGameObject* pMissileObject = new qGameObject;
+	//	//pMissileObject->AddComponent(new qTransform);
+	//	//pMissileObject->AddComponent(new qMeshRender);
+	//	//pMissileObject->AddComponent(new qCollider2D);
+	//	//pMissileObject->AddComponent(new qMissileScript);
+	//
+	//	//Vec3 vMissilePos = Transform()->GetRelativePos();
+	//	//vMissilePos.y += Transform()->GetRelativeScale().y / 2.f;
+	//
+	//	//pMissileObject->Transform()->SetRelativePos(vMissilePos);
+	//	//pMissileObject->Transform()->SetRelativeScale(Vec3(50.f, 50.f, 1.f));
+	//
+	//	//pMissileObject->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+	//
+	//	//CreateObject(pMissileObject, 5);
+	//}
 
 
 }

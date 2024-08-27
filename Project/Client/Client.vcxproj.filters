@@ -158,6 +158,9 @@
     <Filter Include="3. Manager\04. Level\04. BOSS">
       <UniqueIdentifier>{bc193344-479a-429d-a7f0-fdfa4b4256cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="1. EditorUI\01. Inspector\ComponentUI\11. FSMUI">
+      <UniqueIdentifier>{94ff698b-5f94-46e8-aad4-34c88cd242c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">
@@ -330,6 +333,9 @@
     </ClInclude>
     <ClInclude Include="qLevel_stage1.h">
       <Filter>3. Manager\04. Level\02. STAGE_1</Filter>
+    </ClInclude>
+    <ClInclude Include="FSMUI.h">
+      <Filter>1. EditorUI\01. Inspector\ComponentUI\11. FSMUI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -511,6 +517,9 @@
     </ClCompile>
     <ClCompile Include="qLevel_stage1.cpp">
       <Filter>3. Manager\04. Level\02. STAGE_1</Filter>
+    </ClCompile>
+    <ClCompile Include="FSMUI.cpp">
+      <Filter>1. EditorUI\01. Inspector\ComponentUI\11. FSMUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

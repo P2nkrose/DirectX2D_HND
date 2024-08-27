@@ -2,6 +2,7 @@
 #include "qLevel_stage1.h"
 
 #include <Engine/qAssetMgr.h>
+#include <Engine/qAsset.h>
 #include <Engine/assets.h>
 
 #include <Engine/qFSM.h>
@@ -31,6 +32,10 @@
 #include <States/qPlayerRunToIdleState.h>		// 4
 #include <States/qPlayerIdleUTurnState.h>		// 5
 #include <States/qPlayerRunUTurnState.h>		// 6
+#include <States/qPlayerJumpState.h>			// 7
+#include <States/qPlayerFallingState.h>			// 8
+#include <States/qPlayerLandingState.h>			// 9
+#include <States/qPlayerDashState.h>			// 10
 
 
 #include "qLevelSaveLoad.h"
@@ -131,6 +136,8 @@ void qLevel_stage1::CreateStage1()
 
 	//pStage1->AddObject(0, pLight);
 
+	
+
 
 
 	// 플레이어 오브젝트
@@ -169,6 +176,18 @@ void qLevel_stage1::CreateStage1()
 	Ptr<qFlipBook> pDeathRunUTurn = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\runuturn.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(6, pDeathRunUTurn);
 
+	Ptr<qFlipBook> pDeathJump = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\jump_3.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(7, pDeathJump);
+
+	Ptr<qFlipBook> pDeathFalling = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\falling.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(8, pDeathFalling);
+
+	Ptr<qFlipBook> pDeathLanding = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\landing.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(9, pDeathLanding);
+
+	Ptr<qFlipBook> pDeathDash = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\dash_3.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(10, pDeathDash);
+
 	pPlayer->FlipBookComponent()->Play(0, 10, true);
 
 	pPlayer->AddComponent(new qRigidBody);
@@ -185,20 +204,26 @@ void qLevel_stage1::CreateStage1()
 	pPlayer->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
 	pPlayer->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
 
+	// FSM
 	pPlayer->AddComponent(new qFSM);
+
 	pPlayer->FSM()->AddState(L"Idle", new qPlayerIdleState);				// 0
 	pPlayer->FSM()->AddState(L"Run", new qPlayerRunState);					// 2
 	pPlayer->FSM()->AddState(L"IdleToRun", new qPlayerIdleToRunState);		// 3
 	pPlayer->FSM()->AddState(L"RunToIdle", new qPlayerRunToIdleState);		// 4
 	pPlayer->FSM()->AddState(L"IdleUTurn", new qPlayerIdleUTurnState);		// 5
 	pPlayer->FSM()->AddState(L"RunUTurn", new qPlayerRunUTurnState);		// 6
+	pPlayer->FSM()->AddState(L"Jump", new qPlayerJumpState);				// 7
+	pPlayer->FSM()->AddState(L"Falling", new qPlayerFallingState);			// 8
+	pPlayer->FSM()->AddState(L"Landing", new qPlayerLandingState);			// 9
+	pPlayer->FSM()->AddState(L"Dash", new qPlayerDashState);				// 10
 
-	
+
 	pPlayer->FSM()->ChangeState(L"Idle");
 
 	pStage1->AddObject(3, pPlayer);
 	
-
+	
 	// 스크립트 받아오기
 	//qCameraMoveScript* camScript = nullptr;
 	//const vector<qScript*>& vecScripts = CameraObject->GetScripts();

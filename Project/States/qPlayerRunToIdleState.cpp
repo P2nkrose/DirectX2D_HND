@@ -38,6 +38,15 @@ void qPlayerRunToIdleState::FinalTick()
 		ChangeState(L"Idle");
 	}
 
+	if (KEY_TAP(KEY::SPACE))
+	{
+		ChangeState(L"Jump");
+	}
+
+	if (KEY_TAP(KEY::LSHIFT) && !(pPlayerScript->IsDashCoolTime()))
+	{
+		ChangeState(L"Dash");
+	}
 }
 
 void qPlayerRunToIdleState::Exit()
