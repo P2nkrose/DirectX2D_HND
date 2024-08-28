@@ -16,8 +16,8 @@ void qPlayerCombo2State::Enter()
 	OGScale = GetOwner()->Transform()->GetRelativeScale();
 	OGColScale = GetOwner()->Collider2D()->GetScale();
 
-	GetOwner()->Transform()->SetRelativeScale(232.f, 208.f, 0.f);
-	GetOwner()->Collider2D()->SetScale(Vec3(1.0f, 1.0f, 0.f));
+	GetOwner()->Transform()->SetRelativeScale(450.f, 450.f, 0.f);
+	GetOwner()->Collider2D()->SetScale(Vec3(0.29f, 0.29f, 0.f));
 
 	GetOwner()->FlipBookComponent()->Play(15, 10, false);
 }

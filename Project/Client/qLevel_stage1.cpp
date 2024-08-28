@@ -94,7 +94,9 @@ void qLevel_stage1::CreateStage1()
 	// 카메라 레이어 설정
 	CameraObject->Camera()->SetLayerAll();
 	CameraObject->Camera()->SetFar(100000.f);
+	CameraObject->Camera()->SetScale(1.0f);
 	CameraObject->Camera()->SetProjType(ORTHOGRAPHIC);		// 직교 투영
+
 
 	pStage1->AddObject(0, CameraObject);
 
@@ -120,8 +122,8 @@ void qLevel_stage1::CreateStage1()
 	pPlatform->AddComponent(new qPlatformScript);
 
 	pPlatform->AddComponent(new qTransform);
-	pPlatform->Transform()->SetRelativePos(0.f, -400.f, 10.f);
-	pPlatform->Transform()->SetRelativeScale(600.f, 100.f, 1.f);
+	pPlatform->Transform()->SetRelativePos(0.f, -500.f, 10.f);
+	pPlatform->Transform()->SetRelativeScale(2047.f, 30.f, 1.f);
 
 	pPlatform->AddComponent(new qCollider2D);
 	pPlatform->Collider2D()->SetIndependentScale(false);
@@ -202,7 +204,7 @@ void qLevel_stage1::CreateStage1()
 	Ptr<qFlipBook> pDeathCombo1End = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\combo1end_2.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(14, pDeathCombo1End);
 
-	Ptr<qFlipBook> pDeathCombo2 = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\combo_2.flip");
+	Ptr<qFlipBook> pDeathCombo2 = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\combo2_f.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(15, pDeathCombo2);
 
 	pPlayer->FlipBookComponent()->Play(0, 10, true);

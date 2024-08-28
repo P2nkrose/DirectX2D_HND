@@ -32,6 +32,8 @@ public:
 		SetSpriteData();
 	}
 
+	Vec2 GetOffset() { return m_Offset; }
+
 	
 	bool IsPlaying() { return m_Playing; }
 	void SetPlaying(bool _play) { m_Playing = _play; }

@@ -98,19 +98,19 @@ void SE_AtlasView::SelectCheck()
 	ImGui::InputFloat2("PixelPos", PixelPos);
 
 	// 마우스 오른쪽 드래그 클릭
-	//if (ImGui::IsMouseClicked(ImGuiMouseButton_Right))
-	//{
-	//	m_MouseLT = ImGui::GetMousePos();
-	//	ImVec2 vDiff = ImVec2(m_MouseLT.x - ImageRectMin.x, m_MouseLT.y - ImageRectMin.y);
-	//	m_MouseLT = ImVec2(vDiff.x / m_Ratio, vDiff.y / m_Ratio);
-	//}
-	//
-	//if (ImGui::IsMouseDown(ImGuiMouseButton_Right))
-	//{
-	//	m_MouseRB = ImGui::GetMousePos();
-	//	ImVec2 vDiff = ImVec2(m_MouseRB.x - ImageRectMin.x, m_MouseRB.y - ImageRectMin.y);
-	//	m_MouseRB = ImVec2(vDiff.x / m_Ratio, vDiff.y / m_Ratio);
-	//}
+	if (ImGui::IsMouseClicked(ImGuiMouseButton_Right))
+	{
+		m_MouseLT = ImGui::GetMousePos();
+		ImVec2 vDiff = ImVec2(m_MouseLT.x - ImageRectMin.x, m_MouseLT.y - ImageRectMin.y);
+		m_MouseLT = ImVec2(vDiff.x / m_Ratio, vDiff.y / m_Ratio);
+	}
+	
+	if (ImGui::IsMouseDown(ImGuiMouseButton_Right))
+	{
+		m_MouseRB = ImGui::GetMousePos();
+		ImVec2 vDiff = ImVec2(m_MouseRB.x - ImageRectMin.x, m_MouseRB.y - ImageRectMin.y);
+		m_MouseRB = ImVec2(vDiff.x / m_Ratio, vDiff.y / m_Ratio);
+	}
 
 
 	// 마우스 왼쪽 클릭 체크

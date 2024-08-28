@@ -24,21 +24,23 @@ private:
 
 
 private:
-	Ptr<qFlipBook>						m_CurFlipBook;
-	Ptr<qSprite>						m_CurSprite;
-	Ptr<qTexture>						m_AtlasTex;
+	Ptr<qFlipBook>				m_CurFlipBook;
+	Ptr<qSprite>				m_CurSprite;
+	Ptr<qTexture>				m_AtlasTex;
 
-	ImVec2								m_ImageRectMin;
-	ImVec2								m_ViewerSize;
+	ImVec2						m_ImageRectMin;
+	ImVec2						m_ViewerSize;
 
-	int									m_CurSpriteIndex;
+	Vec2						m_Offset;
 
-	bool								m_Playing;
+	int							m_CurSpriteIndex;
+
+	bool						m_Playing;
 
 
-	//int								m_MaxSpriteIndex;
-	//bool								m_Repeat;
-	//bool								m_Finish;
+	//int						m_MaxSpriteIndex;
+	//bool						m_Repeat;
+	//bool						m_Finish;
 
 
 

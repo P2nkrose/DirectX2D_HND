@@ -383,7 +383,7 @@ void AE_Detail::SpriteInfo()
 	ImGui::Text("Offset");
 	ImGui::SameLine(120);
 	ImGui::SetNextItemWidth(180);
-	ImGui::InputFloat2("##CurSpriteOffset", offset, "%.2f");
+	ImGui::DragFloat2("##CurSpriteOffset", offset, 0.1f);
 
 	//m_AtlasTex->SetOffset(Vec2(OffsetUV.x, OffsetUV.y));
 

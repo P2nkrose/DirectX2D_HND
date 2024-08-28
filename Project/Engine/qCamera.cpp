@@ -83,7 +83,7 @@ void qCamera::FinalTick()
 		// 1. 직교 투영 (Orthographic)
 		// 투영을 일직선으로
 		// 시야 범위를 NDC 로 압축
-		m_matProj = XMMatrixOrthographicLH(m_Width * m_ProjectionScale, m_Height * m_ProjectionScale, 1.f, 10000.f);
+		m_matProj = XMMatrixOrthographicLH(m_Width * m_ProjectionScale, m_Height * m_ProjectionScale, 1.f, m_Far);
 	}
 	else
 	{

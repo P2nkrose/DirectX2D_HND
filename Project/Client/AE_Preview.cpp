@@ -16,6 +16,7 @@ AE_Preview::AE_Preview()
 	, m_Playing(false)
 	, m_CurFlipBook(nullptr)
 {
+
 }
 
 AE_Preview::~AE_Preview()
@@ -25,7 +26,10 @@ AE_Preview::~AE_Preview()
 
 void AE_Preview::Init()
 {
-
+	if (m_CurSprite != nullptr)
+	{
+		m_Offset = GetDetail()->GetOffset();
+	}
 }
 
 
@@ -96,16 +100,23 @@ void AE_Preview::SetImage()
 			crop.y *= ratio;
 		}
 
+		float fWidth = m_AtlasTex.Get()->Width();
+		float fHeight = m_AtlasTex.Get()->Height();
+		Vec2 fFrameOffset;
+		fFrameOffset = m_Offset / Vec2(fWidth, fHeight);
+
 		ImVec4 tint_col = ImVec4(1.0f, 1.0f, 1.0f, 1.0f);
 		ImVec4 border_col = ImVec4(0.7f, 0.7f, 0.7f, 0.7f);
 
-		ImVec2 StartUV = ImVec2(m_CurSprite->GetLeftTopUV().x, m_CurSprite->GetLeftTopUV().y);
-		ImVec2 EndUV = ImVec2(m_CurSprite->GetLeftTopUV().x + m_CurSprite->GetSliceUV().x
+		Vec2 StartUV = Vec2(m_CurSprite->GetLeftTopUV().x, m_CurSprite->GetLeftTopUV().y);
+		Vec2 EndUV = Vec2(m_CurSprite->GetLeftTopUV().x + m_CurSprite->GetSliceUV().x
 							, m_CurSprite->GetLeftTopUV().y + m_CurSprite->GetSliceUV().y);
 
 		ImGui::SetCursorPosX((ImGui::GetWindowSize().x * 0.5f) - 100.f);
 		ImGui::SetCursorPosY((ImGui::GetWindowSize().y * 0.5f) - 100.f);
-		ImGui::Image(m_AtlasTex->GetSRV().Get(), crop, StartUV, EndUV, tint_col, border_col);
+		ImGui::Image(m_AtlasTex->GetSRV().Get()
+			, crop, ImVec2(StartUV.x - fFrameOffset.x, StartUV.y - fFrameOffset.y)
+			, ImVec2(EndUV.x - fFrameOffset.x, EndUV.y - fFrameOffset.y), tint_col, border_col);
 	}
 }
 
