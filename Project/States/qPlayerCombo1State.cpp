@@ -16,10 +16,10 @@ void qPlayerCombo1State::Enter()
 	OGScale = GetOwner()->Transform()->GetRelativeScale();
 	OGColScale = GetOwner()->Collider2D()->GetScale();
 
-	GetOwner()->Transform()->SetRelativeScale(430.f, 110.f, 0.f);
-	GetOwner()->Collider2D()->SetScale(Vec3(0.3f, 1.19f, 0.f));
+	GetOwner()->Transform()->SetRelativeScale(550.f, 550.f, 0.f);
+	GetOwner()->Collider2D()->SetScale(Vec3(0.24f, 0.24f, 0.f));
 
-	GetOwner()->FlipBookComponent()->Play(13, 20, false);
+	GetOwner()->FlipBookComponent()->Play(13, 15, false);
 }
 
 void qPlayerCombo1State::FinalTick()
@@ -34,7 +34,7 @@ void qPlayerCombo1State::FinalTick()
 		}
 		else
 		{
-			ChangeState(L"Combo1End");
+			ChangeState(L"Idle");
 		}
 	}
 }

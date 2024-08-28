@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "qStateMgr.h"
 
-#include "qPlayerCombo1EndState.h"
 #include "qPlayerCombo1State.h"
 #include "qPlayerCombo2State.h"
 #include "qPlayerCombo3State.h"
@@ -19,7 +18,6 @@
 
 void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 {
-	_vec.push_back(L"qPlayerCombo1EndState");
 	_vec.push_back(L"qPlayerCombo1State");
 	_vec.push_back(L"qPlayerCombo2State");
 	_vec.push_back(L"qPlayerCombo3State");
@@ -38,8 +36,6 @@ void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 
 qState * qStateMgr::GetState(const wstring& _strStateName)
 {
-	if (L"qPlayerCombo1EndState" == _strStateName)
-		return new qPlayerCombo1EndState;
 	if (L"qPlayerCombo1State" == _strStateName)
 		return new qPlayerCombo1State;
 	if (L"qPlayerCombo2State" == _strStateName)
@@ -75,9 +71,6 @@ qState * qStateMgr::GetState(UINT _iStateType)
 {
 	switch (_iStateType)
 	{
-	case (UINT)STATE_TYPE::PLAYERCOMBO1ENDSTATE:
-		return new qPlayerCombo1EndState;
-		break;
 	case (UINT)STATE_TYPE::PLAYERCOMBO1STATE:
 		return new qPlayerCombo1State;
 		break;
@@ -128,10 +121,6 @@ const wchar_t * qStateMgr::GetStateName(qState * _pState)
 {
 	switch ((STATE_TYPE)_pState->GetStateType())
 	{
-	case STATE_TYPE::PLAYERCOMBO1ENDSTATE:
-		return L"qPlayerCombo1EndState";
-		break;
-
 	case STATE_TYPE::PLAYERCOMBO1STATE:
 		return L"qPlayerCombo1State";
 		break;

@@ -20,7 +20,7 @@ void qPlayerIdleState::Enter()
 
 	pPlayerScript->ResetCombo();
 
-	GetOwner()->FlipBookComponent()->Play(0, 15, true);
+	GetOwner()->FlipBookComponent()->Play(0, 20, true);
 }
 
 

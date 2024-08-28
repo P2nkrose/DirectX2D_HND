@@ -13,7 +13,7 @@ qPlayerRunUTurnState::~qPlayerRunUTurnState()
 
 void qPlayerRunUTurnState::Enter()
 {
-	GetOwner()->FlipBookComponent()->Play(6, 15, true);
+	GetOwner()->FlipBookComponent()->Play(6, 20, true);
 }
 
 void qPlayerRunUTurnState::FinalTick()

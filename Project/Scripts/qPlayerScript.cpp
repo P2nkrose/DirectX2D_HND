@@ -45,7 +45,7 @@ void qPlayerScript::PlayCombo()
 	}
 	else if (m_NextCombo == 3)
 	{
-		//FSM()->ChangeState(L"");
+		FSM()->ChangeState(L"Combo3");
 	}
 	else if (m_NextCombo == 4)
 	{

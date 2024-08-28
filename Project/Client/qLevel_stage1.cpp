@@ -38,12 +38,9 @@
 #include <States/qPlayerDashState.h>			// 10
 
 #include <States/qPlayerCombo1State.h>			// 13
-#include <States/qPlayerCombo1EndState.h>		// 14
-#include <States/qPlayerCombo2State.h>			// 15
-
-#include <States/qPlayerCombo3State.h>			// 17
-
-#include <States/qPlayerCombo4State.h>			// 19
+#include <States/qPlayerCombo2State.h>			// 14
+#include <States/qPlayerCombo3State.h>			// 15
+#include <States/qPlayerCombo4State.h>			// 16
 
 
 #include "qLevelSaveLoad.h"
@@ -84,10 +81,9 @@ void qLevel_stage1::CreateStage1()
 	qGameObject* CameraObject = new qGameObject;
 	CameraObject->SetName(L"MainCamera");
 	CameraObject->AddComponent(new qCameraMoveScript);
-
+	CameraObject->AddComponent(new qCamera);
 	CameraObject->AddComponent(new qTransform);
 
-	CameraObject->AddComponent(new qCamera);
 	// 우선순위를 0 : Main Camera 로 설정
 	CameraObject->Camera()->SetPriority(0);
 
@@ -103,11 +99,11 @@ void qLevel_stage1::CreateStage1()
 
 	// 배경
 	qGameObject* pBackground = new qGameObject;
-	pBackground->SetName(L"Background");
+	pBackground->SetName(L"BGstage1");
 	
 	pBackground->AddComponent(new qTransform);
 	pBackground->Transform()->SetRelativePos(0.f, 0.f, 50.f);
-	pBackground->Transform()->SetRelativeScale(2048.f, 1789.f, 1.f);
+	pBackground->Transform()->SetRelativeScale(2555.f, 1790.f, 1.f);
 
 	pBackground->AddComponent(new qMeshRender);
 	pBackground->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
@@ -123,7 +119,7 @@ void qLevel_stage1::CreateStage1()
 
 	pPlatform->AddComponent(new qTransform);
 	pPlatform->Transform()->SetRelativePos(0.f, -500.f, 10.f);
-	pPlatform->Transform()->SetRelativeScale(2047.f, 30.f, 1.f);
+	pPlatform->Transform()->SetRelativeScale(2560.f, 30.f, 1.f);
 
 	pPlatform->AddComponent(new qCollider2D);
 	pPlatform->Collider2D()->SetIndependentScale(false);
@@ -159,7 +155,7 @@ void qLevel_stage1::CreateStage1()
 	
 
 	pPlayer->AddComponent(new qTransform);
-	pPlayer->Transform()->SetRelativePos(0.f, 0.0f, 10.f);
+	pPlayer->Transform()->SetRelativePos(0.f, -420.f, 10.f);
 	pPlayer->Transform()->SetRelativeScale(130.f, 130.f, 1.f);
 
 	pPlayer->AddComponent(new qMeshRender);
@@ -198,14 +194,14 @@ void qLevel_stage1::CreateStage1()
 	Ptr<qFlipBook> pDeathDash = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\dash_3.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(10, pDeathDash);
 
-	Ptr<qFlipBook> pDeathCombo1 = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\combo1_4.flip");
+	Ptr<qFlipBook> pDeathCombo1 = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\combo1_final.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(13, pDeathCombo1);
 
-	Ptr<qFlipBook> pDeathCombo1End = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\combo1end_2.flip");
-	pPlayer->FlipBookComponent()->AddFlipBook(14, pDeathCombo1End);
+	Ptr<qFlipBook> pDeathCombo2 = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\combo2_final.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(14, pDeathCombo2);
 
-	Ptr<qFlipBook> pDeathCombo2 = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\combo2_f.flip");
-	pPlayer->FlipBookComponent()->AddFlipBook(15, pDeathCombo2);
+	Ptr<qFlipBook> pDeathCombo3 = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\combo3_f.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(15, pDeathCombo3);
 
 	pPlayer->FlipBookComponent()->Play(0, 10, true);
 
@@ -238,8 +234,8 @@ void qLevel_stage1::CreateStage1()
 	pPlayer->FSM()->AddState(L"Dash", new qPlayerDashState);				// 10
 
 	pPlayer->FSM()->AddState(L"Combo1", new qPlayerCombo1State);			// 13
-	pPlayer->FSM()->AddState(L"Combo1End", new qPlayerCombo1EndState);		// 14
-	pPlayer->FSM()->AddState(L"Combo2", new qPlayerCombo2State);			// 15
+	pPlayer->FSM()->AddState(L"Combo2", new qPlayerCombo2State);			// 14
+	pPlayer->FSM()->AddState(L"Combo3", new qPlayerCombo3State);			// 15
 
 	pPlayer->FSM()->ChangeState(L"Idle");
 

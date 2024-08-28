@@ -13,7 +13,7 @@ qPlayerIdleUTurnState::~qPlayerIdleUTurnState()
 
 void qPlayerIdleUTurnState::Enter()
 {
-	GetOwner()->FlipBookComponent()->Play(5, 20, true);
+	GetOwner()->FlipBookComponent()->Play(5, 25, true);
 }
 
 void qPlayerIdleUTurnState::FinalTick()

@@ -13,7 +13,7 @@ qPlayerFallingState::~qPlayerFallingState()
 
 void qPlayerFallingState::Enter()
 {
-	GetOwner()->FlipBookComponent()->Play(8, 10, true);
+	GetOwner()->FlipBookComponent()->Play(8, 15, true);
 }
 
 void qPlayerFallingState::FinalTick()

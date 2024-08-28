@@ -13,7 +13,7 @@ qPlayerJumpState::~qPlayerJumpState()
 
 void qPlayerJumpState::Enter()
 {
-	GetOwner()->FlipBookComponent()->Play(7, 10, false);
+	GetOwner()->FlipBookComponent()->Play(7, 15, false);
 }
 
 void qPlayerJumpState::FinalTick()

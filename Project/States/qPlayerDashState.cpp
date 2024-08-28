@@ -20,9 +20,9 @@ void qPlayerDashState::Enter()
 	OGColScale = GetOwner()->Collider2D()->GetScale();
 
 	GetOwner()->Transform()->SetRelativeScale(350.f, 350.f, 0.f);
-	GetOwner()->Collider2D()->SetScale(Vec3(0.37f, 0.37f, 0.f));
+	GetOwner()->Collider2D()->SetScale(Vec3(0.375f, 0.375f, 0.f));
 
-	GetOwner()->FlipBookComponent()->Play(10, 10, false);
+	GetOwner()->FlipBookComponent()->Play(10, 15, false);
 	
 }
 

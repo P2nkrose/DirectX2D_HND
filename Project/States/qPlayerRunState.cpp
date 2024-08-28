@@ -14,7 +14,7 @@ qPlayerRunState::~qPlayerRunState()
 
 void qPlayerRunState::Enter()
 {
-	GetOwner()->FlipBookComponent()->Play(2, 15, true);
+	GetOwner()->FlipBookComponent()->Play(2, 20, true);
 }
 
 

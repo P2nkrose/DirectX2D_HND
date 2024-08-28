@@ -19,7 +19,7 @@ void qPlayerCombo2State::Enter()
 	GetOwner()->Transform()->SetRelativeScale(450.f, 450.f, 0.f);
 	GetOwner()->Collider2D()->SetScale(Vec3(0.29f, 0.29f, 0.f));
 
-	GetOwner()->FlipBookComponent()->Play(15, 10, false);
+	GetOwner()->FlipBookComponent()->Play(14, 15, false);
 }
 
 void qPlayerCombo2State::FinalTick()

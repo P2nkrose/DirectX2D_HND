@@ -53,41 +53,78 @@ void qCameraMoveScript::Tick()
 void qCameraMoveScript::OrthoGraphicMove()
 {
 	float Speed = m_CamSpeed;
-
 	if (KEY_PRESSED(KEY::LSHIFT))
-	{
 		Speed *= 3.f;
-	}
-
 
 	Transform()->SetRelativeRotation(Vec3(0.f, 0.f, 0.f));
 	Vec3 vPos = Transform()->GetRelativePos();
 
-	if (KEY_PRESSED(KEY::W))
-	{
+	if (KEY_PRESSED(KEY::I))
 		vPos.y += DT * Speed;
-	}
-
-	if (KEY_PRESSED(KEY::S))
-	{
+	if (KEY_PRESSED(KEY::K))
 		vPos.y -= DT * Speed;
-	}
-
-	if (KEY_PRESSED(KEY::A))
-	{
+	if (KEY_PRESSED(KEY::J))
 		vPos.x -= DT * Speed;
-	}
-
-	if (KEY_PRESSED(KEY::D))
-	{
+	if (KEY_PRESSED(KEY::L))
 		vPos.x += DT * Speed;
-	}
 
-	//qGameObject* player = qLevelMgr::GetInst()->GetCurrentLevel()->FindObjectByName(L"Player");
 	if (m_FollowObj != nullptr)
 	{
 		vPos = m_FollowObj->Transform()->GetRelativePos();
 	}
+
+	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+
+	if (pCurLevel->GetName() == L"stage1")
+	{
+
+		qGameObject* BackGround = pCurLevel->FindObjectByName(L"BGstage1");
+
+		if (nullptr == BackGround)
+			return;
+
+		Vec3 BGScale = BackGround->Transform()->GetRelativeScale();
+
+		Vec3 PlayerPos = m_FollowObj->Transform()->GetRelativePos();
+
+		if (PlayerPos.x <= -470.f)
+		{
+			vPos.x = -470.f;
+		}
+		else if (PlayerPos.x >= 470.f)
+		{
+			vPos.x = 470.f;
+		}
+		else
+		{
+			vPos.x = PlayerPos.x;
+		}
+
+		vPos.y = -120.f;
+
+		// Y ÁÂÇ¥ °è»ê
+		// 
+		//float vDist = vPos.y - PlayerPos.y;
+		//if (PlayerPos.y >= -420.f)
+		//{
+		//	vPos.y = PlayerPos.y;
+		//}
+		//else
+		//{
+		//	vPos.y = -200.f;
+		//}
+
+		
+
+
+		Transform()->SetRelativePos(vPos);
+
+	}
+
+	
+
+	//qGameObject* player = qLevelMgr::GetInst()->GetCurrentLevel()->FindObjectByName(L"Player");
+
 
 	//if (nullptr != player)
 	//{
@@ -95,7 +132,7 @@ void qCameraMoveScript::OrthoGraphicMove()
 	//}
 
 
-	Transform()->SetRelativePos(vPos);
+
 
 	//qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 }
