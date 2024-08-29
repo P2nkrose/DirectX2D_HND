@@ -34,6 +34,7 @@ void qPlayerJumpState::FinalTick()
 	{
 		ChangeState(L"Dash");
 	}
+
 }
 
 void qPlayerJumpState::Exit()

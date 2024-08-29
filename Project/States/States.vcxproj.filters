@@ -64,14 +64,17 @@
     <Filter Include="States\01. Player\16. Combo_4">
       <UniqueIdentifier>{07f29e61-39c1-4e47-a528-b52f90a63179}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States\01. Player\17. Book">
-      <UniqueIdentifier>{8bd66394-9ff5-4cfe-bcea-8939aa6bf07b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="States\01. Player\18. Crash">
+    <Filter Include="States\01. Player\19. Crash">
       <UniqueIdentifier>{a590669c-eef1-4e14-9f7e-958e0948e6f8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States\01. Player\19. Range">
+    <Filter Include="States\01. Player\20. Range">
       <UniqueIdentifier>{51da11f6-0cb7-4efd-a6dd-ab71f1c63c9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\18. Book">
+      <UniqueIdentifier>{410cabe1-06df-43ba-8fb7-959bcf8cc0f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\17. BookShoot">
+      <UniqueIdentifier>{8bd66394-9ff5-4cfe-bcea-8939aa6bf07b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -126,6 +129,12 @@
     <ClInclude Include="qPlayerCombo1State.h">
       <Filter>States\01. Player\13. Combo_1</Filter>
     </ClInclude>
+    <ClInclude Include="qPlayerBookShootState.h">
+      <Filter>States\01. Player\17. BookShoot</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerCrashState.h">
+      <Filter>States\01. Player\19. Crash</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="States.cpp">
@@ -178,6 +187,12 @@
     </ClCompile>
     <ClCompile Include="qPlayerCombo1State.cpp">
       <Filter>States\01. Player\13. Combo_1</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerBookShootState.cpp">
+      <Filter>States\01. Player\17. BookShoot</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerCrashState.cpp">
+      <Filter>States\01. Player\19. Crash</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

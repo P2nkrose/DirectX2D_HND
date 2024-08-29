@@ -135,6 +135,7 @@ void qPlayerScript::Tick()
 
 
 
+
 	Transform()->SetRelativePos(vPos);
 	Transform()->SetRelativeRotation(vRot);
 

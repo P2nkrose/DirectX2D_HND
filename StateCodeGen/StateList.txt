@@ -1,7 +1,9 @@
+qPlayerBookShootState
 qPlayerCombo1State
 qPlayerCombo2State
 qPlayerCombo3State
 qPlayerCombo4State
+qPlayerCrashState
 qPlayerDashState
 qPlayerFallingState
 qPlayerIdleState

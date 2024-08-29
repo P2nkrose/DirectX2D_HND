@@ -41,6 +41,16 @@ void qPlayerIdleUTurnState::FinalTick()
 	{
 		ChangeState(L"Dash");
 	}
+
+	if (KEY_TAP(KEY::S))
+	{
+		ChangeState(L"BookShoot");
+	}
+
+	if (KEY_TAP(KEY::D))
+	{
+		ChangeState(L"Crash");
+	}
 }
 
 void qPlayerIdleUTurnState::Exit()

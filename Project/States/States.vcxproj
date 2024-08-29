@@ -160,10 +160,12 @@ call CodeGen.exe</Command>
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="qPlayerBookShootState.h" />
     <ClInclude Include="qPlayerCombo1State.h" />
     <ClInclude Include="qPlayerCombo2State.h" />
     <ClInclude Include="qPlayerCombo3State.h" />
     <ClInclude Include="qPlayerCombo4State.h" />
+    <ClInclude Include="qPlayerCrashState.h" />
     <ClInclude Include="qPlayerDashState.h" />
     <ClInclude Include="qPlayerFallingState.h" />
     <ClInclude Include="qPlayerIdleState.h" />
@@ -183,10 +185,12 @@ call CodeGen.exe</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="qPlayerBookShootState.cpp" />
     <ClCompile Include="qPlayerCombo1State.cpp" />
     <ClCompile Include="qPlayerCombo2State.cpp" />
     <ClCompile Include="qPlayerCombo3State.cpp" />
     <ClCompile Include="qPlayerCombo4State.cpp" />
+    <ClCompile Include="qPlayerCrashState.cpp" />
     <ClCompile Include="qPlayerDashState.cpp" />
     <ClCompile Include="qPlayerFallingState.cpp" />
     <ClCompile Include="qPlayerIdleState.cpp" />
