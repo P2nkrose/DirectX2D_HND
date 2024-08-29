@@ -135,6 +135,9 @@
     <ClInclude Include="qPlayerCrashState.h">
       <Filter>States\01. Player\19. Crash</Filter>
     </ClInclude>
+    <ClInclude Include="qPlayerRangeState.h">
+      <Filter>States\01. Player\20. Range</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="States.cpp">
@@ -193,6 +196,9 @@
     </ClCompile>
     <ClCompile Include="qPlayerCrashState.cpp">
       <Filter>States\01. Player\19. Crash</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerRangeState.cpp">
+      <Filter>States\01. Player\20. Range</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

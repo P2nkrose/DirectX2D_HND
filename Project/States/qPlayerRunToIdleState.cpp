@@ -57,6 +57,11 @@ void qPlayerRunToIdleState::FinalTick()
 	{
 		ChangeState(L"Crash");
 	}
+
+	if (KEY_TAP(KEY::F))
+	{
+		ChangeState(L"Range");
+	}
 }
 
 void qPlayerRunToIdleState::Exit()

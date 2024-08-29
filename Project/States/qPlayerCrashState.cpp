@@ -19,7 +19,7 @@ void qPlayerCrashState::Enter()
 	GetOwner()->Transform()->SetRelativeScale(550.f, 550.f, 0.f);
 	GetOwner()->Collider2D()->SetScale(Vec3(0.237f, 0.237f, 0.f));
 
-	GetOwner()->FlipBookComponent()->Play(18, 15, false);
+	GetOwner()->FlipBookComponent()->Play(19, 15, false);
 }
 
 void qPlayerCrashState::FinalTick()

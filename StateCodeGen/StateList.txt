@@ -11,6 +11,7 @@ qPlayerIdleToRunState
 qPlayerIdleUTurnState
 qPlayerJumpState
 qPlayerLandingState
+qPlayerRangeState
 qPlayerRunState
 qPlayerRunToIdleState
 qPlayerRunUTurnState

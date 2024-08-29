@@ -42,7 +42,9 @@
 #include <States/qPlayerCombo3State.h>			// 15
 #include <States/qPlayerCombo4State.h>			// 16
 #include <States/qPlayerBookShootState.h>		// 17
-#include <States/qPlayerCrashState.h>			// 18
+
+#include <States/qPlayerCrashState.h>			// 19
+#include <States/qPlayerRangeState.h>			// 20
 
 
 #include "qLevelSaveLoad.h"
@@ -212,7 +214,10 @@ void qLevel_stage1::CreateStage1()
 	pPlayer->FlipBookComponent()->AddFlipBook(17, pDeathBookShoot);
 
 	Ptr<qFlipBook> pDeathCrash = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\crash_final.flip");
-	pPlayer->FlipBookComponent()->AddFlipBook(18, pDeathCrash);
+	pPlayer->FlipBookComponent()->AddFlipBook(19, pDeathCrash);
+
+	Ptr<qFlipBook> pDeathRange = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\range_test2.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(20, pDeathRange);
 
 	pPlayer->FlipBookComponent()->Play(0, 10, true);
 
@@ -249,7 +254,9 @@ void qLevel_stage1::CreateStage1()
 	pPlayer->FSM()->AddState(L"Combo3", new qPlayerCombo3State);			// 15
 	pPlayer->FSM()->AddState(L"Combo4", new qPlayerCombo4State);			// 16
 	pPlayer->FSM()->AddState(L"BookShoot", new qPlayerBookShootState);		// 17
-	pPlayer->FSM()->AddState(L"Crash", new qPlayerCrashState);				// 18
+
+	pPlayer->FSM()->AddState(L"Crash", new qPlayerCrashState);				// 19
+	pPlayer->FSM()->AddState(L"Range", new qPlayerRangeState);				// 20
 
 	pPlayer->FSM()->ChangeState(L"Idle");
 
