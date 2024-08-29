@@ -26,14 +26,7 @@ void qPlayerCombo3State::FinalTick()
 {
 	if (GetOwner()->FlipBookComponent()->IsCurFlipBookFinished())
 	{
-		if (KEY_TAP(KEY::A))
-		{
-			ChangeState(L"Combo4");
-		}
-		else
-		{
-			ChangeState(L"Idle");
-		}
+		ChangeState(L"Idle");
 	}
 }
 

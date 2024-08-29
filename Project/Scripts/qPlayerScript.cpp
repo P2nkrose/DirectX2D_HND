@@ -49,7 +49,7 @@ void qPlayerScript::PlayCombo()
 	}
 	else if (m_NextCombo == 4)
 	{
-		//FSM()->ChangeState(L"");
+		FSM()->ChangeState(L"Combo4");
 	}
 	else
 	{
@@ -132,7 +132,6 @@ void qPlayerScript::Tick()
 		//FSM()->ChangeState(L"Combo1");
 		PlayCombo();
 	}
-
 
 
 
