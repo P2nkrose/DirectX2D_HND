@@ -45,6 +45,7 @@
 
 #include <States/qPlayerCrashState.h>			// 19
 #include <States/qPlayerRangeState.h>			// 20
+#include <States/qPlayerKrushState.h>			// 21
 
 
 #include "qLevelSaveLoad.h"
@@ -219,6 +220,9 @@ void qLevel_stage1::CreateStage1()
 	Ptr<qFlipBook> pDeathRange = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\range_test2.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(20, pDeathRange);
 
+	Ptr<qFlipBook> pDeathKrush = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\krush_final.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(21, pDeathKrush);
+
 	pPlayer->FlipBookComponent()->Play(0, 10, true);
 
 	pPlayer->AddComponent(new qRigidBody);
@@ -257,6 +261,7 @@ void qLevel_stage1::CreateStage1()
 
 	pPlayer->FSM()->AddState(L"Crash", new qPlayerCrashState);				// 19
 	pPlayer->FSM()->AddState(L"Range", new qPlayerRangeState);				// 20
+	pPlayer->FSM()->AddState(L"Krush", new qPlayerKrushState);				// 21
 
 	pPlayer->FSM()->ChangeState(L"Idle");
 

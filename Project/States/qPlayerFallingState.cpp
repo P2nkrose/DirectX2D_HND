@@ -35,6 +35,13 @@ void qPlayerFallingState::FinalTick()
 		ChangeState(L"Dash");
 	}
 
+	if (KEY_PRESSED(KEY::DOWN) && KEY_TAP(KEY::G))
+	{
+		ChangeState(L"Krush");
+	}
+
+
+
 }
 
 void qPlayerFallingState::Exit()

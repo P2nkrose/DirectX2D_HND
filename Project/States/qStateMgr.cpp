@@ -13,6 +13,7 @@
 #include "qPlayerIdleToRunState.h"
 #include "qPlayerIdleUTurnState.h"
 #include "qPlayerJumpState.h"
+#include "qPlayerKrushState.h"
 #include "qPlayerLandingState.h"
 #include "qPlayerRangeState.h"
 #include "qPlayerRunState.h"
@@ -33,6 +34,7 @@ void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qPlayerIdleToRunState");
 	_vec.push_back(L"qPlayerIdleUTurnState");
 	_vec.push_back(L"qPlayerJumpState");
+	_vec.push_back(L"qPlayerKrushState");
 	_vec.push_back(L"qPlayerLandingState");
 	_vec.push_back(L"qPlayerRangeState");
 	_vec.push_back(L"qPlayerRunState");
@@ -66,6 +68,8 @@ qState * qStateMgr::GetState(const wstring& _strStateName)
 		return new qPlayerIdleUTurnState;
 	if (L"qPlayerJumpState" == _strStateName)
 		return new qPlayerJumpState;
+	if (L"qPlayerKrushState" == _strStateName)
+		return new qPlayerKrushState;
 	if (L"qPlayerLandingState" == _strStateName)
 		return new qPlayerLandingState;
 	if (L"qPlayerRangeState" == _strStateName)
@@ -118,6 +122,9 @@ qState * qStateMgr::GetState(UINT _iStateType)
 		break;
 	case (UINT)STATE_TYPE::PLAYERJUMPSTATE:
 		return new qPlayerJumpState;
+		break;
+	case (UINT)STATE_TYPE::PLAYERKRUSHSTATE:
+		return new qPlayerKrushState;
 		break;
 	case (UINT)STATE_TYPE::PLAYERLANDINGSTATE:
 		return new qPlayerLandingState;
@@ -188,6 +195,10 @@ const wchar_t * qStateMgr::GetStateName(qState * _pState)
 
 	case STATE_TYPE::PLAYERJUMPSTATE:
 		return L"qPlayerJumpState";
+		break;
+
+	case STATE_TYPE::PLAYERKRUSHSTATE:
+		return L"qPlayerKrushState";
 		break;
 
 	case STATE_TYPE::PLAYERLANDINGSTATE:
