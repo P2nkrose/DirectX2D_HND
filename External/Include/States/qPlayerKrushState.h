@@ -15,9 +15,10 @@ public:
 	virtual void Exit() override;
 
 private:
-	Vec3		OGScale;
-	Vec3		OGColScale;
+	qGameObject*	KrushHitBox;
+	Vec3			OGScale;
+	Vec3			OGColScale;
 
-	float		m_KrushSpeed;
+	float			m_KrushSpeed;
 };
 

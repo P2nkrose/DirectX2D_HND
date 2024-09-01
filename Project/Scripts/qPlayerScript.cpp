@@ -3,6 +3,7 @@
 #include "qMissileScript.h"
 #include "qBookScript_Left.h"
 #include "qBookScript_Right.h"
+#include "qComboScript.h"
 
 #include <Engine/qLevel.h>
 #include <Engine/qLevelMgr.h>
@@ -41,7 +42,10 @@ void qPlayerScript::PlayCombo()
 {
 	if (m_NextCombo == 1)
 	{
+		
+
 		FSM()->ChangeState(L"Combo1");
+		
 	}
 	else if (m_NextCombo == 2)
 	{
@@ -151,7 +155,7 @@ void qPlayerScript::Tick()
 			Vec3 vPlayerPos = pPlayer->Transform()->GetRelativePos();
 
 			qGameObject* LeftBook = new qGameObject;
-			LeftBook->SetName(L"LeftBook");
+			LeftBook->SetName(L"LeftBookHitBox");
 			LeftBook->AddComponent(new qBookScript_Left);
 			LeftBook->AddComponent(new qTransform);
 			LeftBook->Transform()->SetRelativeScale(70.f, 70.f, 1.f);
@@ -184,7 +188,7 @@ void qPlayerScript::Tick()
 			Vec3 vPlayerPos = pPlayer->Transform()->GetRelativePos();
 
 			qGameObject* RightBook = new qGameObject;
-			RightBook->SetName(L"RightBook");
+			RightBook->SetName(L"RightBookHitBox");
 			RightBook->AddComponent(new qBookScript_Right);
 			RightBook->AddComponent(new qTransform);
 			RightBook->Transform()->SetRelativeScale(70.f, 70.f, 1.f);

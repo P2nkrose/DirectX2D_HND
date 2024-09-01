@@ -34,6 +34,21 @@
     <Filter Include="Scripts\1. UNIT\1. Player\PlayerSkill">
       <UniqueIdentifier>{380dafe2-4424-4bc5-8df4-863a0f01f4d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scripts\1. UNIT\1. Player\PlayerSkill\01. Combo">
+      <UniqueIdentifier>{df55e576-09f6-45b4-8440-73557d6097d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\1. UNIT\1. Player\PlayerSkill\02. Book">
+      <UniqueIdentifier>{491918ae-ed0a-4ad0-8540-82dc7d9f813c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\1. UNIT\1. Player\PlayerSkill\03. Crash">
+      <UniqueIdentifier>{dd6e7fd2-af29-4c65-9d7d-33f64fff703e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\1. UNIT\1. Player\PlayerSkill\04. Range">
+      <UniqueIdentifier>{d9be5d54-a0b2-4eeb-ac35-53e94359944b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\1. UNIT\1. Player\PlayerSkill\05. Krush">
+      <UniqueIdentifier>{ecae75d0-a570-41a2-a7bb-44db88dfcc35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -58,10 +73,22 @@
       <Filter>Scripts\0. Camera</Filter>
     </ClInclude>
     <ClInclude Include="qBookScript_Right.h">
-      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill</Filter>
+      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\02. Book</Filter>
     </ClInclude>
     <ClInclude Include="qBookScript_Left.h">
-      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill</Filter>
+      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\02. Book</Filter>
+    </ClInclude>
+    <ClInclude Include="qComboScript.h">
+      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\01. Combo</Filter>
+    </ClInclude>
+    <ClInclude Include="qCrashScript.h">
+      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\03. Crash</Filter>
+    </ClInclude>
+    <ClInclude Include="qRangeScript.h">
+      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\04. Range</Filter>
+    </ClInclude>
+    <ClInclude Include="qKrushScript.h">
+      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\05. Krush</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -87,10 +114,22 @@
       <Filter>Scripts\0. Camera</Filter>
     </ClCompile>
     <ClCompile Include="qBookScript_Left.cpp">
-      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill</Filter>
+      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\02. Book</Filter>
     </ClCompile>
     <ClCompile Include="qBookScript_Right.cpp">
-      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill</Filter>
+      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\02. Book</Filter>
+    </ClCompile>
+    <ClCompile Include="qComboScript.cpp">
+      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\01. Combo</Filter>
+    </ClCompile>
+    <ClCompile Include="qCrashScript.cpp">
+      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\03. Crash</Filter>
+    </ClCompile>
+    <ClCompile Include="qRangeScript.cpp">
+      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\04. Range</Filter>
+    </ClCompile>
+    <ClCompile Include="qKrushScript.cpp">
+      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\05. Krush</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

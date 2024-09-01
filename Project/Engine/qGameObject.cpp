@@ -169,6 +169,15 @@ void qGameObject::DeregisterChild()
 	assert(nullptr);
 }
 
+void qGameObject::Destroy()
+{
+	tTask task = {};
+	task.Type = TASK_TYPE::DELETE_OBJECT;
+	task.Param_0 = (DWORD_PTR)this;
+
+	qTaskMgr::GetInst()->AddTask(task);
+}
+
 
 
 void qGameObject::Begin()

@@ -169,9 +169,13 @@ call CodeGen.exe</Command>
     <ClInclude Include="qBookScript_Left.h" />
     <ClInclude Include="qBookScript_Right.h" />
     <ClInclude Include="qCameraMoveScript.h" />
+    <ClInclude Include="qComboScript.h" />
+    <ClInclude Include="qCrashScript.h" />
+    <ClInclude Include="qKrushScript.h" />
     <ClInclude Include="qMissileScript.h" />
     <ClInclude Include="qPlatformScript.h" />
     <ClInclude Include="qPlayerScript.h" />
+    <ClInclude Include="qRangeScript.h" />
     <ClInclude Include="qScriptMgr.h" />
   </ItemGroup>
   <ItemGroup>
@@ -184,9 +188,13 @@ call CodeGen.exe</Command>
     <ClCompile Include="qBookScript_Left.cpp" />
     <ClCompile Include="qBookScript_Right.cpp" />
     <ClCompile Include="qCameraMoveScript.cpp" />
+    <ClCompile Include="qComboScript.cpp" />
+    <ClCompile Include="qCrashScript.cpp" />
+    <ClCompile Include="qKrushScript.cpp" />
     <ClCompile Include="qMissileScript.cpp" />
     <ClCompile Include="qPlatformScript.cpp" />
     <ClCompile Include="qPlayerScript.cpp" />
+    <ClCompile Include="qRangeScript.cpp" />
     <ClCompile Include="qScriptMgr.cpp" />
     <ClCompile Include="Scripts.cpp" />
   </ItemGroup>

@@ -1,7 +1,12 @@
 #include "pch.h"
 #include "qPlayerCrashState.h"
 
+#include <Engine/qFlipBookComponent.h>
+#include <Engine/qGameObject.h>
 #include <Scripts/qPlayerScript.h>
+#include <Scripts/qCrashScript.h>
+#include <Engine/qLevel.h>
+#include <Engine/qLevelMgr.h>
 
 qPlayerCrashState::qPlayerCrashState()
 {
@@ -20,6 +25,37 @@ void qPlayerCrashState::Enter()
 	GetOwner()->Collider2D()->SetScale(Vec3(0.237f, 0.237f, 0.f));
 
 	GetOwner()->FlipBookComponent()->Play(19, 15, false);
+
+
+
+
+	// 히트박스 생성
+	Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
+	qGameObject* pPlayer = qLevelMgr::GetInst()->FindObjectByName(L"Player");
+	qPlayerScript* pPlayerScript = pPlayer->GetScript<qPlayerScript>();
+
+	Vec3 vPlayerPos = pPlayer->Transform()->GetRelativePos();
+
+	CrashHitBox = new qGameObject;
+	CrashHitBox->SetName(L"CrashHitBox");
+	CrashHitBox->AddComponent(new qCrashScript);
+	CrashHitBox->AddComponent(new qTransform);
+	CrashHitBox->Transform()->SetRelativeScale(190.f, 100.f, 1.f);
+
+	if (pPlayerScript->GetPlayerDir() == DIRECTION::LEFT)
+	{
+		CrashHitBox->Transform()->SetRelativePos(Vec3(vPlayerPos.x - 155.f, vPlayerPos.y, vPlayerPos.z));
+	}
+	else if (pPlayerScript->GetPlayerDir() == DIRECTION::RIGHT)
+	{
+		CrashHitBox->Transform()->SetRelativePos(Vec3(vPlayerPos.x + 155.f, vPlayerPos.y, vPlayerPos.z));
+	}
+
+	CrashHitBox->AddComponent(new qCollider2D);
+	CrashHitBox->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+
+	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+	pCurLevel->AddObject(4, CrashHitBox);
 }
 
 void qPlayerCrashState::FinalTick()
@@ -32,6 +68,7 @@ void qPlayerCrashState::FinalTick()
 
 void qPlayerCrashState::Exit()
 {
+	CrashHitBox->Destroy();
 	GetOwner()->Transform()->SetRelativeScale(OGScale);
 	GetOwner()->Collider2D()->SetScale(OGColScale);
 }

@@ -49,6 +49,8 @@ public:
 	// Deregister : 등록된 것을 취소하다.
 	void DeregisterChild();
 
+	void Destroy();
+
 
 public:
 	template<typename T>

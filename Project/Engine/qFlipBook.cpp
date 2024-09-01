@@ -14,6 +14,7 @@ qFlipBook::~qFlipBook()
 
 void qFlipBook::FinalTick()
 {
+
 }
 
 
@@ -37,6 +38,8 @@ int qFlipBook::Save(const wstring& _FilePath)
 
 	return S_OK;
 }
+
+
 
 
 

@@ -15,7 +15,8 @@ public:
 	virtual void Exit() override;
 
 private:
-	Vec3		OGScale;
-	Vec3		OGColScale;
+	qGameObject*	CrashHitBox;
+	Vec3			OGScale;
+	Vec3			OGColScale;
 };
 

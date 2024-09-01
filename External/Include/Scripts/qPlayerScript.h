@@ -33,8 +33,8 @@ public:
 	void ResetCombo() { m_NextCombo = 1; }
 
 	DIRECTION GetPlayerDir() { return m_CurUnitInfo.Dir; }
-	tUnitInfo& GetPrevInfo() { return m_PrevUnitInfo; }
-	tUnitInfo& GetUnitInfo() { return m_CurUnitInfo; }
+	tUnitInfo GetPrevInfo() { return m_PrevUnitInfo; }
+	tUnitInfo GetUnitInfo() { return m_CurUnitInfo; }
 
 
 public:

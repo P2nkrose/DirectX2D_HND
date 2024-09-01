@@ -16,7 +16,8 @@ public:
 
 
 private:
-	Vec3		OGScale;
-	Vec3		OGColScale;
+	qGameObject*	Combo3HitBox;
+	Vec3			OGScale;
+	Vec3			OGColScale;
 };
 

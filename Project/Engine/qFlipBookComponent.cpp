@@ -165,6 +165,22 @@ void qFlipBookComponent::Clear()
 }
 
 
+
+//int qFlipBookComponent::GetCurFrmIdx()
+//{
+//	if (m_CurFlipBook == nullptr)
+//		return -1;
+//
+//	for (int i = 0; i < m_vecFlipBook.size(); ++i)
+//	{
+//		if (m_vecFlipBook[i] == m_CurFlipBook)
+//			return i;
+//	}
+//
+//	return -1;
+//}
+
+
 void qFlipBookComponent::SetRepeat(bool _Repeat)
 {
 	m_Repeat = _Repeat;
