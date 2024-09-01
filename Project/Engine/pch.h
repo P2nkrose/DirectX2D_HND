@@ -13,4 +13,19 @@
 #include <stdlib.h>
 #include "global.h"
 
+// Scripts
+#ifdef _DEBUG
+#pragma comment(lib, "Scripts\\Scripts_D")
+#else
+#pragma comment(lib, "Scripts\\Scripts")
+#endif
+
+
+// States
+#ifdef _DEBUG
+#pragma comment(lib, "States\\States_D")
+#else
+#pragma comment(lib, "States\\States")
+#endif
+
 #endif //PCH_H

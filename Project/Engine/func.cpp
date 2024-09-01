@@ -48,6 +48,8 @@ void ChangeLevel(qLevel* _Level, LEVEL_STATE _NextLevelState)
 }
 
 
+
+
 bool IsVaild(qGameObject*& _Object)
 {
 	if (nullptr == _Object)
@@ -116,6 +118,8 @@ void DrawDebugCircle(Vec3 _Pos, float _Radius, Vec4 _Color, float _Life, bool _D
 
 	qRenderMgr::GetInst()->AddDebugShapeInfo(Info);
 }
+
+
 
 string ToString(const wstring& _str)
 {

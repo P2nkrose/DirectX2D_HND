@@ -30,6 +30,7 @@ struct tTask
 	TASK_TYPE		Type;
 	DWORD_PTR		Param_0;
 	DWORD_PTR		Param_1;
+	DWORD_PTR		Param_2;		// 스폰할 오브젝트
 };
 
 struct tLight

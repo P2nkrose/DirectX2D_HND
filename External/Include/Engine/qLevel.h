@@ -19,9 +19,9 @@ public:
 	~qLevel();
 
 public:
-	void Begin();		// 레벨이 시작되는 순간 or 레벨에 추가(합류) 하는 순간
-	void Tick();
-	void FinalTick();
+	virtual void Begin();		// 레벨이 시작되는 순간 or 레벨에 추가(합류) 하는 순간
+	virtual void Tick();
+	virtual void FinalTick();
 
 
 	void ClearObject();

@@ -9,6 +9,7 @@
 #include "qPlayerCrashState.h"
 #include "qPlayerDashState.h"
 #include "qPlayerFallingState.h"
+#include "qPlayerHitState.h"
 #include "qPlayerIdleState.h"
 #include "qPlayerIdleToRunState.h"
 #include "qPlayerIdleUTurnState.h"
@@ -19,6 +20,7 @@
 #include "qPlayerRunState.h"
 #include "qPlayerRunToIdleState.h"
 #include "qPlayerRunUTurnState.h"
+#include "qPlayerWaitState.h"
 
 void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 {
@@ -30,6 +32,7 @@ void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qPlayerCrashState");
 	_vec.push_back(L"qPlayerDashState");
 	_vec.push_back(L"qPlayerFallingState");
+	_vec.push_back(L"qPlayerHitState");
 	_vec.push_back(L"qPlayerIdleState");
 	_vec.push_back(L"qPlayerIdleToRunState");
 	_vec.push_back(L"qPlayerIdleUTurnState");
@@ -40,6 +43,7 @@ void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qPlayerRunState");
 	_vec.push_back(L"qPlayerRunToIdleState");
 	_vec.push_back(L"qPlayerRunUTurnState");
+	_vec.push_back(L"qPlayerWaitState");
 }
 
 qState * qStateMgr::GetState(const wstring& _strStateName)
@@ -60,6 +64,8 @@ qState * qStateMgr::GetState(const wstring& _strStateName)
 		return new qPlayerDashState;
 	if (L"qPlayerFallingState" == _strStateName)
 		return new qPlayerFallingState;
+	if (L"qPlayerHitState" == _strStateName)
+		return new qPlayerHitState;
 	if (L"qPlayerIdleState" == _strStateName)
 		return new qPlayerIdleState;
 	if (L"qPlayerIdleToRunState" == _strStateName)
@@ -80,6 +86,8 @@ qState * qStateMgr::GetState(const wstring& _strStateName)
 		return new qPlayerRunToIdleState;
 	if (L"qPlayerRunUTurnState" == _strStateName)
 		return new qPlayerRunUTurnState;
+	if (L"qPlayerWaitState" == _strStateName)
+		return new qPlayerWaitState;
 	return nullptr;
 }
 
@@ -111,6 +119,9 @@ qState * qStateMgr::GetState(UINT _iStateType)
 	case (UINT)STATE_TYPE::PLAYERFALLINGSTATE:
 		return new qPlayerFallingState;
 		break;
+	case (UINT)STATE_TYPE::PLAYERHITSTATE:
+		return new qPlayerHitState;
+		break;
 	case (UINT)STATE_TYPE::PLAYERIDLESTATE:
 		return new qPlayerIdleState;
 		break;
@@ -140,6 +151,9 @@ qState * qStateMgr::GetState(UINT _iStateType)
 		break;
 	case (UINT)STATE_TYPE::PLAYERRUNUTURNSTATE:
 		return new qPlayerRunUTurnState;
+		break;
+	case (UINT)STATE_TYPE::PLAYERWAITSTATE:
+		return new qPlayerWaitState;
 		break;
 	}
 	return nullptr;
@@ -181,6 +195,10 @@ const wchar_t * qStateMgr::GetStateName(qState * _pState)
 		return L"qPlayerFallingState";
 		break;
 
+	case STATE_TYPE::PLAYERHITSTATE:
+		return L"qPlayerHitState";
+		break;
+
 	case STATE_TYPE::PLAYERIDLESTATE:
 		return L"qPlayerIdleState";
 		break;
@@ -219,6 +237,10 @@ const wchar_t * qStateMgr::GetStateName(qState * _pState)
 
 	case STATE_TYPE::PLAYERRUNUTURNSTATE:
 		return L"qPlayerRunUTurnState";
+		break;
+
+	case STATE_TYPE::PLAYERWAITSTATE:
+		return L"qPlayerWaitState";
 		break;
 
 	}

@@ -1,7 +1,10 @@
 #include "pch.h"
 #include "qPlayerScript.h"
 #include "qMissileScript.h"
+#include "qBookScript_Left.h"
+#include "qBookScript_Right.h"
 
+#include <Engine/qLevel.h>
 #include <Engine/qLevelMgr.h>
 #include <Engine/qRigidBody.h>
 #include <Engine/qScript.h>
@@ -27,6 +30,7 @@ qPlayerScript::qPlayerScript()
 	AddScriptParam(SCRIPT_PARAM::FLOAT, "PlayerSpeed", &m_Speed);
 	AddScriptParam(SCRIPT_PARAM::TEXTURE, "Test", &m_Texture);
 	AddScriptParam(SCRIPT_PARAM::PREFAB, "Missile", &m_MissilePref);
+	AddScriptParam(SCRIPT_PARAM::PREFAB, "BookPref", &m_BookPref);
 }
 
 qPlayerScript::~qPlayerScript()
@@ -75,6 +79,7 @@ void qPlayerScript::Begin()
 
 	//SetPlayerState(PLAYER_STATE::IDLE);
 	SetPlayerDir(DIRECTION::RIGHT);
+	SetDir(DIRECTION::RIGHT);
 
 	if (GetPlayerDir() == DIRECTION::RIGHT)
 	{
@@ -105,6 +110,7 @@ void qPlayerScript::Tick()
 	{
 		m_CurUnitInfo.Dir = DIRECTION::LEFT;
 		m_PlayerDir = DIRECTION::LEFT;
+		SetDir(DIRECTION::LEFT);
 		vRot.y = 3.141592f;
 		vPos.x -= DT * m_Speed;
 	}
@@ -113,6 +119,7 @@ void qPlayerScript::Tick()
 	{
 		m_CurUnitInfo.Dir = DIRECTION::RIGHT;
 		m_PlayerDir = DIRECTION::RIGHT;
+		SetDir(DIRECTION::RIGHT);
 		vRot.y = 0.f;
 		vPos.x += DT * m_Speed;
 	}
@@ -129,10 +136,83 @@ void qPlayerScript::Tick()
 
 	if (KEY_TAP(KEY::A))
 	{
-		//FSM()->ChangeState(L"Combo1");
 		PlayCombo();
 	}
 
+	if (KEY_TAP(KEY::S))
+	{
+		// 왼쪽 책 발사
+		if (GetPlayerDir() == DIRECTION::LEFT)
+		{
+			//Instantiate(m_BookPref, 4, Transform()->GetWorldPos(), L"Book");
+			Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
+
+			qGameObject* pPlayer = qLevelMgr::GetInst()->FindObjectByName(L"Player");
+			Vec3 vPlayerPos = pPlayer->Transform()->GetRelativePos();
+
+			qGameObject* LeftBook = new qGameObject;
+			LeftBook->SetName(L"LeftBook");
+			LeftBook->AddComponent(new qBookScript_Left);
+			LeftBook->AddComponent(new qTransform);
+			LeftBook->Transform()->SetRelativeScale(70.f, 70.f, 1.f);
+			LeftBook->Transform()->SetRelativePos(Vec3(vPlayerPos.x - 30.f, vPlayerPos.y, vPlayerPos.z));
+
+			LeftBook->AddComponent(new qMeshRender);
+			LeftBook->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+			LeftBook->MeshRender()->SetMaterial(pMtrl);
+
+			LeftBook->AddComponent(new qCollider2D);
+			LeftBook->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+
+			LeftBook->AddComponent(new qFlipBookComponent);
+			
+			Ptr<qFlipBook> pBookFlip = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\book.flip");
+			LeftBook->FlipBookComponent()->AddFlipBook(18, pBookFlip);
+
+			LeftBook->FlipBookComponent()->Play(18, 15, true);
+
+			qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+			pCurLevel->AddObject(4, LeftBook);
+		}
+
+		// 오른쪽 책 발사
+		else if (GetPlayerDir() == DIRECTION::RIGHT)
+		{
+			Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
+
+			qGameObject* pPlayer = qLevelMgr::GetInst()->FindObjectByName(L"Player");
+			Vec3 vPlayerPos = pPlayer->Transform()->GetRelativePos();
+
+			qGameObject* RightBook = new qGameObject;
+			RightBook->SetName(L"RightBook");
+			RightBook->AddComponent(new qBookScript_Right);
+			RightBook->AddComponent(new qTransform);
+			RightBook->Transform()->SetRelativeScale(70.f, 70.f, 1.f);
+			RightBook->Transform()->SetRelativePos(Vec3(vPlayerPos.x + 30.f, vPlayerPos.y, vPlayerPos.z));
+
+			RightBook->AddComponent(new qMeshRender);
+			RightBook->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+			RightBook->MeshRender()->SetMaterial(pMtrl);
+
+			RightBook->AddComponent(new qCollider2D);
+			RightBook->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+
+			RightBook->AddComponent(new qFlipBookComponent);
+
+			Ptr<qFlipBook> pBookFlip = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\book.flip");
+			RightBook->FlipBookComponent()->AddFlipBook(18, pBookFlip);
+
+			RightBook->FlipBookComponent()->Play(18, 15, true);
+
+			qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+			pCurLevel->AddObject(4, RightBook);
+		}
+	}
+
+
+
+	//qLevel* pLevel = qLevelSaveLoad::LoadLevel(L"level\\stage1test.lv");
+	//qLevelMgr::GetInst()->ChangeLevel(pLevel);
 
 
 
@@ -172,7 +252,7 @@ void qPlayerScript::Tick()
 	// 애니메이션 방향정보 갱신
 	GetRenderComponent()->GetMaterial()->SetScalarParam(SCALAR_PARAM::INT_0, (int)m_CurUnitInfo.Dir);
 
-
+	
 
 
 	//if (KEY_PRESSED(KEY::Z))
@@ -241,10 +321,16 @@ void qPlayerScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherO
 	//Collider2D()->SetScale(Collider2D()->GetScale() + Vec3(10.f, 10.f, 0.f));
 	//
 	//Transform()->SetRelativeScale(vScale);
+
+	if (_OtherObject->GetName() == L"Monster")
+	{
+		FSM()->ChangeState(L"Hit");
+	}
 }
 
 void qPlayerScript::Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)
 {
+	qLevelMgr::GetInst()->ChangeLevel(L"stage1");
 }
 
 void qPlayerScript::EndOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)
@@ -257,13 +343,13 @@ void qPlayerScript::SaveToFile(FILE* _File)
 {
 	fwrite(&m_Speed, sizeof(float), 1, _File);
 	SaveAssetRef(m_Texture, _File);
-	SaveAssetRef(m_MissilePref, _File);
+	SaveAssetRef(m_BookPref, _File);
 }
 
 void qPlayerScript::LoadFromFile(FILE* _File)
 {
 	fread(&m_Speed, sizeof(float), 1, _File);
 	LoadAssetRef(m_Texture, _File);
-	LoadAssetRef(m_MissilePref, _File);
+	LoadAssetRef(m_BookPref, _File);
 }
 

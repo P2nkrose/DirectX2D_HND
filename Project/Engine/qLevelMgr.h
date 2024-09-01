@@ -20,12 +20,18 @@ public:
 	void LevelChanged();
 	bool IsLevelChanged() { return m_LevelChanged; }
 
-private:
-	bool ChangedLevel(qLevel* _NextLevel);
+	void ChangeLevel(std::wstring _Name);
+
+	void InsertLevel(wstring _Name, qLevel* _Level);
 
 private:
-	qLevel*		m_arrLevel[(UINT)LEVEL_TYPE::END];
-	qLevel*		m_CurLevel;
-	bool		m_LevelChanged;		// 레벨이 변경된걸 알려주는 bool 값
+	bool ChangeLevel(qLevel* _NextLevel);
+
+private:
+	//qLevel*		m_arrLevel[(UINT)LEVEL_TYPE::END];
+
+	map<wstring, qLevel*>	m_Levels;
+	qLevel*					m_CurLevel;
+	bool					m_LevelChanged;		// 레벨이 변경된걸 알려주는 bool 값
 };
 

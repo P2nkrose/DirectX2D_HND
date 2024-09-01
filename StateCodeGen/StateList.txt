@@ -6,6 +6,7 @@ qPlayerCombo4State
 qPlayerCrashState
 qPlayerDashState
 qPlayerFallingState
+qPlayerHitState
 qPlayerIdleState
 qPlayerIdleToRunState
 qPlayerIdleUTurnState
@@ -16,3 +17,4 @@ qPlayerRangeState
 qPlayerRunState
 qPlayerRunToIdleState
 qPlayerRunUTurnState
+qPlayerWaitState

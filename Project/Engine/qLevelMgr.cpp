@@ -5,7 +5,13 @@
 #include "qLayer.h"
 #include "qGameObject.h"
 
+//#include "qLevel_stage1.h"
+
 #include "qTaskMgr.h"
+
+
+
+
 
 
 qLevelMgr::qLevelMgr()
@@ -37,11 +43,33 @@ void qLevelMgr::LevelChanged()
 	qTaskMgr::GetInst()->AddTask(tTask{ TASK_TYPE::LEVEL_CHANGED });
 }
 
+void qLevelMgr::ChangeLevel(std::wstring _Name)
+{
+	auto Level = m_Levels.find(_Name);
+
+	ChangeLevel(Level->second);
+}
+
+
+void qLevelMgr::InsertLevel(wstring _Name, qLevel* _Level)
+{
+	// 중복체크
+	if (nullptr == _Level)
+		return;
+
+	m_Levels.insert(std::make_pair(_Name, _Level));
+}
+
+
+
 
 void qLevelMgr::Init()
 {
 	// 레벨 종류 넣기
-	
+	//m_arrLevel[(UINT)LEVEL_TYPE::STAGE1] = new qLevel_stage1;
+
+
+	//ChangeLevel(m_arrLevel[(UINT)LEVEL_TYPE::STAGE1]);
 }
 
 void qLevelMgr::Progress()
@@ -61,7 +89,7 @@ void qLevelMgr::Progress()
 
 
 
-bool qLevelMgr::ChangedLevel(qLevel* _NextLevel)
+bool qLevelMgr::ChangeLevel(qLevel* _NextLevel)
 {
 	if (m_CurLevel == _NextLevel)
 		return false;

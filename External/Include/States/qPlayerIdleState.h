@@ -16,5 +16,7 @@ public:
 	virtual void Exit() override;
 
 
+private:
+	float		WaitTime;
 };
 

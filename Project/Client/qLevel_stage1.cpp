@@ -11,6 +11,7 @@
 #include <Engine/qCollisionMgr.h>
 #include <Engine/qCollider2D.h>
 #include <Engine/qLevelMgr.h>
+#include <Engine/qTaskMgr.h>
 
 #include <Engine/qLevel.h>
 #include <Engine/qLayer.h>
@@ -18,6 +19,7 @@
 #include <Engine/components.h>
 
 #include <Scripts/qPlayerScript.h>
+#include <Scripts/qBookScript_Left.h>
 #include <Scripts/qMissileScript.h>
 #include <Scripts/qCameraMoveScript.h>
 #include <Scripts/qPlatformScript.h>
@@ -27,6 +29,7 @@
 
 #include <States/qStateMgr.h>
 #include <States/qPlayerIdleState.h>			// 0
+#include <States/qPlayerWaitState.h>			// 1
 #include <States/qPlayerRunState.h>				// 2
 #include <States/qPlayerIdleToRunState.h>		// 3
 #include <States/qPlayerRunToIdleState.h>		// 4
@@ -36,6 +39,7 @@
 #include <States/qPlayerFallingState.h>			// 8
 #include <States/qPlayerLandingState.h>			// 9
 #include <States/qPlayerDashState.h>			// 10
+#include <States/qPlayerHitState.h>				// 11
 
 #include <States/qPlayerCombo1State.h>			// 13
 #include <States/qPlayerCombo2State.h>			// 14
@@ -72,14 +76,21 @@ void qLevel_stage1::CreateStage1()
 
 	// Level
 	qLevel* pStage1 = new qLevel;
+
+	qLevelMgr::GetInst()->InsertLevel(L"stage1", pStage1);
+
 	pStage1->SetName(L"stage1");
 
 	pStage1->GetLayer(0)->SetName(L"Camera");
 	pStage1->GetLayer(1)->SetName(L"Background");
 	pStage1->GetLayer(2)->SetName(L"Platform");
 	pStage1->GetLayer(3)->SetName(L"Player");
-	pStage1->GetLayer(4)->SetName(L"Monster");
-	pStage1->GetLayer(5)->SetName(L"UI");
+	pStage1->GetLayer(4)->SetName(L"PlayerSkill");
+	pStage1->GetLayer(5)->SetName(L"Monster");
+	pStage1->GetLayer(6)->SetName(L"MonsterSkill");
+	pStage1->GetLayer(7)->SetName(L"Boss");
+	pStage1->GetLayer(8)->SetName(L"BossSkill");
+	pStage1->GetLayer(31)->SetName(L"UI");
 
 
 	// Camera
@@ -172,6 +183,9 @@ void qLevel_stage1::CreateStage1()
 	Ptr<qFlipBook> pDeathIdle = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\death_idle_right.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(0, pDeathIdle);
 
+	Ptr<qFlipBook> pDeathWait = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\wait.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(1, pDeathWait);
+
 	Ptr<qFlipBook> pDeathRun = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\death_run.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(2, pDeathRun);
 
@@ -198,6 +212,9 @@ void qLevel_stage1::CreateStage1()
 
 	Ptr<qFlipBook> pDeathDash = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\dash_3.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(10, pDeathDash);
+
+	Ptr<qFlipBook> pDeathHit = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\hit.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(11, pDeathHit);
 
 	Ptr<qFlipBook> pDeathCombo1 = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\combo1_final.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(13, pDeathCombo1);
@@ -243,6 +260,7 @@ void qLevel_stage1::CreateStage1()
 	pPlayer->AddComponent(new qFSM);
 
 	pPlayer->FSM()->AddState(L"Idle", new qPlayerIdleState);				// 0
+	pPlayer->FSM()->AddState(L"Wait", new qPlayerWaitState);				// 1
 	pPlayer->FSM()->AddState(L"Run", new qPlayerRunState);					// 2
 	pPlayer->FSM()->AddState(L"IdleToRun", new qPlayerIdleToRunState);		// 3
 	pPlayer->FSM()->AddState(L"RunToIdle", new qPlayerRunToIdleState);		// 4
@@ -252,6 +270,7 @@ void qLevel_stage1::CreateStage1()
 	pPlayer->FSM()->AddState(L"Falling", new qPlayerFallingState);			// 8
 	pPlayer->FSM()->AddState(L"Landing", new qPlayerLandingState);			// 9
 	pPlayer->FSM()->AddState(L"Dash", new qPlayerDashState);				// 10
+	pPlayer->FSM()->AddState(L"Hit", new qPlayerHitState);					// 11
 
 	pPlayer->FSM()->AddState(L"Combo1", new qPlayerCombo1State);			// 13
 	pPlayer->FSM()->AddState(L"Combo2", new qPlayerCombo2State);			// 14
@@ -293,7 +312,7 @@ void qLevel_stage1::CreateStage1()
 	pMonster->AddComponent(new qMeshRender);
 	pMonster->AddComponent(new qCollider2D);
 
-	pMonster->Transform()->SetRelativePos(-400.f, 0.f, 10.f);
+	pMonster->Transform()->SetRelativePos(-400.f, -420.f, 10.f);
 	pMonster->Transform()->SetRelativeScale(150.f, 150.f, 1.f);
 
 	pMonster->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -303,9 +322,13 @@ void qLevel_stage1::CreateStage1()
 	pMonster->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
 	pMonster->MeshRender()->SetMaterial(pMtrl);
 
-	pStage1->AddObject(4, pMonster);
+	pStage1->AddObject(5, pMonster);
 
 
+	// Level Save
+	//wstring strLevelPath = qPathMgr::GetInst()->GetContentPath();
+	//strLevelPath += L"level\\stage1test.lv";
+	//qLevelSaveLoad::SaveLevel(strLevelPath, pStage1);
 
 	// 레벨 시작
 	ChangeLevel(pStage1, LEVEL_STATE::STOP);
@@ -313,8 +336,38 @@ void qLevel_stage1::CreateStage1()
 
 	// 충돌 지정
 	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Player vs Platform
+	qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
 }
 
 void qLevel_stage1::CreatePrefab()
 {
+	//Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
+
+	//qGameObject* pBook = new qGameObject;
+	//pBook->SetName(L"Book");
+	//pBook->AddComponent(new qTransform);
+	//pBook->AddComponent(new qBookScript_Left);
+	//pBook->Transform()->SetRelativeScale(70.f, 70.f, 1.f);
+	//
+	//pBook->AddComponent(new qMeshRender);
+	//pBook->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	//pBook->MeshRender()->SetMaterial(pMtrl);
+	//
+	//pBook->AddComponent(new qCollider2D);
+	//pBook->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+	//
+	//pBook->AddComponent(new qFlipBookComponent);
+	//
+	//Ptr<qFlipBook> pBookFlip = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\book.flip");
+	//pBook->FlipBookComponent()->AddFlipBook(18, pBookFlip);
+	//
+	//Ptr<qPrefab> pPrefab = new qPrefab;
+	//pPrefab->SetProtoObject(pBook);
+	//
+	//qAssetMgr::GetInst()->AddAsset<qPrefab>(L"BookPref", pPrefab);
+	//
+	//wstring FilePath = qPathMgr::GetInst()->GetContentPath();
+	//FilePath += L"prefab\\Book.pref";
+	//pPrefab->Save(FilePath);
+	
 }

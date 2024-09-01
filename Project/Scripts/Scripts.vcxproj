@@ -166,6 +166,8 @@ call CodeGen.exe</Command>
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="qBookScript_Left.h" />
+    <ClInclude Include="qBookScript_Right.h" />
     <ClInclude Include="qCameraMoveScript.h" />
     <ClInclude Include="qMissileScript.h" />
     <ClInclude Include="qPlatformScript.h" />
@@ -179,6 +181,8 @@ call CodeGen.exe</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="qBookScript_Left.cpp" />
+    <ClCompile Include="qBookScript_Right.cpp" />
     <ClCompile Include="qCameraMoveScript.cpp" />
     <ClCompile Include="qMissileScript.cpp" />
     <ClCompile Include="qPlatformScript.cpp" />

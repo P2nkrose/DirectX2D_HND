@@ -217,16 +217,22 @@ enum class PARTICLE_MODULE
 
 enum class STAGE_NAME
 {
+	TITLE,
+	CHANGE,
+
 	STAGE1,
 	STAGE2,
+
 	BOSS,
+
+	END,
 };
 
 
 enum class LEVEL_TYPE
 {
 	TITLE,
-	EDITOR,
+	CHANGE,
 
 	STAGE1,
 	STAGE2,

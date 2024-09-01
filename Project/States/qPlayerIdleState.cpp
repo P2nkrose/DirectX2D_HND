@@ -5,6 +5,7 @@
 #include <Scripts/qPlayerScript.h>
 
 qPlayerIdleState::qPlayerIdleState()
+	: WaitTime(0.f)
 {
 	
 }
@@ -77,6 +78,24 @@ void qPlayerIdleState::FinalTick()
 	{
 		ChangeState(L"Range");
 	}
+
+	if (KEY_TAP(KEY::V))
+	{
+		ChangeState(L"Hit");
+	}
+
+
+	if (WaitTime < 5.f)
+	{
+		WaitTime += DT;
+	}
+	else
+	{
+		WaitTime = 0.f;
+		ChangeState(L"Wait");
+	}
+
+
 
 }
 

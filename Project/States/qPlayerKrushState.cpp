@@ -42,7 +42,7 @@ void qPlayerKrushState::FinalTick()
 		}
 		else
 		{
-			PlayerPos += Vec3(0.f, -1.f, 0.f) * m_KrushSpeed * DT;
+			PlayerPos += Vec3(0.f, -1.2f, 0.f) * m_KrushSpeed * DT;
 		}
 
 		GetOwner()->Transform()->SetRelativePos(PlayerPos);

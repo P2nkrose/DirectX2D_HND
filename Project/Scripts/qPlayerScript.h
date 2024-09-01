@@ -63,6 +63,7 @@ private:
 	float				m_Speed;
 	Ptr<qTexture>		m_Texture;
 	Ptr<qPrefab>		m_MissilePref;
+	Ptr<qPrefab>		m_BookPref;
 
 	DIRECTION			m_PlayerDir;
 	float				m_Dir;

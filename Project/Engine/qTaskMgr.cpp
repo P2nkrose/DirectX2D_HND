@@ -81,7 +81,7 @@ void qTaskMgr::ExecuteTask()
 			qLevel* pLevel = (qLevel*)task.Param_0;
 			LEVEL_STATE NextState = (LEVEL_STATE)task.Param_1;
 
-			qLevelMgr::GetInst()->ChangedLevel(pLevel);
+			qLevelMgr::GetInst()->ChangeLevel(pLevel);
 			pLevel->ChangeState(NextState);
 		}
 		break;

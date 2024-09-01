@@ -17,7 +17,7 @@ void qMissileScript::Begin()
 	GetRenderComponent()->GetDynamicMaterial();
 
 	Ptr<qMaterial> pMtrl = GetRenderComponent()->GetMaterial();
-
+	
 	if (nullptr != pMtrl)
 	{
 		Ptr<qTexture> pTexture = qAssetMgr::GetInst()->Load<qTexture>(L"texture\\missile.png", L"texture\\missile.png");

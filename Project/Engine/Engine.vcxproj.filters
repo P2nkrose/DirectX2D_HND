@@ -187,6 +187,15 @@
     <Filter Include="08. Component\00. FSM\State">
       <UniqueIdentifier>{9f2a991e-bd85-4b6d-aad2-3e7a0012e28e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05. Level\01. stage1">
+      <UniqueIdentifier>{23ed4445-d66c-47a6-a76a-db1c2035b852}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Level\02. stage2">
+      <UniqueIdentifier>{5bd44848-95b8-400d-aa5c-98a9c4b8ffb9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Level\03. boss">
+      <UniqueIdentifier>{3179255a-c207-4564-a905-267c3c5334b7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -360,6 +369,9 @@
     <ClInclude Include="qFSM.h">
       <Filter>08. Component\00. FSM</Filter>
     </ClInclude>
+    <ClInclude Include="qLevel_stage1.h">
+      <Filter>05. Level\01. stage1</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -511,6 +523,9 @@
     </ClCompile>
     <ClCompile Include="qFSM.cpp">
       <Filter>08. Component\00. FSM</Filter>
+    </ClCompile>
+    <ClCompile Include="qLevel_stage1.cpp">
+      <Filter>05. Level\01. stage1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

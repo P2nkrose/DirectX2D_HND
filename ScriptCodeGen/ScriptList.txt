@@ -1,3 +1,5 @@
+qBookScript_Left
+qBookScript_Right
 qCameraMoveScript
 qMissileScript
 qPlatformScript

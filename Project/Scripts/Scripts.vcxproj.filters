@@ -31,6 +31,9 @@
     <Filter Include="Scripts\1. UNIT\1. Player">
       <UniqueIdentifier>{77ad6cc0-fb77-4cf5-a15f-10e0b4625d77}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scripts\1. UNIT\1. Player\PlayerSkill">
+      <UniqueIdentifier>{380dafe2-4424-4bc5-8df4-863a0f01f4d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -54,6 +57,12 @@
     <ClInclude Include="qCameraMoveScript.h">
       <Filter>Scripts\0. Camera</Filter>
     </ClInclude>
+    <ClInclude Include="qBookScript_Right.h">
+      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="qBookScript_Left.h">
+      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -76,6 +85,12 @@
     </ClCompile>
     <ClCompile Include="qCameraMoveScript.cpp">
       <Filter>Scripts\0. Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="qBookScript_Left.cpp">
+      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="qBookScript_Right.cpp">
+      <Filter>Scripts\1. UNIT\1. Player\PlayerSkill</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
