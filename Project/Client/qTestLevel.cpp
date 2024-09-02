@@ -79,6 +79,9 @@ void qTestLevel::CreateTestLevel()
 
 	// Level 생성
 	qLevel* pLevel = new qLevel;
+	pLevel->SetName(L"testlevel");
+
+	qLevelMgr::GetInst()->InsertLevel(L"testlevel", pLevel);
 
 	//ChangeLevel(pLevel, LEVEL_STATE::STOP);
 
@@ -301,14 +304,14 @@ void qTestLevel::CreateTestLevel()
 	//strLevelPath += L"level\\Temp.lv";
 	//qLevelSaveLoad::SaveLevel(strLevelPath, pLevel);
 	
-	ChangeLevel(pLevel, LEVEL_STATE::STOP);
+	//ChangeLevel(pLevel, LEVEL_STATE::STOP);
 
 
 
 	// 충돌 지정
-	qCollisionMgr::GetInst()->CollisionCheck(3, 4);		// Player vs Monster
-	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Player vs Platform
-	qCollisionMgr::GetInst()->CollisionCheck(5, 4);		// Player Projectile vs Monster
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 4);		// Player vs Monster
+	//qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Player vs Platform
+	//qCollisionMgr::GetInst()->CollisionCheck(5, 4);		// Player Projectile vs Monster
 
 
 	//pMtrl->Save(L"material\\std2d.mtrl");

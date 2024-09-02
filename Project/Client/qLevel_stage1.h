@@ -6,6 +6,4 @@ class qLevel_stage1 : public qLevel
 public:
 	static void CreateStage1();
 	static void CreatePrefab();
-
 };
-

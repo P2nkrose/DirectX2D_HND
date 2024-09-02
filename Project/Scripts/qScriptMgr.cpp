@@ -10,6 +10,7 @@
 #include "qMissileScript.h"
 #include "qPlatformScript.h"
 #include "qPlayerScript.h"
+#include "qPortalScript.h"
 #include "qRangeScript.h"
 
 void qScriptMgr::GetScriptInfo(vector<wstring>& _vec)
@@ -23,6 +24,7 @@ void qScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qMissileScript");
 	_vec.push_back(L"qPlatformScript");
 	_vec.push_back(L"qPlayerScript");
+	_vec.push_back(L"qPortalScript");
 	_vec.push_back(L"qRangeScript");
 }
 
@@ -46,6 +48,8 @@ qScript * qScriptMgr::GetScript(const wstring& _strScriptName)
 		return new qPlatformScript;
 	if (L"qPlayerScript" == _strScriptName)
 		return new qPlayerScript;
+	if (L"qPortalScript" == _strScriptName)
+		return new qPortalScript;
 	if (L"qRangeScript" == _strScriptName)
 		return new qRangeScript;
 	return nullptr;
@@ -81,6 +85,9 @@ qScript * qScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::PLAYERSCRIPT:
 		return new qPlayerScript;
+		break;
+	case (UINT)SCRIPT_TYPE::PORTALSCRIPT:
+		return new qPortalScript;
 		break;
 	case (UINT)SCRIPT_TYPE::RANGESCRIPT:
 		return new qRangeScript;
@@ -127,6 +134,10 @@ const wchar_t * qScriptMgr::GetScriptName(qScript * _pScript)
 
 	case SCRIPT_TYPE::PLAYERSCRIPT:
 		return L"qPlayerScript";
+		break;
+
+	case SCRIPT_TYPE::PORTALSCRIPT:
+		return L"qPortalScript";
 		break;
 
 	case SCRIPT_TYPE::RANGESCRIPT:

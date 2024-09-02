@@ -49,6 +49,9 @@
     <Filter Include="Scripts\1. UNIT\1. Player\PlayerSkill\05. Krush">
       <UniqueIdentifier>{ecae75d0-a570-41a2-a7bb-44db88dfcc35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scripts\4. Portal">
+      <UniqueIdentifier>{1aa73e45-c9b7-4444-96af-ed1cc76e0b9c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -90,6 +93,9 @@
     <ClInclude Include="qKrushScript.h">
       <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\05. Krush</Filter>
     </ClInclude>
+    <ClInclude Include="qPortalScript.h">
+      <Filter>Scripts\4. Portal</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -130,6 +136,9 @@
     </ClCompile>
     <ClCompile Include="qKrushScript.cpp">
       <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\05. Krush</Filter>
+    </ClCompile>
+    <ClCompile Include="qPortalScript.cpp">
+      <Filter>Scripts\4. Portal</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -114,11 +114,51 @@ void qCameraMoveScript::OrthoGraphicMove()
 		//	vPos.y = -200.f;
 		//}
 
-		
+		Transform()->SetRelativePos(vPos);
+	}
 
+	if (pCurLevel->GetName() == L"stage2")
+	{
+		Vec3 PlayerPos = m_FollowObj->Transform()->GetRelativePos();
+
+		if (PlayerPos.x <= -4937.f)
+		{
+			vPos.x = -4937.f;
+		}
+		else if (PlayerPos.x >= 4931.f)
+		{
+			vPos.x = 4931.f;
+		}
+		else
+		{
+			vPos.x = PlayerPos.x;
+		}
+
+		if (PlayerPos.y >= 256.f)
+		{
+			vPos.y = 456.f;
+		}
+		else
+		{
+			vPos.y = PlayerPos.y + 200.f;
+		}
+
+
+		//vPos.y = -120.f;
+
+		// Y ÁÂÇ¥ °è»ê
+		// 
+		//float vDist = vPos.y - PlayerPos.y;
+		//if (PlayerPos.y >= -420.f)
+		//{
+		//	vPos.y = PlayerPos.y;
+		//}
+		//else
+		//{
+		//	vPos.y = -200.f;
+		//}
 
 		Transform()->SetRelativePos(vPos);
-
 	}
 
 	

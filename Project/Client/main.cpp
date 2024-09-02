@@ -9,6 +9,7 @@
 #include "qLevelSaveLoad.h"
 #include "qTestLevel.h"
 #include "qLevel_stage1.h"
+#include "qLevel_stage2.h"
 
 // 전역 변수:
 HINSTANCE g_hInst = nullptr;
@@ -64,7 +65,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // 테스트용 레벨 초기상태 만들기
     //qTestLevel::CreateTestLevel();
-    qLevel_stage1::CreateStage1();
+    //qLevel_stage1::CreateStage1();
+    qLevel_stage2::CreateStage2();
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
     MSG msg = {};

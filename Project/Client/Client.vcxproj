@@ -188,6 +188,7 @@
     <ClInclude Include="qGameObjectEx.h" />
     <ClInclude Include="qLevelSaveLoad.h" />
     <ClInclude Include="qLevel_stage1.h" />
+    <ClInclude Include="qLevel_stage2.h" />
     <ClInclude Include="qTestLevel.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ScriptUI.h" />
@@ -252,6 +253,7 @@
     <ClCompile Include="qGameObjectEx.cpp" />
     <ClCompile Include="qLevelSaveLoad.cpp" />
     <ClCompile Include="qLevel_stage1.cpp" />
+    <ClCompile Include="qLevel_stage2.cpp" />
     <ClCompile Include="qTestLevel.cpp" />
     <ClCompile Include="ScriptUI.cpp" />
     <ClCompile Include="SE_AtlasView.cpp" />

@@ -20,15 +20,15 @@ public:
 	void LevelChanged();
 	bool IsLevelChanged() { return m_LevelChanged; }
 
-	void ChangeLevel(std::wstring _Name);
-
+	qLevel* GetLevelbyName(wstring _Name);
+	void ChangeLevelbyName(wstring _Name);
 	void InsertLevel(wstring _Name, qLevel* _Level);
 
 private:
 	bool ChangeLevel(qLevel* _NextLevel);
 
 private:
-	//qLevel*		m_arrLevel[(UINT)LEVEL_TYPE::END];
+	//qLevel*				m_arrLevel[(UINT)LEVEL_TYPE::END];
 
 	map<wstring, qLevel*>	m_Levels;
 	qLevel*					m_CurLevel;

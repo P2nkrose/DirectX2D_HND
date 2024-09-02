@@ -23,6 +23,7 @@
 #include <Scripts/qMissileScript.h>
 #include <Scripts/qCameraMoveScript.h>
 #include <Scripts/qPlatformScript.h>
+#include <Scripts/qPortalScript.h>
 
 #include <Engine/qSetColorCS.h>
 #include <Engine/qStructuredBuffer.h>
@@ -90,6 +91,7 @@ void qLevel_stage1::CreateStage1()
 	pStage1->GetLayer(6)->SetName(L"MonsterSkill");
 	pStage1->GetLayer(7)->SetName(L"Boss");
 	pStage1->GetLayer(8)->SetName(L"BossSkill");
+	pStage1->GetLayer(9)->SetName(L"Portal");
 	pStage1->GetLayer(31)->SetName(L"UI");
 
 
@@ -159,7 +161,6 @@ void qLevel_stage1::CreateStage1()
 	//pStage1->AddObject(0, pLight);
 
 	
-
 
 
 	// 플레이어 오브젝트
@@ -302,7 +303,20 @@ void qLevel_stage1::CreateStage1()
 	//	camScript->SetFollowObject(pPlayer);
 	
 
+	// 포탈 오브젝트
+	qGameObject* pPortal = new qGameObject;
+	pPortal->SetName(L"Portal");
+	pPortal->AddComponent(new qTransform);
+	pPortal->Transform()->SetRelativePos(600.f, -400.f, 10.f);
+	pPortal->Transform()->SetRelativeScale(150.f, 150.f, 1.f);
 
+	pPortal->AddComponent(new qCollider2D);
+	pPortal->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pPortal->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.));
+
+	pPortal->AddComponent(new qPortalScript);
+
+	pStage1->AddObject(9, pPortal);
 
 	// Monster Object
 	qGameObject* pMonster = new qGameObject;
@@ -337,6 +351,8 @@ void qLevel_stage1::CreateStage1()
 	// 충돌 지정
 	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Player vs Platform
 	qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
+	qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
+
 }
 
 void qLevel_stage1::CreatePrefab()
@@ -371,3 +387,6 @@ void qLevel_stage1::CreatePrefab()
 	//pPrefab->Save(FilePath);
 	
 }
+
+
+

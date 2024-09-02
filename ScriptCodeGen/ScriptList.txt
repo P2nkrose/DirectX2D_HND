@@ -7,4 +7,5 @@ qKrushScript
 qMissileScript
 qPlatformScript
 qPlayerScript
+qPortalScript
 qRangeScript

@@ -334,7 +334,7 @@ void qPlayerScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherO
 
 void qPlayerScript::Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)
 {
-	qLevelMgr::GetInst()->ChangeLevel(L"stage1");
+	//qLevelMgr::GetInst()->ChangeLevel(L"stage1");
 }
 
 void qPlayerScript::EndOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)

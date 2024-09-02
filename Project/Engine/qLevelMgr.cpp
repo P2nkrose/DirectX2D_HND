@@ -43,7 +43,18 @@ void qLevelMgr::LevelChanged()
 	qTaskMgr::GetInst()->AddTask(tTask{ TASK_TYPE::LEVEL_CHANGED });
 }
 
-void qLevelMgr::ChangeLevel(std::wstring _Name)
+
+qLevel* qLevelMgr::GetLevelbyName(wstring _Name)
+{
+	auto Level = m_Levels.find(_Name);
+
+	if (Level->first == _Name)
+	{
+		return Level->second;
+	}
+}
+
+void qLevelMgr::ChangeLevelbyName(std::wstring _Name)
 {
 	auto Level = m_Levels.find(_Name);
 
