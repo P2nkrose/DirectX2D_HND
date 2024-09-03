@@ -82,6 +82,9 @@
     <Filter Include="States\01. Player\22. Teleport">
       <UniqueIdentifier>{4166c5b8-97b0-402d-babf-b25fcc71fa58}</UniqueIdentifier>
     </Filter>
+    <Filter Include="States\01. Player\23. Bump">
+      <UniqueIdentifier>{76d134a5-11e9-46a4-8d0c-50a6db5ca67b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -147,11 +150,11 @@
     <ClInclude Include="qPlayerKrushState.h">
       <Filter>States\01. Player\21. Krush</Filter>
     </ClInclude>
-    <ClInclude Include="qPlayerHitState.h">
-      <Filter>States\01. Player\11. Hit</Filter>
-    </ClInclude>
     <ClInclude Include="qPlayerWaitState.h">
       <Filter>States\01. Player\01. Wait</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerBumpState.h">
+      <Filter>States\01. Player\23. Bump</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -218,11 +221,11 @@
     <ClCompile Include="qPlayerKrushState.cpp">
       <Filter>States\01. Player\21. Krush</Filter>
     </ClCompile>
-    <ClCompile Include="qPlayerHitState.cpp">
-      <Filter>States\01. Player\11. Hit</Filter>
-    </ClCompile>
     <ClCompile Include="qPlayerWaitState.cpp">
       <Filter>States\01. Player\01. Wait</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerBumpState.cpp">
+      <Filter>States\01. Player\23. Bump</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

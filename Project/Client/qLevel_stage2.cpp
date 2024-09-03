@@ -24,6 +24,7 @@
 #include <Scripts/qMissileScript.h>
 #include <Scripts/qCameraMoveScript.h>
 #include <Scripts/qPlatformScript.h>
+#include <Scripts/qWallScript.h>
 #include <Scripts/qPortalScript.h>
 
 #include <Engine/qSetColorCS.h>
@@ -41,7 +42,7 @@
 #include <States/qPlayerFallingState.h>			// 8
 #include <States/qPlayerLandingState.h>			// 9
 #include <States/qPlayerDashState.h>			// 10
-#include <States/qPlayerHitState.h>				// 11
+
 
 #include <States/qPlayerCombo1State.h>			// 13
 #include <States/qPlayerCombo2State.h>			// 14
@@ -52,6 +53,8 @@
 #include <States/qPlayerCrashState.h>			// 19
 #include <States/qPlayerRangeState.h>			// 20
 #include <States/qPlayerKrushState.h>			// 21
+
+#include <States/qPlayerBumpState.h>			// 23
 
 
 #include "qLevelSaveLoad.h"
@@ -86,6 +89,7 @@ void qLevel_stage2::CreateStage2()
 	pStage2->GetLayer(8)->SetName(L"BossSkill");
 	pStage2->GetLayer(9)->SetName(L"Portal");
 	pStage2->GetLayer(10)->SetName(L"Light");
+	pStage2->GetLayer(11)->SetName(L"Wall");
 	pStage2->GetLayer(31)->SetName(L"UI");
 
 	// Camera
@@ -363,6 +367,158 @@ void qLevel_stage2::CreateStage2()
 	pStage2->AddObject(2, pPlatform18);
 
 
+
+	// ============
+	//     Wall
+	// ============
+
+	// Wall 1
+	qGameObject* pWall1 = new qGameObject;
+	pWall1->SetName(L"Wall");
+	pWall1->AddComponent(new qWallScript);
+	pWall1->AddComponent(new qTransform);
+	pWall1->Transform()->SetRelativePos(-4448.f, -642.f, 10.f);
+	pWall1->Transform()->SetRelativeScale(15.f, 52.f, 1.f);
+	pWall1->AddComponent(new qCollider2D);
+	pWall1->Collider2D()->SetIndependentScale(false);
+	pWall1->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pWall1->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+	pStage2->AddObject(11, pWall1);
+
+	// Wall 2
+	qGameObject* pWall2 = new qGameObject;
+	pWall2->SetName(L"Wall");
+	pWall2->AddComponent(new qWallScript);
+	pWall2->AddComponent(new qTransform);
+	pWall2->Transform()->SetRelativePos(-3687.f, -567.f, 10.f);
+	pWall2->Transform()->SetRelativeScale(15.f, 197.f, 1.f);
+	pWall2->AddComponent(new qCollider2D);
+	pWall2->Collider2D()->SetIndependentScale(false);
+	pWall2->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pWall2->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+	pStage2->AddObject(11, pWall2);
+
+	// Wall 3
+	qGameObject* pWall3 = new qGameObject;
+	pWall3->SetName(L"Wall");
+	pWall3->AddComponent(new qWallScript);
+	pWall3->AddComponent(new qTransform);
+	pWall3->Transform()->SetRelativePos(-3029.f, -310.f, 10.f);
+	pWall3->Transform()->SetRelativeScale(15.f, 308.f, 1.f);
+	pWall3->AddComponent(new qCollider2D);
+	pWall3->Collider2D()->SetIndependentScale(false);
+	pWall3->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pWall3->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+	pStage2->AddObject(11, pWall3);
+
+	// Wall 4
+	qGameObject* pWall4 = new qGameObject;
+	pWall4->SetName(L"Wall");
+	pWall4->AddComponent(new qWallScript);
+	pWall4->AddComponent(new qTransform);
+	pWall4->Transform()->SetRelativePos(-2710.f, 27.f, 10.f);
+	pWall4->Transform()->SetRelativeScale(15.f, 343.f, 1.f);
+	pWall4->AddComponent(new qCollider2D);
+	pWall4->Collider2D()->SetIndependentScale(false);
+	pWall4->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pWall4->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+	pStage2->AddObject(11, pWall4);
+
+	// Wall 5
+	qGameObject* pWall5 = new qGameObject;
+	pWall5->SetName(L"Wall");
+	pWall5->AddComponent(new qWallScript);
+	pWall5->AddComponent(new qTransform);
+	pWall5->Transform()->SetRelativePos(-2588.f, 24.f, 10.f);
+	pWall5->Transform()->SetRelativeScale(15.f, 343.f, 1.f);
+	pWall5->AddComponent(new qCollider2D);
+	pWall5->Collider2D()->SetIndependentScale(false);
+	pWall5->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pWall5->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+	pStage2->AddObject(11, pWall5);
+
+	// Wall 6
+	qGameObject* pWall6 = new qGameObject;
+	pWall6->SetName(L"Wall");
+	pWall6->AddComponent(new qWallScript);
+	pWall6->AddComponent(new qTransform);
+	pWall6->Transform()->SetRelativePos(-1150.f, -50.f, 10.f);
+	pWall6->Transform()->SetRelativeScale(15.f, 207.f, 1.f);
+	pWall6->AddComponent(new qCollider2D);
+	pWall6->Collider2D()->SetIndependentScale(false);
+	pWall6->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pWall6->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+	pStage2->AddObject(11, pWall6);
+
+	// Wall 7
+	qGameObject* pWall7 = new qGameObject;
+	pWall7->SetName(L"Wall");
+	pWall7->AddComponent(new qWallScript);
+	pWall7->AddComponent(new qTransform);
+	pWall7->Transform()->SetRelativePos(-1044.f, -184.f, 10.f);
+	pWall7->Transform()->SetRelativeScale(15.f, 479.f, 1.f);
+	pWall7->AddComponent(new qCollider2D);
+	pWall7->Collider2D()->SetIndependentScale(false);
+	pWall7->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pWall7->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+	pStage2->AddObject(11, pWall7);
+
+	// Wall 8
+	qGameObject* pWall8 = new qGameObject;
+	pWall8->SetName(L"Wall");
+	pWall8->AddComponent(new qWallScript);
+	pWall8->AddComponent(new qTransform);
+	pWall8->Transform()->SetRelativePos(328.f, -130.f, 10.f);
+	pWall8->Transform()->SetRelativeScale(15.f, 307.f, 1.f);
+	pWall8->AddComponent(new qCollider2D);
+	pWall8->Collider2D()->SetIndependentScale(false);
+	pWall8->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pWall8->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+	pStage2->AddObject(11, pWall8);
+
+	// Wall 9
+	qGameObject* pWall9 = new qGameObject;
+	pWall9->SetName(L"Wall");
+	pWall9->AddComponent(new qWallScript);
+	pWall9->AddComponent(new qTransform);
+	pWall9->Transform()->SetRelativePos(455.f, -130.f, 10.f);
+	pWall9->Transform()->SetRelativeScale(15.f, 307.f, 1.f);
+	pWall9->AddComponent(new qCollider2D);
+	pWall9->Collider2D()->SetIndependentScale(false);
+	pWall9->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pWall9->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+	pStage2->AddObject(11, pWall9);
+
+	// Wall 10
+	qGameObject* pWall10 = new qGameObject;
+	pWall10->SetName(L"Wall");
+	pWall10->AddComponent(new qWallScript);
+	pWall10->AddComponent(new qTransform);
+	pWall10->Transform()->SetRelativePos(1308.f, -398.f, 10.f);
+	pWall10->Transform()->SetRelativeScale(15.f, 200.f, 1.f);
+	pWall10->AddComponent(new qCollider2D);
+	pWall10->Collider2D()->SetIndependentScale(false);
+	pWall10->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pWall10->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+	pStage2->AddObject(11, pWall10);
+
+	// Wall 11
+	qGameObject* pWall11 = new qGameObject;
+	pWall11->SetName(L"Wall");
+	pWall11->AddComponent(new qWallScript);
+	pWall11->AddComponent(new qTransform);
+	pWall11->Transform()->SetRelativePos(1883.f, -398.f, 10.f);
+	pWall11->Transform()->SetRelativeScale(15.f, 200.f, 1.f);
+	pWall11->AddComponent(new qCollider2D);
+	pWall11->Collider2D()->SetIndependentScale(false);
+	pWall11->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pWall11->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+	pStage2->AddObject(11, pWall11);
+
+
+
+
+
 	// 광원 오브젝트
 	qGameObject* pLight = new qGameObject;
 	pLight->SetName(L"PointLight 2");
@@ -383,7 +539,7 @@ void qLevel_stage2::CreateStage2()
 	//pPlayer->AddChild(pLight);
 
 	pPlayer->AddComponent(new qTransform);
-	pPlayer->Transform()->SetRelativePos(-5028.f, 0.f, 10.f);
+	pPlayer->Transform()->SetRelativePos(2592.f, -227.f, 10.f);
 	pPlayer->Transform()->SetRelativeScale(130.f, 130.f, 1.f);
 
 	pPlayer->AddComponent(new qMeshRender);
@@ -425,8 +581,6 @@ void qLevel_stage2::CreateStage2()
 	Ptr<qFlipBook> pDeathDash = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\dash_3.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(10, pDeathDash);
 
-	Ptr<qFlipBook> pDeathHit = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\hit.flip");
-	pPlayer->FlipBookComponent()->AddFlipBook(11, pDeathHit);
 
 	Ptr<qFlipBook> pDeathCombo1 = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\combo1_final.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(13, pDeathCombo1);
@@ -452,6 +606,9 @@ void qLevel_stage2::CreateStage2()
 	Ptr<qFlipBook> pDeathKrush = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\krush_final.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(21, pDeathKrush);
 
+	Ptr<qFlipBook> pDeathBump = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\hit.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(23, pDeathBump);
+
 	pPlayer->FlipBookComponent()->Play(0, 10, true);
 
 	pPlayer->AddComponent(new qRigidBody);
@@ -462,6 +619,7 @@ void qLevel_stage2::CreateStage2()
 	pPlayer->RigidBody()->SetMaxGravitySpeed(1500.f);
 	pPlayer->RigidBody()->SetJumpSpeed(400.f);
 	pPlayer->RigidBody()->SetGround(false);
+	pPlayer->RigidBody()->SetWall(false);
 
 	pPlayer->AddComponent(new qCollider2D);
 	pPlayer->Collider2D()->SetIndependentScale(false);
@@ -482,7 +640,7 @@ void qLevel_stage2::CreateStage2()
 	pPlayer->FSM()->AddState(L"Falling", new qPlayerFallingState);			// 8
 	pPlayer->FSM()->AddState(L"Landing", new qPlayerLandingState);			// 9
 	pPlayer->FSM()->AddState(L"Dash", new qPlayerDashState);				// 10
-	pPlayer->FSM()->AddState(L"Hit", new qPlayerHitState);					// 11
+	
 
 	pPlayer->FSM()->AddState(L"Combo1", new qPlayerCombo1State);			// 13
 	pPlayer->FSM()->AddState(L"Combo2", new qPlayerCombo2State);			// 14
@@ -494,15 +652,19 @@ void qLevel_stage2::CreateStage2()
 	pPlayer->FSM()->AddState(L"Range", new qPlayerRangeState);				// 20
 	pPlayer->FSM()->AddState(L"Krush", new qPlayerKrushState);				// 21
 
+	pPlayer->FSM()->AddState(L"Bump", new qPlayerBumpState);				// 23
+
 	pPlayer->FSM()->ChangeState(L"Idle");
 
 	pStage2->AddObject(3, pPlayer);
 
 
 	// 충돌 지정
-	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Player vs Platform
+	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
 	qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
 	qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
+	qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
+
 
 	ChangeLevel(pStage2, LEVEL_STATE::STOP);
 

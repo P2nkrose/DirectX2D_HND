@@ -88,9 +88,20 @@ public:
 		}
 	}
 
+	void SetWall(bool _Wall)
+	{
+		if (m_Wall == _Wall)
+		{
+			return;
+		}
+
+		m_Wall = _Wall;
+	}
+
 
 
 	bool IsGround() { return m_Ground; }
+	bool IsWall() { return m_Wall; }
 
 
 public:
@@ -115,6 +126,7 @@ private:
 	float				m_GravityAccel;			// 중력 가속도
 	bool				m_UseGravity;			// 중력 사용 <-> 미사용 bool
 	bool				m_Ground;				// 땅 위에 서있는지 체크
+	bool				m_Wall;					// 벽에 부딪혔는지 체크
 
 	float				m_JumpSpeed;			// 점프 속력
 	float				m_DoubleJumpSpeed;		// 더플점프 속력

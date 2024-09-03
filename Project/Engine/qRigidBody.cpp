@@ -133,6 +133,11 @@ void qRigidBody::FinalTick()
 		}
 	}
 
+	if (m_UseGravity && m_Wall)
+	{
+		m_VelocityByGravity = Vec3(0.f, 0.f, 0.f);
+	}
+
 	// 최종 속도
 	Vec3 vFinalVelocity = m_Velocity + m_VelocityByGravity;
 

@@ -12,6 +12,7 @@
 #include "qPlayerScript.h"
 #include "qPortalScript.h"
 #include "qRangeScript.h"
+#include "qWallScript.h"
 
 void qScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
@@ -26,6 +27,7 @@ void qScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qPlayerScript");
 	_vec.push_back(L"qPortalScript");
 	_vec.push_back(L"qRangeScript");
+	_vec.push_back(L"qWallScript");
 }
 
 qScript * qScriptMgr::GetScript(const wstring& _strScriptName)
@@ -52,6 +54,8 @@ qScript * qScriptMgr::GetScript(const wstring& _strScriptName)
 		return new qPortalScript;
 	if (L"qRangeScript" == _strScriptName)
 		return new qRangeScript;
+	if (L"qWallScript" == _strScriptName)
+		return new qWallScript;
 	return nullptr;
 }
 
@@ -91,6 +95,9 @@ qScript * qScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::RANGESCRIPT:
 		return new qRangeScript;
+		break;
+	case (UINT)SCRIPT_TYPE::WALLSCRIPT:
+		return new qWallScript;
 		break;
 	}
 	return nullptr;
@@ -142,6 +149,10 @@ const wchar_t * qScriptMgr::GetScriptName(qScript * _pScript)
 
 	case SCRIPT_TYPE::RANGESCRIPT:
 		return L"qRangeScript";
+		break;
+
+	case SCRIPT_TYPE::WALLSCRIPT:
+		return L"qWallScript";
 		break;
 
 	}

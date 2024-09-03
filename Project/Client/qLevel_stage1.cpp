@@ -40,7 +40,7 @@
 #include <States/qPlayerFallingState.h>			// 8
 #include <States/qPlayerLandingState.h>			// 9
 #include <States/qPlayerDashState.h>			// 10
-#include <States/qPlayerHitState.h>				// 11
+												// 11
 
 #include <States/qPlayerCombo1State.h>			// 13
 #include <States/qPlayerCombo2State.h>			// 14
@@ -51,6 +51,8 @@
 #include <States/qPlayerCrashState.h>			// 19
 #include <States/qPlayerRangeState.h>			// 20
 #include <States/qPlayerKrushState.h>			// 21
+
+#include <States/qPlayerBumpState.h>			// 23
 
 
 #include "qLevelSaveLoad.h"
@@ -214,8 +216,7 @@ void qLevel_stage1::CreateStage1()
 	Ptr<qFlipBook> pDeathDash = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\dash_3.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(10, pDeathDash);
 
-	Ptr<qFlipBook> pDeathHit = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\hit.flip");
-	pPlayer->FlipBookComponent()->AddFlipBook(11, pDeathHit);
+
 
 	Ptr<qFlipBook> pDeathCombo1 = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\combo1_final.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(13, pDeathCombo1);
@@ -240,6 +241,9 @@ void qLevel_stage1::CreateStage1()
 
 	Ptr<qFlipBook> pDeathKrush = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\krush_final.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(21, pDeathKrush);
+
+	Ptr<qFlipBook> pDeathBump = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\hit.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(23, pDeathBump);
 
 	pPlayer->FlipBookComponent()->Play(0, 10, true);
 
@@ -271,7 +275,7 @@ void qLevel_stage1::CreateStage1()
 	pPlayer->FSM()->AddState(L"Falling", new qPlayerFallingState);			// 8
 	pPlayer->FSM()->AddState(L"Landing", new qPlayerLandingState);			// 9
 	pPlayer->FSM()->AddState(L"Dash", new qPlayerDashState);				// 10
-	pPlayer->FSM()->AddState(L"Hit", new qPlayerHitState);					// 11
+	
 
 	pPlayer->FSM()->AddState(L"Combo1", new qPlayerCombo1State);			// 13
 	pPlayer->FSM()->AddState(L"Combo2", new qPlayerCombo2State);			// 14
@@ -282,6 +286,8 @@ void qLevel_stage1::CreateStage1()
 	pPlayer->FSM()->AddState(L"Crash", new qPlayerCrashState);				// 19
 	pPlayer->FSM()->AddState(L"Range", new qPlayerRangeState);				// 20
 	pPlayer->FSM()->AddState(L"Krush", new qPlayerKrushState);				// 21
+
+	pPlayer->FSM()->AddState(L"Bump", new qPlayerBumpState);				// 23
 
 	pPlayer->FSM()->ChangeState(L"Idle");
 

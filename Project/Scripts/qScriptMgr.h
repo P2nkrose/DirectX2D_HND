@@ -16,6 +16,7 @@ enum SCRIPT_TYPE
 	PLAYERSCRIPT,
 	PORTALSCRIPT,
 	RANGESCRIPT,
+	WALLSCRIPT,
 };
 
 using namespace std;

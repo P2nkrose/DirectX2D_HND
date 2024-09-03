@@ -9,3 +9,4 @@ qPlatformScript
 qPlayerScript
 qPortalScript
 qRangeScript
+qWallScript

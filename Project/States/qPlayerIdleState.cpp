@@ -84,7 +84,6 @@ void qPlayerIdleState::FinalTick()
 		ChangeState(L"Hit");
 	}
 
-
 	if (WaitTime < 5.f)
 	{
 		WaitTime += DT;
@@ -94,7 +93,6 @@ void qPlayerIdleState::FinalTick()
 		WaitTime = 0.f;
 		ChangeState(L"Wait");
 	}
-
 
 
 }

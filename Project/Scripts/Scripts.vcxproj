@@ -178,6 +178,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="qPortalScript.h" />
     <ClInclude Include="qRangeScript.h" />
     <ClInclude Include="qScriptMgr.h" />
+    <ClInclude Include="qWallScript.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -198,6 +199,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="qPortalScript.cpp" />
     <ClCompile Include="qRangeScript.cpp" />
     <ClCompile Include="qScriptMgr.cpp" />
+    <ClCompile Include="qWallScript.cpp" />
     <ClCompile Include="Scripts.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

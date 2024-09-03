@@ -56,6 +56,11 @@ void qPlayerRunState::FinalTick()
 	{
 		ChangeState(L"Range");
 	}
+
+	if (GetOwner()->RigidBody()->IsGround() == false)
+	{
+		ChangeState(L"Falling");
+	}
 }
 
 

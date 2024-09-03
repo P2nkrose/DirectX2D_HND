@@ -12,6 +12,7 @@
 
 qPlayerKrushState::qPlayerKrushState()
 	: m_KrushSpeed(1200.f)
+	, KrushHitBox(nullptr)
 {
 }
 

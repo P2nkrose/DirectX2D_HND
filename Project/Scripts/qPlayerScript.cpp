@@ -326,9 +326,9 @@ void qPlayerScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherO
 	//
 	//Transform()->SetRelativeScale(vScale);
 
-	if (_OtherObject->GetName() == L"Monster")
+	if (_OtherObject->GetName() == L"Wall")
 	{
-		FSM()->ChangeState(L"Hit");
+		FSM()->ChangeState(L"Bump");
 	}
 }
 

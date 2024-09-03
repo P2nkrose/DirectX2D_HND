@@ -52,6 +52,9 @@
     <Filter Include="Scripts\4. Portal">
       <UniqueIdentifier>{1aa73e45-c9b7-4444-96af-ed1cc76e0b9c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scripts\5. Wall">
+      <UniqueIdentifier>{4de2ba99-5931-4cfe-8663-a3428e6966bc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -96,6 +99,9 @@
     <ClInclude Include="qPortalScript.h">
       <Filter>Scripts\4. Portal</Filter>
     </ClInclude>
+    <ClInclude Include="qWallScript.h">
+      <Filter>Scripts\5. Wall</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -139,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="qPortalScript.cpp">
       <Filter>Scripts\4. Portal</Filter>
+    </ClCompile>
+    <ClCompile Include="qWallScript.cpp">
+      <Filter>Scripts\5. Wall</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
