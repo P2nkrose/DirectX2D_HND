@@ -14,7 +14,7 @@ qRigidBody::qRigidBody()
 	, m_GravityAccel(980.f)
 	, m_UseGravity(false)
 	, m_Ground(true)
-	, m_JumpSpeed(500.f)
+	, m_JumpSpeed(600.f)
 	, m_DoubleJumpSpeed(500.f)
 	, m_GroundFunc(nullptr)
 	, m_AirFunc(nullptr)
@@ -155,7 +155,7 @@ void qRigidBody::jump()
 {
 	if (L"Player" == GetOwner()->GetName())
 	{
-		m_VelocityByGravity += Vec3(0.f, 1.3f, 0.f) * m_JumpSpeed;
+		m_VelocityByGravity += Vec3(0.f, 1.4f, 0.f) * m_JumpSpeed;
 	}
 
 	SetGround(false);

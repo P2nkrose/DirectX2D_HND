@@ -100,6 +100,15 @@ void qCameraMoveScript::OrthoGraphicMove()
 			vPos.x = PlayerPos.x;
 		}
 
+		//if (PlayerPos.y >= 256.f)
+		//{
+		//	vPos.y = 556.f;
+		//}
+		//else
+		//{
+		//	vPos.y = PlayerPos.y + 300.f;
+		//}
+
 		vPos.y = -120.f;
 
 		// Y ÁÂÇ¥ °è»ê

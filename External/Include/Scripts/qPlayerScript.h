@@ -49,10 +49,15 @@ public:
 		m_CurJumpCount = 0;
 	}
 
-
+public:
+	// ÇÃ·§Æû À§Ä¡¸¦ ¼³Á¤
+	void SetCurrentPlatformPos(const Vec3& _PlatformPos) { m_CurrentPlatformPos = _PlatformPos; }
+	Vec3 GetCurrentPlatformPos() const { return m_CurrentPlatformPos; }
 
 
 private:
+	Vec3				m_CurrentPlatformPos;	// ÇöÀç Ãæµ¹ÇÑ ÇÃ·§ÆûÀÇ À§Ä¡
+
 	tUnitInfo			m_CurUnitInfo;
 	tUnitInfo			m_PrevUnitInfo;
 

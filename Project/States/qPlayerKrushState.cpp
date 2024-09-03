@@ -3,7 +3,9 @@
 
 #include <Engine/qFlipBookComponent.h>
 #include <Engine/qGameObject.h>
+#include <Scripts/qScriptMgr.h>
 #include <Scripts/qPlayerScript.h>
+#include <Scripts/qPlatformScript.h>
 #include <Scripts/qKrushScript.h>
 #include <Engine/qLevel.h>
 #include <Engine/qLevelMgr.h>
@@ -31,17 +33,42 @@ void qPlayerKrushState::Enter()
 
 void qPlayerKrushState::FinalTick()
 {
+
 	qPlayerScript* pPlayerScript = GetOwner()->GetScript<qPlayerScript>();
 
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
-
+			
 	if (pCurLevel->GetName() == L"stage1")
 	{
 		Vec3 PlayerPos = GetOwner()->Transform()->GetRelativePos();
-
+		
 		if (PlayerPos.y <= -420.f)
 		{
 			PlayerPos.y = -420.f;
+			GetOwner()->RigidBody()->SetGround(true);
+		}
+		else
+		{
+			PlayerPos += Vec3(0.f, -1.2f, 0.f) * m_KrushSpeed * DT;
+		}
+		
+		GetOwner()->Transform()->SetRelativePos(PlayerPos);
+
+		
+	}
+
+	if (pCurLevel->GetName() == L"stage2")
+	{
+		qPlayerScript* pPlayerScript = GetOwner()->GetScript<qPlayerScript>();
+		Vec3 PlayerPos = GetOwner()->Transform()->GetRelativePos();
+		Vec3 PlayerScale = GetOwner()->Transform()->GetRelativeScale();
+		
+		Vec3 PlatformPos = pPlayerScript->GetCurrentPlatformPos();
+		
+		if (PlayerPos.y - 70.f <= PlatformPos.y + 7.5f)
+		{
+			PlayerPos.y = PlatformPos.y + 70.f;
+			GetOwner()->RigidBody()->SetGround(true);
 		}
 		else
 		{
@@ -49,6 +76,43 @@ void qPlayerKrushState::FinalTick()
 		}
 
 		GetOwner()->Transform()->SetRelativePos(PlayerPos);
+
+
+
+
+		//qPlayerScript* pPlayerScript = GetOwner()->GetScript<qPlayerScript>();
+		//
+		//// 현재 레벨을 가져오기
+		//qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+		//
+		//// 플레이어의 현재 위치를 가져오기
+		//Vec3 PlayerPos = GetOwner()->Transform()->GetRelativePos();
+		//
+		//// 플랫폼과 닿았는지 확인
+		//if (pPlayerScript->RigidBody()->IsGround())
+		//{
+		//	// 플레이어가 현재 닿은 플랫폼의 위치를 가져오기
+		//	Vec3 PlatformPos = pPlayerScript->GetCurrentPlatformPos();
+		//
+		//	// 플레이어의 y 값을 플랫폼의 y 위치에 맞춰 고정
+		//	PlayerPos.y = PlatformPos.y + (GetOwner()->Transform()->GetRelativeScale().y * 0.5f);
+		//
+		//	// 플레이어의 위치를 업데이트
+		//	GetOwner()->Transform()->SetRelativePos(PlayerPos);
+		//
+		//	// 상태 전환
+		//	if (GetOwner()->FlipBookComponent()->IsCurFlipBookFinished())
+		//	{
+		//		ChangeState(L"Idle");
+		//	}
+		//}
+		//else
+		//{
+		//	// 땅에 닿지 않았을 때는 계속해서 y 값을 감소시킴 (Krush 하강 로직)
+		//	PlayerPos += Vec3(0.f, -1.2f, 0.f) * m_KrushSpeed * DT;
+		//	GetOwner()->Transform()->SetRelativePos(PlayerPos);
+		//}
+
 	}
 
 	static bool hitboxCreated = false; // 히트박스 생성 여부를 추적하는 플래그
@@ -86,7 +150,7 @@ void qPlayerKrushState::FinalTick()
 			KrushHitBox = nullptr;
 			hitboxCreated = false;	// 다음 상태 전환 시를 위해 플래그 초기화
 		}
-
+	
 		if(pPlayerScript->RigidBody()->IsGround())
 			ChangeState(L"Idle");
 	}

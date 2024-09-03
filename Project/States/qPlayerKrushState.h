@@ -14,6 +14,8 @@ public:
 	virtual void FinalTick() override;
 	virtual void Exit() override;
 
+
+
 private:
 	qGameObject*	KrushHitBox;
 	Vec3			OGScale;

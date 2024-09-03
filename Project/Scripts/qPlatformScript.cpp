@@ -5,6 +5,8 @@
 #include <Engine/qCollisionMgr.h>
 #include <Engine/qRigidBody.h>
 #include <Engine/qGameObject.h>
+#include "qPlayerScript.h"
+#include <Engine/qScript.h>
 
 #include <Engine/qLevel.h>
 #include <Engine/qLevelMgr.h>
@@ -35,7 +37,18 @@ void qPlatformScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _Othe
 	{
 		qRigidBody* pRB = _OtherObject->GetComponent(COMPONENT_TYPE::RIGIDBODY)->RigidBody();
 		
-		pRB->SetGround(true);
+		Vec3 PlatformPos = GetOwner()->Transform()->GetRelativePos();
+
+		Vec3 PlayerPos = _OtherObject->Transform()->GetRelativePos();
+		Vec3 PlayerScale = _OtherObject->Transform()->GetRelativeScale();
+
+		if (PlatformPos.y <= PlayerPos.y - (PlayerScale.y * 0.5f))
+		{
+			pRB->SetGround(true);
+			qPlayerScript* pPlayerScript = _OtherObject->GetScript<qPlayerScript>();
+			pPlayerScript->SetCurrentPlatformPos(PlatformPos);
+		}
+
 	}
 }
 
@@ -45,6 +58,13 @@ void qPlatformScript::Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObje
 
 void qPlatformScript::EndOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)
 {
+	if (_OtherObject->GetName() == L"Player")
+	{
+		qRigidBody* pRB = _OtherObject->GetComponent(COMPONENT_TYPE::RIGIDBODY)->RigidBody();
+
+		pRB->SetGround(false);
+	}
+
 }
 
 void qPlatformScript::SaveToFile(FILE* _File)
