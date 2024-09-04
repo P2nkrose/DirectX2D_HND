@@ -6,11 +6,13 @@
 #include "qCameraMoveScript.h"
 #include "qComboScript.h"
 #include "qCrashScript.h"
+#include "qDoorScript.h"
 #include "qKrushScript.h"
 #include "qMissileScript.h"
 #include "qPlatformScript.h"
 #include "qPlayerScript.h"
 #include "qPortalScript.h"
+#include "qPostScript.h"
 #include "qRangeScript.h"
 #include "qWallScript.h"
 
@@ -21,11 +23,13 @@ void qScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qCameraMoveScript");
 	_vec.push_back(L"qComboScript");
 	_vec.push_back(L"qCrashScript");
+	_vec.push_back(L"qDoorScript");
 	_vec.push_back(L"qKrushScript");
 	_vec.push_back(L"qMissileScript");
 	_vec.push_back(L"qPlatformScript");
 	_vec.push_back(L"qPlayerScript");
 	_vec.push_back(L"qPortalScript");
+	_vec.push_back(L"qPostScript");
 	_vec.push_back(L"qRangeScript");
 	_vec.push_back(L"qWallScript");
 }
@@ -42,6 +46,8 @@ qScript * qScriptMgr::GetScript(const wstring& _strScriptName)
 		return new qComboScript;
 	if (L"qCrashScript" == _strScriptName)
 		return new qCrashScript;
+	if (L"qDoorScript" == _strScriptName)
+		return new qDoorScript;
 	if (L"qKrushScript" == _strScriptName)
 		return new qKrushScript;
 	if (L"qMissileScript" == _strScriptName)
@@ -52,6 +58,8 @@ qScript * qScriptMgr::GetScript(const wstring& _strScriptName)
 		return new qPlayerScript;
 	if (L"qPortalScript" == _strScriptName)
 		return new qPortalScript;
+	if (L"qPostScript" == _strScriptName)
+		return new qPostScript;
 	if (L"qRangeScript" == _strScriptName)
 		return new qRangeScript;
 	if (L"qWallScript" == _strScriptName)
@@ -78,6 +86,9 @@ qScript * qScriptMgr::GetScript(UINT _iScriptType)
 	case (UINT)SCRIPT_TYPE::CRASHSCRIPT:
 		return new qCrashScript;
 		break;
+	case (UINT)SCRIPT_TYPE::DOORSCRIPT:
+		return new qDoorScript;
+		break;
 	case (UINT)SCRIPT_TYPE::KRUSHSCRIPT:
 		return new qKrushScript;
 		break;
@@ -92,6 +103,9 @@ qScript * qScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::PORTALSCRIPT:
 		return new qPortalScript;
+		break;
+	case (UINT)SCRIPT_TYPE::POSTSCRIPT:
+		return new qPostScript;
 		break;
 	case (UINT)SCRIPT_TYPE::RANGESCRIPT:
 		return new qRangeScript;
@@ -127,6 +141,10 @@ const wchar_t * qScriptMgr::GetScriptName(qScript * _pScript)
 		return L"qCrashScript";
 		break;
 
+	case SCRIPT_TYPE::DOORSCRIPT:
+		return L"qDoorScript";
+		break;
+
 	case SCRIPT_TYPE::KRUSHSCRIPT:
 		return L"qKrushScript";
 		break;
@@ -145,6 +163,10 @@ const wchar_t * qScriptMgr::GetScriptName(qScript * _pScript)
 
 	case SCRIPT_TYPE::PORTALSCRIPT:
 		return L"qPortalScript";
+		break;
+
+	case SCRIPT_TYPE::POSTSCRIPT:
+		return L"qPostScript";
 		break;
 
 	case SCRIPT_TYPE::RANGESCRIPT:

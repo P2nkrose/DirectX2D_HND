@@ -13,12 +13,6 @@
     <Filter Include="Scripts\0. Camera">
       <UniqueIdentifier>{4a21a2cd-bace-487c-9664-bea4dd4e602f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripts\2. Background">
-      <UniqueIdentifier>{162b3203-b5fe-45c4-bc50-cf068d8bec70}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\3. Platform">
-      <UniqueIdentifier>{9ab962cb-82b8-46a2-866e-9a5135de84b5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scripts\1. UNIT">
       <UniqueIdentifier>{c34007ba-3630-4129-9db1-7c1ad6535505}</UniqueIdentifier>
     </Filter>
@@ -49,11 +43,29 @@
     <Filter Include="Scripts\1. UNIT\1. Player\PlayerSkill\05. Krush">
       <UniqueIdentifier>{ecae75d0-a570-41a2-a7bb-44db88dfcc35}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripts\4. Portal">
-      <UniqueIdentifier>{1aa73e45-c9b7-4444-96af-ed1cc76e0b9c}</UniqueIdentifier>
+    <Filter Include="Scripts\2. Platform">
+      <UniqueIdentifier>{9ab962cb-82b8-46a2-866e-9a5135de84b5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripts\5. Wall">
-      <UniqueIdentifier>{4de2ba99-5931-4cfe-8663-a3428e6966bc}</UniqueIdentifier>
+    <Filter Include="Scripts\2. Platform\01. Platform">
+      <UniqueIdentifier>{6eca6fa5-8ade-42c7-9daa-7e3914f89319}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\2. Platform\02. Wall">
+      <UniqueIdentifier>{ea43cd55-04d0-4049-a1f6-cefb92215623}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\2. Platform\03. Portal">
+      <UniqueIdentifier>{1d6a5589-95e5-4985-aaae-135b755828f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\3. Transfer">
+      <UniqueIdentifier>{162b3203-b5fe-45c4-bc50-cf068d8bec70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\3. Transfer\01. Door">
+      <UniqueIdentifier>{e9dfb6a5-b681-4a00-baff-a62a570db82d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\3. Transfer\02. Elevator">
+      <UniqueIdentifier>{59eb66f1-6787-421d-a4ad-3f9facd15782}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\3. Transfer\03. Post">
+      <UniqueIdentifier>{0c47ea3f-bd8f-483a-94d2-93a9b12233d9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -63,17 +75,11 @@
     <ClInclude Include="pch.h">
       <Filter>Default</Filter>
     </ClInclude>
-    <ClInclude Include="qMissileScript.h">
-      <Filter>Scripts</Filter>
-    </ClInclude>
     <ClInclude Include="qScriptMgr.h">
       <Filter>ScriptMgr</Filter>
     </ClInclude>
     <ClInclude Include="qPlayerScript.h">
       <Filter>Scripts\1. UNIT\1. Player</Filter>
-    </ClInclude>
-    <ClInclude Include="qPlatformScript.h">
-      <Filter>Scripts\3. Platform</Filter>
     </ClInclude>
     <ClInclude Include="qCameraMoveScript.h">
       <Filter>Scripts\0. Camera</Filter>
@@ -97,10 +103,22 @@
       <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\05. Krush</Filter>
     </ClInclude>
     <ClInclude Include="qPortalScript.h">
-      <Filter>Scripts\4. Portal</Filter>
+      <Filter>Scripts\2. Platform\03. Portal</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlatformScript.h">
+      <Filter>Scripts\2. Platform\01. Platform</Filter>
     </ClInclude>
     <ClInclude Include="qWallScript.h">
-      <Filter>Scripts\5. Wall</Filter>
+      <Filter>Scripts\2. Platform\02. Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="qMissileScript.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="qDoorScript.h">
+      <Filter>Scripts\3. Transfer\01. Door</Filter>
+    </ClInclude>
+    <ClInclude Include="qPostScript.h">
+      <Filter>Scripts\3. Transfer\03. Post</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -110,17 +128,11 @@
     <ClCompile Include="Scripts.cpp">
       <Filter>Default</Filter>
     </ClCompile>
-    <ClCompile Include="qMissileScript.cpp">
-      <Filter>Scripts</Filter>
-    </ClCompile>
     <ClCompile Include="qScriptMgr.cpp">
       <Filter>ScriptMgr</Filter>
     </ClCompile>
     <ClCompile Include="qPlayerScript.cpp">
       <Filter>Scripts\1. UNIT\1. Player</Filter>
-    </ClCompile>
-    <ClCompile Include="qPlatformScript.cpp">
-      <Filter>Scripts\3. Platform</Filter>
     </ClCompile>
     <ClCompile Include="qCameraMoveScript.cpp">
       <Filter>Scripts\0. Camera</Filter>
@@ -144,10 +156,22 @@
       <Filter>Scripts\1. UNIT\1. Player\PlayerSkill\05. Krush</Filter>
     </ClCompile>
     <ClCompile Include="qPortalScript.cpp">
-      <Filter>Scripts\4. Portal</Filter>
+      <Filter>Scripts\2. Platform\03. Portal</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlatformScript.cpp">
+      <Filter>Scripts\2. Platform\01. Platform</Filter>
     </ClCompile>
     <ClCompile Include="qWallScript.cpp">
-      <Filter>Scripts\5. Wall</Filter>
+      <Filter>Scripts\2. Platform\02. Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="qMissileScript.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="qDoorScript.cpp">
+      <Filter>Scripts\3. Transfer\01. Door</Filter>
+    </ClCompile>
+    <ClCompile Include="qPostScript.cpp">
+      <Filter>Scripts\3. Transfer\03. Post</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -160,6 +160,9 @@ call CodeGen.exe</Command>
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="qDoorCloseState.h" />
+    <ClInclude Include="qDoorOpenState.h" />
+    <ClInclude Include="qDoorStayState.h" />
     <ClInclude Include="qPlayerBookShootState.h" />
     <ClInclude Include="qPlayerCombo1State.h" />
     <ClInclude Include="qPlayerCombo2State.h" />
@@ -179,7 +182,11 @@ call CodeGen.exe</Command>
     <ClInclude Include="qPlayerRunState.h" />
     <ClInclude Include="qPlayerRunToIdleState.h" />
     <ClInclude Include="qPlayerRunUTurnState.h" />
+    <ClInclude Include="qPlayerTeleportFinishState.h" />
+    <ClInclude Include="qPlayerTeleportState.h" />
     <ClInclude Include="qPlayerWaitState.h" />
+    <ClInclude Include="qPostCloseState.h" />
+    <ClInclude Include="qPostOpenState.h" />
     <ClInclude Include="qStateMgr.h" />
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +196,9 @@ call CodeGen.exe</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="qDoorCloseState.cpp" />
+    <ClCompile Include="qDoorOpenState.cpp" />
+    <ClCompile Include="qDoorStayState.cpp" />
     <ClCompile Include="qPlayerBookShootState.cpp" />
     <ClCompile Include="qPlayerCombo1State.cpp" />
     <ClCompile Include="qPlayerCombo2State.cpp" />
@@ -208,7 +218,11 @@ call CodeGen.exe</Command>
     <ClCompile Include="qPlayerRunState.cpp" />
     <ClCompile Include="qPlayerRunToIdleState.cpp" />
     <ClCompile Include="qPlayerRunUTurnState.cpp" />
+    <ClCompile Include="qPlayerTeleportFinishState.cpp" />
+    <ClCompile Include="qPlayerTeleportState.cpp" />
     <ClCompile Include="qPlayerWaitState.cpp" />
+    <ClCompile Include="qPostCloseState.cpp" />
+    <ClCompile Include="qPostOpenState.cpp" />
     <ClCompile Include="qStateMgr.cpp" />
     <ClCompile Include="States.cpp" />
   </ItemGroup>

@@ -14,7 +14,7 @@ qPlayerBumpState::~qPlayerBumpState()
 
 void qPlayerBumpState::Enter()
 {
-	GetOwner()->FlipBookComponent()->Play(23, 15, false);
+	GetOwner()->FlipBookComponent()->Play(24, 15, false);
 }
 
 void qPlayerBumpState::FinalTick()

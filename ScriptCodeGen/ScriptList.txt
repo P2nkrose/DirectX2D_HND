@@ -3,10 +3,12 @@ qBookScript_Right
 qCameraMoveScript
 qComboScript
 qCrashScript
+qDoorScript
 qKrushScript
 qMissileScript
 qPlatformScript
 qPlayerScript
 qPortalScript
+qPostScript
 qRangeScript
 qWallScript

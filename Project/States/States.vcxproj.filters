@@ -79,11 +79,44 @@
     <Filter Include="States\01. Player\21. Krush">
       <UniqueIdentifier>{3a3079da-bc45-42b2-bc78-f68611565e76}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States\01. Player\22. Teleport">
+    <Filter Include="States\02. Transfer">
+      <UniqueIdentifier>{7fe00858-eb2d-4c2e-9335-83727004f5e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\02. Transfer\01. Door">
+      <UniqueIdentifier>{604c1337-5f6f-40c6-b140-29746004912f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\02. Transfer\02. Elevator">
+      <UniqueIdentifier>{83c41c28-2325-4ee7-8f7e-fa140380abf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\02. Transfer\01. Door\01. DoorStay">
+      <UniqueIdentifier>{84ddefb6-0360-4cae-b2d5-149b6e0812fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\02. Transfer\01. Door\02. DoorOpen">
+      <UniqueIdentifier>{410b0cd8-5f9a-4fae-9aed-9aefe72b327d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\02. Transfer\01. Door\03. DoorClose">
+      <UniqueIdentifier>{3acbe0fe-76b2-45c9-9c6e-11a2afd2eca4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\02. Transfer\03. Post">
+      <UniqueIdentifier>{d8059b6c-348b-4471-9582-3dc411952849}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\02. Transfer\03. Post\01. PostClose">
+      <UniqueIdentifier>{07a45a0c-4ade-41df-a403-cbc1bde53be4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\02. Transfer\03. Post\02. PostOpen">
+      <UniqueIdentifier>{c41d148b-654a-404a-9d12-7a549c800306}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\24. Bump">
+      <UniqueIdentifier>{76d134a5-11e9-46a4-8d0c-50a6db5ca67b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\22-23. Teleport">
       <UniqueIdentifier>{4166c5b8-97b0-402d-babf-b25fcc71fa58}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States\01. Player\23. Bump">
-      <UniqueIdentifier>{76d134a5-11e9-46a4-8d0c-50a6db5ca67b}</UniqueIdentifier>
+    <Filter Include="States\01. Player\22-23. Teleport\1. Teleport">
+      <UniqueIdentifier>{a9788a1d-00bc-426d-a805-60dde32f9909}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\22-23. Teleport\2. TeleportFinish">
+      <UniqueIdentifier>{5bebd528-d2b7-457e-bdc6-973c80a442bf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -154,7 +187,28 @@
       <Filter>States\01. Player\01. Wait</Filter>
     </ClInclude>
     <ClInclude Include="qPlayerBumpState.h">
-      <Filter>States\01. Player\23. Bump</Filter>
+      <Filter>States\01. Player\24. Bump</Filter>
+    </ClInclude>
+    <ClInclude Include="qDoorStayState.h">
+      <Filter>States\02. Transfer\01. Door\01. DoorStay</Filter>
+    </ClInclude>
+    <ClInclude Include="qDoorOpenState.h">
+      <Filter>States\02. Transfer\01. Door\02. DoorOpen</Filter>
+    </ClInclude>
+    <ClInclude Include="qDoorCloseState.h">
+      <Filter>States\02. Transfer\01. Door\03. DoorClose</Filter>
+    </ClInclude>
+    <ClInclude Include="qPostCloseState.h">
+      <Filter>States\02. Transfer\03. Post\01. PostClose</Filter>
+    </ClInclude>
+    <ClInclude Include="qPostOpenState.h">
+      <Filter>States\02. Transfer\03. Post\02. PostOpen</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerTeleportState.h">
+      <Filter>States\01. Player\22-23. Teleport\1. Teleport</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerTeleportFinishState.h">
+      <Filter>States\01. Player\22-23. Teleport\2. TeleportFinish</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -225,7 +279,28 @@
       <Filter>States\01. Player\01. Wait</Filter>
     </ClCompile>
     <ClCompile Include="qPlayerBumpState.cpp">
-      <Filter>States\01. Player\23. Bump</Filter>
+      <Filter>States\01. Player\24. Bump</Filter>
+    </ClCompile>
+    <ClCompile Include="qDoorStayState.cpp">
+      <Filter>States\02. Transfer\01. Door\01. DoorStay</Filter>
+    </ClCompile>
+    <ClCompile Include="qDoorOpenState.cpp">
+      <Filter>States\02. Transfer\01. Door\02. DoorOpen</Filter>
+    </ClCompile>
+    <ClCompile Include="qDoorCloseState.cpp">
+      <Filter>States\02. Transfer\01. Door\03. DoorClose</Filter>
+    </ClCompile>
+    <ClCompile Include="qPostCloseState.cpp">
+      <Filter>States\02. Transfer\03. Post\01. PostClose</Filter>
+    </ClCompile>
+    <ClCompile Include="qPostOpenState.cpp">
+      <Filter>States\02. Transfer\03. Post\02. PostOpen</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerTeleportState.cpp">
+      <Filter>States\01. Player\22-23. Teleport\1. Teleport</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerTeleportFinishState.cpp">
+      <Filter>States\01. Player\22-23. Teleport\2. TeleportFinish</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

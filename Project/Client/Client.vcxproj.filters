@@ -161,9 +161,6 @@
     <Filter Include="3. Manager\04. Level\04. BOSS">
       <UniqueIdentifier>{163dd569-80b0-4191-b0ec-acb923a2df7f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Manager\04. Level\05. LOADING">
-      <UniqueIdentifier>{11d16984-67ae-48eb-a621-84190c8b9779}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="targetver.h">

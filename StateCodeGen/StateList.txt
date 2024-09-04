@@ -1,3 +1,6 @@
+qDoorCloseState
+qDoorOpenState
+qDoorStayState
 qPlayerBookShootState
 qPlayerBumpState
 qPlayerCombo1State
@@ -17,4 +20,8 @@ qPlayerRangeState
 qPlayerRunState
 qPlayerRunToIdleState
 qPlayerRunUTurnState
+qPlayerTeleportFinishState
+qPlayerTeleportState
 qPlayerWaitState
+qPostCloseState
+qPostOpenState

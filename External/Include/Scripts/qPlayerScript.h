@@ -61,6 +61,9 @@ private:
 	tUnitInfo			m_CurUnitInfo;
 	tUnitInfo			m_PrevUnitInfo;
 
+	qGameObject*		RightBook;
+	qGameObject*		LeftBook;
+
 
 	Vec3				m_PlayerPos;
 	Vec3				m_PlayerRot;
@@ -84,5 +87,6 @@ private:
 
 	int					m_CurJumpCount;
 	int					m_DoubleJumpCount;
+
 };
 

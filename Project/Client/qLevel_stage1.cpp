@@ -24,9 +24,15 @@
 #include <Scripts/qCameraMoveScript.h>
 #include <Scripts/qPlatformScript.h>
 #include <Scripts/qPortalScript.h>
+#include <Scripts/qDoorScript.h>
+#include <Scripts/qPostScript.h>
 
 #include <Engine/qSetColorCS.h>
 #include <Engine/qStructuredBuffer.h>
+
+// ========================                    
+//      Player State                         * INDEX *
+// ========================
 
 #include <States/qStateMgr.h>
 #include <States/qPlayerIdleState.h>			// 0
@@ -51,8 +57,22 @@
 #include <States/qPlayerCrashState.h>			// 19
 #include <States/qPlayerRangeState.h>			// 20
 #include <States/qPlayerKrushState.h>			// 21
+#include <States/qPlayerTeleportState.h>		// 22
+#include <States/qPlayerTeleportFinishState.h>	// 23
+#include <States/qPlayerBumpState.h>			// 24
 
-#include <States/qPlayerBumpState.h>			// 23
+
+// ========================                    
+//      Transfer State                         * INDEX *
+// ========================
+
+
+#include <States/qDoorStayState.h>				// 1
+#include <States/qDoorOpenState.h>				// 2
+#include <States/qDoorCloseState.h>				// 3
+
+#include <States/qPostCloseState.h>				// 4
+#include <States/qPostOpenState.h>				// 5
 
 
 #include "qLevelSaveLoad.h"
@@ -93,7 +113,7 @@ void qLevel_stage1::CreateStage1()
 	pStage1->GetLayer(6)->SetName(L"MonsterSkill");
 	pStage1->GetLayer(7)->SetName(L"Boss");
 	pStage1->GetLayer(8)->SetName(L"BossSkill");
-	pStage1->GetLayer(9)->SetName(L"Portal");
+	pStage1->GetLayer(9)->SetName(L"Transfer");
 	pStage1->GetLayer(31)->SetName(L"UI");
 
 
@@ -242,8 +262,14 @@ void qLevel_stage1::CreateStage1()
 	Ptr<qFlipBook> pDeathKrush = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\krush_final.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(21, pDeathKrush);
 
+	Ptr<qFlipBook> pDeathTeleport = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\teleport.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(22, pDeathTeleport);
+
+	Ptr<qFlipBook> pDeathTeleportFinish = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\teleport_finish.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(23, pDeathTeleportFinish);
+
 	Ptr<qFlipBook> pDeathBump = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\hit.flip");
-	pPlayer->FlipBookComponent()->AddFlipBook(23, pDeathBump);
+	pPlayer->FlipBookComponent()->AddFlipBook(24, pDeathBump);
 
 	pPlayer->FlipBookComponent()->Play(0, 10, true);
 
@@ -286,8 +312,9 @@ void qLevel_stage1::CreateStage1()
 	pPlayer->FSM()->AddState(L"Crash", new qPlayerCrashState);				// 19
 	pPlayer->FSM()->AddState(L"Range", new qPlayerRangeState);				// 20
 	pPlayer->FSM()->AddState(L"Krush", new qPlayerKrushState);				// 21
-
-	pPlayer->FSM()->AddState(L"Bump", new qPlayerBumpState);				// 23
+	pPlayer->FSM()->AddState(L"Teleport", new qPlayerTeleportState);		// 22
+	pPlayer->FSM()->AddState(L"TeleportFinish", new qPlayerTeleportFinishState);	// 23
+	pPlayer->FSM()->AddState(L"Bump", new qPlayerBumpState);				// 24
 
 	pPlayer->FSM()->ChangeState(L"Idle");
 
@@ -308,21 +335,90 @@ void qLevel_stage1::CreateStage1()
 	//if (camScript != nullptr)
 	//	camScript->SetFollowObject(pPlayer);
 	
+	// =============
+	//   TRANSFER
+	// =============
+
+	qGameObject* pDoor = new qGameObject;
+	pDoor->SetName(L"Door");
+	pDoor->AddComponent(new qDoorScript);
+
+	pDoor->AddComponent(new qTransform);
+	pDoor->Transform()->SetRelativePos(875.f, -352.f, 10.f);
+	pDoor->Transform()->SetRelativeScale(268.f, 265.f, 1.f);
+
+	pDoor->AddComponent(new qMeshRender);
+	pDoor->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pDoor->MeshRender()->SetMaterial(pMtrl);
+
+	pDoor->AddComponent(new qFlipBookComponent);
+	
+	Ptr<qFlipBook> pDoorStay = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\doorstay3.flip");
+	pDoor->FlipBookComponent()->AddFlipBook(1, pDoorStay);
+
+	Ptr<qFlipBook> pDoorOpen = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\dooropen.flip");
+	pDoor->FlipBookComponent()->AddFlipBook(2, pDoorOpen);
+
+	Ptr<qFlipBook> pDoorClose = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\doorclose.flip");
+	pDoor->FlipBookComponent()->AddFlipBook(3, pDoorClose);
+
+	pDoor->FlipBookComponent()->Play(1, 10, true);
+
+	pDoor->AddComponent(new qCollider2D);
+	pDoor->Collider2D()->SetIndependentScale(false);
+	pDoor->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pDoor->Collider2D()->SetScale(Vec3(0.5f, 1.f, 1.f));
+
+	pDoor->AddComponent(new qFSM);
+
+	pDoor->FSM()->AddState(L"DoorStay", new qDoorStayState);		// 24
+	pDoor->FSM()->AddState(L"DoorOpen", new qDoorOpenState);		// 25
+	pDoor->FSM()->AddState(L"DoorClose", new qDoorCloseState);		// 26
+	
+
+	pDoor->FSM()->ChangeState(L"DoorStay");
+
+	pStage1->AddObject(9, pDoor);
+
 
 	// 포탈 오브젝트
-	qGameObject* pPortal = new qGameObject;
-	pPortal->SetName(L"Portal");
-	pPortal->AddComponent(new qTransform);
-	pPortal->Transform()->SetRelativePos(600.f, -400.f, 10.f);
-	pPortal->Transform()->SetRelativeScale(150.f, 150.f, 1.f);
+	//qGameObject* pPortal = new qGameObject;
+	//pPortal->SetName(L"Portal");
+	//pPortal->AddComponent(new qTransform);
+	//pPortal->Transform()->SetRelativePos(600.f, -400.f, 10.f);
+	//pPortal->Transform()->SetRelativeScale(150.f, 150.f, 1.f);
+	//
+	//pPortal->AddComponent(new qCollider2D);
+	//pPortal->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	//pPortal->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.));
+	//
+	//pPortal->AddComponent(new qPortalScript);
+	//
+	//pStage1->AddObject(9, pPortal);
 
-	pPortal->AddComponent(new qCollider2D);
-	pPortal->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
-	pPortal->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.));
 
-	pPortal->AddComponent(new qPortalScript);
 
-	pStage1->AddObject(9, pPortal);
+	// Post Process
+	qGameObject* pPostProcess = new qGameObject;
+	pPostProcess->SetName(L"Post");
+
+	pPostProcess->AddComponent(new qPostScript);
+	pPostProcess->AddComponent(new qTransform);
+	
+	pPostProcess->AddComponent(new qMeshRender);
+	pPostProcess->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pPostProcess->MeshRender()->SetMaterial(pMtrl);
+	
+	pPostProcess->AddComponent(new qFlipBookComponent);
+	
+	Ptr<qFlipBook> pPostClose = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\chang.flip");
+	pPostProcess->FlipBookComponent()->AddFlipBook(4, pPostClose);
+
+	pPostProcess->AddComponent(new qFSM);
+	pPostProcess->FSM()->AddState(L"PostClose", new qPostCloseState);
+	
+	pStage1->AddObject(9, pPostProcess);
+
 
 	// Monster Object
 	qGameObject* pMonster = new qGameObject;
@@ -357,8 +453,8 @@ void qLevel_stage1::CreateStage1()
 	// 충돌 지정
 	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Player vs Platform
 	qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
-	qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
-
+	qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Transfer
+	qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
 }
 
 void qLevel_stage1::CreatePrefab()

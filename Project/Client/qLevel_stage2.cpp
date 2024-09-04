@@ -539,7 +539,7 @@ void qLevel_stage2::CreateStage2()
 	//pPlayer->AddChild(pLight);
 
 	pPlayer->AddComponent(new qTransform);
-	pPlayer->Transform()->SetRelativePos(2592.f, -227.f, 10.f);
+	pPlayer->Transform()->SetRelativePos(-4910.f, -200.f, 10.f);
 	pPlayer->Transform()->SetRelativeScale(130.f, 130.f, 1.f);
 
 	pPlayer->AddComponent(new qMeshRender);
@@ -618,7 +618,7 @@ void qLevel_stage2::CreateStage2()
 	pPlayer->RigidBody()->UseGravity(true);
 	pPlayer->RigidBody()->SetMaxGravitySpeed(1500.f);
 	pPlayer->RigidBody()->SetJumpSpeed(400.f);
-	pPlayer->RigidBody()->SetGround(false);
+	pPlayer->RigidBody()->SetGround(true);
 	pPlayer->RigidBody()->SetWall(false);
 
 	pPlayer->AddComponent(new qCollider2D);
@@ -660,12 +660,12 @@ void qLevel_stage2::CreateStage2()
 
 
 	// 충돌 지정
-	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
-	qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
-	qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
-	qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
+	//qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 11);		// Player vs Wall (Bump)
 
 
-	ChangeLevel(pStage2, LEVEL_STATE::STOP);
+	//ChangeLevel(pStage2, LEVEL_STATE::STOP);
 
 }

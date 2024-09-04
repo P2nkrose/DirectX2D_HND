@@ -4,6 +4,9 @@
 #include "qBookScript_Left.h"
 #include "qBookScript_Right.h"
 #include "qComboScript.h"
+#include "qPostScript.h"
+#include "States/qPostCloseState.h"
+
 
 #include <Engine/qLevel.h>
 #include <Engine/qLevelMgr.h>
@@ -154,7 +157,7 @@ void qPlayerScript::Tick()
 			qGameObject* pPlayer = qLevelMgr::GetInst()->FindObjectByName(L"Player");
 			Vec3 vPlayerPos = pPlayer->Transform()->GetRelativePos();
 
-			qGameObject* LeftBook = new qGameObject;
+			LeftBook = new qGameObject;
 			LeftBook->SetName(L"LeftBookHitBox");
 			LeftBook->AddComponent(new qBookScript_Left);
 			LeftBook->AddComponent(new qTransform);
@@ -187,7 +190,7 @@ void qPlayerScript::Tick()
 			qGameObject* pPlayer = qLevelMgr::GetInst()->FindObjectByName(L"Player");
 			Vec3 vPlayerPos = pPlayer->Transform()->GetRelativePos();
 
-			qGameObject* RightBook = new qGameObject;
+			RightBook = new qGameObject;
 			RightBook->SetName(L"RightBookHitBox");
 			RightBook->AddComponent(new qBookScript_Right);
 			RightBook->AddComponent(new qTransform);
@@ -212,6 +215,8 @@ void qPlayerScript::Tick()
 			pCurLevel->AddObject(4, RightBook);
 		}
 	}
+
+
 
 
 
@@ -335,6 +340,14 @@ void qPlayerScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherO
 void qPlayerScript::Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)
 {
 	//qLevelMgr::GetInst()->ChangeLevel(L"stage1");
+
+	if (_OtherObject->GetName() == L"Door")
+	{
+		if (KEY_TAP(KEY::UP))
+		{
+			FSM()->ChangeState(L"Teleport");
+		}
+	}
 }
 
 void qPlayerScript::EndOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)
