@@ -25,10 +25,15 @@
 #include <Scripts/qCameraMoveScript.h>
 #include <Scripts/qPlatformScript.h>
 #include <Scripts/qWallScript.h>
-#include <Scripts/qPortalScript.h>
+#include <Scripts/qPostScript.h>
+
 
 #include <Engine/qSetColorCS.h>
 #include <Engine/qStructuredBuffer.h>
+
+// ========================                    
+//      Player State                         * INDEX *
+// ========================
 
 #include <States/qStateMgr.h>
 #include <States/qPlayerIdleState.h>			// 0
@@ -55,6 +60,18 @@
 #include <States/qPlayerKrushState.h>			// 21
 
 #include <States/qPlayerBumpState.h>			// 23
+
+
+// ========================                    
+//      Transfer State                         * INDEX *
+// ========================
+
+#include <States/qPostCloseState.h>				// 4
+#include <States/qPostOpenState.h>				// 5
+
+#include <States/qElevatorStayState.h>			// 6
+#include <States/qElevatorOpenState.h>			// 7
+#include <States/qElevatorCloseState.h>			// 8
 
 
 #include "qLevelSaveLoad.h"
@@ -175,7 +192,7 @@ void qLevel_stage2::CreateStage2()
 	pPlatform4->AddComponent(new qPlatformScript);
 	pPlatform4->AddComponent(new qTransform);
 	pPlatform4->Transform()->SetRelativePos(-4061.f, -667.f, 10.f);
-	pPlatform4->Transform()->SetRelativeScale(745.f, 15.f, 1.f);
+	pPlatform4->Transform()->SetRelativeScale(770.f, 15.f, 1.f);
 	pPlatform4->AddComponent(new qCollider2D);
 	pPlatform4->Collider2D()->SetIndependentScale(false);
 	pPlatform4->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -516,27 +533,89 @@ void qLevel_stage2::CreateStage2()
 	pStage2->AddObject(11, pWall11);
 
 
+	// ==================
+	//    광원 오브젝트
+	// ==================
 
-
-
-	// 광원 오브젝트
+	// 광원오브젝트 - 맵 전체 태양광
 	qGameObject* pLight = new qGameObject;
-	pLight->SetName(L"PointLight 2");
+	pLight->SetName(L"PointLightMap");
 	pLight->AddComponent(new qTransform);
 	pLight->AddComponent(new qLight2D);
-
+	
 	pLight->Light2D()->SetLightType(LIGHT_TYPE::DIRECTIONAL);
 	pLight->Light2D()->SetLightColor(Vec3(1.f, 1.f, 1.f));
-	pLight->Light2D()->SetRadius(1000.f);
-
+	pLight->Light2D()->SetRadius(500.f);
+	
 	pStage2->AddObject(0, pLight);
+
+	// 광원 오브젝트 - 엘리베이터용
+	qGameObject* pLightEle1 = new qGameObject;
+	pLightEle1->SetName(L"PointLightEle");
+	pLightEle1->AddComponent(new qTransform);
+	pLightEle1->AddComponent(new qLight2D);
+
+	pLightEle1->Light2D()->SetLightType(LIGHT_TYPE::POINT);
+	pLightEle1->Light2D()->SetLightColor(Vec3(1.f, 1.f, 1.f));
+	pLightEle1->Light2D()->SetRadius(100.f);
+
+	// 광원 오브젝트 - 캐릭터용
+	qGameObject* pLightPlayer = new qGameObject;
+	pLightPlayer->SetName(L"PointLightPlayer");
+	pLightPlayer->AddComponent(new qTransform);
+	pLightPlayer->AddComponent(new qLight2D);
+
+	pLightPlayer->Light2D()->SetLightType(LIGHT_TYPE::POINT);
+	pLightPlayer->Light2D()->SetLightColor(Vec3(1.f, 1.f, 1.f));
+	pLightPlayer->Light2D()->SetRadius(100.f);
+
+
+
+
+	// =============
+	//   TRANSFER
+	// =============
+
+	qGameObject* pElevator1 = new qGameObject;
+	pElevator1->SetName(L"pElevator1");
+	pElevator1->AddChild(pLightEle1);
+
+	pElevator1->AddComponent(new qTransform);
+	pElevator1->Transform()->SetRelativePos(-4924.f, -137.f, 10.f);
+	pElevator1->Transform()->SetRelativeScale(550.f, 400.f, 1.f);
+
+	pElevator1->AddComponent(new qMeshRender);
+	pElevator1->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pElevator1->MeshRender()->SetMaterial(pMtrl);
+
+	pElevator1->AddComponent(new qFlipBookComponent);
+
+	Ptr<qFlipBook> pElevatorStay = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\elevatorstay.flip");
+	pElevator1->FlipBookComponent()->AddFlipBook(6, pElevatorStay);
+	
+	Ptr<qFlipBook> pElevatorOpen = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\elevatoropen.flip");
+	pElevator1->FlipBookComponent()->AddFlipBook(7, pElevatorOpen);
+
+	pElevator1->FlipBookComponent()->Play(7, 15, false);
+
+	pElevator1->AddComponent(new qFSM);
+
+	pElevator1->FSM()->AddState(L"ElevatorStay", new qElevatorStayState);		// 6
+	pElevator1->FSM()->AddState(L"ElevatorOpen", new qElevatorOpenState);		// 7
+	pElevator1->FSM()->AddState(L"ElevatorClose", new qElevatorCloseState);		// 8
+
+
+	pElevator1->FSM()->ChangeState(L"ElevatorOpen");
+
+	pStage2->AddObject(9, pElevator1);
+
 
 
 	// 플레이어 오브젝트 
 	qGameObject* pPlayer = new qGameObject;
 	pPlayer->SetName(L"Player");
 	pPlayer->AddComponent(new qPlayerScript);
-	//pPlayer->AddChild(pLight);
+	pPlayer->AddChild(pLightPlayer);
 
 	pPlayer->AddComponent(new qTransform);
 	pPlayer->Transform()->SetRelativePos(-4910.f, -200.f, 10.f);
@@ -606,8 +685,14 @@ void qLevel_stage2::CreateStage2()
 	Ptr<qFlipBook> pDeathKrush = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\krush_final.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(21, pDeathKrush);
 
+	Ptr<qFlipBook> pDeathTeleport = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\teleport.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(22, pDeathTeleport);
+
+	Ptr<qFlipBook> pDeathTeleportFinish = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\teleport_finish.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(23, pDeathTeleportFinish);
+
 	Ptr<qFlipBook> pDeathBump = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\hit.flip");
-	pPlayer->FlipBookComponent()->AddFlipBook(23, pDeathBump);
+	pPlayer->FlipBookComponent()->AddFlipBook(24, pDeathBump);
 
 	pPlayer->FlipBookComponent()->Play(0, 10, true);
 
@@ -659,13 +744,39 @@ void qLevel_stage2::CreateStage2()
 	pStage2->AddObject(3, pPlayer);
 
 
+
+	// Post Process (Level Change)
+	qGameObject* pPostProcess = new qGameObject;
+	pPostProcess->SetName(L"PostOpen");
+	
+	pPostProcess->AddComponent(new qPostScript);
+	pPostProcess->AddComponent(new qTransform);
+	
+	pPostProcess->AddComponent(new qMeshRender);
+	pPostProcess->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pPostProcess->MeshRender()->SetMaterial(pMtrl);
+	
+	pPostProcess->AddComponent(new qFlipBookComponent);
+	
+	Ptr<qFlipBook> pPostOpen = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\postopen.flip");
+	pPostProcess->FlipBookComponent()->AddFlipBook(5, pPostOpen);
+	
+	pPostProcess->AddComponent(new qFSM);
+	pPostProcess->FSM()->AddState(L"PostOpen", new qPostOpenState);
+	
+	pPostProcess->FSM()->ChangeState(L"PostOpen");
+	
+	pStage2->AddObject(9, pPostProcess);
+
+
+
 	// 충돌 지정
-	//qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 11);		// Player vs Wall (Bump)
+	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
+	qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
+	qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
+	qCollisionMgr::GetInst()->CollisionCheck(3, 11);		// Player vs Wall (Bump)
 
 
-	//ChangeLevel(pStage2, LEVEL_STATE::STOP);
+	ChangeLevel(pStage2, LEVEL_STATE::STOP);
 
 }

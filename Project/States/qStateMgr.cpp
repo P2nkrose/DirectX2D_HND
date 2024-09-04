@@ -4,6 +4,9 @@
 #include "qDoorCloseState.h"
 #include "qDoorOpenState.h"
 #include "qDoorStayState.h"
+#include "qElevatorCloseState.h"
+#include "qElevatorOpenState.h"
+#include "qElevatorStayState.h"
 #include "qPlayerBookShootState.h"
 #include "qPlayerBumpState.h"
 #include "qPlayerCombo1State.h"
@@ -34,6 +37,9 @@ void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qDoorCloseState");
 	_vec.push_back(L"qDoorOpenState");
 	_vec.push_back(L"qDoorStayState");
+	_vec.push_back(L"qElevatorCloseState");
+	_vec.push_back(L"qElevatorOpenState");
+	_vec.push_back(L"qElevatorStayState");
 	_vec.push_back(L"qPlayerBookShootState");
 	_vec.push_back(L"qPlayerBumpState");
 	_vec.push_back(L"qPlayerCombo1State");
@@ -68,6 +74,12 @@ qState * qStateMgr::GetState(const wstring& _strStateName)
 		return new qDoorOpenState;
 	if (L"qDoorStayState" == _strStateName)
 		return new qDoorStayState;
+	if (L"qElevatorCloseState" == _strStateName)
+		return new qElevatorCloseState;
+	if (L"qElevatorOpenState" == _strStateName)
+		return new qElevatorOpenState;
+	if (L"qElevatorStayState" == _strStateName)
+		return new qElevatorStayState;
 	if (L"qPlayerBookShootState" == _strStateName)
 		return new qPlayerBookShootState;
 	if (L"qPlayerBumpState" == _strStateName)
@@ -131,6 +143,15 @@ qState * qStateMgr::GetState(UINT _iStateType)
 		break;
 	case (UINT)STATE_TYPE::DOORSTAYSTATE:
 		return new qDoorStayState;
+		break;
+	case (UINT)STATE_TYPE::ELEVATORCLOSESTATE:
+		return new qElevatorCloseState;
+		break;
+	case (UINT)STATE_TYPE::ELEVATOROPENSTATE:
+		return new qElevatorOpenState;
+		break;
+	case (UINT)STATE_TYPE::ELEVATORSTAYSTATE:
+		return new qElevatorStayState;
 		break;
 	case (UINT)STATE_TYPE::PLAYERBOOKSHOOTSTATE:
 		return new qPlayerBookShootState;
@@ -222,6 +243,18 @@ const wchar_t * qStateMgr::GetStateName(qState * _pState)
 
 	case STATE_TYPE::DOORSTAYSTATE:
 		return L"qDoorStayState";
+		break;
+
+	case STATE_TYPE::ELEVATORCLOSESTATE:
+		return L"qElevatorCloseState";
+		break;
+
+	case STATE_TYPE::ELEVATOROPENSTATE:
+		return L"qElevatorOpenState";
+		break;
+
+	case STATE_TYPE::ELEVATORSTAYSTATE:
+		return L"qElevatorStayState";
 		break;
 
 	case STATE_TYPE::PLAYERBOOKSHOOTSTATE:

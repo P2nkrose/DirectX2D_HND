@@ -335,12 +335,26 @@ void qLevel_stage1::CreateStage1()
 	//if (camScript != nullptr)
 	//	camScript->SetFollowObject(pPlayer);
 	
+
+	// 광원 오브젝트
+	qGameObject* pLightDoor = new qGameObject;
+	pLightDoor->SetName(L"PointLightDoor");
+	pLightDoor->AddComponent(new qTransform);
+	pLightDoor->AddComponent(new qLight2D);
+
+	pLightDoor->Light2D()->SetLightType(LIGHT_TYPE::POINT);
+	pLightDoor->Light2D()->SetLightColor(Vec3(1.f, 1.f, 1.f));
+	pLightDoor->Light2D()->SetRadius(100.f);
+
+
+
 	// =============
 	//   TRANSFER
 	// =============
 
 	qGameObject* pDoor = new qGameObject;
 	pDoor->SetName(L"Door");
+	pDoor->AddChild(pLightDoor);
 	pDoor->AddComponent(new qDoorScript);
 
 	pDoor->AddComponent(new qTransform);
@@ -381,26 +395,10 @@ void qLevel_stage1::CreateStage1()
 	pStage1->AddObject(9, pDoor);
 
 
-	// 포탈 오브젝트
-	//qGameObject* pPortal = new qGameObject;
-	//pPortal->SetName(L"Portal");
-	//pPortal->AddComponent(new qTransform);
-	//pPortal->Transform()->SetRelativePos(600.f, -400.f, 10.f);
-	//pPortal->Transform()->SetRelativeScale(150.f, 150.f, 1.f);
-	//
-	//pPortal->AddComponent(new qCollider2D);
-	//pPortal->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
-	//pPortal->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.));
-	//
-	//pPortal->AddComponent(new qPortalScript);
-	//
-	//pStage1->AddObject(9, pPortal);
 
-
-
-	// Post Process
+	// Post Process (Level Change)
 	qGameObject* pPostProcess = new qGameObject;
-	pPostProcess->SetName(L"Post");
+	pPostProcess->SetName(L"PostClose");
 
 	pPostProcess->AddComponent(new qPostScript);
 	pPostProcess->AddComponent(new qTransform);

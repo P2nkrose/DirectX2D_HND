@@ -39,7 +39,7 @@ void qPlayerTeleportState::Exit()
 	GetOwner()->Transform()->SetRelativeScale(OGScale);
 	GetOwner()->Collider2D()->SetScale(OGColScale);
 
-	qGameObject* pPost = qLevelMgr::GetInst()->FindObjectByName(L"Post");
+	qGameObject* pPost = qLevelMgr::GetInst()->FindObjectByName(L"PostClose");
 	pPost->FSM()->ChangeState(L"PostClose");
 
 	//qLevel* pStage1 = qLevelMgr::GetInst()->GetLevelbyName(L"stage1");

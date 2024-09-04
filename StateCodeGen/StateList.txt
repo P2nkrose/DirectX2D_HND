@@ -1,6 +1,9 @@
 qDoorCloseState
 qDoorOpenState
 qDoorStayState
+qElevatorCloseState
+qElevatorOpenState
+qElevatorStayState
 qPlayerBookShootState
 qPlayerBumpState
 qPlayerCombo1State

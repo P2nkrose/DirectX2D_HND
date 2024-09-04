@@ -163,6 +163,9 @@ call CodeGen.exe</Command>
     <ClInclude Include="qDoorCloseState.h" />
     <ClInclude Include="qDoorOpenState.h" />
     <ClInclude Include="qDoorStayState.h" />
+    <ClInclude Include="qElevatorCloseState.h" />
+    <ClInclude Include="qElevatorOpenState.h" />
+    <ClInclude Include="qElevatorStayState.h" />
     <ClInclude Include="qPlayerBookShootState.h" />
     <ClInclude Include="qPlayerCombo1State.h" />
     <ClInclude Include="qPlayerCombo2State.h" />
@@ -199,6 +202,9 @@ call CodeGen.exe</Command>
     <ClCompile Include="qDoorCloseState.cpp" />
     <ClCompile Include="qDoorOpenState.cpp" />
     <ClCompile Include="qDoorStayState.cpp" />
+    <ClCompile Include="qElevatorCloseState.cpp" />
+    <ClCompile Include="qElevatorOpenState.cpp" />
+    <ClCompile Include="qElevatorStayState.cpp" />
     <ClCompile Include="qPlayerBookShootState.cpp" />
     <ClCompile Include="qPlayerCombo1State.cpp" />
     <ClCompile Include="qPlayerCombo2State.cpp" />

@@ -4,6 +4,7 @@ qCameraMoveScript
 qComboScript
 qCrashScript
 qDoorScript
+qElevatorScript
 qKrushScript
 qMissileScript
 qPlatformScript

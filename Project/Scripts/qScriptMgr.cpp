@@ -7,6 +7,7 @@
 #include "qComboScript.h"
 #include "qCrashScript.h"
 #include "qDoorScript.h"
+#include "qElevatorScript.h"
 #include "qKrushScript.h"
 #include "qMissileScript.h"
 #include "qPlatformScript.h"
@@ -24,6 +25,7 @@ void qScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qComboScript");
 	_vec.push_back(L"qCrashScript");
 	_vec.push_back(L"qDoorScript");
+	_vec.push_back(L"qElevatorScript");
 	_vec.push_back(L"qKrushScript");
 	_vec.push_back(L"qMissileScript");
 	_vec.push_back(L"qPlatformScript");
@@ -48,6 +50,8 @@ qScript * qScriptMgr::GetScript(const wstring& _strScriptName)
 		return new qCrashScript;
 	if (L"qDoorScript" == _strScriptName)
 		return new qDoorScript;
+	if (L"qElevatorScript" == _strScriptName)
+		return new qElevatorScript;
 	if (L"qKrushScript" == _strScriptName)
 		return new qKrushScript;
 	if (L"qMissileScript" == _strScriptName)
@@ -88,6 +92,9 @@ qScript * qScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::DOORSCRIPT:
 		return new qDoorScript;
+		break;
+	case (UINT)SCRIPT_TYPE::ELEVATORSCRIPT:
+		return new qElevatorScript;
 		break;
 	case (UINT)SCRIPT_TYPE::KRUSHSCRIPT:
 		return new qKrushScript;
@@ -143,6 +150,10 @@ const wchar_t * qScriptMgr::GetScriptName(qScript * _pScript)
 
 	case SCRIPT_TYPE::DOORSCRIPT:
 		return L"qDoorScript";
+		break;
+
+	case SCRIPT_TYPE::ELEVATORSCRIPT:
+		return L"qElevatorScript";
 		break;
 
 	case SCRIPT_TYPE::KRUSHSCRIPT:

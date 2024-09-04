@@ -118,6 +118,15 @@
     <Filter Include="States\01. Player\22-23. Teleport\2. TeleportFinish">
       <UniqueIdentifier>{5bebd528-d2b7-457e-bdc6-973c80a442bf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="States\02. Transfer\02. Elevator\01. ElevatorStay">
+      <UniqueIdentifier>{c2fcdbdf-aac6-409d-8784-41aed8359222}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\02. Transfer\02. Elevator\02. ElevatorOpen">
+      <UniqueIdentifier>{f0881ce1-3048-4f0e-8c1a-672f65cd9c44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\02. Transfer\02. Elevator\03. ElevatorClose">
+      <UniqueIdentifier>{bd56b7df-effb-419f-a655-6cb3c5ec8559}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -210,6 +219,15 @@
     <ClInclude Include="qPlayerTeleportFinishState.h">
       <Filter>States\01. Player\22-23. Teleport\2. TeleportFinish</Filter>
     </ClInclude>
+    <ClInclude Include="qElevatorStayState.h">
+      <Filter>States\02. Transfer\02. Elevator\01. ElevatorStay</Filter>
+    </ClInclude>
+    <ClInclude Include="qElevatorOpenState.h">
+      <Filter>States\02. Transfer\02. Elevator\02. ElevatorOpen</Filter>
+    </ClInclude>
+    <ClInclude Include="qElevatorCloseState.h">
+      <Filter>States\02. Transfer\02. Elevator\03. ElevatorClose</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="States.cpp">
@@ -301,6 +319,15 @@
     </ClCompile>
     <ClCompile Include="qPlayerTeleportFinishState.cpp">
       <Filter>States\01. Player\22-23. Teleport\2. TeleportFinish</Filter>
+    </ClCompile>
+    <ClCompile Include="qElevatorStayState.cpp">
+      <Filter>States\02. Transfer\02. Elevator\01. ElevatorStay</Filter>
+    </ClCompile>
+    <ClCompile Include="qElevatorOpenState.cpp">
+      <Filter>States\02. Transfer\02. Elevator\02. ElevatorOpen</Filter>
+    </ClCompile>
+    <ClCompile Include="qElevatorCloseState.cpp">
+      <Filter>States\02. Transfer\02. Elevator\03. ElevatorClose</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

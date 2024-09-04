@@ -19,18 +19,15 @@ qPostCloseState::~qPostCloseState()
 
 void qPostCloseState::Enter()
 {
-	qGameObject* pPlayer = qLevelMgr::GetInst()->FindObjectByName(L"Player");
-	Vec3 PlayerPos = pPlayer->Transform()->GetRelativePos();
-
-
 	GetOwner()->Transform()->SetRelativePos(Vec3(474.f, -184.f, 10.f));
 	GetOwner()->Transform()->SetRelativeScale(Vec3(1600.f, 900.f, 0.f));
 
-	GetOwner()->FlipBookComponent()->Play(4, 10, false);
+	GetOwner()->FlipBookComponent()->Play(4, 15, false);
 }
 
 void qPostCloseState::FinalTick()
 {
+
 	if (GetOwner()->FlipBookComponent()->IsCurFlipBookFinished())
 	{
 		qLevel* pStage1 = qLevelMgr::GetInst()->GetLevelbyName(L"stage1");

@@ -28,6 +28,18 @@ void qPlayerTeleportFinishState::Enter()
 
 void qPlayerTeleportFinishState::FinalTick()
 {
+	//static bool flag = false;
+
+	//if (GetOwner()->FlipBookComponent()->IsCurFlipBookFinished() && !flag)
+	//{
+	//	for (size_t i = 0; i < GetOwner()->GetChildren().size(); ++i)
+	//	{
+	//		GetOwner()->GetChildren()[i]->Destroy();
+	//	}
+	//	GetOwner()->Destroy();
+
+	//	flag = true;
+	//}
 }
 
 void qPlayerTeleportFinishState::Exit()

@@ -151,14 +151,14 @@ void SE_Detail::SpriteInfo()
 	// BackGround
 	ImVec2 SliceSize = ImVec2(RightBottom.x - LeftTop.x, RightBottom.y - LeftTop.y);
 
-	//if (m_BackGround.x < SliceSize.x || m_BackGround.y < SliceSize.y)
-	//{
-	//	float size = SliceSize.x < SliceSize.y ? SliceSize.y : SliceSize.x;
-	//	m_BackGround = ImVec2(size, size);
-	//}
+	if (m_BackGround.x < SliceSize.x || m_BackGround.y < SliceSize.y)
+	{
+		float size = SliceSize.x < SliceSize.y ? SliceSize.y : SliceSize.x;
+		m_BackGround = ImVec2(size, size);
+	}
 
 	//m_BackGround = SliceSize;
-	m_BackGround = ImVec2(1600.f, 900.f);
+	m_BackGround = ImVec2(550.f, 400.f);
 
 	if (SliceSize.x == 0 || SliceSize.y == 0)
 	{
