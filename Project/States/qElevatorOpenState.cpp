@@ -37,5 +37,10 @@ void qElevatorOpenState::Exit()
 		qGameObject* pPlayer = qLevelMgr::GetInst()->FindObjectByName(L"Player");
 		pPlayer->FSM()->ChangeState(L"ElevatorOut");
 	}
+	if (pCurLevel->GetName() == L"stageboss")
+	{
+		qGameObject* pPlayer = qLevelMgr::GetInst()->FindObjectByName(L"Player");
+		pPlayer->FSM()->ChangeState(L"ElevatorOut");
+	}
 
 }

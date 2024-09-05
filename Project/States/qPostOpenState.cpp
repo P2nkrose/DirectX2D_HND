@@ -19,25 +19,44 @@ qPostOpenState::~qPostOpenState()
 
 void qPostOpenState::Enter()
 {
-	GetOwner()->Transform()->SetRelativePos(Vec3(-4910.f, -40.f, 10.f));
-	GetOwner()->Transform()->SetRelativeScale(Vec3(1600.f, 900.f, 0.f));
+	//qLevel* stage2 = qLevelMgr::GetInst()->GetLevelbyName(L"stage2");
+	//qLevel* stageboss = qLevelMgr::GetInst()->GetLevelbyName(L"stageboss");
+	//
+	//if (stage2)
+	//{
+	//	GetOwner()->Transform()->SetRelativePos(Vec3(-4910.f, -40.f, 30.f));
+	//	GetOwner()->Transform()->SetRelativeScale(Vec3(1600.f, 900.f, 0.f));
+	//}
+	//if (stageboss)
+	//{
+	//	GetOwner()->Transform()->SetRelativePos(Vec3(-390.f, -22.f, 30.f));
+	//	GetOwner()->Transform()->SetRelativeScale(Vec3(1600.f, 900.f, 0.f));
+	//}
+
+	
 
 	GetOwner()->FlipBookComponent()->Play(5, 20, false);
 }
 
 void qPostOpenState::FinalTick()
 {
-	static bool flag = false;
+	static bool flag1 = false;
+	static bool flag2 = false;
 
-	if (GetOwner()->FlipBookComponent()->IsCurFlipBookFinished() && !flag)
+	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+
+	if (pCurLevel->GetName() == L"stage2" && GetOwner()->FlipBookComponent()->IsCurFlipBookFinished() && !flag1)
 	{
 		GetOwner()->Destroy();
 
+		flag1 = true;
+	}
 
+	if (pCurLevel->GetName() == L"stageboss" && GetOwner()->FlipBookComponent()->IsCurFlipBookFinished() && !flag2)
+	{
+		GetOwner()->Destroy();
 
-
-	
-		flag = true;
+		flag2 = true;
 	}
 }
 

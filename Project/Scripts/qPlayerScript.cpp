@@ -105,8 +105,16 @@ void qPlayerScript::Begin()
 
 	if (pCurLevel->GetName() == L"stage2")
 	{
-		//FlipBookComponent()->Play(23, 10, false);
-		FSM()->ChangeState(L"TeleportFinish");
+		//RigidBody()->SetGround(true);
+		//FlipBookComponent()->Play(25, 10, false);
+		FSM()->ChangeState(L"Null");
+	}
+
+	if (pCurLevel->GetName() == L"stageboss")
+	{
+		
+		//FlipBookComponent()->Play(0, 10, false);
+		FSM()->ChangeState(L"Null");
 	}
 
 	
@@ -354,6 +362,14 @@ void qPlayerScript::Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject
 	//qLevelMgr::GetInst()->ChangeLevel(L"stage1");
 
 	if (_OtherObject->GetName() == L"Door")
+	{
+		if (KEY_TAP(KEY::UP))
+		{
+			FSM()->ChangeState(L"Teleport");
+		}
+	}
+
+	if (_OtherObject->GetName() == L"Elevator2")
 	{
 		if (KEY_TAP(KEY::UP))
 		{

@@ -13,6 +13,7 @@ qPlayerElevatorOutState::~qPlayerElevatorOutState()
 
 void qPlayerElevatorOutState::Enter()
 {
+
 	GetOwner()->FlipBookComponent()->Play(11, 15, true);
 }
 

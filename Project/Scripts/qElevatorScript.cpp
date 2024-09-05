@@ -24,6 +24,7 @@ void qElevatorScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _Othe
 
 void qElevatorScript::Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)
 {
+
 }
 
 void qElevatorScript::EndOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)

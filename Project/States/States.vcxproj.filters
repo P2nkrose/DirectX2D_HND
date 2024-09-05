@@ -43,9 +43,6 @@
     <Filter Include="States\01. Player\10. Dash">
       <UniqueIdentifier>{d3f29e91-b3dc-47eb-801d-f9982159c8b4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States\01. Player\11. Hit">
-      <UniqueIdentifier>{cbf38d21-daf3-464f-9999-4c68cd96ce78}</UniqueIdentifier>
-    </Filter>
     <Filter Include="States\01. Player\08. Falling">
       <UniqueIdentifier>{54bf9d45-04be-42b0-8b16-3a01767e936d}</UniqueIdentifier>
     </Filter>
@@ -124,8 +121,14 @@
     <Filter Include="States\02. Transfer\02. Elevator\03. ElevatorClose">
       <UniqueIdentifier>{bd56b7df-effb-419f-a655-6cb3c5ec8559}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States\01. Player\12. ElevatorOut">
+    <Filter Include="States\01. Player\25. PlayerNull">
+      <UniqueIdentifier>{32c3990f-8be3-40bb-a330-94ef534baeec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\11. ElevatorOut">
       <UniqueIdentifier>{8a11822b-5d48-4f25-9d3c-2a326cdb7469}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\12. Hit">
+      <UniqueIdentifier>{cbf38d21-daf3-464f-9999-4c68cd96ce78}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -229,7 +232,10 @@
       <Filter>States\02. Transfer\02. Elevator\03. ElevatorClose</Filter>
     </ClInclude>
     <ClInclude Include="qPlayerElevatorOutState.h">
-      <Filter>States\01. Player\12. ElevatorOut</Filter>
+      <Filter>States\01. Player\11. ElevatorOut</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerNullState.h">
+      <Filter>States\01. Player\25. PlayerNull</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -333,7 +339,10 @@
       <Filter>States\02. Transfer\02. Elevator\03. ElevatorClose</Filter>
     </ClCompile>
     <ClCompile Include="qPlayerElevatorOutState.cpp">
-      <Filter>States\01. Player\12. ElevatorOut</Filter>
+      <Filter>States\01. Player\11. ElevatorOut</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerNullState.cpp">
+      <Filter>States\01. Player\25. PlayerNull</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

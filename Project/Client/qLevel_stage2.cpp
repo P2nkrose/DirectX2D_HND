@@ -61,6 +61,7 @@
 #include <States/qPlayerTeleportState.h>		// 22
 #include <States/qPlayerTeleportFinishState.h>	// 23
 #include <States/qPlayerBumpState.h>			// 24
+#include <States/qPlayerNullState.h>			// 25
 
 
 // ========================                    
@@ -577,6 +578,7 @@ void qLevel_stage2::CreateStage2()
 	//   TRANSFER
 	// =============
 
+	// Elevator 1
 	qGameObject* pElevator1 = new qGameObject;
 	pElevator1->SetName(L"pElevator1");
 	//pElevator1->AddChild(pLightEle1);
@@ -611,29 +613,105 @@ void qLevel_stage2::CreateStage2()
 	pStage2->AddObject(9, pElevator1);
 
 
+	// Elevator 2
+	qGameObject* pElevator2 = new qGameObject;
+	pElevator2->SetName(L"Elevator2");
+	//pElevator1->AddChild(pLightEle1);
+
+	pElevator2->AddComponent(new qTransform);
+	pElevator2->Transform()->SetRelativePos(5190.f, -157.f, 30.f);
+	pElevator2->Transform()->SetRelativeScale(550.f, 400.f, 1.f);
+
+	pElevator2->AddComponent(new qMeshRender);
+	pElevator2->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pElevator2->MeshRender()->SetMaterial(pMtrl);
+
+	pElevator2->AddComponent(new qFlipBookComponent);
+
+	//Ptr<qFlipBook> pElevatorStay = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\elevatorstay.flip");
+	pElevator2->FlipBookComponent()->AddFlipBook(6, pElevatorStay);
+
+	//Ptr<qFlipBook> pElevatorOpen = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\elevatoropen.flip");
+	pElevator2->FlipBookComponent()->AddFlipBook(7, pElevatorOpen);
+
+	Ptr<qFlipBook> pElevatorClose = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\elevatorclose.flip");
+	pElevator2->FlipBookComponent()->AddFlipBook(8, pElevatorClose);
+
+	pElevator2->FlipBookComponent()->Play(6, 15, false);
+
+
+	pElevator2->AddComponent(new qCollider2D);
+	pElevator2->Collider2D()->SetIndependentScale(false);
+	pElevator2->Collider2D()->SetScale(Vec3(0.17f, 0.7f, 1.f));
+	pElevator2->Collider2D()->SetOffset(Vec3(0.03f, 0.f, 0.f));
+
+
+	pElevator2->AddComponent(new qFSM);
+
+	pElevator2->FSM()->AddState(L"ElevatorStay", new qElevatorStayState);		// 6
+	pElevator2->FSM()->AddState(L"ElevatorOpen", new qElevatorOpenState);		// 7
+	pElevator2->FSM()->AddState(L"ElevatorClose", new qElevatorCloseState);		// 8
+
+
+	pElevator2->FSM()->ChangeState(L"ElevatorStay");
+
+	pStage2->AddObject(9, pElevator2);
+
+
+
+
+
 
 	// Post Process (Level Change)
-	qGameObject* pPostProcess = new qGameObject;
-	pPostProcess->SetName(L"PostOpen");
+	qGameObject* pPostProcess1 = new qGameObject;
+	pPostProcess1->SetName(L"PostOpen");
 
-	pPostProcess->AddComponent(new qPostScript);
-	pPostProcess->AddComponent(new qTransform);
+	pPostProcess1->AddComponent(new qPostScript);
+	pPostProcess1->AddComponent(new qTransform);
+	pPostProcess1->Transform()->SetRelativePos(Vec3(-4910.f, -40.f, 30.f));
+	pPostProcess1->Transform()->SetRelativeScale(Vec3(1600.f, 900.f, 0.f));
 
-	pPostProcess->AddComponent(new qMeshRender);
-	pPostProcess->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	pPostProcess->MeshRender()->SetMaterial(pMtrl);
+	pPostProcess1->AddComponent(new qMeshRender);
+	pPostProcess1->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pPostProcess1->MeshRender()->SetMaterial(pMtrl);
 
-	pPostProcess->AddComponent(new qFlipBookComponent);
+	pPostProcess1->AddComponent(new qFlipBookComponent);
+
 
 	Ptr<qFlipBook> pPostOpen = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\postopen.flip");
-	pPostProcess->FlipBookComponent()->AddFlipBook(5, pPostOpen);
+	pPostProcess1->FlipBookComponent()->AddFlipBook(5, pPostOpen);
 
-	pPostProcess->AddComponent(new qFSM);
-	pPostProcess->FSM()->AddState(L"PostOpen", new qPostOpenState);
+	pPostProcess1->AddComponent(new qFSM);
+	pPostProcess1->FSM()->AddState(L"PostOpen", new qPostOpenState);
+	
 
-	pPostProcess->FSM()->ChangeState(L"PostOpen");
+	pPostProcess1->FSM()->ChangeState(L"PostOpen");
 
-	pStage2->AddObject(9, pPostProcess);
+	pStage2->AddObject(9, pPostProcess1);
+
+
+
+
+	qGameObject* pPostProcess2 = new qGameObject;
+	pPostProcess2->SetName(L"PostClose");
+
+	pPostProcess2->AddComponent(new qPostScript);
+	pPostProcess2->AddComponent(new qTransform);
+
+	pPostProcess2->AddComponent(new qMeshRender);
+	pPostProcess2->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pPostProcess2->MeshRender()->SetMaterial(pMtrl);
+
+	pPostProcess2->AddComponent(new qFlipBookComponent);
+
+	Ptr<qFlipBook> pPostClose = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\chang.flip");
+	pPostProcess2->FlipBookComponent()->AddFlipBook(4, pPostClose);
+
+
+	pPostProcess2->AddComponent(new qFSM);
+	pPostProcess2->FSM()->AddState(L"PostClose", new qPostCloseState);
+
+	pStage2->AddObject(9, pPostProcess2);
 
 
 
@@ -724,6 +802,9 @@ void qLevel_stage2::CreateStage2()
 	Ptr<qFlipBook> pDeathBump = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\hit.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(24, pDeathBump);
 
+	Ptr<qFlipBook> pDeathNull = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\playernull.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(25, pDeathNull);
+
 	//pPlayer->FlipBookComponent()->Play(0, 10, true);
 
 	pPlayer->AddComponent(new qRigidBody);
@@ -768,9 +849,11 @@ void qLevel_stage2::CreateStage2()
 	pPlayer->FSM()->AddState(L"Range", new qPlayerRangeState);				// 20
 	pPlayer->FSM()->AddState(L"Krush", new qPlayerKrushState);				// 21
 
+	pPlayer->FSM()->AddState(L"Teleport", new qPlayerTeleportState);		// 22
 	pPlayer->FSM()->AddState(L"TeleportFinish", new qPlayerTeleportFinishState);	// 23
 
-	pPlayer->FSM()->AddState(L"Bump", new qPlayerBumpState);				// 23
+	pPlayer->FSM()->AddState(L"Bump", new qPlayerBumpState);				// 24
+	pPlayer->FSM()->AddState(L"Null", new qPlayerNullState);				// 25
 
 	//pPlayer->FSM()->ChangeState(L"Idle");
 
@@ -786,9 +869,9 @@ void qLevel_stage2::CreateStage2()
 	//qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
 	//qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
 	//qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 11);		// Player vs Wall (Bump)
-	//
-	//
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
+	////
+	////
 	//ChangeLevel(pStage2, LEVEL_STATE::STOP);
 
 }

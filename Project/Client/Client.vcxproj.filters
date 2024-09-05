@@ -340,6 +340,9 @@
     <ClInclude Include="qLevel_stage2.h">
       <Filter>3. Manager\04. Level\03. STAGE_2</Filter>
     </ClInclude>
+    <ClInclude Include="qLevel_boss.h">
+      <Filter>3. Manager\04. Level\04. BOSS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
@@ -526,6 +529,9 @@
     </ClCompile>
     <ClCompile Include="qLevel_stage2.cpp">
       <Filter>3. Manager\04. Level\03. STAGE_2</Filter>
+    </ClCompile>
+    <ClCompile Include="qLevel_boss.cpp">
+      <Filter>3. Manager\04. Level\04. BOSS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

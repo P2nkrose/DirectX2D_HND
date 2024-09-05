@@ -17,6 +17,7 @@ qPlayerTeleportFinishState::~qPlayerTeleportFinishState()
 
 void qPlayerTeleportFinishState::Enter()
 {
+
 	OGPos = GetOwner()->Transform()->GetRelativePos();
 	OGScale = GetOwner()->Transform()->GetRelativeScale();
 	//OGColScale = GetOwner()->Collider2D()->GetScale();
@@ -30,9 +31,10 @@ void qPlayerTeleportFinishState::Enter()
 	if (pCurLevel->GetName() == L"stage2")
 	{
 		GetOwner()->RigidBody()->SetGround(true);
-		GetOwner()->Transform()->SetRelativePos(-4910.f, -200.f, 10.f);
 		GetOwner()->Transform()->SetRelativeScale(0.01f, 0.01f, 0.f);
+		GetOwner()->Transform()->SetRelativePos(5207.f, -227.f, 10.f);
 	}
+	
 
 	
 	//GetOwner()->Collider2D()->SetScale(Vec3(0.5f, 0.5f, 0.f));
@@ -45,16 +47,21 @@ void qPlayerTeleportFinishState::FinalTick()
 {
 	//static bool flag = false;
 
-	//if (GetOwner()->FlipBookComponent()->IsCurFlipBookFinished() && !flag)
+	//qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+	//if (pCurLevel->GetName() == L"stage1" && !flag)
 	//{
-	//	for (size_t i = 0; i < GetOwner()->GetChildren().size(); ++i)
-	//	{
-	//		GetOwner()->GetChildren()[i]->Destroy();
-	//	}
-	//	GetOwner()->Destroy();
-
+	//	GetOwner()->Transform()->SetRelativePos(875.f, -484.f, 10.f);
+	//	GetOwner()->Transform()->SetRelativeScale(0.01f, 0.01f, 0.f);
 	//	flag = true;
 	//}
+	//if (pCurLevel->GetName() == L"stage2" && !flag)
+	//{
+	//	GetOwner()->RigidBody()->SetGround(true);
+	//	GetOwner()->Transform()->SetRelativePos(-4910.f, -200.f, 10.f);
+	//	GetOwner()->Transform()->SetRelativeScale(0.01f, 0.01f, 0.f);
+	//	flag = true;
+	//}
+
 }
 
 void qPlayerTeleportFinishState::Exit()

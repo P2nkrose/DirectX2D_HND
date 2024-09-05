@@ -28,10 +28,12 @@ void qPlayerTeleportState::Enter()
 
 void qPlayerTeleportState::FinalTick()
 {
+
 	if (GetOwner()->FlipBookComponent()->IsCurFlipBookFinished())
 	{
 		ChangeState(L"TeleportFinish");
 	}
+
 }
 
 void qPlayerTeleportState::Exit()
@@ -39,8 +41,19 @@ void qPlayerTeleportState::Exit()
 	GetOwner()->Transform()->SetRelativeScale(OGScale);
 	GetOwner()->Collider2D()->SetScale(OGColScale);
 
-	qGameObject* pPost = qLevelMgr::GetInst()->FindObjectByName(L"PostClose");
-	pPost->FSM()->ChangeState(L"PostClose");
+	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+
+	if (pCurLevel->GetName() == L"stage1")
+	{
+		qGameObject* pPost = pCurLevel->FindObjectByName(L"PostClose");
+		pPost->FSM()->ChangeState(L"PostClose");
+	}
+	if (pCurLevel->GetName() == L"stage2")
+	{
+		qGameObject* pElevator2 = pCurLevel->FindObjectByName(L"Elevator2");
+		pElevator2->FSM()->ChangeState(L"ElevatorClose");
+	}
+
 
 	//qLevel* pStage1 = qLevelMgr::GetInst()->GetLevelbyName(L"stage1");
 	//qLevel* pStage2 = qLevelMgr::GetInst()->GetLevelbyName(L"stage2");

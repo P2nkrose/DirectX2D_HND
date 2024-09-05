@@ -60,6 +60,7 @@
 #include <States/qPlayerTeleportState.h>		// 22
 #include <States/qPlayerTeleportFinishState.h>	// 23
 #include <States/qPlayerBumpState.h>			// 24
+#include <States/qPlayerNullState.h>			// 25
 
 
 // ========================                    
@@ -152,7 +153,6 @@ void qLevel_stage1::CreateStage1()
 	pStage1->AddObject(1, pBackground);
 
 	// Platform
-	// Collider WorldPos·Î ÇØ¾ßµÊ
 	qGameObject* pPlatform = new qGameObject;
 	pPlatform->SetName(L"Platform");
 	pPlatform->AddComponent(new qPlatformScript);
@@ -205,7 +205,7 @@ void qLevel_stage1::CreateStage1()
 	pDoor->AddComponent(new qDoorScript);
 
 	pDoor->AddComponent(new qTransform);
-	pDoor->Transform()->SetRelativePos(875.f, -352.f, 10.f);
+	pDoor->Transform()->SetRelativePos(875.f, -352.f, 30.f);
 	pDoor->Transform()->SetRelativeScale(268.f, 265.f, 1.f);
 
 	pDoor->AddComponent(new qMeshRender);
@@ -351,6 +351,9 @@ void qLevel_stage1::CreateStage1()
 
 	Ptr<qFlipBook> pDeathBump = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\hit.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(24, pDeathBump);
+
+	Ptr<qFlipBook> pDeathNull = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\playernull.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(25, pDeathNull);
 
 	pPlayer->FlipBookComponent()->Play(0, 10, true);
 

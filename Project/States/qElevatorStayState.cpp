@@ -4,6 +4,9 @@
 #include <Scripts/qElevatorScript.h>
 #include <Scripts/qPlayerScript.h>
 
+#include <Engine/qLevel.h>
+#include <Engine/qLevelMgr.h>
+
 qElevatorStayState::qElevatorStayState()
 {
 }
@@ -19,6 +22,7 @@ void qElevatorStayState::Enter()
 
 void qElevatorStayState::FinalTick()
 {
+
 }
 
 void qElevatorStayState::Exit()

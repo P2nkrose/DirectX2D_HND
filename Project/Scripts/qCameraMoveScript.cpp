@@ -170,6 +170,39 @@ void qCameraMoveScript::OrthoGraphicMove()
 		Transform()->SetRelativePos(vPos);
 	}
 
+	if (pCurLevel->GetName() == L"stageboss")
+	{
+		Vec3 PlayerPos = m_FollowObj->Transform()->GetRelativePos();
+
+		if (PlayerPos.x <= -390.f)
+		{
+			vPos.x = -390.f;
+		}
+		else if (PlayerPos.x >= 390.f)
+		{
+			vPos.x = 390.f;
+		}
+		else
+		{
+			vPos.x = PlayerPos.x;
+		}
+
+		vPos.y = 27.f;
+
+		//if (PlayerPos.y >= -120.f)
+		//{
+		//	vPos.y = 180.f;
+		//}
+		//else
+		//{
+		//	vPos.y = PlayerPos.y + 300.f;
+		//	
+		//}
+
+
+		Transform()->SetRelativePos(vPos);
+	}
+
 	
 
 	//qGameObject* player = qLevelMgr::GetInst()->GetCurrentLevel()->FindObjectByName(L"Player");
