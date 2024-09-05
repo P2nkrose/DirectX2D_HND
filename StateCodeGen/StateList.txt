@@ -12,6 +12,7 @@ qPlayerCombo3State
 qPlayerCombo4State
 qPlayerCrashState
 qPlayerDashState
+qPlayerElevatorOutState
 qPlayerFallingState
 qPlayerIdleState
 qPlayerIdleToRunState

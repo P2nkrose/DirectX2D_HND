@@ -182,6 +182,87 @@ void qLevel_stage1::CreateStage1()
 
 	//pStage1->AddObject(0, pLight);
 
+
+	// 광원 오브젝트
+	qGameObject* pLightDoor = new qGameObject;
+	pLightDoor->SetName(L"PointLightDoor");
+	pLightDoor->AddComponent(new qTransform);
+	pLightDoor->AddComponent(new qLight2D);
+
+	pLightDoor->Light2D()->SetLightType(LIGHT_TYPE::POINT);
+	pLightDoor->Light2D()->SetLightColor(Vec3(1.f, 1.f, 1.f));
+	pLightDoor->Light2D()->SetRadius(100.f);
+
+
+
+	// =============
+	//   TRANSFER
+	// =============
+
+	qGameObject* pDoor = new qGameObject;
+	pDoor->SetName(L"Door");
+	pDoor->AddChild(pLightDoor);
+	pDoor->AddComponent(new qDoorScript);
+
+	pDoor->AddComponent(new qTransform);
+	pDoor->Transform()->SetRelativePos(875.f, -352.f, 10.f);
+	pDoor->Transform()->SetRelativeScale(268.f, 265.f, 1.f);
+
+	pDoor->AddComponent(new qMeshRender);
+	pDoor->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pDoor->MeshRender()->SetMaterial(pMtrl);
+
+	pDoor->AddComponent(new qFlipBookComponent);
+
+	Ptr<qFlipBook> pDoorStay = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\doorstay3.flip");
+	pDoor->FlipBookComponent()->AddFlipBook(1, pDoorStay);
+
+	Ptr<qFlipBook> pDoorOpen = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\dooropen.flip");
+	pDoor->FlipBookComponent()->AddFlipBook(2, pDoorOpen);
+
+	Ptr<qFlipBook> pDoorClose = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\doorclose.flip");
+	pDoor->FlipBookComponent()->AddFlipBook(3, pDoorClose);
+
+	pDoor->FlipBookComponent()->Play(1, 10, true);
+
+	pDoor->AddComponent(new qCollider2D);
+	pDoor->Collider2D()->SetIndependentScale(false);
+	pDoor->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pDoor->Collider2D()->SetScale(Vec3(0.5f, 1.f, 1.f));
+
+	pDoor->AddComponent(new qFSM);
+
+	pDoor->FSM()->AddState(L"DoorStay", new qDoorStayState);		// 24
+	pDoor->FSM()->AddState(L"DoorOpen", new qDoorOpenState);		// 25
+	pDoor->FSM()->AddState(L"DoorClose", new qDoorCloseState);		// 26
+
+
+	pDoor->FSM()->ChangeState(L"DoorStay");
+
+	pStage1->AddObject(9, pDoor);
+
+
+
+	// Post Process (Level Change)
+	qGameObject* pPostProcess = new qGameObject;
+	pPostProcess->SetName(L"PostClose");
+
+	pPostProcess->AddComponent(new qPostScript);
+	pPostProcess->AddComponent(new qTransform);
+
+	pPostProcess->AddComponent(new qMeshRender);
+	pPostProcess->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pPostProcess->MeshRender()->SetMaterial(pMtrl);
+
+	pPostProcess->AddComponent(new qFlipBookComponent);
+
+	Ptr<qFlipBook> pPostClose = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\chang.flip");
+	pPostProcess->FlipBookComponent()->AddFlipBook(4, pPostClose);
+
+	pPostProcess->AddComponent(new qFSM);
+	pPostProcess->FSM()->AddState(L"PostClose", new qPostCloseState);
+
+	pStage1->AddObject(9, pPostProcess);
 	
 
 
@@ -265,7 +346,7 @@ void qLevel_stage1::CreateStage1()
 	Ptr<qFlipBook> pDeathTeleport = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\teleport.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(22, pDeathTeleport);
 
-	Ptr<qFlipBook> pDeathTeleportFinish = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\teleport_finish.flip");
+	Ptr<qFlipBook> pDeathTeleportFinish = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\playernull.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(23, pDeathTeleportFinish);
 
 	Ptr<qFlipBook> pDeathBump = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\hit.flip");
@@ -336,86 +417,6 @@ void qLevel_stage1::CreateStage1()
 	//	camScript->SetFollowObject(pPlayer);
 	
 
-	// 광원 오브젝트
-	qGameObject* pLightDoor = new qGameObject;
-	pLightDoor->SetName(L"PointLightDoor");
-	pLightDoor->AddComponent(new qTransform);
-	pLightDoor->AddComponent(new qLight2D);
-
-	pLightDoor->Light2D()->SetLightType(LIGHT_TYPE::POINT);
-	pLightDoor->Light2D()->SetLightColor(Vec3(1.f, 1.f, 1.f));
-	pLightDoor->Light2D()->SetRadius(100.f);
-
-
-
-	// =============
-	//   TRANSFER
-	// =============
-
-	qGameObject* pDoor = new qGameObject;
-	pDoor->SetName(L"Door");
-	pDoor->AddChild(pLightDoor);
-	pDoor->AddComponent(new qDoorScript);
-
-	pDoor->AddComponent(new qTransform);
-	pDoor->Transform()->SetRelativePos(875.f, -352.f, 10.f);
-	pDoor->Transform()->SetRelativeScale(268.f, 265.f, 1.f);
-
-	pDoor->AddComponent(new qMeshRender);
-	pDoor->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	pDoor->MeshRender()->SetMaterial(pMtrl);
-
-	pDoor->AddComponent(new qFlipBookComponent);
-	
-	Ptr<qFlipBook> pDoorStay = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\doorstay3.flip");
-	pDoor->FlipBookComponent()->AddFlipBook(1, pDoorStay);
-
-	Ptr<qFlipBook> pDoorOpen = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\dooropen.flip");
-	pDoor->FlipBookComponent()->AddFlipBook(2, pDoorOpen);
-
-	Ptr<qFlipBook> pDoorClose = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\doorclose.flip");
-	pDoor->FlipBookComponent()->AddFlipBook(3, pDoorClose);
-
-	pDoor->FlipBookComponent()->Play(1, 10, true);
-
-	pDoor->AddComponent(new qCollider2D);
-	pDoor->Collider2D()->SetIndependentScale(false);
-	pDoor->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
-	pDoor->Collider2D()->SetScale(Vec3(0.5f, 1.f, 1.f));
-
-	pDoor->AddComponent(new qFSM);
-
-	pDoor->FSM()->AddState(L"DoorStay", new qDoorStayState);		// 24
-	pDoor->FSM()->AddState(L"DoorOpen", new qDoorOpenState);		// 25
-	pDoor->FSM()->AddState(L"DoorClose", new qDoorCloseState);		// 26
-	
-
-	pDoor->FSM()->ChangeState(L"DoorStay");
-
-	pStage1->AddObject(9, pDoor);
-
-
-
-	// Post Process (Level Change)
-	qGameObject* pPostProcess = new qGameObject;
-	pPostProcess->SetName(L"PostClose");
-
-	pPostProcess->AddComponent(new qPostScript);
-	pPostProcess->AddComponent(new qTransform);
-	
-	pPostProcess->AddComponent(new qMeshRender);
-	pPostProcess->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	pPostProcess->MeshRender()->SetMaterial(pMtrl);
-	
-	pPostProcess->AddComponent(new qFlipBookComponent);
-	
-	Ptr<qFlipBook> pPostClose = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\chang.flip");
-	pPostProcess->FlipBookComponent()->AddFlipBook(4, pPostClose);
-
-	pPostProcess->AddComponent(new qFSM);
-	pPostProcess->FSM()->AddState(L"PostClose", new qPostCloseState);
-	
-	pStage1->AddObject(9, pPostProcess);
 
 
 	// Monster Object
@@ -426,7 +427,7 @@ void qLevel_stage1::CreateStage1()
 	pMonster->AddComponent(new qMeshRender);
 	pMonster->AddComponent(new qCollider2D);
 
-	pMonster->Transform()->SetRelativePos(-400.f, -420.f, 10.f);
+	pMonster->Transform()->SetRelativePos(-400.f, -420.f, 9.f);
 	pMonster->Transform()->SetRelativeScale(150.f, 150.f, 1.f);
 
 	pMonster->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));

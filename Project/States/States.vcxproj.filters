@@ -46,9 +46,6 @@
     <Filter Include="States\01. Player\11. Hit">
       <UniqueIdentifier>{cbf38d21-daf3-464f-9999-4c68cd96ce78}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States\01. Player\12. Elevator">
-      <UniqueIdentifier>{8a11822b-5d48-4f25-9d3c-2a326cdb7469}</UniqueIdentifier>
-    </Filter>
     <Filter Include="States\01. Player\08. Falling">
       <UniqueIdentifier>{54bf9d45-04be-42b0-8b16-3a01767e936d}</UniqueIdentifier>
     </Filter>
@@ -126,6 +123,9 @@
     </Filter>
     <Filter Include="States\02. Transfer\02. Elevator\03. ElevatorClose">
       <UniqueIdentifier>{bd56b7df-effb-419f-a655-6cb3c5ec8559}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\12. ElevatorOut">
+      <UniqueIdentifier>{8a11822b-5d48-4f25-9d3c-2a326cdb7469}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +228,9 @@
     <ClInclude Include="qElevatorCloseState.h">
       <Filter>States\02. Transfer\02. Elevator\03. ElevatorClose</Filter>
     </ClInclude>
+    <ClInclude Include="qPlayerElevatorOutState.h">
+      <Filter>States\01. Player\12. ElevatorOut</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="States.cpp">
@@ -328,6 +331,9 @@
     </ClCompile>
     <ClCompile Include="qElevatorCloseState.cpp">
       <Filter>States\02. Transfer\02. Elevator\03. ElevatorClose</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerElevatorOutState.cpp">
+      <Filter>States\01. Player\12. ElevatorOut</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

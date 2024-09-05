@@ -97,7 +97,19 @@ void qPlayerScript::Begin()
 		m_Dir = -1.f;
 	}
 
-	FlipBookComponent()->Play(0, 10, true);
+	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+	if (pCurLevel->GetName() == L"stage1")
+	{
+		FlipBookComponent()->Play(0, 10, false);
+	}
+
+	if (pCurLevel->GetName() == L"stage2")
+	{
+		//FlipBookComponent()->Play(23, 10, false);
+		FSM()->ChangeState(L"TeleportFinish");
+	}
+
+	
 
 	//m_PlayerPos = Transform()->GetRelativePos();
 	//m_PlayerRot = Transform()->GetRelativeRotation();

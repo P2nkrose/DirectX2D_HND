@@ -4,6 +4,9 @@
 #include <Scripts/qElevatorScript.h>
 #include <Scripts/qPlayerScript.h>
 
+#include <Engine/qLevel.h>
+#include <Engine/qLevelMgr.h>
+
 qElevatorOpenState::qElevatorOpenState()
 {
 }
@@ -27,4 +30,12 @@ void qElevatorOpenState::FinalTick()
 
 void qElevatorOpenState::Exit()
 {
+	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+
+	if (pCurLevel->GetName() == L"stage2")
+	{
+		qGameObject* pPlayer = qLevelMgr::GetInst()->FindObjectByName(L"Player");
+		pPlayer->FSM()->ChangeState(L"ElevatorOut");
+	}
+
 }

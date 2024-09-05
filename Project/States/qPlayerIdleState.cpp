@@ -81,7 +81,7 @@ void qPlayerIdleState::FinalTick()
 
 	if (KEY_TAP(KEY::V))
 	{
-		ChangeState(L"Hit");
+		ChangeState(L"ElevatorOut");
 	}
 
 	if (WaitTime < 5.f)
