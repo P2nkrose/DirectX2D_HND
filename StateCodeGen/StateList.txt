@@ -4,6 +4,7 @@ qDoorStayState
 qElevatorCloseState
 qElevatorOpenState
 qElevatorStayState
+qLoadingState
 qPlayerBookShootState
 qPlayerBumpState
 qPlayerCombo1State

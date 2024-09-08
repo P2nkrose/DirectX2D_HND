@@ -198,7 +198,7 @@ void qLevel_boss::CreateStageBoss()
 
 	pElevator3->AddComponent(new qMeshRender);
 	pElevator3->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	pElevator3->MeshRender()->SetMaterial(pMtrl);
+	pElevator3->MeshRender()->SetMaterial(pAlphaBlendMtrl);
 
 	pElevator3->AddComponent(new qFlipBookComponent);
 

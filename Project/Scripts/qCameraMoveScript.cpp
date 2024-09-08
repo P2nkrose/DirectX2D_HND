@@ -75,6 +75,11 @@ void qCameraMoveScript::OrthoGraphicMove()
 
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 
+	if (pCurLevel->GetName() == L"title")
+	{
+		vPos = Vec3(0.f, 0.f, 0.f);
+	}
+
 	if (pCurLevel->GetName() == L"stage1")
 	{
 

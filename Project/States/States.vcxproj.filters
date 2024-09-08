@@ -130,6 +130,9 @@
     <Filter Include="States\01. Player\12. Hit">
       <UniqueIdentifier>{cbf38d21-daf3-464f-9999-4c68cd96ce78}</UniqueIdentifier>
     </Filter>
+    <Filter Include="States\02. Transfer\04. Loading">
+      <UniqueIdentifier>{f494197c-68ff-4326-9184-fa1b0f849bd7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -237,6 +240,9 @@
     <ClInclude Include="qPlayerNullState.h">
       <Filter>States\01. Player\25. PlayerNull</Filter>
     </ClInclude>
+    <ClInclude Include="qLoadingState.h">
+      <Filter>States\02. Transfer\04. Loading</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="States.cpp">
@@ -343,6 +349,9 @@
     </ClCompile>
     <ClCompile Include="qPlayerNullState.cpp">
       <Filter>States\01. Player\25. PlayerNull</Filter>
+    </ClCompile>
+    <ClCompile Include="qLoadingState.cpp">
+      <Filter>States\02. Transfer\04. Loading</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

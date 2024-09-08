@@ -152,14 +152,17 @@
     <Filter Include="3. Manager\04. Level\01. TITLE">
       <UniqueIdentifier>{79f92b7d-af40-4127-a41c-63096d7d5b28}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Manager\04. Level\02. STAGE_1">
+    <Filter Include="3. Manager\04. Level\03. STAGE_1">
       <UniqueIdentifier>{1b2e9c1e-05ff-4fe3-b6ef-931b7ac71c08}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Manager\04. Level\03. STAGE_2">
+    <Filter Include="3. Manager\04. Level\04. STAGE_2">
       <UniqueIdentifier>{ea0b27a1-f984-4ebd-8a98-928f40e40a1e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Manager\04. Level\04. BOSS">
+    <Filter Include="3. Manager\04. Level\05. BOSS">
       <UniqueIdentifier>{163dd569-80b0-4191-b0ec-acb923a2df7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Manager\04. Level\02. LOADING">
+      <UniqueIdentifier>{230159e5-75a8-44ca-8be9-d3f7ec43d90e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -335,13 +338,19 @@
       <Filter>1. EditorUI\01. Inspector\ComponentUI\11. FSMUI</Filter>
     </ClInclude>
     <ClInclude Include="qLevel_stage1.h">
-      <Filter>3. Manager\04. Level\02. STAGE_1</Filter>
+      <Filter>3. Manager\04. Level\03. STAGE_1</Filter>
     </ClInclude>
     <ClInclude Include="qLevel_stage2.h">
-      <Filter>3. Manager\04. Level\03. STAGE_2</Filter>
+      <Filter>3. Manager\04. Level\04. STAGE_2</Filter>
     </ClInclude>
     <ClInclude Include="qLevel_boss.h">
-      <Filter>3. Manager\04. Level\04. BOSS</Filter>
+      <Filter>3. Manager\04. Level\05. BOSS</Filter>
+    </ClInclude>
+    <ClInclude Include="qLevel_title.h">
+      <Filter>3. Manager\04. Level\01. TITLE</Filter>
+    </ClInclude>
+    <ClInclude Include="qLevel_loading.h">
+      <Filter>3. Manager\04. Level\02. LOADING</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -525,13 +534,19 @@
       <Filter>1. EditorUI\01. Inspector\ComponentUI\11. FSMUI</Filter>
     </ClCompile>
     <ClCompile Include="qLevel_stage1.cpp">
-      <Filter>3. Manager\04. Level\02. STAGE_1</Filter>
+      <Filter>3. Manager\04. Level\03. STAGE_1</Filter>
     </ClCompile>
     <ClCompile Include="qLevel_stage2.cpp">
-      <Filter>3. Manager\04. Level\03. STAGE_2</Filter>
+      <Filter>3. Manager\04. Level\04. STAGE_2</Filter>
     </ClCompile>
     <ClCompile Include="qLevel_boss.cpp">
-      <Filter>3. Manager\04. Level\04. BOSS</Filter>
+      <Filter>3. Manager\04. Level\05. BOSS</Filter>
+    </ClCompile>
+    <ClCompile Include="qLevel_title.cpp">
+      <Filter>3. Manager\04. Level\01. TITLE</Filter>
+    </ClCompile>
+    <ClCompile Include="qLevel_loading.cpp">
+      <Filter>3. Manager\04. Level\02. LOADING</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

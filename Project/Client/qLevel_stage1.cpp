@@ -244,6 +244,36 @@ void qLevel_stage1::CreateStage1()
 
 
 	// Post Process (Level Change)
+	// Post Process (Level Change)
+	qGameObject* pPostProcess1 = new qGameObject;
+	pPostProcess1->SetName(L"PostOpen");
+
+	pPostProcess1->AddComponent(new qPostScript);
+	pPostProcess1->AddComponent(new qTransform);
+	pPostProcess1->Transform()->SetRelativePos(Vec3(0.f, -227.f, 1.f));
+	pPostProcess1->Transform()->SetRelativeScale(Vec3(1600.f, 900.f, 0.f));
+
+	pPostProcess1->AddComponent(new qMeshRender);
+	pPostProcess1->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pPostProcess1->MeshRender()->SetMaterial(pMtrl);
+
+	pPostProcess1->AddComponent(new qFlipBookComponent);
+
+
+	Ptr<qFlipBook> pPostOpen = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\postopen.flip");
+	pPostProcess1->FlipBookComponent()->AddFlipBook(5, pPostOpen);
+
+	pPostProcess1->AddComponent(new qFSM);
+	pPostProcess1->FSM()->AddState(L"PostOpen", new qPostOpenState);
+
+
+	pPostProcess1->FSM()->ChangeState(L"PostOpen");
+
+	pStage1->AddObject(9, pPostProcess1);
+
+
+
+
 	qGameObject* pPostProcess = new qGameObject;
 	pPostProcess->SetName(L"PostClose");
 
@@ -447,12 +477,12 @@ void qLevel_stage1::CreateStage1()
 	//wstring strLevelPath = qPathMgr::GetInst()->GetContentPath();
 	//strLevelPath += L"level\\stage1test.lv";
 	//qLevelSaveLoad::SaveLevel(strLevelPath, pStage1);
-
+	
 	// 레벨 시작
-	ChangeLevel(pStage1, LEVEL_STATE::STOP);
-
-
-	// 충돌 지정
+	//ChangeLevel(pStage1, LEVEL_STATE::STOP);
+	//
+	//
+	//// 충돌 지정
 	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Player vs Platform
 	qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
 	qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Transfer

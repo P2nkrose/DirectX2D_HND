@@ -21,6 +21,11 @@ void qPostCloseState::Enter()
 {
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 
+	if (pCurLevel->GetName() == L"title")
+	{
+		GetOwner()->Transform()->SetRelativePos(Vec3(0.f, 0.f, 10.f));
+		GetOwner()->Transform()->SetRelativeScale(Vec3(1600.f, 900.f, 0.f));
+	}
 	if (pCurLevel->GetName() == L"stage1")
 	{
 		GetOwner()->Transform()->SetRelativePos(Vec3(474.f, -184.f, 10.f));
@@ -32,7 +37,7 @@ void qPostCloseState::Enter()
 		GetOwner()->Transform()->SetRelativePos(Vec3(4926.f, -70.f, 10.f));
 		GetOwner()->Transform()->SetRelativeScale(Vec3(1600.f, 900.f, 0.f));
 	}
-	
+
 
 	GetOwner()->FlipBookComponent()->Play(4, 15, false);
 }
@@ -45,9 +50,14 @@ void qPostCloseState::FinalTick()
 		qLevel* pStage1 = qLevelMgr::GetInst()->GetLevelbyName(L"stage1");
 		qLevel* pStage2 = qLevelMgr::GetInst()->GetLevelbyName(L"stage2");
 		qLevel* pStageBoss = qLevelMgr::GetInst()->GetLevelbyName(L"stageboss");
+		qLevel* pLoading = qLevelMgr::GetInst()->GetLevelbyName(L"loading");
 
 		qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 
+		if (pCurLevel->GetName() == L"title")
+		{
+			ChangeLevel(pLoading, LEVEL_STATE::PLAY);
+		}
 		if (pCurLevel->GetName() == L"stage1")
 		{
 			ChangeLevel(pStage2, LEVEL_STATE::PLAY);

@@ -540,16 +540,16 @@ void qLevel_stage2::CreateStage2()
 	// ==================
 
 	// ±¤¿ø¿ÀºêÁ§Æ® - ¸Ê ÀüÃ¼ ÅÂ¾ç±¤
-	qGameObject* pLight = new qGameObject;
-	pLight->SetName(L"PointLightMap");
-	pLight->AddComponent(new qTransform);
-	pLight->AddComponent(new qLight2D);
-	
-	pLight->Light2D()->SetLightType(LIGHT_TYPE::DIRECTIONAL);
-	pLight->Light2D()->SetLightColor(Vec3(1.f, 1.f, 1.f));
-	pLight->Light2D()->SetRadius(500.f);
-	
-	pStage2->AddObject(0, pLight);
+	//qGameObject* pLight = new qGameObject;
+	//pLight->SetName(L"PointLightMap");
+	//pLight->AddComponent(new qTransform);
+	//pLight->AddComponent(new qLight2D);
+	//
+	//pLight->Light2D()->SetLightType(LIGHT_TYPE::DIRECTIONAL);
+	//pLight->Light2D()->SetLightColor(Vec3(1.f, 1.f, 1.f));
+	//pLight->Light2D()->SetRadius(500.f);
+	//
+	//pStage2->AddObject(0, pLight);
 
 	// ±¤¿ø ¿ÀºêÁ§Æ® - ¿¤¸®º£ÀÌÅÍ¿ë
 	//qGameObject* pLightEle1 = new qGameObject;
@@ -569,7 +569,7 @@ void qLevel_stage2::CreateStage2()
 
 	pLightPlayer->Light2D()->SetLightType(LIGHT_TYPE::POINT);
 	pLightPlayer->Light2D()->SetLightColor(Vec3(1.f, 1.f, 1.f));
-	pLightPlayer->Light2D()->SetRadius(100.f);
+	pLightPlayer->Light2D()->SetRadius(5000.f);
 
 
 
@@ -584,12 +584,12 @@ void qLevel_stage2::CreateStage2()
 	//pElevator1->AddChild(pLightEle1);
 
 	pElevator1->AddComponent(new qTransform);
-	pElevator1->Transform()->SetRelativePos(-4924.f, -137.f, 10.f);
+	pElevator1->Transform()->SetRelativePos(-4924.f, -137.f, 11.f);
 	pElevator1->Transform()->SetRelativeScale(550.f, 400.f, 1.f);
 
 	pElevator1->AddComponent(new qMeshRender);
 	pElevator1->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	pElevator1->MeshRender()->SetMaterial(pMtrl);
+	pElevator1->MeshRender()->SetMaterial(pAlphaBlendMtrl);
 
 	pElevator1->AddComponent(new qFlipBookComponent);
 
@@ -624,7 +624,7 @@ void qLevel_stage2::CreateStage2()
 
 	pElevator2->AddComponent(new qMeshRender);
 	pElevator2->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	pElevator2->MeshRender()->SetMaterial(pMtrl);
+	pElevator2->MeshRender()->SetMaterial(pAlphaBlendMtrl);
 
 	pElevator2->AddComponent(new qFlipBookComponent);
 

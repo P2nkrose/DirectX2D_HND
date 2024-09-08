@@ -40,10 +40,18 @@ void qPostOpenState::Enter()
 
 void qPostOpenState::FinalTick()
 {
+	static bool flag0 = false;
 	static bool flag1 = false;
 	static bool flag2 = false;
 
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+
+	if (pCurLevel->GetName() == L"stage1" && GetOwner()->FlipBookComponent()->IsCurFlipBookFinished() && !flag0)
+	{
+		GetOwner()->Destroy();
+
+		flag0 = true;
+	}
 
 	if (pCurLevel->GetName() == L"stage2" && GetOwner()->FlipBookComponent()->IsCurFlipBookFinished() && !flag1)
 	{

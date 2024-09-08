@@ -67,6 +67,12 @@
     <Filter Include="Scripts\3. Transfer\03. Post">
       <UniqueIdentifier>{0c47ea3f-bd8f-483a-94d2-93a9b12233d9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scripts\1. UNIT\4. etc">
+      <UniqueIdentifier>{0d80d39b-e2b0-433f-900f-6f7353046f5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\1. UNIT\4. etc\01. collect">
+      <UniqueIdentifier>{f70d9014-68dc-437d-b1a2-e48a6d3ea599}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -123,6 +129,9 @@
     <ClInclude Include="qElevatorScript.h">
       <Filter>Scripts\3. Transfer\02. Elevator</Filter>
     </ClInclude>
+    <ClInclude Include="qCollectScript.h">
+      <Filter>Scripts\1. UNIT\4. etc\01. collect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -178,6 +187,9 @@
     </ClCompile>
     <ClCompile Include="qElevatorScript.cpp">
       <Filter>Scripts\3. Transfer\02. Elevator</Filter>
+    </ClCompile>
+    <ClCompile Include="qCollectScript.cpp">
+      <Filter>Scripts\1. UNIT\4. etc\01. collect</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

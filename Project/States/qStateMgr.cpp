@@ -7,6 +7,7 @@
 #include "qElevatorCloseState.h"
 #include "qElevatorOpenState.h"
 #include "qElevatorStayState.h"
+#include "qLoadingState.h"
 #include "qPlayerBookShootState.h"
 #include "qPlayerBumpState.h"
 #include "qPlayerCombo1State.h"
@@ -42,6 +43,7 @@ void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qElevatorCloseState");
 	_vec.push_back(L"qElevatorOpenState");
 	_vec.push_back(L"qElevatorStayState");
+	_vec.push_back(L"qLoadingState");
 	_vec.push_back(L"qPlayerBookShootState");
 	_vec.push_back(L"qPlayerBumpState");
 	_vec.push_back(L"qPlayerCombo1State");
@@ -84,6 +86,8 @@ qState * qStateMgr::GetState(const wstring& _strStateName)
 		return new qElevatorOpenState;
 	if (L"qElevatorStayState" == _strStateName)
 		return new qElevatorStayState;
+	if (L"qLoadingState" == _strStateName)
+		return new qLoadingState;
 	if (L"qPlayerBookShootState" == _strStateName)
 		return new qPlayerBookShootState;
 	if (L"qPlayerBumpState" == _strStateName)
@@ -160,6 +164,9 @@ qState * qStateMgr::GetState(UINT _iStateType)
 		break;
 	case (UINT)STATE_TYPE::ELEVATORSTAYSTATE:
 		return new qElevatorStayState;
+		break;
+	case (UINT)STATE_TYPE::LOADINGSTATE:
+		return new qLoadingState;
 		break;
 	case (UINT)STATE_TYPE::PLAYERBOOKSHOOTSTATE:
 		return new qPlayerBookShootState;
@@ -269,6 +276,10 @@ const wchar_t * qStateMgr::GetStateName(qState * _pState)
 
 	case STATE_TYPE::ELEVATORSTAYSTATE:
 		return L"qElevatorStayState";
+		break;
+
+	case STATE_TYPE::LOADINGSTATE:
+		return L"qLoadingState";
 		break;
 
 	case STATE_TYPE::PLAYERBOOKSHOOTSTATE:

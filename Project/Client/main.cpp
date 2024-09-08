@@ -8,6 +8,8 @@
 
 #include "qLevelSaveLoad.h"
 #include "qTestLevel.h"
+#include "qLevel_title.h"
+#include "qLevel_loading.h"
 #include "qLevel_stage1.h"
 #include "qLevel_stage2.h"
 #include "qLevel_boss.h"
@@ -69,7 +71,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     qLevel_boss::CreateStageBoss();
     qLevel_stage2::CreateStage2();
     qLevel_stage1::CreateStage1();
-
+    qLevel_loading::CreateLoading();
+    qLevel_title::CreateTitle();
+    
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
     MSG msg = {};

@@ -4,6 +4,7 @@
 #include "qBookScript_Left.h"
 #include "qBookScript_Right.h"
 #include "qCameraMoveScript.h"
+#include "qCollectScript.h"
 #include "qComboScript.h"
 #include "qCrashScript.h"
 #include "qDoorScript.h"
@@ -22,6 +23,7 @@ void qScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qBookScript_Left");
 	_vec.push_back(L"qBookScript_Right");
 	_vec.push_back(L"qCameraMoveScript");
+	_vec.push_back(L"qCollectScript");
 	_vec.push_back(L"qComboScript");
 	_vec.push_back(L"qCrashScript");
 	_vec.push_back(L"qDoorScript");
@@ -44,6 +46,8 @@ qScript * qScriptMgr::GetScript(const wstring& _strScriptName)
 		return new qBookScript_Right;
 	if (L"qCameraMoveScript" == _strScriptName)
 		return new qCameraMoveScript;
+	if (L"qCollectScript" == _strScriptName)
+		return new qCollectScript;
 	if (L"qComboScript" == _strScriptName)
 		return new qComboScript;
 	if (L"qCrashScript" == _strScriptName)
@@ -83,6 +87,9 @@ qScript * qScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::CAMERAMOVESCRIPT:
 		return new qCameraMoveScript;
+		break;
+	case (UINT)SCRIPT_TYPE::COLLECTSCRIPT:
+		return new qCollectScript;
 		break;
 	case (UINT)SCRIPT_TYPE::COMBOSCRIPT:
 		return new qComboScript;
@@ -138,6 +145,10 @@ const wchar_t * qScriptMgr::GetScriptName(qScript * _pScript)
 
 	case SCRIPT_TYPE::CAMERAMOVESCRIPT:
 		return L"qCameraMoveScript";
+		break;
+
+	case SCRIPT_TYPE::COLLECTSCRIPT:
+		return L"qCollectScript";
 		break;
 
 	case SCRIPT_TYPE::COMBOSCRIPT:
