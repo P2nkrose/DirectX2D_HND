@@ -9,6 +9,7 @@
 #include <Engine/qLevelMgr.h>
 
 qLoadingState::qLoadingState()
+	: qState((UINT)STATE_TYPE::LOADINGSTATE)
 {
 }
 

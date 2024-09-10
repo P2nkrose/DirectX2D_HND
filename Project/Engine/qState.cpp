@@ -5,9 +5,9 @@
 
 
 
-qState::qState()
+qState::qState(UINT _StateType)
 	: m_Owner(nullptr)
-	, m_StateType(0)
+	, m_StateType(_StateType)
 {
 }
 

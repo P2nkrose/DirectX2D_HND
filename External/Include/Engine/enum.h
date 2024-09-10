@@ -174,8 +174,14 @@ enum TASK_TYPE
 	// Param_0 : AssetAddress
 	DEL_ASSET,
 
-	// Param1: Parent Object    |   Param2: Next State
+	// Param0 : Parent Object | Param1: Next State
 	CHANGE_STATE,
+
+	// Param0 : Collider Adress
+	COLLIDER2D_SEMI_DEACTIVE,
+
+	// Param0 : Collider Adress
+	COLLIDER2D_DEACTIVE,
 
 	LEVEL_CHANGED,
 	ASSET_CHANGED,

@@ -4,6 +4,7 @@
 #include <Scripts/qPlayerScript.h>
 
 qPlayerIdleUTurnState::qPlayerIdleUTurnState()
+	: qState((UINT)STATE_TYPE::PLAYERIDLEUTURNSTATE)
 {
 }
 

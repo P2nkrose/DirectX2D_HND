@@ -8,6 +8,9 @@
 qCollider2D::qCollider2D()
 	: qComponent(COMPONENT_TYPE::COLLIDER2D)
 	, m_OverlapCount(0)
+	, m_Scale(Vec3(1.f, 1.f, 1.f))
+	, m_Active(true)
+	, m_SemiDeactive(false)
 	, m_IndependentScale(false)
 {
 }
@@ -16,6 +19,8 @@ qCollider2D::qCollider2D(const qCollider2D& _Origin)
 	: qComponent(_Origin)
 	, m_Offset(_Origin.m_Offset)
 	, m_Scale(_Origin.m_Scale)
+	, m_Active(_Origin.m_Active)
+	, m_SemiDeactive(_Origin.m_SemiDeactive)
 	, m_OverlapCount(0)
 	, m_IndependentScale(_Origin.m_IndependentScale)
 {
@@ -25,8 +30,27 @@ qCollider2D::~qCollider2D()
 {
 }
 
+void qCollider2D::Activate()
+{
+	m_Active = true;
+}
+
 void qCollider2D::FinalTick()
 {
+	// 비활성화 예정 상태라면, 비활성화 시킨다
+	if (m_SemiDeactive)
+	{
+		tTask task = {};
+		task.Type = TASK_TYPE::COLLIDER2D_DEACTIVE;
+		task.Param_0 = (DWORD_PTR)this;
+		qTaskMgr::GetInst()->AddTask(task);
+	}
+
+	// 비활성화된 충돌체는 계산하지 않는다.
+	else if (!m_Active)
+		return;
+
+
 	Matrix matTranslation = XMMatrixTranslation(m_Offset.x, m_Offset.y, m_Offset.z);
 	Matrix matScale = XMMatrixScaling(m_Scale.x, m_Scale.y, m_Scale.z);
 
@@ -83,6 +107,16 @@ void qCollider2D::EndOverlap(qCollider2D* _Other)
 	{
 		vecScripts[i]->EndOverlap(this, _Other->GetOwner(), _Other);
 	}
+}
+
+
+
+void qCollider2D::Deactivate()
+{
+	tTask task = {};
+	task.Type = TASK_TYPE::COLLIDER2D_SEMI_DEACTIVE;
+	task.Param_0 = (DWORD_PTR)this;
+	qTaskMgr::GetInst()->AddTask(task);
 }
 
 

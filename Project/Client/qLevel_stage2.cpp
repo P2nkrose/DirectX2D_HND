@@ -20,12 +20,17 @@
 #include <Engine/components.h>
 
 #include <Scripts/qPlayerScript.h>
+
+// Monster Script
+#include <Scripts/qSkeletonScript.h>
+
 #include <Scripts/qBookScript_Left.h>
 #include <Scripts/qMissileScript.h>
 #include <Scripts/qCameraMoveScript.h>
 #include <Scripts/qPlatformScript.h>
 #include <Scripts/qWallScript.h>
 #include <Scripts/qPostScript.h>
+
 
 
 #include <Engine/qSetColorCS.h>
@@ -75,6 +80,13 @@
 #include <States/qElevatorOpenState.h>			// 7
 #include <States/qElevatorCloseState.h>			// 8
 
+// ========================                    
+//      Monster State                         * INDEX *
+// ========================
+
+#include <States/qSkeletonIdleState.h>			// 0
+#include <States/qSkeletonAttackState.h>		// 1
+#include <States/qSkeletonDeathState.h>			// 2
 
 #include "qLevelSaveLoad.h"
 
@@ -109,6 +121,7 @@ void qLevel_stage2::CreateStage2()
 	pStage2->GetLayer(9)->SetName(L"Portal");
 	pStage2->GetLayer(10)->SetName(L"Light");
 	pStage2->GetLayer(11)->SetName(L"Wall");
+	pStage2->GetLayer(12)->SetName(L"Effect");
 	pStage2->GetLayer(31)->SetName(L"UI");
 
 	// Camera
@@ -715,9 +728,10 @@ void qLevel_stage2::CreateStage2()
 
 
 
-
-
-	// 플레이어 오브젝트 
+	// ===============
+	//	   PLAYER
+	// ===============
+	
 	qGameObject* pPlayer = new qGameObject;
 	pPlayer->SetName(L"Player");
 	pPlayer->AddComponent(new qPlayerScript);
@@ -861,17 +875,58 @@ void qLevel_stage2::CreateStage2()
 
 
 
+	// ===============
+	//     MONSTER
+	// ===============
+
+	qGameObject* pSkeleton1 = new qGameObject;
+	pSkeleton1->SetName(L"Skeleton");
+
+	pSkeleton1->AddComponent(new qSkeletonScript);
+
+	pSkeleton1->AddComponent(new qMeshRender);
+	pSkeleton1->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pSkeleton1->MeshRender()->SetMaterial(pMtrl);
+
+	pSkeleton1->AddComponent(new qTransform);
+	pSkeleton1->Transform()->SetRelativePos(-3235.f, -390.f, 10.f);
+	pSkeleton1->Transform()->SetRelativeScale(170.f, 160.f, 1.f);
+
+	pSkeleton1->AddComponent(new qCollider2D);
+	pSkeleton1->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pSkeleton1->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+
+	pSkeleton1->AddComponent(new qFlipBookComponent);
+
+	Ptr<qFlipBook> pSkeletonIdle = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\skeleton_idle.flip");
+	pSkeleton1->FlipBookComponent()->AddFlipBook(0, pSkeletonIdle);
+
+	Ptr<qFlipBook> pSkeletonAttack = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\skeleton_attack.flip");
+	pSkeleton1->FlipBookComponent()->AddFlipBook(1, pSkeletonAttack);
+
+	Ptr<qFlipBook> pSkeletonDeath = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\skeleton_death.flip");
+	pSkeleton1->FlipBookComponent()->AddFlipBook(2, pSkeletonDeath);
 
 
+	pSkeleton1->AddComponent(new qFSM);
+	pSkeleton1->FSM()->AddState(L"SkeletonIdle", new qSkeletonIdleState);		// 0
+	pSkeleton1->FSM()->AddState(L"SkeletonAttack", new qSkeletonAttackState);	// 1
+	pSkeleton1->FSM()->AddState(L"SkeletonDeath", new qSkeletonDeathState);		// 2
+
+	
+	pSkeleton1->FSM()->ChangeState(L"SkeletonIdle");
+
+	pStage2->AddObject(5, pSkeleton1);
 
 
 	// 충돌 지정
-	//qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
-	////
-	////
-	//ChangeLevel(pStage2, LEVEL_STATE::STOP);
+	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
+	qCollisionMgr::GetInst()->CollisionCheck(4, 5);		// PlayerSkill vs Monster
+	qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
+	qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
+	qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
+	//
+	//
+	ChangeLevel(pStage2, LEVEL_STATE::STOP);
 
 }

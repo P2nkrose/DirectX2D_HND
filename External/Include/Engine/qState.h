@@ -13,7 +13,7 @@ class qState : public qEntity
 public:
 	friend class qFSM;
 	CLONE_DISABLE(qState);
-	qState();
+	qState(UINT _StateType);
 	~qState();
 
 public:

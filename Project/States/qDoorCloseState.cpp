@@ -2,6 +2,7 @@
 #include "qDoorCloseState.h"
 
 qDoorCloseState::qDoorCloseState()
+	: qState((UINT)STATE_TYPE::DOORCLOSESTATE)
 {
 }
 

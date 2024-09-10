@@ -33,6 +33,8 @@ public:
 	qRenderComponent* GetRenderComponent() { return m_RenderCom; }
 
 	qGameObject* GetParent() { return m_Parent; }
+	qGameObject* GetChild(const wstring& _ChildName);
+
 	int GetLayerIdx() { return m_LayerIdx; }
 	
 public:

@@ -41,6 +41,7 @@ void qFSM::FinalTick()
 	if (nullptr == m_CurState)
 		return;
 
+	m_CurState->m_Owner = this;
 	m_CurState->FinalTick();
 }
 

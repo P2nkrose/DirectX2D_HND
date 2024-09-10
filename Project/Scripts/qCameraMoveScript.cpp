@@ -92,13 +92,13 @@ void qCameraMoveScript::OrthoGraphicMove()
 
 		Vec3 PlayerPos = m_FollowObj->Transform()->GetRelativePos();
 
-		if (PlayerPos.x <= -470.f)
+		if (PlayerPos.x <= -465.f)
 		{
-			vPos.x = -470.f;
+			vPos.x = -465.f;
 		}
-		else if (PlayerPos.x >= 470.f)
+		else if (PlayerPos.x >= 465.f)
 		{
-			vPos.x = 470.f;
+			vPos.x = 465.f;
 		}
 		else
 		{

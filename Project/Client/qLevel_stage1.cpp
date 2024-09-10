@@ -19,6 +19,7 @@
 #include <Engine/components.h>
 
 #include <Scripts/qPlayerScript.h>
+#include <Scripts/qPlayerHitboxScript.h>
 #include <Scripts/qBookScript_Left.h>
 #include <Scripts/qMissileScript.h>
 #include <Scripts/qCameraMoveScript.h>
@@ -82,14 +83,15 @@
 void qLevel_stage1::CreateStage1()
 {
 	// Sound
-
+	Ptr<qSound> pSound = qAssetMgr::GetInst()->FindAsset<qSound>(L"sound\\background\\stage1.wav");
+	pSound->SetName(L"stage1sound");
 
 	// Material
 	Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
 	Ptr<qMaterial> pAlphaBlendMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DAlphaBlendMtrl");
 	Ptr<qMaterial> pDebugShapeMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"DebugShapeMtrl");
 
-	Ptr<qMaterial> pMtrl2 = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\stage1Back.mtrl");
+	Ptr<qMaterial> pMtrl2 = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\stage1.mtrl");
 
 	//Ptr<qTexture> pBackStage1 = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\map\\stage1");
 	//pMtrl->SetTexParam(TEX_0, pBackStage1);
@@ -250,7 +252,7 @@ void qLevel_stage1::CreateStage1()
 
 	pPostProcess1->AddComponent(new qPostScript);
 	pPostProcess1->AddComponent(new qTransform);
-	pPostProcess1->Transform()->SetRelativePos(Vec3(0.f, -227.f, 1.f));
+	pPostProcess1->Transform()->SetRelativePos(Vec3(0.f, -122.f, 1.f));
 	pPostProcess1->Transform()->SetRelativeScale(Vec3(1600.f, 900.f, 0.f));
 
 	pPostProcess1->AddComponent(new qMeshRender);
@@ -296,11 +298,24 @@ void qLevel_stage1::CreateStage1()
 	
 
 
+	// 플레이어 히트박스
+	//qGameObject* pHitBox = new qGameObject;
+	//pHitBox->SetName(L"PlayerHitbox");
+	//pHitBox->AddComponent(new qPlayerHitboxScript);
+	//pHitBox->AddComponent(new qTransform);
+	//pHitBox->AddComponent(new qMeshRender);
+	//pHitBox->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	//pHitBox->MeshRender()->SetMaterial(pMtrl);
+	//pHitBox->AddComponent(new qCollider2D);
+
+
+
 	// 플레이어 오브젝트
 	qGameObject* pPlayer = new qGameObject;
 	pPlayer->SetName(L"Player");
 	pPlayer->AddComponent(new qPlayerScript);
 	pPlayer->AddChild(pLight);
+	//pPlayer->AddChild(pHitBox);
 	//pPlayer->AddChild(CameraObject);
 	
 
@@ -461,14 +476,20 @@ void qLevel_stage1::CreateStage1()
 	pMonster->AddComponent(new qCollider2D);
 
 	pMonster->Transform()->SetRelativePos(-400.f, -420.f, 9.f);
-	pMonster->Transform()->SetRelativeScale(150.f, 150.f, 1.f);
+	pMonster->Transform()->SetRelativeScale(170.f, 140.f, 1.f);
 
 	pMonster->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
 	pMonster->Collider2D()->SetScale(Vec3(1.2f, 1.2f, 1.f));
 
-
 	pMonster->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
 	pMonster->MeshRender()->SetMaterial(pMtrl);
+
+	//pMonster->AddComponent(new qFlipBookComponent);
+	//
+	//Ptr<qFlipBook> pTest = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\skeleton_idle.flip");
+	//pMonster->FlipBookComponent()->AddFlipBook(0, pTest);
+	//
+	//pMonster->FlipBookComponent()->Play(0, 10, true);
 
 	pStage1->AddObject(5, pMonster);
 
@@ -479,7 +500,7 @@ void qLevel_stage1::CreateStage1()
 	//qLevelSaveLoad::SaveLevel(strLevelPath, pStage1);
 	
 	// 레벨 시작
-	//ChangeLevel(pStage1, LEVEL_STATE::STOP);
+	ChangeLevel(pStage1, LEVEL_STATE::STOP);
 	//
 	//
 	//// 충돌 지정

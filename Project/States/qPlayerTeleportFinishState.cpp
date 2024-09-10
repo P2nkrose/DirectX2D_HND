@@ -8,6 +8,7 @@
 #include <Engine/qLevelMgr.h>
 
 qPlayerTeleportFinishState::qPlayerTeleportFinishState()
+	: qState((UINT)STATE_TYPE::PLAYERTELEPORTFINISHSTATE)
 {
 }
 

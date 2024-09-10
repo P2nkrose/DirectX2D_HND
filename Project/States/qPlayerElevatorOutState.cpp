@@ -4,6 +4,7 @@
 #include <Scripts/qPlayerScript.h>
 
 qPlayerElevatorOutState::qPlayerElevatorOutState()
+	: qState((UINT)STATE_TYPE::PLAYERELEVATOROUTSTATE)
 {
 }
 

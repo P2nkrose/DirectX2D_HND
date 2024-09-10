@@ -163,6 +163,12 @@ call CodeGen.exe</Command>
     <ClInclude Include="qDoorCloseState.h" />
     <ClInclude Include="qDoorOpenState.h" />
     <ClInclude Include="qDoorStayState.h" />
+    <ClInclude Include="qDrownedAttackState.h" />
+    <ClInclude Include="qDrownedDeathState.h" />
+    <ClInclude Include="qDrownedHitState.h" />
+    <ClInclude Include="qDrownedIdleState.h" />
+    <ClInclude Include="qDrownedRunState.h" />
+    <ClInclude Include="qDrownedUturnState.h" />
     <ClInclude Include="qElevatorCloseState.h" />
     <ClInclude Include="qElevatorOpenState.h" />
     <ClInclude Include="qElevatorStayState.h" />
@@ -174,6 +180,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="qPlayerCombo4State.h" />
     <ClInclude Include="qPlayerCrashState.h" />
     <ClInclude Include="qPlayerDashState.h" />
+    <ClInclude Include="qPlayerEffectState.h" />
     <ClInclude Include="qPlayerElevatorOutState.h" />
     <ClInclude Include="qPlayerFallingState.h" />
     <ClInclude Include="qPlayerBumpState.h" />
@@ -193,6 +200,9 @@ call CodeGen.exe</Command>
     <ClInclude Include="qPlayerWaitState.h" />
     <ClInclude Include="qPostCloseState.h" />
     <ClInclude Include="qPostOpenState.h" />
+    <ClInclude Include="qSkeletonAttackState.h" />
+    <ClInclude Include="qSkeletonDeathState.h" />
+    <ClInclude Include="qSkeletonIdleState.h" />
     <ClInclude Include="qStateMgr.h" />
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +215,12 @@ call CodeGen.exe</Command>
     <ClCompile Include="qDoorCloseState.cpp" />
     <ClCompile Include="qDoorOpenState.cpp" />
     <ClCompile Include="qDoorStayState.cpp" />
+    <ClCompile Include="qDrownedAttackState.cpp" />
+    <ClCompile Include="qDrownedDeathState.cpp" />
+    <ClCompile Include="qDrownedHitState.cpp" />
+    <ClCompile Include="qDrownedIdleState.cpp" />
+    <ClCompile Include="qDrownedRunState.cpp" />
+    <ClCompile Include="qDrownedUturnState.cpp" />
     <ClCompile Include="qElevatorCloseState.cpp" />
     <ClCompile Include="qElevatorOpenState.cpp" />
     <ClCompile Include="qElevatorStayState.cpp" />
@@ -216,6 +232,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="qPlayerCombo4State.cpp" />
     <ClCompile Include="qPlayerCrashState.cpp" />
     <ClCompile Include="qPlayerDashState.cpp" />
+    <ClCompile Include="qPlayerEffectState.cpp" />
     <ClCompile Include="qPlayerElevatorOutState.cpp" />
     <ClCompile Include="qPlayerFallingState.cpp" />
     <ClCompile Include="qPlayerBumpState.cpp" />
@@ -235,6 +252,9 @@ call CodeGen.exe</Command>
     <ClCompile Include="qPlayerWaitState.cpp" />
     <ClCompile Include="qPostCloseState.cpp" />
     <ClCompile Include="qPostOpenState.cpp" />
+    <ClCompile Include="qSkeletonAttackState.cpp" />
+    <ClCompile Include="qSkeletonDeathState.cpp" />
+    <ClCompile Include="qSkeletonIdleState.cpp" />
     <ClCompile Include="qStateMgr.cpp" />
     <ClCompile Include="States.cpp" />
   </ItemGroup>

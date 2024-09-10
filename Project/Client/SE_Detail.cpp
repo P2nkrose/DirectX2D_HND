@@ -158,7 +158,7 @@ void SE_Detail::SpriteInfo()
 	//}
 
 	//m_BackGround = SliceSize;
-	m_BackGround = ImVec2(190.f, 165.f);
+	m_BackGround = ImVec2(241.f, 325.f);
 
 	if (SliceSize.x == 0 || SliceSize.y == 0)
 	{

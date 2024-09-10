@@ -45,10 +45,7 @@ void qPlayerScript::PlayCombo()
 {
 	if (m_NextCombo == 1)
 	{
-		
-
 		FSM()->ChangeState(L"Combo1");
-		
 	}
 	else if (m_NextCombo == 2)
 	{
@@ -100,7 +97,8 @@ void qPlayerScript::Begin()
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 	if (pCurLevel->GetName() == L"stage1")
 	{
-		FlipBookComponent()->Play(0, 10, false);
+		FSM()->ChangeState(L"Idle");
+		//FlipBookComponent()->Play(0, 10, false);
 	}
 
 	if (pCurLevel->GetName() == L"stage2")

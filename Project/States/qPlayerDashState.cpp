@@ -4,7 +4,8 @@
 #include <Scripts/qPlayerScript.h>
 
 qPlayerDashState::qPlayerDashState()
-	: m_DashSpeed(800.f)
+	: qState((UINT)STATE_TYPE::PLAYERDASHSTATE)
+	, m_DashSpeed(800.f)
 {
 	
 }

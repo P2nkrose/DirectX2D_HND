@@ -4,6 +4,7 @@
 #include <Scripts/qPlayerScript.h>
 
 qPlayerRunToIdleState::qPlayerRunToIdleState()
+	: qState((UINT)STATE_TYPE::PLAYERRUNTOIDLESTATE)
 {
 }
 

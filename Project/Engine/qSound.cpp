@@ -105,13 +105,22 @@ int qSound::Load(const wstring& _FilePath)
 
 int qSound::Save(const wstring& _FilePath)
 {
-	return 0;
+	return S_OK;
 }
 
 
 
 void qSound::RemoveChannel(FMOD::Channel* _pTargetChannel)
 {
+	list<FMOD::Channel*>::iterator iter = m_listChannel.begin();
+	for (; iter != m_listChannel.end(); ++iter)
+	{
+		if (*iter == _pTargetChannel)
+		{
+			m_listChannel.erase(iter);
+			return;
+		}
+	}
 }
 
 

@@ -39,7 +39,7 @@ void qTestLevel::CreateTestLevel()
 
 	// Sound 재생
 	Ptr<qSound> pSound = qAssetMgr::GetInst()->FindAsset<qSound>(L"sound\\leshphon.mp3");
-	pSound->Play(0, 1.f, false);
+	pSound->Play(0, 0.1f, false);
 
 	//// 파티클 주석
 	//// 컴퓨트 쉐이더 테스트용 텍스쳐 생성

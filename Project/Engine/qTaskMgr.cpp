@@ -5,6 +5,7 @@
 #include "qLevel.h"
 #include "qLayer.h"
 #include "qGameObject.h"
+#include "qCollider2D.h"
 
 #include "qAssetMgr.h"
 
@@ -112,9 +113,23 @@ void qTaskMgr::ExecuteTask()
 			qGameObject* pObj = (qGameObject*)m_vecTask[i].Param_0;
 			qState* pNextState = (qState*)m_vecTask[i].Param_1;
 			pObj->FSM()->ChangeState_proc(pNextState);
-
-			break;
 		}
+		break;
+
+		case TASK_TYPE::COLLIDER2D_SEMI_DEACTIVE:
+		{
+			qCollider2D* pCollider = (qCollider2D*)m_vecTask[i].Param_0;
+			pCollider->m_SemiDeactive = true;
+		}
+		break;
+
+		case TASK_TYPE::COLLIDER2D_DEACTIVE:
+		{
+			qCollider2D* pCollider = (qCollider2D*)m_vecTask[i].Param_0;
+			pCollider->m_SemiDeactive = false;
+			pCollider->m_Active = false;
+		}
+		break;
 		}
 	}
 

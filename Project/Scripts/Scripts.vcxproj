@@ -173,15 +173,19 @@ call CodeGen.exe</Command>
     <ClInclude Include="qComboScript.h" />
     <ClInclude Include="qCrashScript.h" />
     <ClInclude Include="qDoorScript.h" />
+    <ClInclude Include="qDrownedScript.h" />
     <ClInclude Include="qElevatorScript.h" />
     <ClInclude Include="qKrushScript.h" />
     <ClInclude Include="qMissileScript.h" />
     <ClInclude Include="qPlatformScript.h" />
+    <ClInclude Include="qPlayerEffectScript.h" />
+    <ClInclude Include="qPlayerHitboxScript.h" />
     <ClInclude Include="qPlayerScript.h" />
     <ClInclude Include="qPortalScript.h" />
     <ClInclude Include="qPostScript.h" />
     <ClInclude Include="qRangeScript.h" />
     <ClInclude Include="qScriptMgr.h" />
+    <ClInclude Include="qSkeletonScript.h" />
     <ClInclude Include="qWallScript.h" />
   </ItemGroup>
   <ItemGroup>
@@ -198,15 +202,19 @@ call CodeGen.exe</Command>
     <ClCompile Include="qComboScript.cpp" />
     <ClCompile Include="qCrashScript.cpp" />
     <ClCompile Include="qDoorScript.cpp" />
+    <ClCompile Include="qDrownedScript.cpp" />
     <ClCompile Include="qElevatorScript.cpp" />
     <ClCompile Include="qKrushScript.cpp" />
     <ClCompile Include="qMissileScript.cpp" />
     <ClCompile Include="qPlatformScript.cpp" />
+    <ClCompile Include="qPlayerEffectScript.cpp" />
+    <ClCompile Include="qPlayerHitboxScript.cpp" />
     <ClCompile Include="qPlayerScript.cpp" />
     <ClCompile Include="qPortalScript.cpp" />
     <ClCompile Include="qPostScript.cpp" />
     <ClCompile Include="qRangeScript.cpp" />
     <ClCompile Include="qScriptMgr.cpp" />
+    <ClCompile Include="qSkeletonScript.cpp" />
     <ClCompile Include="qWallScript.cpp" />
     <ClCompile Include="Scripts.cpp" />
   </ItemGroup>

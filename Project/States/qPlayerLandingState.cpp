@@ -4,6 +4,7 @@
 #include <Scripts/qPlayerScript.h>
 
 qPlayerLandingState::qPlayerLandingState()
+	: qState((UINT)STATE_TYPE::PLAYERLANDINGSTATE)
 {
 }
 

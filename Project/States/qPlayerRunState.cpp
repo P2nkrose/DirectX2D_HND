@@ -4,6 +4,7 @@
 #include <Scripts/qPlayerScript.h>
 
 qPlayerRunState::qPlayerRunState()
+	: qState((UINT)STATE_TYPE::PLAYERRUNSTATE)
 {
 }
 

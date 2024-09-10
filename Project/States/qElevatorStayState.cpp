@@ -8,6 +8,7 @@
 #include <Engine/qLevelMgr.h>
 
 qElevatorStayState::qElevatorStayState()
+	: qState((UINT)STATE_TYPE::ELEVATORSTAYSTATE)
 {
 }
 

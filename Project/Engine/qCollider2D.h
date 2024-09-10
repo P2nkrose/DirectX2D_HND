@@ -4,6 +4,8 @@
 class qCollider2D : public qComponent
 {
 public:
+	friend class qTaskMgr;
+
 	CLONE(qCollider2D);
 	qCollider2D();
 	qCollider2D(const qCollider2D& _Origin);
@@ -34,9 +36,13 @@ public:
 	const Matrix& GetWorldMat() { return m_matColWorld; }
 
 	int GetOverlapCount() { return m_OverlapCount; }
-
 	bool IsIndependentScale() { return m_IndependentScale; }
 
+	void Activate();
+	void Deactivate();
+
+	bool IsActive() { return m_Active; }
+	bool IsReadyDeactive() { return m_SemiDeactive; }
 
 
 private:
@@ -46,6 +52,9 @@ private:
 	int			m_OverlapCount;		
 
 	bool		m_IndependentScale;	// 오브젝트의 크기에 영향을 받을지 여부
+
+	bool		m_Active;			// 충돌체의 활성화 여부
+	bool		m_SemiDeactive;		// 비활성화 예정상태
 
 };
 

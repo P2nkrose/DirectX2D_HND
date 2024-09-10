@@ -5,12 +5,16 @@ qCollectScript
 qComboScript
 qCrashScript
 qDoorScript
+qDrownedScript
 qElevatorScript
 qKrushScript
 qMissileScript
 qPlatformScript
+qPlayerEffectScript
+qPlayerHitboxScript
 qPlayerScript
 qPortalScript
 qPostScript
 qRangeScript
+qSkeletonScript
 qWallScript

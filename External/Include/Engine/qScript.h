@@ -53,7 +53,10 @@ public:
 	void SetDir(DIRECTION _Dir) { m_Dir = _Dir; }
 	DIRECTION GetDir() { return m_Dir; }
 
+	tUnitInfo& GetPrevInfo() { return m_PrevUnitInfo; }
+	tUnitInfo& GetUnitInfo() { return m_CurUnitInfo; }
 
+	virtual void Hit(float _Damage){}
 
 protected:
 	void AddScriptParam(SCRIPT_PARAM _Type, const string& _Desc, void* _pData, DWORD_PTR _Param0 = 0, DWORD_PTR _Param1 = 0)
@@ -63,6 +66,9 @@ protected:
 
 	void Instantiate(Ptr<qPrefab> _Pref, int _LayerIdx, Vec3 _WorldPos, const wstring& _Name = L"");
 
+
+	tUnitInfo				m_CurUnitInfo;
+	tUnitInfo				m_PrevUnitInfo;
 
 
 private:

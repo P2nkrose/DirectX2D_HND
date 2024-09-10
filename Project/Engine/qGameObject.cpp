@@ -87,6 +87,17 @@ void qGameObject::AddComponent(qComponent* _Component)
 	}
 }
 
+qGameObject* qGameObject::GetChild(const wstring& _ChildName)
+{
+	for (int i = 0; i < m_vecChildren.size(); ++i)
+	{
+		if (m_vecChildren[i]->GetName() == _ChildName)
+			return m_vecChildren[i];
+	}
+
+	return nullptr;
+}
+
 void qGameObject::AddChild(qGameObject* _ChildObject)
 {
 	// 부모 오브젝트는 Level 에 속해있고, AddChild 되는 자식 오브젝트는 레벨에 소속되지 않은 경우

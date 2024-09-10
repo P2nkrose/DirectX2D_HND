@@ -83,6 +83,8 @@
 void qLevel_title::CreateTitle()
 {
 	// Sound
+	Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\background\\title.wav", L"sound\\background\\title.wav");
+	pSound->Play(0, 0.5, true);
 
 
 	// Material

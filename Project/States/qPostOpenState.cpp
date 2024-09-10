@@ -10,6 +10,7 @@
 #include <Engine/qLevelMgr.h>
 
 qPostOpenState::qPostOpenState()
+	: qState((UINT)STATE_TYPE::POSTOPENSTATE)
 {
 }
 

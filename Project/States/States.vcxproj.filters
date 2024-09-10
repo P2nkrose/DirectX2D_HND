@@ -133,6 +133,45 @@
     <Filter Include="States\02. Transfer\04. Loading">
       <UniqueIdentifier>{f494197c-68ff-4326-9184-fa1b0f849bd7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="States\03. Monster">
+      <UniqueIdentifier>{2c627cc1-a37e-47b0-8849-1d52e5afdeea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\03. Monster\01. Skeleton">
+      <UniqueIdentifier>{34af8986-4520-4249-b6a3-48075844dba7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\03. Monster\01. Skeleton\01, Idle">
+      <UniqueIdentifier>{f694aba1-b443-49d9-b431-df6246cbecd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\03. Monster\01. Skeleton\02. Attack">
+      <UniqueIdentifier>{23dc6d2f-963b-4d9f-934a-6366273bc455}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\03. Monster\01. Skeleton\03. Death">
+      <UniqueIdentifier>{59c5728a-93d6-4bc6-b994-f9b2f237c329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\04. Effect">
+      <UniqueIdentifier>{4afbddb5-1246-4d41-94c4-4a7c56fcb956}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\03. Monster\02. Drowned">
+      <UniqueIdentifier>{a6436d95-c1a0-4855-8002-659185b0b7be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\03. Monster\02. Drowned\01. Idle">
+      <UniqueIdentifier>{14856e23-61ec-442e-b74d-958b366153e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\03. Monster\02. Drowned\02. Run">
+      <UniqueIdentifier>{910c67ec-864d-45ee-849d-a845e38f1393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\03. Monster\02. Drowned\03. Uturn">
+      <UniqueIdentifier>{a9d1f40d-5aab-45d8-9b01-83c749b6d152}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\03. Monster\02. Drowned\04. Attack">
+      <UniqueIdentifier>{78fbb681-3c34-42be-a3a1-54b1263de370}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\03. Monster\02. Drowned\05. Hit">
+      <UniqueIdentifier>{87b5cf8a-6a76-4fc8-89c3-4d003095f5a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\03. Monster\02. Drowned\06. Death">
+      <UniqueIdentifier>{b7987fe0-027b-4cfa-a7ca-1d122ca34ea3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -243,6 +282,36 @@
     <ClInclude Include="qLoadingState.h">
       <Filter>States\02. Transfer\04. Loading</Filter>
     </ClInclude>
+    <ClInclude Include="qSkeletonIdleState.h">
+      <Filter>States\03. Monster\01. Skeleton\01, Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="qSkeletonAttackState.h">
+      <Filter>States\03. Monster\01. Skeleton\02. Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="qSkeletonDeathState.h">
+      <Filter>States\03. Monster\01. Skeleton\03. Death</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerEffectState.h">
+      <Filter>States\04. Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="qDrownedIdleState.h">
+      <Filter>States\03. Monster\02. Drowned\01. Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="qDrownedRunState.h">
+      <Filter>States\03. Monster\02. Drowned\02. Run</Filter>
+    </ClInclude>
+    <ClInclude Include="qDrownedUturnState.h">
+      <Filter>States\03. Monster\02. Drowned\03. Uturn</Filter>
+    </ClInclude>
+    <ClInclude Include="qDrownedAttackState.h">
+      <Filter>States\03. Monster\02. Drowned\04. Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="qDrownedHitState.h">
+      <Filter>States\03. Monster\02. Drowned\05. Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="qDrownedDeathState.h">
+      <Filter>States\03. Monster\02. Drowned\06. Death</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="States.cpp">
@@ -352,6 +421,36 @@
     </ClCompile>
     <ClCompile Include="qLoadingState.cpp">
       <Filter>States\02. Transfer\04. Loading</Filter>
+    </ClCompile>
+    <ClCompile Include="qSkeletonIdleState.cpp">
+      <Filter>States\03. Monster\01. Skeleton\01, Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="qSkeletonAttackState.cpp">
+      <Filter>States\03. Monster\01. Skeleton\02. Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="qSkeletonDeathState.cpp">
+      <Filter>States\03. Monster\01. Skeleton\03. Death</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerEffectState.cpp">
+      <Filter>States\04. Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="qDrownedIdleState.cpp">
+      <Filter>States\03. Monster\02. Drowned\01. Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="qDrownedRunState.cpp">
+      <Filter>States\03. Monster\02. Drowned\02. Run</Filter>
+    </ClCompile>
+    <ClCompile Include="qDrownedUturnState.cpp">
+      <Filter>States\03. Monster\02. Drowned\03. Uturn</Filter>
+    </ClCompile>
+    <ClCompile Include="qDrownedAttackState.cpp">
+      <Filter>States\03. Monster\02. Drowned\04. Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="qDrownedHitState.cpp">
+      <Filter>States\03. Monster\02. Drowned\05. Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="qDrownedDeathState.cpp">
+      <Filter>States\03. Monster\02. Drowned\06. Death</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

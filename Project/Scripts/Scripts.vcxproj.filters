@@ -73,6 +73,15 @@
     <Filter Include="Scripts\1. UNIT\4. etc\01. collect">
       <UniqueIdentifier>{f70d9014-68dc-437d-b1a2-e48a6d3ea599}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scripts\1. UNIT\2. Monster\01. Skeleton">
+      <UniqueIdentifier>{73bc1a57-0eb9-4423-a1ef-f25d2804d0f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\1. UNIT\1. Player\PlayerEffect">
+      <UniqueIdentifier>{411bffeb-9ad6-4a76-94ac-681883d7332e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\1. UNIT\2. Monster\02. Drowned">
+      <UniqueIdentifier>{f14dfa3b-b020-459c-9178-9033b43ff440}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -132,6 +141,18 @@
     <ClInclude Include="qCollectScript.h">
       <Filter>Scripts\1. UNIT\4. etc\01. collect</Filter>
     </ClInclude>
+    <ClInclude Include="qSkeletonScript.h">
+      <Filter>Scripts\1. UNIT\2. Monster\01. Skeleton</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerHitboxScript.h">
+      <Filter>Default</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerEffectScript.h">
+      <Filter>Scripts\1. UNIT\1. Player\PlayerEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="qDrownedScript.h">
+      <Filter>Scripts\1. UNIT\2. Monster\02. Drowned</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -190,6 +211,18 @@
     </ClCompile>
     <ClCompile Include="qCollectScript.cpp">
       <Filter>Scripts\1. UNIT\4. etc\01. collect</Filter>
+    </ClCompile>
+    <ClCompile Include="qSkeletonScript.cpp">
+      <Filter>Scripts\1. UNIT\2. Monster\01. Skeleton</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerHitboxScript.cpp">
+      <Filter>Default</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerEffectScript.cpp">
+      <Filter>Scripts\1. UNIT\1. Player\PlayerEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="qDrownedScript.cpp">
+      <Filter>Scripts\1. UNIT\2. Monster\02. Drowned</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

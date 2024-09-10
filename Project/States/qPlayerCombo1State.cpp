@@ -4,13 +4,14 @@
 #include <Engine/qGameObject.h>
 #include <Scripts/qPlayerScript.h>
 #include <Scripts/qComboScript.h>
+#include <Scripts/qPlayerHitboxScript.h>
 #include <Engine/qLevel.h>
 #include <Engine/qLevelMgr.h>
 
 qPlayerCombo1State::qPlayerCombo1State()
+	: qState((UINT)STATE_TYPE::PLAYERCOMBO1STATE)
 {
 
-	
 
 } 
 
@@ -28,21 +29,26 @@ void qPlayerCombo1State::Enter()
 
 	GetOwner()->FlipBookComponent()->Play(13, 15, false);
 
+	//qPlayerHitboxScript* HitboxScript = GetOwner()->GetChild(L"PlayerHitbox")->GetScript<qPlayerHitboxScript>();
+	//if (HitboxScript != nullptr)
+	//{
+	//	HitboxScript->On();
+	//}
 
 
 	// 히트박스 생성
 	Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
 	qGameObject* pPlayer = qLevelMgr::GetInst()->FindObjectByName(L"Player");
 	qPlayerScript* pPlayerScript = pPlayer->GetScript<qPlayerScript>();
-
+	
 	Vec3 vPlayerPos = pPlayer->Transform()->GetRelativePos();
-
+	
 	Combo1HitBox = new qGameObject;
 	Combo1HitBox->SetName(L"Combo1HitBox");
 	Combo1HitBox->AddComponent(new qComboScript);
 	Combo1HitBox->AddComponent(new qTransform);
 	Combo1HitBox->Transform()->SetRelativeScale(220.f, 100.f, 1.f);
-
+	
 	if (pPlayerScript->GetPlayerDir() == DIRECTION::LEFT)
 	{
 		Combo1HitBox->Transform()->SetRelativePos(Vec3(vPlayerPos.x - 160.f, vPlayerPos.y, vPlayerPos.z));
@@ -51,10 +57,10 @@ void qPlayerCombo1State::Enter()
 	{
 		Combo1HitBox->Transform()->SetRelativePos(Vec3(vPlayerPos.x + 160.f, vPlayerPos.y, vPlayerPos.z));
 	}
-
+	
 	Combo1HitBox->AddComponent(new qCollider2D);
 	Combo1HitBox->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
-
+	
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 	pCurLevel->AddObject(4, Combo1HitBox);
 

@@ -4,7 +4,8 @@
 #include <Scripts/qPlayerScript.h>
 
 qPlayerBumpState::qPlayerBumpState()
-	: m_BumpSpeed(200.f)
+	: qState((UINT)STATE_TYPE::PLAYERBUMPSTATE)
+	, m_BumpSpeed(200.f)
 {
 }
 

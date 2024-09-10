@@ -4,6 +4,7 @@
 #include <Scripts/qPlayerScript.h>
 
 qPlayerJumpState::qPlayerJumpState()
+	: qState((UINT)STATE_TYPE::PLAYERJUMPSTATE)
 {
 }
 

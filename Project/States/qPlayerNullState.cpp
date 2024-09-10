@@ -9,6 +9,7 @@
 #include <Engine/qLevelMgr.h>
 
 qPlayerNullState::qPlayerNullState()
+	: qState((UINT)STATE_TYPE::PLAYERNULLSTATE)
 {
 }
 

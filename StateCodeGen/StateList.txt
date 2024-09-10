@@ -1,6 +1,12 @@
 qDoorCloseState
 qDoorOpenState
 qDoorStayState
+qDrownedAttackState
+qDrownedDeathState
+qDrownedHitState
+qDrownedIdleState
+qDrownedRunState
+qDrownedUturnState
 qElevatorCloseState
 qElevatorOpenState
 qElevatorStayState
@@ -13,6 +19,7 @@ qPlayerCombo3State
 qPlayerCombo4State
 qPlayerCrashState
 qPlayerDashState
+qPlayerEffectState
 qPlayerElevatorOutState
 qPlayerFallingState
 qPlayerIdleState
@@ -31,3 +38,6 @@ qPlayerTeleportState
 qPlayerWaitState
 qPostCloseState
 qPostOpenState
+qSkeletonAttackState
+qSkeletonDeathState
+qSkeletonIdleState

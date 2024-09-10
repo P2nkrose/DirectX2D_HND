@@ -4,6 +4,12 @@
 #include "qDoorCloseState.h"
 #include "qDoorOpenState.h"
 #include "qDoorStayState.h"
+#include "qDrownedAttackState.h"
+#include "qDrownedDeathState.h"
+#include "qDrownedHitState.h"
+#include "qDrownedIdleState.h"
+#include "qDrownedRunState.h"
+#include "qDrownedUturnState.h"
 #include "qElevatorCloseState.h"
 #include "qElevatorOpenState.h"
 #include "qElevatorStayState.h"
@@ -16,6 +22,7 @@
 #include "qPlayerCombo4State.h"
 #include "qPlayerCrashState.h"
 #include "qPlayerDashState.h"
+#include "qPlayerEffectState.h"
 #include "qPlayerElevatorOutState.h"
 #include "qPlayerFallingState.h"
 #include "qPlayerIdleState.h"
@@ -34,12 +41,21 @@
 #include "qPlayerWaitState.h"
 #include "qPostCloseState.h"
 #include "qPostOpenState.h"
+#include "qSkeletonAttackState.h"
+#include "qSkeletonDeathState.h"
+#include "qSkeletonIdleState.h"
 
 void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 {
 	_vec.push_back(L"qDoorCloseState");
 	_vec.push_back(L"qDoorOpenState");
 	_vec.push_back(L"qDoorStayState");
+	_vec.push_back(L"qDrownedAttackState");
+	_vec.push_back(L"qDrownedDeathState");
+	_vec.push_back(L"qDrownedHitState");
+	_vec.push_back(L"qDrownedIdleState");
+	_vec.push_back(L"qDrownedRunState");
+	_vec.push_back(L"qDrownedUturnState");
 	_vec.push_back(L"qElevatorCloseState");
 	_vec.push_back(L"qElevatorOpenState");
 	_vec.push_back(L"qElevatorStayState");
@@ -52,6 +68,7 @@ void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qPlayerCombo4State");
 	_vec.push_back(L"qPlayerCrashState");
 	_vec.push_back(L"qPlayerDashState");
+	_vec.push_back(L"qPlayerEffectState");
 	_vec.push_back(L"qPlayerElevatorOutState");
 	_vec.push_back(L"qPlayerFallingState");
 	_vec.push_back(L"qPlayerIdleState");
@@ -70,6 +87,9 @@ void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qPlayerWaitState");
 	_vec.push_back(L"qPostCloseState");
 	_vec.push_back(L"qPostOpenState");
+	_vec.push_back(L"qSkeletonAttackState");
+	_vec.push_back(L"qSkeletonDeathState");
+	_vec.push_back(L"qSkeletonIdleState");
 }
 
 qState * qStateMgr::GetState(const wstring& _strStateName)
@@ -80,6 +100,18 @@ qState * qStateMgr::GetState(const wstring& _strStateName)
 		return new qDoorOpenState;
 	if (L"qDoorStayState" == _strStateName)
 		return new qDoorStayState;
+	if (L"qDrownedAttackState" == _strStateName)
+		return new qDrownedAttackState;
+	if (L"qDrownedDeathState" == _strStateName)
+		return new qDrownedDeathState;
+	if (L"qDrownedHitState" == _strStateName)
+		return new qDrownedHitState;
+	if (L"qDrownedIdleState" == _strStateName)
+		return new qDrownedIdleState;
+	if (L"qDrownedRunState" == _strStateName)
+		return new qDrownedRunState;
+	if (L"qDrownedUturnState" == _strStateName)
+		return new qDrownedUturnState;
 	if (L"qElevatorCloseState" == _strStateName)
 		return new qElevatorCloseState;
 	if (L"qElevatorOpenState" == _strStateName)
@@ -104,6 +136,8 @@ qState * qStateMgr::GetState(const wstring& _strStateName)
 		return new qPlayerCrashState;
 	if (L"qPlayerDashState" == _strStateName)
 		return new qPlayerDashState;
+	if (L"qPlayerEffectState" == _strStateName)
+		return new qPlayerEffectState;
 	if (L"qPlayerElevatorOutState" == _strStateName)
 		return new qPlayerElevatorOutState;
 	if (L"qPlayerFallingState" == _strStateName)
@@ -140,6 +174,12 @@ qState * qStateMgr::GetState(const wstring& _strStateName)
 		return new qPostCloseState;
 	if (L"qPostOpenState" == _strStateName)
 		return new qPostOpenState;
+	if (L"qSkeletonAttackState" == _strStateName)
+		return new qSkeletonAttackState;
+	if (L"qSkeletonDeathState" == _strStateName)
+		return new qSkeletonDeathState;
+	if (L"qSkeletonIdleState" == _strStateName)
+		return new qSkeletonIdleState;
 	return nullptr;
 }
 
@@ -155,6 +195,24 @@ qState * qStateMgr::GetState(UINT _iStateType)
 		break;
 	case (UINT)STATE_TYPE::DOORSTAYSTATE:
 		return new qDoorStayState;
+		break;
+	case (UINT)STATE_TYPE::DROWNEDATTACKSTATE:
+		return new qDrownedAttackState;
+		break;
+	case (UINT)STATE_TYPE::DROWNEDDEATHSTATE:
+		return new qDrownedDeathState;
+		break;
+	case (UINT)STATE_TYPE::DROWNEDHITSTATE:
+		return new qDrownedHitState;
+		break;
+	case (UINT)STATE_TYPE::DROWNEDIDLESTATE:
+		return new qDrownedIdleState;
+		break;
+	case (UINT)STATE_TYPE::DROWNEDRUNSTATE:
+		return new qDrownedRunState;
+		break;
+	case (UINT)STATE_TYPE::DROWNEDUTURNSTATE:
+		return new qDrownedUturnState;
 		break;
 	case (UINT)STATE_TYPE::ELEVATORCLOSESTATE:
 		return new qElevatorCloseState;
@@ -191,6 +249,9 @@ qState * qStateMgr::GetState(UINT _iStateType)
 		break;
 	case (UINT)STATE_TYPE::PLAYERDASHSTATE:
 		return new qPlayerDashState;
+		break;
+	case (UINT)STATE_TYPE::PLAYEREFFECTSTATE:
+		return new qPlayerEffectState;
 		break;
 	case (UINT)STATE_TYPE::PLAYERELEVATOROUTSTATE:
 		return new qPlayerElevatorOutState;
@@ -246,6 +307,15 @@ qState * qStateMgr::GetState(UINT _iStateType)
 	case (UINT)STATE_TYPE::POSTOPENSTATE:
 		return new qPostOpenState;
 		break;
+	case (UINT)STATE_TYPE::SKELETONATTACKSTATE:
+		return new qSkeletonAttackState;
+		break;
+	case (UINT)STATE_TYPE::SKELETONDEATHSTATE:
+		return new qSkeletonDeathState;
+		break;
+	case (UINT)STATE_TYPE::SKELETONIDLESTATE:
+		return new qSkeletonIdleState;
+		break;
 	}
 	return nullptr;
 }
@@ -264,6 +334,30 @@ const wchar_t * qStateMgr::GetStateName(qState * _pState)
 
 	case STATE_TYPE::DOORSTAYSTATE:
 		return L"qDoorStayState";
+		break;
+
+	case STATE_TYPE::DROWNEDATTACKSTATE:
+		return L"qDrownedAttackState";
+		break;
+
+	case STATE_TYPE::DROWNEDDEATHSTATE:
+		return L"qDrownedDeathState";
+		break;
+
+	case STATE_TYPE::DROWNEDHITSTATE:
+		return L"qDrownedHitState";
+		break;
+
+	case STATE_TYPE::DROWNEDIDLESTATE:
+		return L"qDrownedIdleState";
+		break;
+
+	case STATE_TYPE::DROWNEDRUNSTATE:
+		return L"qDrownedRunState";
+		break;
+
+	case STATE_TYPE::DROWNEDUTURNSTATE:
+		return L"qDrownedUturnState";
 		break;
 
 	case STATE_TYPE::ELEVATORCLOSESTATE:
@@ -312,6 +406,10 @@ const wchar_t * qStateMgr::GetStateName(qState * _pState)
 
 	case STATE_TYPE::PLAYERDASHSTATE:
 		return L"qPlayerDashState";
+		break;
+
+	case STATE_TYPE::PLAYEREFFECTSTATE:
+		return L"qPlayerEffectState";
 		break;
 
 	case STATE_TYPE::PLAYERELEVATOROUTSTATE:
@@ -384,6 +482,18 @@ const wchar_t * qStateMgr::GetStateName(qState * _pState)
 
 	case STATE_TYPE::POSTOPENSTATE:
 		return L"qPostOpenState";
+		break;
+
+	case STATE_TYPE::SKELETONATTACKSTATE:
+		return L"qSkeletonAttackState";
+		break;
+
+	case STATE_TYPE::SKELETONDEATHSTATE:
+		return L"qSkeletonDeathState";
+		break;
+
+	case STATE_TYPE::SKELETONIDLESTATE:
+		return L"qSkeletonIdleState";
 		break;
 
 	}

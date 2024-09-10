@@ -8,8 +8,12 @@
 #include <Scripts/qPostScript.h>
 #include <Engine/qLevel.h>
 #include <Engine/qLevelMgr.h>
+#include <Engine/qAsset.h>
+#include <Engine/qAssetMgr.h>
+#include <Engine/qSound.h>
 
 qPostCloseState::qPostCloseState()
+	: qState((UINT)STATE_TYPE::POSTCLOSESTATE)
 {
 }
 
@@ -25,6 +29,9 @@ void qPostCloseState::Enter()
 	{
 		GetOwner()->Transform()->SetRelativePos(Vec3(0.f, 0.f, 10.f));
 		GetOwner()->Transform()->SetRelativeScale(Vec3(1600.f, 900.f, 0.f));
+
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\background\\title.wav", L"sound\\background\\title.wav");
+		pSound->Stop();
 	}
 	if (pCurLevel->GetName() == L"stage1")
 	{

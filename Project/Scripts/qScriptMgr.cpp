@@ -8,14 +8,18 @@
 #include "qComboScript.h"
 #include "qCrashScript.h"
 #include "qDoorScript.h"
+#include "qDrownedScript.h"
 #include "qElevatorScript.h"
 #include "qKrushScript.h"
 #include "qMissileScript.h"
 #include "qPlatformScript.h"
+#include "qPlayerEffectScript.h"
+#include "qPlayerHitboxScript.h"
 #include "qPlayerScript.h"
 #include "qPortalScript.h"
 #include "qPostScript.h"
 #include "qRangeScript.h"
+#include "qSkeletonScript.h"
 #include "qWallScript.h"
 
 void qScriptMgr::GetScriptInfo(vector<wstring>& _vec)
@@ -27,14 +31,18 @@ void qScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qComboScript");
 	_vec.push_back(L"qCrashScript");
 	_vec.push_back(L"qDoorScript");
+	_vec.push_back(L"qDrownedScript");
 	_vec.push_back(L"qElevatorScript");
 	_vec.push_back(L"qKrushScript");
 	_vec.push_back(L"qMissileScript");
 	_vec.push_back(L"qPlatformScript");
+	_vec.push_back(L"qPlayerEffectScript");
+	_vec.push_back(L"qPlayerHitboxScript");
 	_vec.push_back(L"qPlayerScript");
 	_vec.push_back(L"qPortalScript");
 	_vec.push_back(L"qPostScript");
 	_vec.push_back(L"qRangeScript");
+	_vec.push_back(L"qSkeletonScript");
 	_vec.push_back(L"qWallScript");
 }
 
@@ -54,6 +62,8 @@ qScript * qScriptMgr::GetScript(const wstring& _strScriptName)
 		return new qCrashScript;
 	if (L"qDoorScript" == _strScriptName)
 		return new qDoorScript;
+	if (L"qDrownedScript" == _strScriptName)
+		return new qDrownedScript;
 	if (L"qElevatorScript" == _strScriptName)
 		return new qElevatorScript;
 	if (L"qKrushScript" == _strScriptName)
@@ -62,6 +72,10 @@ qScript * qScriptMgr::GetScript(const wstring& _strScriptName)
 		return new qMissileScript;
 	if (L"qPlatformScript" == _strScriptName)
 		return new qPlatformScript;
+	if (L"qPlayerEffectScript" == _strScriptName)
+		return new qPlayerEffectScript;
+	if (L"qPlayerHitboxScript" == _strScriptName)
+		return new qPlayerHitboxScript;
 	if (L"qPlayerScript" == _strScriptName)
 		return new qPlayerScript;
 	if (L"qPortalScript" == _strScriptName)
@@ -70,6 +84,8 @@ qScript * qScriptMgr::GetScript(const wstring& _strScriptName)
 		return new qPostScript;
 	if (L"qRangeScript" == _strScriptName)
 		return new qRangeScript;
+	if (L"qSkeletonScript" == _strScriptName)
+		return new qSkeletonScript;
 	if (L"qWallScript" == _strScriptName)
 		return new qWallScript;
 	return nullptr;
@@ -100,6 +116,9 @@ qScript * qScriptMgr::GetScript(UINT _iScriptType)
 	case (UINT)SCRIPT_TYPE::DOORSCRIPT:
 		return new qDoorScript;
 		break;
+	case (UINT)SCRIPT_TYPE::DROWNEDSCRIPT:
+		return new qDrownedScript;
+		break;
 	case (UINT)SCRIPT_TYPE::ELEVATORSCRIPT:
 		return new qElevatorScript;
 		break;
@@ -112,6 +131,12 @@ qScript * qScriptMgr::GetScript(UINT _iScriptType)
 	case (UINT)SCRIPT_TYPE::PLATFORMSCRIPT:
 		return new qPlatformScript;
 		break;
+	case (UINT)SCRIPT_TYPE::PLAYEREFFECTSCRIPT:
+		return new qPlayerEffectScript;
+		break;
+	case (UINT)SCRIPT_TYPE::PLAYERHITBOXSCRIPT:
+		return new qPlayerHitboxScript;
+		break;
 	case (UINT)SCRIPT_TYPE::PLAYERSCRIPT:
 		return new qPlayerScript;
 		break;
@@ -123,6 +148,9 @@ qScript * qScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::RANGESCRIPT:
 		return new qRangeScript;
+		break;
+	case (UINT)SCRIPT_TYPE::SKELETONSCRIPT:
+		return new qSkeletonScript;
 		break;
 	case (UINT)SCRIPT_TYPE::WALLSCRIPT:
 		return new qWallScript;
@@ -163,6 +191,10 @@ const wchar_t * qScriptMgr::GetScriptName(qScript * _pScript)
 		return L"qDoorScript";
 		break;
 
+	case SCRIPT_TYPE::DROWNEDSCRIPT:
+		return L"qDrownedScript";
+		break;
+
 	case SCRIPT_TYPE::ELEVATORSCRIPT:
 		return L"qElevatorScript";
 		break;
@@ -179,6 +211,14 @@ const wchar_t * qScriptMgr::GetScriptName(qScript * _pScript)
 		return L"qPlatformScript";
 		break;
 
+	case SCRIPT_TYPE::PLAYEREFFECTSCRIPT:
+		return L"qPlayerEffectScript";
+		break;
+
+	case SCRIPT_TYPE::PLAYERHITBOXSCRIPT:
+		return L"qPlayerHitboxScript";
+		break;
+
 	case SCRIPT_TYPE::PLAYERSCRIPT:
 		return L"qPlayerScript";
 		break;
@@ -193,6 +233,10 @@ const wchar_t * qScriptMgr::GetScriptName(qScript * _pScript)
 
 	case SCRIPT_TYPE::RANGESCRIPT:
 		return L"qRangeScript";
+		break;
+
+	case SCRIPT_TYPE::SKELETONSCRIPT:
+		return L"qSkeletonScript";
 		break;
 
 	case SCRIPT_TYPE::WALLSCRIPT:

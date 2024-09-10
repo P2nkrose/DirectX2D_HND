@@ -4,6 +4,7 @@
 #include <Scripts/qPlayerScript.h>
 
 qPlayerBookShootState::qPlayerBookShootState()
+	: qState((UINT)STATE_TYPE::PLAYERBOOKSHOOTSTATE)
 {
 }
 

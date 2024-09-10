@@ -58,9 +58,6 @@ public:
 private:
 	Vec3				m_CurrentPlatformPos;	// 현재 충돌한 플랫폼의 위치
 
-	tUnitInfo			m_CurUnitInfo;
-	tUnitInfo			m_PrevUnitInfo;
-
 	qGameObject*		RightBook;
 	qGameObject*		LeftBook;
 

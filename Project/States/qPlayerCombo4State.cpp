@@ -4,11 +4,13 @@
 #include <Engine/qFlipBookComponent.h>
 #include <Engine/qGameObject.h>
 #include <Scripts/qPlayerScript.h>
+#include <Scripts/qPlayerHitboxScript.h>
 #include <Scripts/qComboScript.h>
 #include <Engine/qLevel.h>
 #include <Engine/qLevelMgr.h>
 
 qPlayerCombo4State::qPlayerCombo4State()
+	: qState((UINT)STATE_TYPE::PLAYERCOMBO4STATE)
 {
 }
 
@@ -26,21 +28,26 @@ void qPlayerCombo4State::Enter()
 
 	GetOwner()->FlipBookComponent()->Play(16, 15, false);
 
+	//qPlayerHitboxScript* HitboxScript = GetOwner()->GetChild(L"PlayerHitbox")->GetScript<qPlayerHitboxScript>();
+	//if (HitboxScript != nullptr)
+	//{
+	//	HitboxScript->On();
+	//}
 
 	// 히트박스 생성
 	Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
 	qGameObject* pPlayer = qLevelMgr::GetInst()->FindObjectByName(L"Player");
 	qPlayerScript* pPlayerScript = pPlayer->GetScript<qPlayerScript>();
 	Vec3 vPlayerPos = pPlayer->Transform()->GetRelativePos();
-
-
-
+	
+	
+	
 	Combo4HitBox = new qGameObject;
 	Combo4HitBox->SetName(L"Combo4HitBox");
 	Combo4HitBox->AddComponent(new qComboScript);
 	Combo4HitBox->AddComponent(new qTransform);
 	Combo4HitBox->Transform()->SetRelativeScale(230.f, 230.f, 1.f);
-
+	
 	if (pPlayerScript->GetPlayerDir() == DIRECTION::LEFT)
 	{
 		Combo4HitBox->Transform()->SetRelativePos(Vec3(vPlayerPos.x - 180.f, vPlayerPos.y + 50.f, vPlayerPos.z));
@@ -49,7 +56,7 @@ void qPlayerCombo4State::Enter()
 	{
 		Combo4HitBox->Transform()->SetRelativePos(Vec3(vPlayerPos.x + 180.f, vPlayerPos.y + 50.f, vPlayerPos.z));
 	}
-
+	
 	Combo4HitBox->AddComponent(new qCollider2D);
 	Combo4HitBox->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
 
@@ -61,7 +68,7 @@ void qPlayerCombo4State::FinalTick()
 
 	// 히트박스 생성
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
-
+	
 	if (GetOwner()->FlipBookComponent()->GetCurFrmIdx() == 9 && !hitboxCreated)
 	{
 		pCurLevel->AddObject(4, Combo4HitBox);
@@ -70,6 +77,8 @@ void qPlayerCombo4State::FinalTick()
 
 	if (GetOwner()->FlipBookComponent()->IsCurFlipBookFinished())
 	{
+		ChangeState(L"Idle");
+		
 		if (Combo4HitBox != nullptr)
 		{
 			Combo4HitBox->Destroy();
@@ -77,7 +86,6 @@ void qPlayerCombo4State::FinalTick()
 			hitboxCreated = false; // 다음 상태 전환 시를 위해 플래그 초기화
 		}
 
-		ChangeState(L"Idle");
 	}
 }
 

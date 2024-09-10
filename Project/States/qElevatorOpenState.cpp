@@ -8,6 +8,7 @@
 #include <Engine/qLevelMgr.h>
 
 qElevatorOpenState::qElevatorOpenState()
+	: qState((UINT)STATE_TYPE::ELEVATOROPENSTATE)
 {
 }
 

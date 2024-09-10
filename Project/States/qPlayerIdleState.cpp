@@ -5,7 +5,8 @@
 #include <Scripts/qPlayerScript.h>
 
 qPlayerIdleState::qPlayerIdleState()
-	: WaitTime(0.f)
+	: qState((UINT)STATE_TYPE::PLAYERCOMBO1STATE)
+	, WaitTime(0.f)
 {
 	
 }

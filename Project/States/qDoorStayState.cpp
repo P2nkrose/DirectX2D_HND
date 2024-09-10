@@ -5,6 +5,7 @@
 #include <Scripts/qDoorScript.h>
 
 qDoorStayState::qDoorStayState()
+	: qState((UINT)STATE_TYPE::DOORSTAYSTATE)
 {
 }
 

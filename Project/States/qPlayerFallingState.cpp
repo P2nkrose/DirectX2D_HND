@@ -4,6 +4,7 @@
 #include <Scripts/qPlayerScript.h>
 
 qPlayerFallingState::qPlayerFallingState()
+	: qState((UINT)STATE_TYPE::PLAYERFALLINGSTATE)
 {
 }
 

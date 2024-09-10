@@ -8,6 +8,7 @@
 #include <Engine/qLevelMgr.h>
 
 qElevatorCloseState::qElevatorCloseState()
+	: qState((UINT)STATE_TYPE::ELEVATORCLOSESTATE)
 {
 }
 

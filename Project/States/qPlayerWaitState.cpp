@@ -4,6 +4,7 @@
 #include <Scripts/qPlayerScript.h>
 
 qPlayerWaitState::qPlayerWaitState()
+	: qState((UINT)STATE_TYPE::PLAYERWAITSTATE)
 {
 }
 
