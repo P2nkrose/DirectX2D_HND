@@ -17,10 +17,10 @@ void qDrownedAttackState::Enter()
 	OGScale = GetOwner()->Transform()->GetRelativeScale();
 	OGColScale = GetOwner()->Collider2D()->GetScale();
 
-	GetOwner()->Transform()->SetRelativeScale(270.f, 222.f, 10.f);
-	GetOwner()->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+	GetOwner()->Transform()->SetRelativeScale(350.f, 230.f, 10.f);
+	GetOwner()->Collider2D()->SetScale(Vec3(0.42f, 1.f, 1.f));
 
-	GetOwner()->FlipBookComponent()->Play(3, 10, false);
+	GetOwner()->FlipBookComponent()->Play(3, 8, false);
 }
 
 void qDrownedAttackState::FinalTick()

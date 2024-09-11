@@ -17,7 +17,10 @@ public:
 
 
 private:
+	float			m_DrownedBumpSpeed;
+	float			m_MaxRange;
 	Vec3			OGScale;
 	Vec3			OGColScale;
+
 };
 

@@ -172,6 +172,12 @@
     <Filter Include="States\03. Monster\02. Drowned\06. Death">
       <UniqueIdentifier>{b7987fe0-027b-4cfa-a7ca-1d122ca34ea3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="States\04. Effect\01. PlayerEffect">
+      <UniqueIdentifier>{a3d7e4b0-28cf-4dd0-944d-308ff1308370}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\04. Effect\02. DeathSoul">
+      <UniqueIdentifier>{e6520094-a476-493b-a441-53f33b366812}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -291,9 +297,6 @@
     <ClInclude Include="qSkeletonDeathState.h">
       <Filter>States\03. Monster\01. Skeleton\03. Death</Filter>
     </ClInclude>
-    <ClInclude Include="qPlayerEffectState.h">
-      <Filter>States\04. Effect</Filter>
-    </ClInclude>
     <ClInclude Include="qDrownedIdleState.h">
       <Filter>States\03. Monster\02. Drowned\01. Idle</Filter>
     </ClInclude>
@@ -311,6 +314,12 @@
     </ClInclude>
     <ClInclude Include="qDrownedDeathState.h">
       <Filter>States\03. Monster\02. Drowned\06. Death</Filter>
+    </ClInclude>
+    <ClInclude Include="qPlayerEffectState.h">
+      <Filter>States\04. Effect\01. PlayerEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="qDeathSoulState.h">
+      <Filter>States\04. Effect\02. DeathSoul</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -431,9 +440,6 @@
     <ClCompile Include="qSkeletonDeathState.cpp">
       <Filter>States\03. Monster\01. Skeleton\03. Death</Filter>
     </ClCompile>
-    <ClCompile Include="qPlayerEffectState.cpp">
-      <Filter>States\04. Effect</Filter>
-    </ClCompile>
     <ClCompile Include="qDrownedIdleState.cpp">
       <Filter>States\03. Monster\02. Drowned\01. Idle</Filter>
     </ClCompile>
@@ -451,6 +457,12 @@
     </ClCompile>
     <ClCompile Include="qDrownedDeathState.cpp">
       <Filter>States\03. Monster\02. Drowned\06. Death</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerEffectState.cpp">
+      <Filter>States\04. Effect\01. PlayerEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="qDeathSoulState.cpp">
+      <Filter>States\04. Effect\02. DeathSoul</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

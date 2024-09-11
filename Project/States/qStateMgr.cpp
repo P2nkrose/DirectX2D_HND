@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "qStateMgr.h"
 
+#include "qDeathSoulState.h"
 #include "qDoorCloseState.h"
 #include "qDoorOpenState.h"
 #include "qDoorStayState.h"
@@ -47,6 +48,7 @@
 
 void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 {
+	_vec.push_back(L"qDeathSoulState");
 	_vec.push_back(L"qDoorCloseState");
 	_vec.push_back(L"qDoorOpenState");
 	_vec.push_back(L"qDoorStayState");
@@ -94,6 +96,8 @@ void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 
 qState * qStateMgr::GetState(const wstring& _strStateName)
 {
+	if (L"qDeathSoulState" == _strStateName)
+		return new qDeathSoulState;
 	if (L"qDoorCloseState" == _strStateName)
 		return new qDoorCloseState;
 	if (L"qDoorOpenState" == _strStateName)
@@ -187,6 +191,9 @@ qState * qStateMgr::GetState(UINT _iStateType)
 {
 	switch (_iStateType)
 	{
+	case (UINT)STATE_TYPE::DEATHSOULSTATE:
+		return new qDeathSoulState;
+		break;
 	case (UINT)STATE_TYPE::DOORCLOSESTATE:
 		return new qDoorCloseState;
 		break;
@@ -324,6 +331,10 @@ const wchar_t * qStateMgr::GetStateName(qState * _pState)
 {
 	switch ((STATE_TYPE)_pState->GetStateType())
 	{
+	case STATE_TYPE::DEATHSOULSTATE:
+		return L"qDeathSoulState";
+		break;
+
 	case STATE_TYPE::DOORCLOSESTATE:
 		return L"qDoorCloseState";
 		break;

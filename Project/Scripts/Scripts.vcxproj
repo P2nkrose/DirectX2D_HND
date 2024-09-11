@@ -172,6 +172,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="qCollectScript.h" />
     <ClInclude Include="qComboScript.h" />
     <ClInclude Include="qCrashScript.h" />
+    <ClInclude Include="qDeathSoulScript.h" />
     <ClInclude Include="qDoorScript.h" />
     <ClInclude Include="qDrownedScript.h" />
     <ClInclude Include="qElevatorScript.h" />
@@ -201,6 +202,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="qCollectScript.cpp" />
     <ClCompile Include="qComboScript.cpp" />
     <ClCompile Include="qCrashScript.cpp" />
+    <ClCompile Include="qDeathSoulScript.cpp" />
     <ClCompile Include="qDoorScript.cpp" />
     <ClCompile Include="qDrownedScript.cpp" />
     <ClCompile Include="qElevatorScript.cpp" />

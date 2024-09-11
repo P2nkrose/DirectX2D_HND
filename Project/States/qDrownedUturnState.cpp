@@ -17,10 +17,10 @@ void qDrownedUturnState::Enter()
 	OGScale = GetOwner()->Transform()->GetRelativeScale();
 	OGColScale = GetOwner()->Collider2D()->GetScale();
 
-	GetOwner()->Transform()->SetRelativeScale(110.f, 221.f, 10.f);
+	GetOwner()->Transform()->SetRelativeScale(150.f, 230.f, 10.f);
 	GetOwner()->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
 
-	GetOwner()->FlipBookComponent()->Play(2, 15, false);
+	GetOwner()->FlipBookComponent()->Play(2, 10, false);
 }
 
 void qDrownedUturnState::FinalTick()

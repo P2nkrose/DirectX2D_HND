@@ -21,8 +21,8 @@ void qDrownedRunState::Enter()
 	OGColScale = GetOwner()->Collider2D()->GetScale();
 	
 
-	GetOwner()->Transform()->SetRelativeScale(170.f, 190.f, 10.f);
-	GetOwner()->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+	GetOwner()->Transform()->SetRelativeScale(200.f, 250.f, 10.f);
+	GetOwner()->Collider2D()->SetScale(Vec3(0.75f, 0.92f, 1.f));
 
 	GetOwner()->FlipBookComponent()->Play(1, 10, true);
 }

@@ -70,9 +70,6 @@
     <Filter Include="Scripts\1. UNIT\4. etc">
       <UniqueIdentifier>{0d80d39b-e2b0-433f-900f-6f7353046f5d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripts\1. UNIT\4. etc\01. collect">
-      <UniqueIdentifier>{f70d9014-68dc-437d-b1a2-e48a6d3ea599}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scripts\1. UNIT\2. Monster\01. Skeleton">
       <UniqueIdentifier>{73bc1a57-0eb9-4423-a1ef-f25d2804d0f0}</UniqueIdentifier>
     </Filter>
@@ -81,6 +78,12 @@
     </Filter>
     <Filter Include="Scripts\1. UNIT\2. Monster\02. Drowned">
       <UniqueIdentifier>{f14dfa3b-b020-459c-9178-9033b43ff440}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\1. UNIT\4. etc\02. DeathSoul">
+      <UniqueIdentifier>{2bde85c0-30f7-4086-b6d9-91a968d00784}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\1. UNIT\4. etc\01. Collect">
+      <UniqueIdentifier>{f70d9014-68dc-437d-b1a2-e48a6d3ea599}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -139,7 +142,7 @@
       <Filter>Scripts\3. Transfer\02. Elevator</Filter>
     </ClInclude>
     <ClInclude Include="qCollectScript.h">
-      <Filter>Scripts\1. UNIT\4. etc\01. collect</Filter>
+      <Filter>Scripts\1. UNIT\4. etc\01. Collect</Filter>
     </ClInclude>
     <ClInclude Include="qSkeletonScript.h">
       <Filter>Scripts\1. UNIT\2. Monster\01. Skeleton</Filter>
@@ -152,6 +155,9 @@
     </ClInclude>
     <ClInclude Include="qDrownedScript.h">
       <Filter>Scripts\1. UNIT\2. Monster\02. Drowned</Filter>
+    </ClInclude>
+    <ClInclude Include="qDeathSoulScript.h">
+      <Filter>Scripts\1. UNIT\4. etc\02. DeathSoul</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -210,7 +216,7 @@
       <Filter>Scripts\3. Transfer\02. Elevator</Filter>
     </ClCompile>
     <ClCompile Include="qCollectScript.cpp">
-      <Filter>Scripts\1. UNIT\4. etc\01. collect</Filter>
+      <Filter>Scripts\1. UNIT\4. etc\01. Collect</Filter>
     </ClCompile>
     <ClCompile Include="qSkeletonScript.cpp">
       <Filter>Scripts\1. UNIT\2. Monster\01. Skeleton</Filter>
@@ -223,6 +229,9 @@
     </ClCompile>
     <ClCompile Include="qDrownedScript.cpp">
       <Filter>Scripts\1. UNIT\2. Monster\02. Drowned</Filter>
+    </ClCompile>
+    <ClCompile Include="qDeathSoulScript.cpp">
+      <Filter>Scripts\1. UNIT\4. etc\02. DeathSoul</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

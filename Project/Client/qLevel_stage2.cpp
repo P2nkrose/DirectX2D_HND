@@ -933,11 +933,11 @@ void qLevel_stage2::CreateStage2()
 
 	pDrowned1->AddComponent(new qMeshRender);
 	pDrowned1->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	pDrowned1->MeshRender()->SetMaterial(pMtrl);
+	pDrowned1->MeshRender()->SetMaterial(pAlphaBlendMtrl);
 
 	pDrowned1->AddComponent(new qTransform);
 	pDrowned1->Transform()->SetRelativePos(-2000.f, 325.f, 10.f);
-	pDrowned1->Transform()->SetRelativeScale(115.f, 225.f, 1.f);
+	pDrowned1->Transform()->SetRelativeScale(150.f, 230.f, 1.f);
 
 
 	pDrowned1->AddComponent(new qCollider2D);
@@ -945,22 +945,22 @@ void qLevel_stage2::CreateStage2()
 	pDrowned1->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
 
 	pDrowned1->AddComponent(new qFlipBookComponent);
-	Ptr<qFlipBook> pDrownedIdle = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\drowned_idle.flip");
+	Ptr<qFlipBook> pDrownedIdle = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\drowned_idle_ice.flip");
 	pDrowned1->FlipBookComponent()->AddFlipBook(0, pDrownedIdle);
 
-	Ptr<qFlipBook> pDrownedRun = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\drowned_run.flip");
+	Ptr<qFlipBook> pDrownedRun = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\drowned_run_ice.flip");
 	pDrowned1->FlipBookComponent()->AddFlipBook(1, pDrownedRun);
 
-	Ptr<qFlipBook> pDrownedUturn = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\drowned_uturn.flip");
+	Ptr<qFlipBook> pDrownedUturn = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\drowned_uturn_ice.flip");
 	pDrowned1->FlipBookComponent()->AddFlipBook(2, pDrownedUturn);
 
-	Ptr<qFlipBook> pDrownedAttack = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\drowned_attack.flip");
+	Ptr<qFlipBook> pDrownedAttack = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\drowned_attack_ice2.flip");
 	pDrowned1->FlipBookComponent()->AddFlipBook(3, pDrownedAttack);
 
-	Ptr<qFlipBook> pDrownedHit = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\drowned_hit.flip");
+	Ptr<qFlipBook> pDrownedHit = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\drowned_hit_ice.flip");
 	pDrowned1->FlipBookComponent()->AddFlipBook(4, pDrownedHit);
 
-	Ptr<qFlipBook> pDrownedDeath = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\drowned_death.flip");
+	Ptr<qFlipBook> pDrownedDeath = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\drowned_death_ice.flip");
 	pDrowned1->FlipBookComponent()->AddFlipBook(5, pDrownedDeath);
 
 	pDrowned1->AddComponent(new qFSM);

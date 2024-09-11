@@ -160,6 +160,7 @@ call CodeGen.exe</Command>
   <ItemGroup>
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="qDeathSoulState.h" />
     <ClInclude Include="qDoorCloseState.h" />
     <ClInclude Include="qDoorOpenState.h" />
     <ClInclude Include="qDoorStayState.h" />
@@ -212,6 +213,7 @@ call CodeGen.exe</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="qDeathSoulState.cpp" />
     <ClCompile Include="qDoorCloseState.cpp" />
     <ClCompile Include="qDoorOpenState.cpp" />
     <ClCompile Include="qDoorStayState.cpp" />

@@ -6,6 +6,7 @@
 qPlayerBumpState::qPlayerBumpState()
 	: qState((UINT)STATE_TYPE::PLAYERBUMPSTATE)
 	, m_BumpSpeed(200.f)
+	, m_MaxRange(0.f)
 {
 }
 

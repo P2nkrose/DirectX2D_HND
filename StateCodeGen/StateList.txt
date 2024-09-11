@@ -1,3 +1,4 @@
+qDeathSoulState
 qDoorCloseState
 qDoorOpenState
 qDoorStayState

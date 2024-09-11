@@ -34,6 +34,17 @@ void qDrownedIdleState::FinalTick()
 
 	float Dist = Dir.Length();
 
+	static bool flag = false;
+
+	if (Dist < m_DetectRange && !flag)
+	{
+		// ´À³¦Ç¥ »ý¼º
+
+
+		flag = true;
+	}
+
+
 	if (Dist < m_DetectRange)
 	{
 		DIRECTION CurDir = GetOwner()->GetScript<qDrownedScript>()->GetDrownedDir();

@@ -4,6 +4,7 @@ qCameraMoveScript
 qCollectScript
 qComboScript
 qCrashScript
+qDeathSoulScript
 qDoorScript
 qDrownedScript
 qElevatorScript
