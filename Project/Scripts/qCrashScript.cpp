@@ -4,6 +4,7 @@
 
 #include "qCrashScript.h"
 #include "qSkeletonScript.h"
+#include "qDrownedScript.h"
 #include "qPlayerEffectScript.h"
 #include <States/qPlayerEffectState.h>
 
@@ -46,9 +47,19 @@ void qCrashScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherOb
 
 			SkeletonScript->Hit(m_CrashDamage);
 		}
+		else if (_OtherObject->GetName() == L"Drowned")
+		{
+			qDrownedScript* DrownedScript = _OtherObject->GetScript<qDrownedScript>();
+
+			if (DrownedScript == nullptr)
+				return;
+
+			DrownedScript->Hit(m_CrashDamage);
+		}
 
 
-		if (_OtherObject->GetName() == L"Skeleton")
+
+		if (_OtherObject->GetName() == L"Skeleton" || _OtherObject->GetName() == L"Drowned")
 		{
 			qGameObject* Effect = new qGameObject;
 			Effect->SetName(L"effect");

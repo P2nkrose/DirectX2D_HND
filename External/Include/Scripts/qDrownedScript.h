@@ -32,11 +32,7 @@ public:
 
 
 private:
-	Vec3		m_DrownedPos;
-	Vec3		m_DrownedRot;
-
-	DIRECTION	m_SkeletonDir;
-
+	DIRECTION	m_DrownedDir;
 	bool		m_DirChanged;
 };
 

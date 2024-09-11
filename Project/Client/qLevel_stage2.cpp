@@ -23,6 +23,7 @@
 
 // Monster Script
 #include <Scripts/qSkeletonScript.h>
+#include <Scripts/qDrownedScript.h>
 
 #include <Scripts/qBookScript_Left.h>
 #include <Scripts/qMissileScript.h>
@@ -87,6 +88,14 @@
 #include <States/qSkeletonIdleState.h>			// 0
 #include <States/qSkeletonAttackState.h>		// 1
 #include <States/qSkeletonDeathState.h>			// 2
+
+#include <States/qDrownedIdleState.h>			// 1
+#include <States/qDrownedRunState.h>			// 2
+#include <States/qDrownedUturnState.h>			// 3
+#include <States/qDrownedAttackState.h>			// 4
+#include <States/qDrownedHitState.h>			// 5
+#include <States/qDrownedDeathState.h>			// 6
+
 
 #include "qLevelSaveLoad.h"
 
@@ -879,6 +888,7 @@ void qLevel_stage2::CreateStage2()
 	//     MONSTER
 	// ===============
 
+	// ½ºÄÌ·¹Åæ 1
 	qGameObject* pSkeleton1 = new qGameObject;
 	pSkeleton1->SetName(L"Skeleton");
 
@@ -907,16 +917,66 @@ void qLevel_stage2::CreateStage2()
 	Ptr<qFlipBook> pSkeletonDeath = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\skeleton_death.flip");
 	pSkeleton1->FlipBookComponent()->AddFlipBook(2, pSkeletonDeath);
 
-
 	pSkeleton1->AddComponent(new qFSM);
 	pSkeleton1->FSM()->AddState(L"SkeletonIdle", new qSkeletonIdleState);		// 0
 	pSkeleton1->FSM()->AddState(L"SkeletonAttack", new qSkeletonAttackState);	// 1
 	pSkeleton1->FSM()->AddState(L"SkeletonDeath", new qSkeletonDeathState);		// 2
-
-	
 	pSkeleton1->FSM()->ChangeState(L"SkeletonIdle");
 
 	pStage2->AddObject(5, pSkeleton1);
+
+
+	// Drowned
+	qGameObject* pDrowned1 = new qGameObject;
+	pDrowned1->SetName(L"Drowned");
+	pDrowned1->AddComponent(new qDrownedScript);
+
+	pDrowned1->AddComponent(new qMeshRender);
+	pDrowned1->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pDrowned1->MeshRender()->SetMaterial(pMtrl);
+
+	pDrowned1->AddComponent(new qTransform);
+	pDrowned1->Transform()->SetRelativePos(-2000.f, 325.f, 10.f);
+	pDrowned1->Transform()->SetRelativeScale(115.f, 225.f, 1.f);
+
+
+	pDrowned1->AddComponent(new qCollider2D);
+	pDrowned1->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pDrowned1->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+
+	pDrowned1->AddComponent(new qFlipBookComponent);
+	Ptr<qFlipBook> pDrownedIdle = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\drowned_idle.flip");
+	pDrowned1->FlipBookComponent()->AddFlipBook(0, pDrownedIdle);
+
+	Ptr<qFlipBook> pDrownedRun = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\drowned_run.flip");
+	pDrowned1->FlipBookComponent()->AddFlipBook(1, pDrownedRun);
+
+	Ptr<qFlipBook> pDrownedUturn = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\drowned_uturn.flip");
+	pDrowned1->FlipBookComponent()->AddFlipBook(2, pDrownedUturn);
+
+	Ptr<qFlipBook> pDrownedAttack = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\drowned_attack.flip");
+	pDrowned1->FlipBookComponent()->AddFlipBook(3, pDrownedAttack);
+
+	Ptr<qFlipBook> pDrownedHit = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\drowned_hit.flip");
+	pDrowned1->FlipBookComponent()->AddFlipBook(4, pDrownedHit);
+
+	Ptr<qFlipBook> pDrownedDeath = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\drowned_death.flip");
+	pDrowned1->FlipBookComponent()->AddFlipBook(5, pDrownedDeath);
+
+	pDrowned1->AddComponent(new qFSM);
+	pDrowned1->FSM()->AddState(L"DrownedIdle", new qDrownedIdleState);			// 0
+	pDrowned1->FSM()->AddState(L"DrownedRun", new qDrownedRunState);			// 1
+	pDrowned1->FSM()->AddState(L"DrownedUturn", new qDrownedUturnState);		// 2
+	pDrowned1->FSM()->AddState(L"DrownedAttack", new qDrownedAttackState);		// 3
+	pDrowned1->FSM()->AddState(L"DrownedHit", new qDrownedHitState);			// 4
+	pDrowned1->FSM()->AddState(L"DrownedDeath", new qDrownedDeathState);		// 5
+
+	pDrowned1->FSM()->ChangeState(L"DrownedIdle");
+
+	pStage2->AddObject(5, pDrowned1);
+
+
+
 
 
 	// Ãæµ¹ ÁöÁ¤

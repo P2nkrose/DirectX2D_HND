@@ -62,14 +62,17 @@ void qSkeletonScript::Tick()
 
 		flag = true;
 	}
+
+	// Anim 방향 정보 갱신 -1: Left , 1: Right
+	GetRenderComponent()->GetMaterial()->SetScalarParam(SCALAR_PARAM::INT_0, (int)m_CurUnitInfo.Dir);
 }
 
 void qSkeletonScript::Hit(float _Damage)
 {
 	const wstring& CurState = qStateMgr::GetStateName(GetOwner()->FSM()->GetCurState());
 
-	//if (CurState == L"SkeletonDeath")
-	//	return;
+	if (CurState == L"qSkeletonDeathState")
+		return;
 
 	m_CurUnitInfo.HP -= _Damage;
 }

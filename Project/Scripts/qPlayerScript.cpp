@@ -15,7 +15,6 @@
 #include <Engine/qState.h>
 
 #include <States/qStateMgr.h>
-#include <Engine/qStateMachine.h>
 
 qPlayerScript::qPlayerScript()
 	: qScript(SCRIPT_TYPE::PLAYERSCRIPT)
