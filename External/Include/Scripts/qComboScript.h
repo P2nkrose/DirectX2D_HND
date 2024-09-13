@@ -19,5 +19,9 @@ public:
 	virtual void SaveToFile(FILE* _File) override;
 	virtual void LoadFromFile(FILE* _File) override;
 
+
+private:
+	float		m_ComboDamage;
+	float		m_ComboFinalDamage;
 };
 

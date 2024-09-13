@@ -6,8 +6,11 @@ qComboScript
 qCrashScript
 qDeathSoulScript
 qDoorScript
+qDrownedAttackScript
 qDrownedScript
 qElevatorScript
+qGhostAttackScript
+qGhostScript
 qKrushScript
 qMissileScript
 qPlatformScript
@@ -17,5 +20,6 @@ qPlayerScript
 qPortalScript
 qPostScript
 qRangeScript
+qSkeletonAttackScript
 qSkeletonScript
 qWallScript

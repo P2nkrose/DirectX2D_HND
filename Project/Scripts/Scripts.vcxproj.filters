@@ -85,6 +85,9 @@
     <Filter Include="Scripts\1. UNIT\4. etc\01. Collect">
       <UniqueIdentifier>{f70d9014-68dc-437d-b1a2-e48a6d3ea599}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scripts\1. UNIT\2. Monster\03. Ghost">
+      <UniqueIdentifier>{b0f76843-bddd-4de8-9d4a-885ebd010d8c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -159,6 +162,18 @@
     <ClInclude Include="qDeathSoulScript.h">
       <Filter>Scripts\1. UNIT\4. etc\02. DeathSoul</Filter>
     </ClInclude>
+    <ClInclude Include="qSkeletonAttackScript.h">
+      <Filter>Scripts\1. UNIT\2. Monster\01. Skeleton</Filter>
+    </ClInclude>
+    <ClInclude Include="qDrownedAttackScript.h">
+      <Filter>Scripts\1. UNIT\2. Monster\02. Drowned</Filter>
+    </ClInclude>
+    <ClInclude Include="qGhostScript.h">
+      <Filter>Scripts\1. UNIT\2. Monster\03. Ghost</Filter>
+    </ClInclude>
+    <ClInclude Include="qGhostAttackScript.h">
+      <Filter>Scripts\1. UNIT\2. Monster\03. Ghost</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -232,6 +247,18 @@
     </ClCompile>
     <ClCompile Include="qDeathSoulScript.cpp">
       <Filter>Scripts\1. UNIT\4. etc\02. DeathSoul</Filter>
+    </ClCompile>
+    <ClCompile Include="qSkeletonAttackScript.cpp">
+      <Filter>Scripts\1. UNIT\2. Monster\01. Skeleton</Filter>
+    </ClCompile>
+    <ClCompile Include="qDrownedAttackScript.cpp">
+      <Filter>Scripts\1. UNIT\2. Monster\02. Drowned</Filter>
+    </ClCompile>
+    <ClCompile Include="qGhostScript.cpp">
+      <Filter>Scripts\1. UNIT\2. Monster\03. Ghost</Filter>
+    </ClCompile>
+    <ClCompile Include="qGhostAttackScript.cpp">
+      <Filter>Scripts\1. UNIT\2. Monster\03. Ghost</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -3,14 +3,22 @@
 
 #include <Engine/qGameObject.h>
 #include <Engine/qLevelMgr.h>
+#include <Engine/qLevel.h>
 
 #include <Engine/qScript.h>
 #include "qPlayerScript.h"
+#include "qSkeletonScript.h"
+#include "qDrownedScript.h"
+#include "qGhostScript.h"
+#include "qPlayerEffectScript.h"
+#include <States/qPlayerEffectState.h>
+#include <States/qBookEffectState.h>
 
 
 qBookScript_Left::qBookScript_Left()
 	: qScript(UINT(SCRIPT_TYPE::BOOKSCRIPT_LEFT))
 	, m_BookSpeed(1000.f)
+	, m_BookDamage(30.f)
 {
 }
 
@@ -38,10 +46,82 @@ void qBookScript_Left::Tick()
 
 void qBookScript_Left::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)
 {
-	//if (_OtherObject->GetName() == L"Monster")
-	//{
-	//	DeleteObject(_OtherObject);
-	//}
+	Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
+	Ptr<qMaterial> pAlphaBlendMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DAlphaBlendMtrl");
+
+	if (GetOwner() != nullptr)
+	{
+		if (_OtherObject->GetName() == L"Skeleton")
+		{
+			qSkeletonScript* SkeletonScript = _OtherObject->GetScript<qSkeletonScript>();
+
+			if (SkeletonScript == nullptr)
+				return;
+
+			SkeletonScript->Hit(m_BookDamage);
+
+			GetOwner()->Destroy();
+		}
+		else if (_OtherObject->GetName() == L"Drowned")
+		{
+			qDrownedScript* DrownedScript = _OtherObject->GetScript<qDrownedScript>();
+
+			if (DrownedScript == nullptr)
+				return;
+
+			DrownedScript->Hit(m_BookDamage);
+
+			GetOwner()->Destroy();
+		}
+		else if (_OtherObject->GetName() == L"Ghost")
+		{
+			qGhostScript* GhostScript = _OtherObject->GetScript<qGhostScript>();
+
+			if (GhostScript == nullptr)
+				return;
+
+			GhostScript->Hit(m_BookDamage);
+
+			GetOwner()->Destroy();
+		}
+
+
+
+		// ÀÌÆåÆ®
+		if (_OtherObject->GetName() == L"Skeleton" || _OtherObject->GetName() == L"Drowned" || _OtherObject->GetName() == L"Ghost")
+		{
+			qGameObject* Effect = new qGameObject;
+			Effect->SetName(L"effect");
+
+			Effect->AddComponent(new qTransform);
+			Vec3 MonsterPos = _OtherObject->Transform()->GetRelativePos();
+			Vec3 MonsterScale = _OtherObject->Transform()->GetRelativeScale();
+			Effect->Transform()->SetRelativePos(Vec3(MonsterPos.x + 20.f, MonsterPos.y - 30.f, MonsterPos.z));
+			Effect->Transform()->SetRelativeScale(90.f, 90.f, 1.f);
+
+			Effect->AddComponent(new qMeshRender);
+			Effect->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+			Effect->MeshRender()->SetMaterial(pMtrl);
+
+			Effect->AddComponent(new qFlipBookComponent);
+			Ptr<qFlipBook> pEffect = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\bookeffect.flip");
+			Effect->FlipBookComponent()->AddFlipBook(0, pEffect);
+
+			Effect->AddComponent(new qFSM);
+			Effect->FSM()->AddState(L"Effect", new qBookEffectState);
+
+			Effect->FSM()->ChangeState(L"Effect");
+
+			qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+			pCurLevel->AddObject(12, Effect);
+		}
+
+
+	}
+
+
+
+
 }
 
 void qBookScript_Left::SaveToFile(FILE* _File)

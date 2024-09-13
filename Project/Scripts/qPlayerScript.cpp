@@ -175,7 +175,7 @@ void qPlayerScript::Tick()
 			Vec3 vPlayerPos = pPlayer->Transform()->GetRelativePos();
 
 			LeftBook = new qGameObject;
-			LeftBook->SetName(L"LeftBookHitBox");
+			LeftBook->SetName(L"Book");
 			LeftBook->AddComponent(new qBookScript_Left);
 			LeftBook->AddComponent(new qTransform);
 			LeftBook->Transform()->SetRelativeScale(70.f, 70.f, 1.f);
@@ -208,7 +208,7 @@ void qPlayerScript::Tick()
 			Vec3 vPlayerPos = pPlayer->Transform()->GetRelativePos();
 
 			RightBook = new qGameObject;
-			RightBook->SetName(L"RightBookHitBox");
+			RightBook->SetName(L"Book");
 			RightBook->AddComponent(new qBookScript_Right);
 			RightBook->AddComponent(new qTransform);
 			RightBook->Transform()->SetRelativeScale(70.f, 70.f, 1.f);

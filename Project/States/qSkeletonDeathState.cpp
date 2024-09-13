@@ -25,9 +25,9 @@ void qSkeletonDeathState::Enter()
 
 	GetOwner()->Transform()->SetRelativePos(-3244.f, -370.f, 10.f);
 	GetOwner()->Transform()->SetRelativeScale(260.f, 200.f, 0.f);
-	//GetOwner()->Collider2D()->SetScale(Vec3(0.5f, 1.0f, 0.f));
+	GetOwner()->Collider2D()->SetScale(Vec3(0.01f, 0.01f, 0.f));
 
-	GetOwner()->FlipBookComponent()->Play(2, 20, false);
+	GetOwner()->FlipBookComponent()->Play(2, 15, false);
 }
 
 void qSkeletonDeathState::FinalTick()

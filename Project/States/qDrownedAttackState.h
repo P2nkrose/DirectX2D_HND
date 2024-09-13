@@ -1,6 +1,8 @@
 #pragma once
 #include <Engine/qState.h>
 
+class qGameObject;
+
 class qDrownedAttackState : public qState
 {
 public:
@@ -16,6 +18,7 @@ public:
 
 
 private:
+	qGameObject*	DrownedAttackHitbox;
 	Vec3			OGScale;
 	Vec3			OGColScale;
 };

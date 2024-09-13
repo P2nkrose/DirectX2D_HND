@@ -9,8 +9,11 @@
 #include "qCrashScript.h"
 #include "qDeathSoulScript.h"
 #include "qDoorScript.h"
+#include "qDrownedAttackScript.h"
 #include "qDrownedScript.h"
 #include "qElevatorScript.h"
+#include "qGhostAttackScript.h"
+#include "qGhostScript.h"
 #include "qKrushScript.h"
 #include "qMissileScript.h"
 #include "qPlatformScript.h"
@@ -20,6 +23,7 @@
 #include "qPortalScript.h"
 #include "qPostScript.h"
 #include "qRangeScript.h"
+#include "qSkeletonAttackScript.h"
 #include "qSkeletonScript.h"
 #include "qWallScript.h"
 
@@ -33,8 +37,11 @@ void qScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qCrashScript");
 	_vec.push_back(L"qDeathSoulScript");
 	_vec.push_back(L"qDoorScript");
+	_vec.push_back(L"qDrownedAttackScript");
 	_vec.push_back(L"qDrownedScript");
 	_vec.push_back(L"qElevatorScript");
+	_vec.push_back(L"qGhostAttackScript");
+	_vec.push_back(L"qGhostScript");
 	_vec.push_back(L"qKrushScript");
 	_vec.push_back(L"qMissileScript");
 	_vec.push_back(L"qPlatformScript");
@@ -44,6 +51,7 @@ void qScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qPortalScript");
 	_vec.push_back(L"qPostScript");
 	_vec.push_back(L"qRangeScript");
+	_vec.push_back(L"qSkeletonAttackScript");
 	_vec.push_back(L"qSkeletonScript");
 	_vec.push_back(L"qWallScript");
 }
@@ -66,10 +74,16 @@ qScript * qScriptMgr::GetScript(const wstring& _strScriptName)
 		return new qDeathSoulScript;
 	if (L"qDoorScript" == _strScriptName)
 		return new qDoorScript;
+	if (L"qDrownedAttackScript" == _strScriptName)
+		return new qDrownedAttackScript;
 	if (L"qDrownedScript" == _strScriptName)
 		return new qDrownedScript;
 	if (L"qElevatorScript" == _strScriptName)
 		return new qElevatorScript;
+	if (L"qGhostAttackScript" == _strScriptName)
+		return new qGhostAttackScript;
+	if (L"qGhostScript" == _strScriptName)
+		return new qGhostScript;
 	if (L"qKrushScript" == _strScriptName)
 		return new qKrushScript;
 	if (L"qMissileScript" == _strScriptName)
@@ -88,6 +102,8 @@ qScript * qScriptMgr::GetScript(const wstring& _strScriptName)
 		return new qPostScript;
 	if (L"qRangeScript" == _strScriptName)
 		return new qRangeScript;
+	if (L"qSkeletonAttackScript" == _strScriptName)
+		return new qSkeletonAttackScript;
 	if (L"qSkeletonScript" == _strScriptName)
 		return new qSkeletonScript;
 	if (L"qWallScript" == _strScriptName)
@@ -123,11 +139,20 @@ qScript * qScriptMgr::GetScript(UINT _iScriptType)
 	case (UINT)SCRIPT_TYPE::DOORSCRIPT:
 		return new qDoorScript;
 		break;
+	case (UINT)SCRIPT_TYPE::DROWNEDATTACKSCRIPT:
+		return new qDrownedAttackScript;
+		break;
 	case (UINT)SCRIPT_TYPE::DROWNEDSCRIPT:
 		return new qDrownedScript;
 		break;
 	case (UINT)SCRIPT_TYPE::ELEVATORSCRIPT:
 		return new qElevatorScript;
+		break;
+	case (UINT)SCRIPT_TYPE::GHOSTATTACKSCRIPT:
+		return new qGhostAttackScript;
+		break;
+	case (UINT)SCRIPT_TYPE::GHOSTSCRIPT:
+		return new qGhostScript;
 		break;
 	case (UINT)SCRIPT_TYPE::KRUSHSCRIPT:
 		return new qKrushScript;
@@ -155,6 +180,9 @@ qScript * qScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::RANGESCRIPT:
 		return new qRangeScript;
+		break;
+	case (UINT)SCRIPT_TYPE::SKELETONATTACKSCRIPT:
+		return new qSkeletonAttackScript;
 		break;
 	case (UINT)SCRIPT_TYPE::SKELETONSCRIPT:
 		return new qSkeletonScript;
@@ -202,12 +230,24 @@ const wchar_t * qScriptMgr::GetScriptName(qScript * _pScript)
 		return L"qDoorScript";
 		break;
 
+	case SCRIPT_TYPE::DROWNEDATTACKSCRIPT:
+		return L"qDrownedAttackScript";
+		break;
+
 	case SCRIPT_TYPE::DROWNEDSCRIPT:
 		return L"qDrownedScript";
 		break;
 
 	case SCRIPT_TYPE::ELEVATORSCRIPT:
 		return L"qElevatorScript";
+		break;
+
+	case SCRIPT_TYPE::GHOSTATTACKSCRIPT:
+		return L"qGhostAttackScript";
+		break;
+
+	case SCRIPT_TYPE::GHOSTSCRIPT:
+		return L"qGhostScript";
 		break;
 
 	case SCRIPT_TYPE::KRUSHSCRIPT:
@@ -244,6 +284,10 @@ const wchar_t * qScriptMgr::GetScriptName(qScript * _pScript)
 
 	case SCRIPT_TYPE::RANGESCRIPT:
 		return L"qRangeScript";
+		break;
+
+	case SCRIPT_TYPE::SKELETONATTACKSCRIPT:
+		return L"qSkeletonAttackScript";
 		break;
 
 	case SCRIPT_TYPE::SKELETONSCRIPT:

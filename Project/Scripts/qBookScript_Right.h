@@ -22,5 +22,6 @@ public:
 
 private:
 	float		m_BookSpeed;
+	float		m_BookDamage;
 };
 

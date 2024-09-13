@@ -24,6 +24,7 @@
 // Monster Script
 #include <Scripts/qSkeletonScript.h>
 #include <Scripts/qDrownedScript.h>
+#include <Scripts/qGhostScript.h>
 
 #include <Scripts/qBookScript_Left.h>
 #include <Scripts/qMissileScript.h>
@@ -89,12 +90,19 @@
 #include <States/qSkeletonAttackState.h>		// 1
 #include <States/qSkeletonDeathState.h>			// 2
 
-#include <States/qDrownedIdleState.h>			// 1
-#include <States/qDrownedRunState.h>			// 2
-#include <States/qDrownedUturnState.h>			// 3
-#include <States/qDrownedAttackState.h>			// 4
-#include <States/qDrownedHitState.h>			// 5
-#include <States/qDrownedDeathState.h>			// 6
+#include <States/qDrownedIdleState.h>			// 0
+#include <States/qDrownedRunState.h>			// 1
+#include <States/qDrownedUturnState.h>			// 2
+#include <States/qDrownedAttackState.h>			// 3
+#include <States/qDrownedHitState.h>			// 4
+#include <States/qDrownedDeathState.h>			// 5
+
+#include <States/qGhostIdleState.h>				// 0
+#include <States/qGhostRunState.h>				// 1
+#include <States/qGhostUturnState.h>			// 2
+#include <States/qGhostAttackState.h>			// 3
+#include <States/qGhostHitState.h>				// 4
+#include <States/qGhostDeathState.h>			// 5
 
 
 #include "qLevelSaveLoad.h"
@@ -899,7 +907,7 @@ void qLevel_stage2::CreateStage2()
 	pSkeleton1->MeshRender()->SetMaterial(pMtrl);
 
 	pSkeleton1->AddComponent(new qTransform);
-	pSkeleton1->Transform()->SetRelativePos(-3235.f, -390.f, 10.f);
+	pSkeleton1->Transform()->SetRelativePos(-3235.f, -390.f, 30.f);
 	pSkeleton1->Transform()->SetRelativeScale(170.f, 160.f, 1.f);
 
 	pSkeleton1->AddComponent(new qCollider2D);
@@ -936,7 +944,7 @@ void qLevel_stage2::CreateStage2()
 	pDrowned1->MeshRender()->SetMaterial(pAlphaBlendMtrl);
 
 	pDrowned1->AddComponent(new qTransform);
-	pDrowned1->Transform()->SetRelativePos(-2000.f, 325.f, 10.f);
+	pDrowned1->Transform()->SetRelativePos(-2200.f, 325.f, 30.f);
 	pDrowned1->Transform()->SetRelativeScale(150.f, 230.f, 1.f);
 
 
@@ -977,12 +985,65 @@ void qLevel_stage2::CreateStage2()
 
 
 
+	// Ghost
+	qGameObject* pGhost1 = new qGameObject;
+	pGhost1->SetName(L"Ghost");
+	pGhost1->AddComponent(new qGhostScript);
+
+	pGhost1->AddComponent(new qMeshRender);
+	pGhost1->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pGhost1->MeshRender()->SetMaterial(pAlphaBlendMtrl);
+
+	pGhost1->AddComponent(new qTransform);
+	pGhost1->Transform()->SetRelativePos(-1960.f, -23.f, 30.f);
+	pGhost1->Transform()->SetRelativeScale(200.f, 250.f, 1.f);
+
+
+	pGhost1->AddComponent(new qCollider2D);
+	pGhost1->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pGhost1->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+
+	pGhost1->AddComponent(new qFlipBookComponent);
+	
+	Ptr<qFlipBook> pGhostIdle = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\ghost_idle.flip");
+	pGhost1->FlipBookComponent()->AddFlipBook(0, pGhostIdle);
+
+	Ptr<qFlipBook> pGhostRun = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\ghost_run.flip");
+	pGhost1->FlipBookComponent()->AddFlipBook(1, pGhostRun);
+
+	Ptr<qFlipBook> pGhostUturn = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\ghost_uturn.flip");
+	pGhost1->FlipBookComponent()->AddFlipBook(2, pGhostUturn);
+
+	Ptr<qFlipBook> pGhostAttack = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\ghost_attack.flip");
+	pGhost1->FlipBookComponent()->AddFlipBook(3, pGhostAttack);
+
+	Ptr<qFlipBook> pGhostHit = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\ghost_hit.flip");
+	pGhost1->FlipBookComponent()->AddFlipBook(4, pGhostHit);
+	
+	Ptr<qFlipBook> pGhostDeath = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\ghost_death.flip");
+	pGhost1->FlipBookComponent()->AddFlipBook(5, pGhostDeath);
+
+	pGhost1->AddComponent(new qFSM);
+	pGhost1->FSM()->AddState(L"GhostIdle", new qGhostIdleState);			// 0
+	pGhost1->FSM()->AddState(L"GhostRun", new qGhostRunState);				// 1
+	pGhost1->FSM()->AddState(L"GhostUturn", new qGhostUturnState);			// 2
+	pGhost1->FSM()->AddState(L"GhostAttack", new qGhostAttackState);		// 3
+	pGhost1->FSM()->AddState(L"GhostHit", new qGhostHitState);				// 4
+	pGhost1->FSM()->AddState(L"GhostDeath", new qGhostDeathState);			// 5
+
+	pGhost1->FSM()->ChangeState(L"GhostIdle");
+
+	pStage2->AddObject(5, pGhost1);
+
+
+
 
 
 	// 충돌 지정
 	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
 	qCollisionMgr::GetInst()->CollisionCheck(4, 5);		// PlayerSkill vs Monster
 	qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
+	qCollisionMgr::GetInst()->CollisionCheck(3, 6);		// Player vs Monster Skill
 	qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
 	qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
 	//

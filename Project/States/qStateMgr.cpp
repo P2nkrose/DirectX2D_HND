@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "qStateMgr.h"
 
+#include "qBookEffectState.h"
 #include "qDeathSoulState.h"
 #include "qDoorCloseState.h"
 #include "qDoorOpenState.h"
@@ -14,6 +15,13 @@
 #include "qElevatorCloseState.h"
 #include "qElevatorOpenState.h"
 #include "qElevatorStayState.h"
+#include "qFireState.h"
+#include "qGhostAttackState.h"
+#include "qGhostDeathState.h"
+#include "qGhostHitState.h"
+#include "qGhostIdleState.h"
+#include "qGhostRunState.h"
+#include "qGhostUturnState.h"
 #include "qLoadingState.h"
 #include "qPlayerBookShootState.h"
 #include "qPlayerBumpState.h"
@@ -48,6 +56,7 @@
 
 void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 {
+	_vec.push_back(L"qBookEffectState");
 	_vec.push_back(L"qDeathSoulState");
 	_vec.push_back(L"qDoorCloseState");
 	_vec.push_back(L"qDoorOpenState");
@@ -61,6 +70,13 @@ void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qElevatorCloseState");
 	_vec.push_back(L"qElevatorOpenState");
 	_vec.push_back(L"qElevatorStayState");
+	_vec.push_back(L"qFireState");
+	_vec.push_back(L"qGhostAttackState");
+	_vec.push_back(L"qGhostDeathState");
+	_vec.push_back(L"qGhostHitState");
+	_vec.push_back(L"qGhostIdleState");
+	_vec.push_back(L"qGhostRunState");
+	_vec.push_back(L"qGhostUturnState");
 	_vec.push_back(L"qLoadingState");
 	_vec.push_back(L"qPlayerBookShootState");
 	_vec.push_back(L"qPlayerBumpState");
@@ -96,6 +112,8 @@ void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 
 qState * qStateMgr::GetState(const wstring& _strStateName)
 {
+	if (L"qBookEffectState" == _strStateName)
+		return new qBookEffectState;
 	if (L"qDeathSoulState" == _strStateName)
 		return new qDeathSoulState;
 	if (L"qDoorCloseState" == _strStateName)
@@ -122,6 +140,20 @@ qState * qStateMgr::GetState(const wstring& _strStateName)
 		return new qElevatorOpenState;
 	if (L"qElevatorStayState" == _strStateName)
 		return new qElevatorStayState;
+	if (L"qFireState" == _strStateName)
+		return new qFireState;
+	if (L"qGhostAttackState" == _strStateName)
+		return new qGhostAttackState;
+	if (L"qGhostDeathState" == _strStateName)
+		return new qGhostDeathState;
+	if (L"qGhostHitState" == _strStateName)
+		return new qGhostHitState;
+	if (L"qGhostIdleState" == _strStateName)
+		return new qGhostIdleState;
+	if (L"qGhostRunState" == _strStateName)
+		return new qGhostRunState;
+	if (L"qGhostUturnState" == _strStateName)
+		return new qGhostUturnState;
 	if (L"qLoadingState" == _strStateName)
 		return new qLoadingState;
 	if (L"qPlayerBookShootState" == _strStateName)
@@ -191,6 +223,9 @@ qState * qStateMgr::GetState(UINT _iStateType)
 {
 	switch (_iStateType)
 	{
+	case (UINT)STATE_TYPE::BOOKEFFECTSTATE:
+		return new qBookEffectState;
+		break;
 	case (UINT)STATE_TYPE::DEATHSOULSTATE:
 		return new qDeathSoulState;
 		break;
@@ -229,6 +264,27 @@ qState * qStateMgr::GetState(UINT _iStateType)
 		break;
 	case (UINT)STATE_TYPE::ELEVATORSTAYSTATE:
 		return new qElevatorStayState;
+		break;
+	case (UINT)STATE_TYPE::FIRESTATE:
+		return new qFireState;
+		break;
+	case (UINT)STATE_TYPE::GHOSTATTACKSTATE:
+		return new qGhostAttackState;
+		break;
+	case (UINT)STATE_TYPE::GHOSTDEATHSTATE:
+		return new qGhostDeathState;
+		break;
+	case (UINT)STATE_TYPE::GHOSTHITSTATE:
+		return new qGhostHitState;
+		break;
+	case (UINT)STATE_TYPE::GHOSTIDLESTATE:
+		return new qGhostIdleState;
+		break;
+	case (UINT)STATE_TYPE::GHOSTRUNSTATE:
+		return new qGhostRunState;
+		break;
+	case (UINT)STATE_TYPE::GHOSTUTURNSTATE:
+		return new qGhostUturnState;
 		break;
 	case (UINT)STATE_TYPE::LOADINGSTATE:
 		return new qLoadingState;
@@ -331,6 +387,10 @@ const wchar_t * qStateMgr::GetStateName(qState * _pState)
 {
 	switch ((STATE_TYPE)_pState->GetStateType())
 	{
+	case STATE_TYPE::BOOKEFFECTSTATE:
+		return L"qBookEffectState";
+		break;
+
 	case STATE_TYPE::DEATHSOULSTATE:
 		return L"qDeathSoulState";
 		break;
@@ -381,6 +441,34 @@ const wchar_t * qStateMgr::GetStateName(qState * _pState)
 
 	case STATE_TYPE::ELEVATORSTAYSTATE:
 		return L"qElevatorStayState";
+		break;
+
+	case STATE_TYPE::FIRESTATE:
+		return L"qFireState";
+		break;
+
+	case STATE_TYPE::GHOSTATTACKSTATE:
+		return L"qGhostAttackState";
+		break;
+
+	case STATE_TYPE::GHOSTDEATHSTATE:
+		return L"qGhostDeathState";
+		break;
+
+	case STATE_TYPE::GHOSTHITSTATE:
+		return L"qGhostHitState";
+		break;
+
+	case STATE_TYPE::GHOSTIDLESTATE:
+		return L"qGhostIdleState";
+		break;
+
+	case STATE_TYPE::GHOSTRUNSTATE:
+		return L"qGhostRunState";
+		break;
+
+	case STATE_TYPE::GHOSTUTURNSTATE:
+		return L"qGhostUturnState";
 		break;
 
 	case STATE_TYPE::LOADINGSTATE:

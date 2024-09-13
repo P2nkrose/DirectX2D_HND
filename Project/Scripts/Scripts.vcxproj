@@ -174,8 +174,11 @@ call CodeGen.exe</Command>
     <ClInclude Include="qCrashScript.h" />
     <ClInclude Include="qDeathSoulScript.h" />
     <ClInclude Include="qDoorScript.h" />
+    <ClInclude Include="qDrownedAttackScript.h" />
     <ClInclude Include="qDrownedScript.h" />
     <ClInclude Include="qElevatorScript.h" />
+    <ClInclude Include="qGhostAttackScript.h" />
+    <ClInclude Include="qGhostScript.h" />
     <ClInclude Include="qKrushScript.h" />
     <ClInclude Include="qMissileScript.h" />
     <ClInclude Include="qPlatformScript.h" />
@@ -186,6 +189,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="qPostScript.h" />
     <ClInclude Include="qRangeScript.h" />
     <ClInclude Include="qScriptMgr.h" />
+    <ClInclude Include="qSkeletonAttackScript.h" />
     <ClInclude Include="qSkeletonScript.h" />
     <ClInclude Include="qWallScript.h" />
   </ItemGroup>
@@ -204,8 +208,11 @@ call CodeGen.exe</Command>
     <ClCompile Include="qCrashScript.cpp" />
     <ClCompile Include="qDeathSoulScript.cpp" />
     <ClCompile Include="qDoorScript.cpp" />
+    <ClCompile Include="qDrownedAttackScript.cpp" />
     <ClCompile Include="qDrownedScript.cpp" />
     <ClCompile Include="qElevatorScript.cpp" />
+    <ClCompile Include="qGhostAttackScript.cpp" />
+    <ClCompile Include="qGhostScript.cpp" />
     <ClCompile Include="qKrushScript.cpp" />
     <ClCompile Include="qMissileScript.cpp" />
     <ClCompile Include="qPlatformScript.cpp" />
@@ -216,6 +223,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="qPostScript.cpp" />
     <ClCompile Include="qRangeScript.cpp" />
     <ClCompile Include="qScriptMgr.cpp" />
+    <ClCompile Include="qSkeletonAttackScript.cpp" />
     <ClCompile Include="qSkeletonScript.cpp" />
     <ClCompile Include="qWallScript.cpp" />
     <ClCompile Include="Scripts.cpp" />

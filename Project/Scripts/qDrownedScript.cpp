@@ -2,6 +2,7 @@
 #include "qDrownedScript.h"
 
 #include "qScriptMgr.h"
+#include "qPlayerScript.h"
 #include <Engine/qLevel.h>
 #include <Engine/qLevelMgr.h>
 #include <Engine/qRigidBody.h>
@@ -76,6 +77,17 @@ void qDrownedScript::Hit(float _Damage)
 
 void qDrownedScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)
 {
+	if (_OtherObject->GetName() == L"Player")
+	{
+		_OtherObject->FSM()->ChangeState(L"Bump");
+	}
+
+	qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
+
+	if (PlayerScript == nullptr)
+		return;
+
+	// 플레이어 피깎기
 }
 
 void qDrownedScript::Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)

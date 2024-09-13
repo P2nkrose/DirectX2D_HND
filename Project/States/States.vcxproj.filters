@@ -175,8 +175,35 @@
     <Filter Include="States\04. Effect\01. PlayerEffect">
       <UniqueIdentifier>{a3d7e4b0-28cf-4dd0-944d-308ff1308370}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States\04. Effect\02. DeathSoul">
+    <Filter Include="States\04. Effect\03. DeathSoul">
       <UniqueIdentifier>{e6520094-a476-493b-a441-53f33b366812}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\04. Effect\02. BookEffect">
+      <UniqueIdentifier>{aa12d25f-0fb3-4adb-9499-067d97238315}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\03. Monster\03. Ghost">
+      <UniqueIdentifier>{275654bf-f618-4203-ab54-329a89f3e9b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\03. Monster\03. Ghost\01. Idle">
+      <UniqueIdentifier>{ca182ae2-b970-4fb3-a60b-a4673ba5be03}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\03. Monster\03. Ghost\02. Run">
+      <UniqueIdentifier>{c4243cc5-743b-43c5-8f51-4b2e48d934af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\03. Monster\03. Ghost\03. Uturn">
+      <UniqueIdentifier>{eef2cb28-0492-4c0b-ab9e-a961eb7ae17b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\03. Monster\03. Ghost\04. Attack">
+      <UniqueIdentifier>{0f274831-aafe-4833-a52a-7a61675a2e22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\03. Monster\03. Ghost\05. Hit">
+      <UniqueIdentifier>{d78f97e7-bbfa-4240-81d4-90c324c23f0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\03. Monster\03. Ghost\06. Death">
+      <UniqueIdentifier>{42bde3aa-6462-4fbe-ae9e-9bf232568da0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\03. Monster\03. Ghost\07. Fire">
+      <UniqueIdentifier>{90fd5053-c2aa-4743-82e4-ceae0dea8dac}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -319,7 +346,31 @@
       <Filter>States\04. Effect\01. PlayerEffect</Filter>
     </ClInclude>
     <ClInclude Include="qDeathSoulState.h">
-      <Filter>States\04. Effect\02. DeathSoul</Filter>
+      <Filter>States\04. Effect\03. DeathSoul</Filter>
+    </ClInclude>
+    <ClInclude Include="qBookEffectState.h">
+      <Filter>States\04. Effect\02. BookEffect</Filter>
+    </ClInclude>
+    <ClInclude Include="qGhostIdleState.h">
+      <Filter>States\03. Monster\03. Ghost\01. Idle</Filter>
+    </ClInclude>
+    <ClInclude Include="qGhostRunState.h">
+      <Filter>States\03. Monster\03. Ghost\02. Run</Filter>
+    </ClInclude>
+    <ClInclude Include="qGhostUturnState.h">
+      <Filter>States\03. Monster\03. Ghost\03. Uturn</Filter>
+    </ClInclude>
+    <ClInclude Include="qGhostAttackState.h">
+      <Filter>States\03. Monster\03. Ghost\04. Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="qGhostHitState.h">
+      <Filter>States\03. Monster\03. Ghost\05. Hit</Filter>
+    </ClInclude>
+    <ClInclude Include="qGhostDeathState.h">
+      <Filter>States\03. Monster\03. Ghost\06. Death</Filter>
+    </ClInclude>
+    <ClInclude Include="qFireState.h">
+      <Filter>States\03. Monster\03. Ghost\07. Fire</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -462,7 +513,31 @@
       <Filter>States\04. Effect\01. PlayerEffect</Filter>
     </ClCompile>
     <ClCompile Include="qDeathSoulState.cpp">
-      <Filter>States\04. Effect\02. DeathSoul</Filter>
+      <Filter>States\04. Effect\03. DeathSoul</Filter>
+    </ClCompile>
+    <ClCompile Include="qBookEffectState.cpp">
+      <Filter>States\04. Effect\02. BookEffect</Filter>
+    </ClCompile>
+    <ClCompile Include="qGhostIdleState.cpp">
+      <Filter>States\03. Monster\03. Ghost\01. Idle</Filter>
+    </ClCompile>
+    <ClCompile Include="qGhostRunState.cpp">
+      <Filter>States\03. Monster\03. Ghost\02. Run</Filter>
+    </ClCompile>
+    <ClCompile Include="qGhostUturnState.cpp">
+      <Filter>States\03. Monster\03. Ghost\03. Uturn</Filter>
+    </ClCompile>
+    <ClCompile Include="qGhostAttackState.cpp">
+      <Filter>States\03. Monster\03. Ghost\04. Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="qGhostHitState.cpp">
+      <Filter>States\03. Monster\03. Ghost\05. Hit</Filter>
+    </ClCompile>
+    <ClCompile Include="qGhostDeathState.cpp">
+      <Filter>States\03. Monster\03. Ghost\06. Death</Filter>
+    </ClCompile>
+    <ClCompile Include="qFireState.cpp">
+      <Filter>States\03. Monster\03. Ghost\07. Fire</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

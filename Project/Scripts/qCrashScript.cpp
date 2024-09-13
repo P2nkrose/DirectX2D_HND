@@ -2,15 +2,17 @@
 #include <Engine/qLevel.h>
 #include <Engine/qLevelMgr.h>
 
+#include "qPlayerScript.h"
 #include "qCrashScript.h"
 #include "qSkeletonScript.h"
 #include "qDrownedScript.h"
+#include "qGhostScript.h"
 #include "qPlayerEffectScript.h"
 #include <States/qPlayerEffectState.h>
 
 qCrashScript::qCrashScript()
 	: qScript((UINT)SCRIPT_TYPE::CRASHSCRIPT)
-	, m_CrashDamage(30.f)
+	, m_CrashDamage(40.f)
 {
 }
 
@@ -30,6 +32,7 @@ void qCrashScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherOb
 {
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 	qGameObject* Player = pCurLevel->FindObjectByName(L"Player");
+	qPlayerScript* PlayerScript = Player->GetScript<qPlayerScript>();
 	Vec3 PlayerPos = Player->Transform()->GetRelativePos();
 	Vec3 CrashPos = GetOwner()->Transform()->GetRelativePos();
 	Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
@@ -56,10 +59,20 @@ void qCrashScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherOb
 
 			DrownedScript->Hit(m_CrashDamage);
 		}
+		else if (_OtherObject->GetName() == L"Ghost")
+		{
+			qGhostScript* GhostScript = _OtherObject->GetScript<qGhostScript>();
+
+			if (GhostScript == nullptr)
+				return;
+
+			GhostScript->Hit(m_CrashDamage);
+		}
 
 
 
-		if (_OtherObject->GetName() == L"Skeleton" || _OtherObject->GetName() == L"Drowned")
+		// ÀÌÆåÆ®
+		if (_OtherObject->GetName() == L"Skeleton" || _OtherObject->GetName() == L"Drowned" || _OtherObject->GetName() == L"Ghost")
 		{
 			qGameObject* Effect = new qGameObject;
 			Effect->SetName(L"effect");
@@ -67,7 +80,30 @@ void qCrashScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherOb
 			Effect->AddComponent(new qTransform);
 			Vec3 MonsterPos = _OtherObject->Transform()->GetRelativePos();
 			Vec3 MonsterScale = _OtherObject->Transform()->GetRelativeScale();
-			Effect->Transform()->SetRelativePos(Vec3(MonsterPos.x - (MonsterScale.x * 0.5f), MonsterPos.y, MonsterPos.z));
+
+			if (_OtherObject->GetName() == L"Skeleton")
+			{
+				qSkeletonScript* SkeletonScript = _OtherObject->GetScript<qSkeletonScript>();
+				if (SkeletonScript->GetSkeletonDir() == DIRECTION::LEFT)
+					Effect->Transform()->SetRelativePos(Vec3(MonsterPos.x - (MonsterScale.x * 0.5f), MonsterPos.y, MonsterPos.z));
+				else if (SkeletonScript->GetSkeletonDir() == DIRECTION::RIGHT)
+					Effect->Transform()->SetRelativePos(Vec3(MonsterPos.x + (MonsterScale.x * 0.5f), MonsterPos.y, MonsterPos.z));
+			}
+			else if (_OtherObject->GetName() == L"Drowned")
+			{
+				if (PlayerScript->GetPlayerDir() == DIRECTION::LEFT)
+					Effect->Transform()->SetRelativePos(Vec3(MonsterPos.x + 30.f, MonsterPos.y - 30.f, 10.f));
+				else if (PlayerScript->GetPlayerDir() == DIRECTION::RIGHT)
+					Effect->Transform()->SetRelativePos(Vec3(MonsterPos.x - 30.f, MonsterPos.y - 30.f, 10.f));
+			}
+			else if(_OtherObject->GetName() == L"Ghost")
+			{
+				if (PlayerScript->GetPlayerDir() == DIRECTION::LEFT)
+					Effect->Transform()->SetRelativePos(Vec3(MonsterPos.x + 30.f, MonsterPos.y - 30.f, 10.f));
+				else if (PlayerScript->GetPlayerDir() == DIRECTION::RIGHT)
+					Effect->Transform()->SetRelativePos(Vec3(MonsterPos.x - 30.f, MonsterPos.y - 30.f, 10.f));
+			}
+
 			Effect->Transform()->SetRelativeScale(180.f, 180.f, 1.f);
 
 			Effect->AddComponent(new qMeshRender);

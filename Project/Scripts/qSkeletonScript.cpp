@@ -27,7 +27,7 @@ void qSkeletonScript::Begin()
 {
 	m_PrevUnitInfo = m_CurUnitInfo;
 
-	m_CurUnitInfo.HP = 30.f;
+	m_CurUnitInfo.HP = 50.f;
 	SetSkeletonDir(DIRECTION::LEFT);
 
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
@@ -81,8 +81,16 @@ void qSkeletonScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _Othe
 {
 	if (_OtherObject->GetName() == L"Player")
 	{
-		GetOwner()->FSM()->ChangeState(L"SkeletonAttack");
+		_OtherObject->FSM()->ChangeState(L"Bump");
 	}
+
+	qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
+
+	if (PlayerScript == nullptr)
+		return;
+
+	// 플레이어 피깎기
+
 }
 
 void qSkeletonScript::Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)
