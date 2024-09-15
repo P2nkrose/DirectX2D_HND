@@ -24,7 +24,7 @@ void qSkeletonAttackState::Enter()
 	OGColScale = GetOwner()->Collider2D()->GetScale();
 	//OGColOffset = GetOwner()->Collider2D()->GetOffset();
 
-	GetOwner()->Transform()->SetRelativePos(-3220.f, -395.f, 10.f);
+	GetOwner()->Transform()->SetRelativePos(OGPos.x + 15.f, OGPos.y - 5.f, 10.f);
 	GetOwner()->Transform()->SetRelativeScale(340.f, 160.f, 0.f);
 	GetOwner()->Collider2D()->SetScale(Vec3(0.5f, 1.0f, 0.f));
 	//GetOwner()->Collider2D()->SetOffset(Vec3(-15.f, 5.f, 0.f));

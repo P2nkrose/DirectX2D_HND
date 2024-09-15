@@ -37,5 +37,6 @@ private:
 	bool		m_DirChanged;
 
 	float		m_BangTime;
+	bool		Deathflag;
 };
 

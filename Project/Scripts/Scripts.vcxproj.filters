@@ -88,6 +88,9 @@
     <Filter Include="Scripts\1. UNIT\2. Monster\03. Ghost">
       <UniqueIdentifier>{b0f76843-bddd-4de8-9d4a-885ebd010d8c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scripts\3. Transfer\04. Clap">
+      <UniqueIdentifier>{c6122bc4-aa14-4a76-aaf6-7debde9c68fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -174,6 +177,9 @@
     <ClInclude Include="qGhostAttackScript.h">
       <Filter>Scripts\1. UNIT\2. Monster\03. Ghost</Filter>
     </ClInclude>
+    <ClInclude Include="qClapScript.h">
+      <Filter>Scripts\3. Transfer\04. Clap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -259,6 +265,9 @@
     </ClCompile>
     <ClCompile Include="qGhostAttackScript.cpp">
       <Filter>Scripts\1. UNIT\2. Monster\03. Ghost</Filter>
+    </ClCompile>
+    <ClCompile Include="qClapScript.cpp">
+      <Filter>Scripts\3. Transfer\04. Clap</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

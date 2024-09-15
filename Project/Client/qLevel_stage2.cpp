@@ -892,9 +892,13 @@ void qLevel_stage2::CreateStage2()
 
 
 
-	// ===============
-	//     MONSTER
-	// ===============
+	// ========================
+	//          MONSTER
+	// ========================
+
+	// =============
+	//    ½ºÄÌ·¹Åæ
+	// =============
 
 	// ½ºÄÌ·¹Åæ 1
 	qGameObject* pSkeleton1 = new qGameObject;
@@ -907,7 +911,7 @@ void qLevel_stage2::CreateStage2()
 	pSkeleton1->MeshRender()->SetMaterial(pMtrl);
 
 	pSkeleton1->AddComponent(new qTransform);
-	pSkeleton1->Transform()->SetRelativePos(-3235.f, -390.f, 30.f);
+	pSkeleton1->Transform()->SetRelativePos(-3830.f, -580.f, 30.f);
 	pSkeleton1->Transform()->SetRelativeScale(170.f, 160.f, 1.f);
 
 	pSkeleton1->AddComponent(new qCollider2D);
@@ -934,7 +938,145 @@ void qLevel_stage2::CreateStage2()
 	pStage2->AddObject(5, pSkeleton1);
 
 
-	// Drowned
+
+	// ½ºÄÌ·¹Åæ 2
+	qGameObject* pSkeleton2 = new qGameObject;
+	pSkeleton2->SetName(L"Skeleton");
+
+	pSkeleton2->AddComponent(new qSkeletonScript);
+
+	pSkeleton2->AddComponent(new qMeshRender);
+	pSkeleton2->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pSkeleton2->MeshRender()->SetMaterial(pMtrl);
+
+	pSkeleton2->AddComponent(new qTransform);
+	pSkeleton2->Transform()->SetRelativePos(-3235.f, -390.f, 30.f);
+	pSkeleton2->Transform()->SetRelativeScale(170.f, 160.f, 1.f);
+
+	pSkeleton2->AddComponent(new qCollider2D);
+	pSkeleton2->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pSkeleton2->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+
+	pSkeleton2->AddComponent(new qFlipBookComponent);
+
+	pSkeleton2->FlipBookComponent()->AddFlipBook(0, pSkeletonIdle);
+	pSkeleton2->FlipBookComponent()->AddFlipBook(1, pSkeletonAttack);
+	pSkeleton2->FlipBookComponent()->AddFlipBook(2, pSkeletonDeath);
+
+	pSkeleton2->AddComponent(new qFSM);
+	pSkeleton2->FSM()->AddState(L"SkeletonIdle", new qSkeletonIdleState);		// 0
+	pSkeleton2->FSM()->AddState(L"SkeletonAttack", new qSkeletonAttackState);	// 1
+	pSkeleton2->FSM()->AddState(L"SkeletonDeath", new qSkeletonDeathState);		// 2
+	pSkeleton2->FSM()->ChangeState(L"SkeletonIdle");
+
+	pStage2->AddObject(5, pSkeleton2);
+
+
+	// ½ºÄÌ·¹Åæ 3
+	qGameObject* pSkeleton3 = new qGameObject;
+	pSkeleton3->SetName(L"Skeleton");
+
+	pSkeleton3->AddComponent(new qSkeletonScript);
+
+	pSkeleton3->AddComponent(new qMeshRender);
+	pSkeleton3->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pSkeleton3->MeshRender()->SetMaterial(pMtrl);
+
+	pSkeleton3->AddComponent(new qTransform);
+	pSkeleton3->Transform()->SetRelativePos(-2850.f, -66.f, 30.f);
+	pSkeleton3->Transform()->SetRelativeScale(170.f, 160.f, 1.f);
+
+	pSkeleton3->AddComponent(new qCollider2D);
+	pSkeleton3->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pSkeleton3->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+
+	pSkeleton3->AddComponent(new qFlipBookComponent);
+
+	pSkeleton3->FlipBookComponent()->AddFlipBook(0, pSkeletonIdle);
+	pSkeleton3->FlipBookComponent()->AddFlipBook(1, pSkeletonAttack);
+	pSkeleton3->FlipBookComponent()->AddFlipBook(2, pSkeletonDeath);
+
+	pSkeleton3->AddComponent(new qFSM);
+	pSkeleton3->FSM()->AddState(L"SkeletonIdle", new qSkeletonIdleState);		// 0
+	pSkeleton3->FSM()->AddState(L"SkeletonAttack", new qSkeletonAttackState);	// 1
+	pSkeleton3->FSM()->AddState(L"SkeletonDeath", new qSkeletonDeathState);		// 2
+	pSkeleton3->FSM()->ChangeState(L"SkeletonIdle");
+
+	pStage2->AddObject(5, pSkeleton3);
+
+
+	// ½ºÄÌ·¹Åæ 4
+	qGameObject* pSkeleton4 = new qGameObject;
+	pSkeleton4->SetName(L"Skeleton");
+
+	pSkeleton4->AddComponent(new qSkeletonScript);
+
+	pSkeleton4->AddComponent(new qMeshRender);
+	pSkeleton4->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pSkeleton4->MeshRender()->SetMaterial(pMtrl);
+
+	pSkeleton4->AddComponent(new qTransform);
+	pSkeleton4->Transform()->SetRelativePos(-877.f, 151.f, 30.f);
+	pSkeleton4->Transform()->SetRelativeScale(170.f, 160.f, 1.f);
+
+	pSkeleton4->AddComponent(new qCollider2D);
+	pSkeleton4->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pSkeleton4->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+
+	pSkeleton4->AddComponent(new qFlipBookComponent);
+
+	pSkeleton4->FlipBookComponent()->AddFlipBook(0, pSkeletonIdle);
+	pSkeleton4->FlipBookComponent()->AddFlipBook(1, pSkeletonAttack);
+	pSkeleton4->FlipBookComponent()->AddFlipBook(2, pSkeletonDeath);
+
+	pSkeleton4->AddComponent(new qFSM);
+	pSkeleton4->FSM()->AddState(L"SkeletonIdle", new qSkeletonIdleState);		// 0
+	pSkeleton4->FSM()->AddState(L"SkeletonAttack", new qSkeletonAttackState);	// 1
+	pSkeleton4->FSM()->AddState(L"SkeletonDeath", new qSkeletonDeathState);		// 2
+	pSkeleton4->FSM()->ChangeState(L"SkeletonIdle");
+
+	pStage2->AddObject(5, pSkeleton4);
+
+
+	// ½ºÄÌ·¹Åæ 5
+	qGameObject* pSkeleton5 = new qGameObject;
+	pSkeleton5->SetName(L"Skeleton");
+
+	pSkeleton5->AddComponent(new qSkeletonScript);
+
+	pSkeleton5->AddComponent(new qMeshRender);
+	pSkeleton5->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pSkeleton5->MeshRender()->SetMaterial(pMtrl);
+
+	pSkeleton5->AddComponent(new qTransform);
+	pSkeleton5->Transform()->SetRelativePos(196.f, -202.f, 30.f);
+	pSkeleton5->Transform()->SetRelativeScale(170.f, 160.f, 1.f);
+
+	pSkeleton5->AddComponent(new qCollider2D);
+	pSkeleton5->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pSkeleton5->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+
+	pSkeleton5->AddComponent(new qFlipBookComponent);
+
+	pSkeleton5->FlipBookComponent()->AddFlipBook(0, pSkeletonIdle);
+	pSkeleton5->FlipBookComponent()->AddFlipBook(1, pSkeletonAttack);
+	pSkeleton5->FlipBookComponent()->AddFlipBook(2, pSkeletonDeath);
+
+	pSkeleton5->AddComponent(new qFSM);
+	pSkeleton5->FSM()->AddState(L"SkeletonIdle", new qSkeletonIdleState);		// 0
+	pSkeleton5->FSM()->AddState(L"SkeletonAttack", new qSkeletonAttackState);	// 1
+	pSkeleton5->FSM()->AddState(L"SkeletonDeath", new qSkeletonDeathState);		// 2
+	pSkeleton5->FSM()->ChangeState(L"SkeletonIdle");
+
+	pStage2->AddObject(5, pSkeleton5);
+
+
+	// =============
+	//	   ÀÍ»ç
+	// =============
+
+
+	// ÀÍ»ç 1
 	qGameObject* pDrowned1 = new qGameObject;
 	pDrowned1->SetName(L"Drowned");
 	pDrowned1->AddComponent(new qDrownedScript);
@@ -984,8 +1126,53 @@ void qLevel_stage2::CreateStage2()
 	pStage2->AddObject(5, pDrowned1);
 
 
+	// ÀÍ»ç 2
+	qGameObject* pDrowned2 = new qGameObject;
+	pDrowned2->SetName(L"Drowned");
+	pDrowned2->AddComponent(new qDrownedScript);
 
-	// Ghost
+	pDrowned2->AddComponent(new qMeshRender);
+	pDrowned2->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pDrowned2->MeshRender()->SetMaterial(pAlphaBlendMtrl);
+
+	pDrowned2->AddComponent(new qTransform);
+	pDrowned2->Transform()->SetRelativePos(-363.f, -312.f, 30.f);
+	pDrowned2->Transform()->SetRelativeScale(150.f, 230.f, 1.f);
+
+
+	pDrowned2->AddComponent(new qCollider2D);
+	pDrowned2->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pDrowned2->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+
+	pDrowned2->AddComponent(new qFlipBookComponent);
+	
+	pDrowned2->FlipBookComponent()->AddFlipBook(0, pDrownedIdle);
+	pDrowned2->FlipBookComponent()->AddFlipBook(1, pDrownedRun);
+	pDrowned2->FlipBookComponent()->AddFlipBook(2, pDrownedUturn);
+	pDrowned2->FlipBookComponent()->AddFlipBook(3, pDrownedAttack);
+	pDrowned2->FlipBookComponent()->AddFlipBook(4, pDrownedHit);
+	pDrowned2->FlipBookComponent()->AddFlipBook(5, pDrownedDeath);
+
+	pDrowned2->AddComponent(new qFSM);
+	pDrowned2->FSM()->AddState(L"DrownedIdle", new qDrownedIdleState);			// 0
+	pDrowned2->FSM()->AddState(L"DrownedRun", new qDrownedRunState);			// 1
+	pDrowned2->FSM()->AddState(L"DrownedUturn", new qDrownedUturnState);		// 2
+	pDrowned2->FSM()->AddState(L"DrownedAttack", new qDrownedAttackState);		// 3
+	pDrowned2->FSM()->AddState(L"DrownedHit", new qDrownedHitState);			// 4
+	pDrowned2->FSM()->AddState(L"DrownedDeath", new qDrownedDeathState);		// 5
+
+	pDrowned2->FSM()->ChangeState(L"DrownedIdle");
+
+	pStage2->AddObject(5, pDrowned2);
+
+
+
+	// =============
+	//	   °í½ºÆ®
+	// =============
+
+
+	// Ghost 1
 	qGameObject* pGhost1 = new qGameObject;
 	pGhost1->SetName(L"Ghost");
 	pGhost1->AddComponent(new qGhostScript);
@@ -1036,18 +1223,58 @@ void qLevel_stage2::CreateStage2()
 	pStage2->AddObject(5, pGhost1);
 
 
+	// Ghost 2
+	qGameObject* pGhost2 = new qGameObject;
+	pGhost2->SetName(L"Ghost");
+	pGhost2->AddComponent(new qGhostScript);
+
+	pGhost2->AddComponent(new qMeshRender);
+	pGhost2->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pGhost2->MeshRender()->SetMaterial(pAlphaBlendMtrl);
+
+	pGhost2->AddComponent(new qTransform);
+	pGhost2->Transform()->SetRelativePos(967.f, 164.f, 30.f);
+	pGhost2->Transform()->SetRelativeScale(200.f, 250.f, 1.f);
+
+
+	pGhost2->AddComponent(new qCollider2D);
+	pGhost2->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pGhost2->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+
+	pGhost2->AddComponent(new qFlipBookComponent);
+	pGhost2->FlipBookComponent()->AddFlipBook(0, pGhostIdle);	
+	pGhost2->FlipBookComponent()->AddFlipBook(1, pGhostRun);	
+	pGhost2->FlipBookComponent()->AddFlipBook(2, pGhostUturn);	
+	pGhost2->FlipBookComponent()->AddFlipBook(3, pGhostAttack);
+	pGhost2->FlipBookComponent()->AddFlipBook(4, pGhostHit);	
+	pGhost2->FlipBookComponent()->AddFlipBook(5, pGhostDeath);
+
+	pGhost2->AddComponent(new qFSM);
+	pGhost2->FSM()->AddState(L"GhostIdle", new qGhostIdleState);			// 0
+	pGhost2->FSM()->AddState(L"GhostRun", new qGhostRunState);				// 1
+	pGhost2->FSM()->AddState(L"GhostUturn", new qGhostUturnState);			// 2
+	pGhost2->FSM()->AddState(L"GhostAttack", new qGhostAttackState);		// 3
+	pGhost2->FSM()->AddState(L"GhostHit", new qGhostHitState);				// 4
+	pGhost2->FSM()->AddState(L"GhostDeath", new qGhostDeathState);			// 5
+
+	pGhost2->FSM()->ChangeState(L"GhostIdle");
+
+	pStage2->AddObject(5, pGhost2);
+
+
+
 
 
 
 	// Ãæµ¹ ÁöÁ¤
-	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
-	qCollisionMgr::GetInst()->CollisionCheck(4, 5);		// PlayerSkill vs Monster
-	qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
-	qCollisionMgr::GetInst()->CollisionCheck(3, 6);		// Player vs Monster Skill
-	qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
-	qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
-	//
-	//
-	ChangeLevel(pStage2, LEVEL_STATE::STOP);
+	//qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
+	//qCollisionMgr::GetInst()->CollisionCheck(4, 5);		// PlayerSkill vs Monster
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 6);		// Player vs Monster Skill
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
+	////
+	////
+	//ChangeLevel(pStage2, LEVEL_STATE::STOP);
 
 }

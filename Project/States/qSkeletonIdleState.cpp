@@ -22,6 +22,7 @@ qSkeletonIdleState::~qSkeletonIdleState()
 void qSkeletonIdleState::Enter()
 {
 	GetOwner()->FlipBookComponent()->Play(0, 10, true);
+
 }
 
 void qSkeletonIdleState::FinalTick()

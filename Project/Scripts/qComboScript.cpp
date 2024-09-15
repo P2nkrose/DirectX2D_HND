@@ -53,6 +53,8 @@ void qComboScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherOb
 			if (SkeletonScript == nullptr)
 				return;
 
+
+
 			wstring CurStateName = qStateMgr::GetStateName(Player->FSM()->GetCurState());
 
 			if (CurStateName == L"qPlayerCombo1State" || CurStateName == L"qPlayerCombo2State" || CurStateName == L"qPlayerCombo3State")

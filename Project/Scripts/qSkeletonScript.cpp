@@ -17,6 +17,8 @@ qSkeletonScript::qSkeletonScript()
 	, m_DirChanged(false)
 	, m_SkeletonDir(DIRECTION::LEFT)
 	, m_BangTime(0.f)
+	, Deathflag(false)
+
 {
 }
 
@@ -38,6 +40,7 @@ void qSkeletonScript::Begin()
 		// idle
 	}
 
+	Deathflag = false;
 }
 
 void qSkeletonScript::Tick()
@@ -56,13 +59,12 @@ void qSkeletonScript::Tick()
 	// HP 세팅
 	float CurDamage = m_PrevUnitInfo.HP - m_CurUnitInfo.HP;
 
-	static bool flag = false;
 
-	if (m_CurUnitInfo.HP <= 0 && !flag)
+	if (m_CurUnitInfo.HP <= 0 && !Deathflag)
 	{
 		GetOwner()->FSM()->ChangeState(L"SkeletonDeath");
 
-		flag = true;
+		Deathflag = true;
 	}
 
 	// Bang 세팅
@@ -75,7 +77,7 @@ void qSkeletonScript::Tick()
 		m_BangTime += DT;
 	}
 
-	if (SkeletonBang != nullptr && m_BangTime > 0.5f)
+	if (SkeletonBang != nullptr && m_BangTime > 1.0f)
 	{
 		SkeletonBang->Destroy();
 		SkeletonBang = nullptr;
@@ -100,6 +102,8 @@ void qSkeletonScript::Hit(float _Damage)
 
 void qSkeletonScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)
 {
+
+
 	if (_OtherObject->GetName() == L"Player")
 	{
 		_OtherObject->FSM()->ChangeState(L"Bump");

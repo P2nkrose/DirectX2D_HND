@@ -41,5 +41,7 @@ private:
 
 	float		m_Dir;
 	float		m_BangTime;
+
+	bool		Deathflag;
 };
 

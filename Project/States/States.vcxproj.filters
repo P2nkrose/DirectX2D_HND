@@ -205,6 +205,9 @@
     <Filter Include="States\03. Monster\03. Ghost\07. Fire">
       <UniqueIdentifier>{90fd5053-c2aa-4743-82e4-ceae0dea8dac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="States\02. Transfer\05. Clap">
+      <UniqueIdentifier>{4f576aca-f683-4e40-9648-59f73f1f7f9a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -372,6 +375,9 @@
     <ClInclude Include="qFireState.h">
       <Filter>States\03. Monster\03. Ghost\07. Fire</Filter>
     </ClInclude>
+    <ClInclude Include="qClapState.h">
+      <Filter>States\02. Transfer\05. Clap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="States.cpp">
@@ -538,6 +544,9 @@
     </ClCompile>
     <ClCompile Include="qFireState.cpp">
       <Filter>States\03. Monster\03. Ghost\07. Fire</Filter>
+    </ClCompile>
+    <ClCompile Include="qClapState.cpp">
+      <Filter>States\02. Transfer\05. Clap</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

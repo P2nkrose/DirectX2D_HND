@@ -9,6 +9,8 @@
 
 qGhostDeathState::qGhostDeathState()
 	: qState((UINT)STATE_TYPE::GHOSTDEATHSTATE)
+	, Destroyflag(false)
+	, Soulflag(false)
 {
 }
 
@@ -31,6 +33,10 @@ void qGhostDeathState::Enter()
 
 	if (Hitbox != nullptr)
 		Hitbox->Destroy();
+
+
+	Destroyflag = false;
+	Soulflag = false;
 }
 
 void qGhostDeathState::FinalTick()
@@ -39,15 +45,16 @@ void qGhostDeathState::FinalTick()
 	Ptr<qMaterial> pAlphaBlendMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DAlphaBlendMtrl");
 
 
-	if (GetOwner()->FlipBookComponent()->IsCurFlipBookFinished())
+	if (GetOwner()->FlipBookComponent()->IsCurFlipBookFinished() && !Destroyflag)
 	{
 		GetOwner()->Destroy();
+
+		Destroyflag = true;
 	}
 
 	// Death Soul »ý¼º
-	static bool flag = false;
 
-	if (!flag)
+	if (!Soulflag)
 	{
 		qGameObject* DeathSoul = new qGameObject;
 		DeathSoul->SetName(L"deathsoul");
@@ -76,7 +83,7 @@ void qGhostDeathState::FinalTick()
 		pCurLevel->AddObject(12, DeathSoul);
 
 
-		flag = true;
+		Soulflag = true;
 	}
 }
 

@@ -15,6 +15,7 @@ qGhostScript::qGhostScript()
 	, m_DirChanged(false)
 	, m_GhostDir(DIRECTION::END)
 	, m_BangTime(0.f)
+	, Deathflag(false)
 {
 }
 
@@ -28,6 +29,8 @@ void qGhostScript::Begin()
 
 	m_CurUnitInfo.HP = 100.f;
 	m_CurUnitInfo.Dir = DIRECTION::LEFT;
+
+	Deathflag = false;
 }
 
 void qGhostScript::Tick()
@@ -48,13 +51,12 @@ void qGhostScript::Tick()
 	// HP 세팅
 	float CurDamage = m_PrevUnitInfo.HP - m_CurUnitInfo.HP;
 
-	static bool flag = false;
 
-	if (m_CurUnitInfo.HP <= 0 && !flag)
+	if (m_CurUnitInfo.HP <= 0 && !Deathflag)
 	{
 		GetOwner()->FSM()->ChangeState(L"GhostDeath");
 
-		flag = true;
+		Deathflag = true;
 	}
 
 	// Bang 세팅

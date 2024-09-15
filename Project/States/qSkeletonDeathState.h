@@ -20,5 +20,8 @@ private:
 	Vec3			OGScale;
 	Vec3			OGColScale;
 	Vec3			OGColOffset;
+
+	bool			Destroyflag;
+	bool			Soulflag;
 };
 

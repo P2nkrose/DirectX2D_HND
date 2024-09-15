@@ -10,6 +10,8 @@
 
 qSkeletonDeathState::qSkeletonDeathState()
 	: qState((UINT)STATE_TYPE::SKELETONDEATHSTATE)
+	, Destroyflag(false)
+	, Soulflag(false)
 {
 }
 
@@ -23,7 +25,7 @@ void qSkeletonDeathState::Enter()
 	OGScale = GetOwner()->Transform()->GetRelativeScale();
 	OGColScale = GetOwner()->Collider2D()->GetScale();
 
-	GetOwner()->Transform()->SetRelativePos(-3244.f, -370.f, 10.f);
+	//GetOwner()->Transform()->SetRelativePos(OGPos.x - 9.f, OGPos.y + 20.f, 10.f);
 	GetOwner()->Transform()->SetRelativeScale(260.f, 200.f, 0.f);
 	GetOwner()->Collider2D()->SetScale(Vec3(0.01f, 0.01f, 0.f));
 
@@ -37,7 +39,9 @@ void qSkeletonDeathState::Enter()
 		Hitbox->Destroy();
 		Hitbox = nullptr;
 	}
-		
+
+	Destroyflag = false;
+	Soulflag = false;
 }
 
 void qSkeletonDeathState::FinalTick()
@@ -46,16 +50,19 @@ void qSkeletonDeathState::FinalTick()
 	Ptr<qMaterial> pAlphaBlendMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DAlphaBlendMtrl");
 
 
-	if (GetOwner()->FlipBookComponent()->IsCurFlipBookFinished())
+
+	if (GetOwner()->FlipBookComponent()->IsCurFlipBookFinished() && !Destroyflag)
 	{
 		GetOwner()->Destroy();
+
+		Destroyflag = true;
+
 	}
 
 
 	// Death Soul »ý¼º
-	static bool flag = false;
 
-	if (!flag)
+	if (!Soulflag)
 	{
 		qGameObject* DeathSoul = new qGameObject;
 		DeathSoul->SetName(L"deathsoul");
@@ -84,7 +91,7 @@ void qSkeletonDeathState::FinalTick()
 		pCurLevel->AddObject(12, DeathSoul);
 
 
-		flag = true;
+		Soulflag = true;
 	}
 	
 
@@ -94,5 +101,6 @@ void qSkeletonDeathState::FinalTick()
 
 void qSkeletonDeathState::Exit()
 {
-	
+	//GetOwner()->Transform()->SetRelativePos(OGPos);
+	//GetOwner()->Transform()->SetRelativeScale(OGScale);
 }

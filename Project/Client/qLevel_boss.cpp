@@ -111,6 +111,8 @@ void qLevel_boss::CreateStageBoss()
 	pStageBoss->GetLayer(9)->SetName(L"Portal");
 	pStageBoss->GetLayer(10)->SetName(L"Light");
 	pStageBoss->GetLayer(11)->SetName(L"Wall");
+	pStageBoss->GetLayer(12)->SetName(L"Effect");
+	pStageBoss->GetLayer(12)->SetName(L"Clap");
 	pStageBoss->GetLayer(31)->SetName(L"UI");
 
 
@@ -251,6 +253,9 @@ void qLevel_boss::CreateStageBoss()
 	pPostProcess1->FSM()->ChangeState(L"PostOpen");
 	
 	pStageBoss->AddObject(9, pPostProcess1);
+
+
+
 
 
 
@@ -402,13 +407,18 @@ void qLevel_boss::CreateStageBoss()
 
 
 	// 충돌 지정
-	//qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 11);		// Player vs Wall (Bump)
-	//
-	//
-	//ChangeLevel(pStageBoss, LEVEL_STATE::STOP);
+	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
+	qCollisionMgr::GetInst()->CollisionCheck(4, 5);		// PlayerSkill vs Monster
+	qCollisionMgr::GetInst()->CollisionCheck(4, 7);		// PlayerSkill vs Boss
+	qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
+	qCollisionMgr::GetInst()->CollisionCheck(3, 6);		// Player vs Monster Skill
+	qCollisionMgr::GetInst()->CollisionCheck(3, 8);		// Player vs Boss Skill
+	qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
+	qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
+	qCollisionMgr::GetInst()->CollisionCheck(3, 7);		// Player vs Boss
+	
+	
+	ChangeLevel(pStageBoss, LEVEL_STATE::STOP);
 
 
 }

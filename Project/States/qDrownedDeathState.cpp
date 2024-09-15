@@ -9,6 +9,8 @@
 
 qDrownedDeathState::qDrownedDeathState()
 	: qState((UINT)STATE_TYPE::DROWNEDDEATHSTATE)
+	, Destroyflag(false)
+	, Soulflag(false)
 {
 }
 
@@ -31,6 +33,9 @@ void qDrownedDeathState::Enter()
 	if (Hitbox != nullptr)
 		Hitbox->Destroy();
 
+	Destroyflag = false;
+	Soulflag = false;
+
 }
 
 void qDrownedDeathState::FinalTick()
@@ -39,15 +44,16 @@ void qDrownedDeathState::FinalTick()
 	Ptr<qMaterial> pAlphaBlendMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DAlphaBlendMtrl");
 
 
-	if (GetOwner()->FlipBookComponent()->IsCurFlipBookFinished())
+	if (GetOwner()->FlipBookComponent()->IsCurFlipBookFinished() && !Destroyflag)
 	{
 		GetOwner()->Destroy();
+
+		Destroyflag = true;
 	}
 
 	// Death Soul »ý¼º
-	static bool flag = false;
 
-	if (!flag)
+	if (!Soulflag)
 	{
 		qGameObject* DeathSoul = new qGameObject;
 		DeathSoul->SetName(L"deathsoul");
@@ -76,7 +82,7 @@ void qDrownedDeathState::FinalTick()
 		pCurLevel->AddObject(12, DeathSoul);
 
 
-		flag = true;
+		Soulflag = true;
 	}
 }
 

@@ -117,6 +117,9 @@ void qLevel_stage1::CreateStage1()
 	pStage1->GetLayer(7)->SetName(L"Boss");
 	pStage1->GetLayer(8)->SetName(L"BossSkill");
 	pStage1->GetLayer(9)->SetName(L"Transfer");
+	pStage1->GetLayer(10)->SetName(L"Light");
+	pStage1->GetLayer(11)->SetName(L"Wall");
+	pStage1->GetLayer(12)->SetName(L"Effect");
 	pStage1->GetLayer(31)->SetName(L"UI");
 
 
@@ -500,14 +503,21 @@ void qLevel_stage1::CreateStage1()
 	//qLevelSaveLoad::SaveLevel(strLevelPath, pStage1);
 	
 	// 레벨 시작
-	ChangeLevel(pStage1, LEVEL_STATE::STOP);
+	//ChangeLevel(pStage1, LEVEL_STATE::STOP);
 	//
 	//
 	//// 충돌 지정
-	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Player vs Platform
+	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
+	qCollisionMgr::GetInst()->CollisionCheck(4, 5);		// PlayerSkill vs Monster
+	qCollisionMgr::GetInst()->CollisionCheck(4, 7);		// PlayerSkill vs Boss
 	qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
-	qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Transfer
+	qCollisionMgr::GetInst()->CollisionCheck(3, 6);		// Player vs Monster Skill
+	qCollisionMgr::GetInst()->CollisionCheck(3, 8);		// Player vs Boss Skill
+	qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
 	qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
+	qCollisionMgr::GetInst()->CollisionCheck(3, 7);		// Player vs Boss
+
+
 }
 
 void qLevel_stage1::CreatePrefab()

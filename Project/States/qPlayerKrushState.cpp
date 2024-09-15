@@ -124,6 +124,27 @@ void qPlayerKrushState::FinalTick()
 
 	}
 
+	if (pCurLevel->GetName() == L"stageboss")
+	{
+		Vec3 PlayerPos = GetOwner()->Transform()->GetRelativePos();
+
+		if (PlayerPos.y <= -273.f)
+		{
+			PlayerPos.y = -273.f;
+			GetOwner()->RigidBody()->SetGround(true);
+		}
+		else
+		{
+			PlayerPos += Vec3(0.f, -1.2f, 0.f) * m_KrushSpeed * DT;
+		}
+
+		GetOwner()->Transform()->SetRelativePos(PlayerPos);
+
+
+	}
+
+
+
 	//static bool hitboxCreated = false; // 히트박스 생성 여부를 추적하는 플래그
 	//
 	//// 히트박스 생성

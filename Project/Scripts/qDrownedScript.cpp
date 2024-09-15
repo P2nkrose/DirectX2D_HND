@@ -15,6 +15,7 @@ qDrownedScript::qDrownedScript()
 	, m_DrownedDir(DIRECTION::END)
 	, m_DirChanged(false)
 	, m_BangTime(0.f)
+	, Deathflag(false)
 {
 }
 
@@ -30,6 +31,7 @@ void qDrownedScript::Begin()
 	m_CurUnitInfo.Dir = DIRECTION::LEFT;
 	SetDrownedDir(DIRECTION::LEFT);
 
+	Deathflag = false;
 }
 
 void qDrownedScript::Tick()
@@ -49,13 +51,12 @@ void qDrownedScript::Tick()
 	// HP 세팅
 	float CurDamage = m_PrevUnitInfo.HP - m_CurUnitInfo.HP;
 
-	static bool flag = false;
 
-	if (m_CurUnitInfo.HP <= 0 && !flag)
+	if (m_CurUnitInfo.HP <= 0 && !Deathflag)
 	{
 		GetOwner()->FSM()->ChangeState(L"DrownedDeath");
 
-		flag = true;
+		Deathflag = true;
 	}
 
 	// Bang 세팅
