@@ -1,6 +1,9 @@
 #include "pch.h"
 #include "qDrownedHitState.h"
 
+#include <Engine/qLevel.h>
+#include <Engine/qLevelMgr.h>
+
 #include <Scripts/qDrownedScript.h>
 
 qDrownedHitState::qDrownedHitState()
@@ -23,6 +26,12 @@ void qDrownedHitState::Enter()
 	GetOwner()->Collider2D()->SetScale(Vec3(0.5f, 0.88f, 1.f));
 
 	GetOwner()->FlipBookComponent()->Play(4, 8, false);
+
+	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+	qGameObject* Hitbox = pCurLevel->FindObjectByName(L"DrownedAttackHitbox");
+
+	if (Hitbox != nullptr)
+		Hitbox->Destroy();
 }
 
 void qDrownedHitState::FinalTick()

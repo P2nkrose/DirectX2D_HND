@@ -34,5 +34,7 @@ public:
 private:
 	DIRECTION	m_DrownedDir;
 	bool		m_DirChanged;
+
+	float		m_BangTime;
 };
 

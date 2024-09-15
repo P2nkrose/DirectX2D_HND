@@ -35,5 +35,7 @@ public:
 private:
 	DIRECTION	m_GhostDir;
 	bool		m_DirChanged;
+
+	float		m_BangTime;
 };
 

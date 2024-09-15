@@ -18,8 +18,11 @@ public:
 
 
 private:
+	qGameObject*	m_Bang;
+
 	float			m_DetectRange;
 	float			m_AttackRange;
 
+	bool			Bangflag;
 };
 

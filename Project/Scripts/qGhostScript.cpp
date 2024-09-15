@@ -14,6 +14,7 @@ qGhostScript::qGhostScript()
 	: qScript((UINT)SCRIPT_TYPE::GHOSTSCRIPT)
 	, m_DirChanged(false)
 	, m_GhostDir(DIRECTION::END)
+	, m_BangTime(0.f)
 {
 }
 
@@ -33,6 +34,7 @@ void qGhostScript::Tick()
 {
 	m_PrevUnitInfo = m_CurUnitInfo;
 
+	Vec3 vPos = Transform()->GetRelativePos();
 	Vec3 vRot = Transform()->GetRelativeRotation();
 
 	if (GetGhostDir() == DIRECTION::LEFT)
@@ -54,6 +56,27 @@ void qGhostScript::Tick()
 
 		flag = true;
 	}
+
+	// Bang 세팅
+	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+	qGameObject* GhostBang = pCurLevel->FindObjectByName(L"GhostBang");
+
+	if (GhostBang != nullptr)
+	{
+		GhostBang->Transform()->SetRelativePos(vPos.x, vPos.y + 150.f, 5.f);
+		m_BangTime += DT;
+	}
+
+	if (GhostBang != nullptr && m_BangTime > 1.f)
+	{
+		GhostBang->Destroy();
+		GhostBang = nullptr;
+		m_BangTime = 0.f;
+	}
+
+
+
+
 
 	// Anim 방향 정보 갱신 -1: Left , 1: Right
 	GetRenderComponent()->GetMaterial()->SetScalarParam(SCALAR_PARAM::INT_0, (int)m_CurUnitInfo.Dir);

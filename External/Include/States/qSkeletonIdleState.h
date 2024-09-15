@@ -1,6 +1,8 @@
 #pragma once
 #include <Engine/qState.h>
 
+class qGameObject;
+
 class qSkeletonIdleState : public qState
 {
 public:
@@ -16,6 +18,10 @@ public:
 
 
 private:
-	float		m_DetectRange;
+	qGameObject*	m_Bang;
+	float			m_BangTime;
+	bool			Bangflag;
+
+	float			m_DetectRange;
 };
 

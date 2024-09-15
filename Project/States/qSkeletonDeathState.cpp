@@ -28,6 +28,16 @@ void qSkeletonDeathState::Enter()
 	GetOwner()->Collider2D()->SetScale(Vec3(0.01f, 0.01f, 0.f));
 
 	GetOwner()->FlipBookComponent()->Play(2, 15, false);
+
+	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+	qGameObject* Hitbox = pCurLevel->FindObjectByName(L"SkeletonAttackHitbox");
+
+	if (Hitbox != nullptr)
+	{
+		Hitbox->Destroy();
+		Hitbox = nullptr;
+	}
+		
 }
 
 void qSkeletonDeathState::FinalTick()

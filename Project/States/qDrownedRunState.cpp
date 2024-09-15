@@ -25,6 +25,7 @@ void qDrownedRunState::Enter()
 	GetOwner()->Collider2D()->SetScale(Vec3(0.75f, 0.92f, 1.f));
 
 	GetOwner()->FlipBookComponent()->Play(1, 10, true);
+
 }
 
 void qDrownedRunState::FinalTick()

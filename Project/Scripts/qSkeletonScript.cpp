@@ -16,6 +16,7 @@ qSkeletonScript::qSkeletonScript()
 	: qScript((UINT)SCRIPT_TYPE::SKELETONSCRIPT)
 	, m_DirChanged(false)
 	, m_SkeletonDir(DIRECTION::LEFT)
+	, m_BangTime(0.f)
 {
 }
 
@@ -46,6 +47,7 @@ void qSkeletonScript::Tick()
 	// 방향 세팅
 	Vec3 vPos = Transform()->GetRelativePos();
 	Vec3 vRot = Transform()->GetRelativeRotation();
+
 	if (m_CurUnitInfo.Dir == DIRECTION::LEFT)
 		vRot.y = 0.f;
 	else if (m_CurUnitInfo.Dir == DIRECTION::RIGHT)
@@ -62,6 +64,25 @@ void qSkeletonScript::Tick()
 
 		flag = true;
 	}
+
+	// Bang 세팅
+	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+	qGameObject* SkeletonBang = pCurLevel->FindObjectByName(L"SkeletonBang");
+
+	if (SkeletonBang != nullptr)
+	{
+		SkeletonBang->Transform()->SetRelativePos(vPos.x, vPos.y + 150.f, 5.f);
+		m_BangTime += DT;
+	}
+
+	if (SkeletonBang != nullptr && m_BangTime > 0.5f)
+	{
+		SkeletonBang->Destroy();
+		SkeletonBang = nullptr;
+		m_BangTime = 0.f;
+	}
+
+
 
 	// Anim 방향 정보 갱신 -1: Left , 1: Right
 	GetRenderComponent()->GetMaterial()->SetScalarParam(SCALAR_PARAM::INT_0, (int)m_CurUnitInfo.Dir);

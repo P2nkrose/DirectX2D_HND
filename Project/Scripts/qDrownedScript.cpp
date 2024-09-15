@@ -14,6 +14,7 @@ qDrownedScript::qDrownedScript()
 	: qScript((UINT)SCRIPT_TYPE::DROWNEDSCRIPT)
 	, m_DrownedDir(DIRECTION::END)
 	, m_DirChanged(false)
+	, m_BangTime(0.f)
 {
 }
 
@@ -35,6 +36,7 @@ void qDrownedScript::Tick()
 {
 	m_PrevUnitInfo = m_CurUnitInfo;
 
+	Vec3 vPos = Transform()->GetRelativePos();
 	Vec3 vRot = Transform()->GetRelativeRotation();
 
 	if (GetDrownedDir() == DIRECTION::LEFT)
@@ -54,6 +56,23 @@ void qDrownedScript::Tick()
 		GetOwner()->FSM()->ChangeState(L"DrownedDeath");
 
 		flag = true;
+	}
+
+	// Bang ¼¼ÆÃ
+	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+	qGameObject* DrownedBang = pCurLevel->FindObjectByName(L"DrownedBang");
+	
+	if (DrownedBang != nullptr)
+	{
+		DrownedBang->Transform()->SetRelativePos(vPos.x, vPos.y + 150.f, 5.f);
+		m_BangTime += DT;
+	}
+
+	if (DrownedBang != nullptr && m_BangTime > 1.f)
+	{
+		DrownedBang->Destroy();
+		DrownedBang = nullptr;
+		m_BangTime = 0.f;
 	}
 
 

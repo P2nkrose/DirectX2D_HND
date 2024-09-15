@@ -9,6 +9,8 @@ qGhostIdleState::qGhostIdleState()
 	: qState((UINT)STATE_TYPE::GHOSTIDLESTATE)
 	, m_DetectRange(600.f)
 	, m_AttackRange(200.f)
+	, m_Bang(nullptr)
+	, Bangflag(false)
 {
 }
 
@@ -23,6 +25,8 @@ void qGhostIdleState::Enter()
 
 void qGhostIdleState::FinalTick()
 {
+	Ptr<qMaterial> pBangMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\bang.mtrl");
+
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 	qGameObject* Player = pCurLevel->FindObjectByName(L"Player");
 
@@ -33,15 +37,28 @@ void qGhostIdleState::FinalTick()
 
 	float Dist = Dir.Length();
 
-	static bool flag = false;
+	Bangflag = false;
 
-	if (Dist < m_DetectRange && !flag)
+	if (Dist < m_DetectRange && !Bangflag)
 	{
 		// ´À³¦Ç¥ »ý¼º
+		m_Bang = new qGameObject;
+		m_Bang->SetName(L"GhostBang");
+
+		m_Bang->AddComponent(new qMeshRender);
+		m_Bang->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+		m_Bang->MeshRender()->SetMaterial(pBangMtrl);
+
+		m_Bang->AddComponent(new qTransform);
+		m_Bang->Transform()->SetRelativePos(GhostPos.x, GhostPos.y + 150.f, 5.f);
+		m_Bang->Transform()->SetRelativeScale(25.f, 80.f, 1.f);
+
+		pCurLevel->AddObject(12, m_Bang);
 
 
-		flag = true;
+		Bangflag = true;
 	}
+
 
 
 	if (Dist < m_DetectRange)
@@ -77,4 +94,5 @@ void qGhostIdleState::FinalTick()
 
 void qGhostIdleState::Exit()
 {
+	Bangflag = false;
 }

@@ -25,6 +25,12 @@ void qDrownedDeathState::Enter()
 	GetOwner()->Collider2D()->SetScale(Vec3(0.42f, 0.63f, 1.f));
 
 	GetOwner()->FlipBookComponent()->Play(5, 8, false);
+
+	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+	qGameObject* Hitbox = pCurLevel->FindObjectByName(L"DrownedAttackHitbox");
+	if (Hitbox != nullptr)
+		Hitbox->Destroy();
+
 }
 
 void qDrownedDeathState::FinalTick()

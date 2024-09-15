@@ -53,9 +53,6 @@ void qDrownedAttackState::Enter()
 	DrownedAttackHitbox->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
 
 	
-	
-
-
 }
 
 void qDrownedAttackState::FinalTick()

@@ -56,8 +56,6 @@ void qSkeletonAttackState::Enter()
 	SkeletonAttackHitBox->AddComponent(new qCollider2D);
 	SkeletonAttackHitBox->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
 
-	
-	
 
 
 }

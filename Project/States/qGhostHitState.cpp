@@ -26,6 +26,12 @@ void qGhostHitState::Enter()
 	GetOwner()->Collider2D()->SetScale(Vec3(0.8f, 1.f, 1.f));
 
 	GetOwner()->FlipBookComponent()->Play(4, 15, false);
+
+	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+	qGameObject* Hitbox = pCurLevel->FindObjectByName(L"GhostAttackHitbox");
+
+	if (Hitbox != nullptr)
+		Hitbox->Destroy();
 }
 
 void qGhostHitState::FinalTick()

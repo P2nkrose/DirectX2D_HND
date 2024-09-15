@@ -9,6 +9,9 @@
 qSkeletonIdleState::qSkeletonIdleState()
 	: qState((UINT)STATE_TYPE::SKELETONIDLESTATE)
 	, m_DetectRange(220.f)
+	, m_Bang(nullptr)
+	, m_BangTime(0.f)
+	, Bangflag(false)
 {
 }
 
@@ -23,6 +26,8 @@ void qSkeletonIdleState::Enter()
 
 void qSkeletonIdleState::FinalTick()
 {
+	Ptr<qMaterial> pBangMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\bang.mtrl");
+
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 	qGameObject* Player = pCurLevel->FindObjectByName(L"Player");
 
@@ -33,15 +38,27 @@ void qSkeletonIdleState::FinalTick()
 
 	float Dist = Dir.Length();
 
-	static bool flag = false;
+	Bangflag = false;
 
-	if (Dist < m_DetectRange && !flag)
+	if (Dist < m_DetectRange && !Bangflag)
 	{
 		// ´À³¦Ç¥ »ý¼º
+		m_Bang = new qGameObject;
+		m_Bang->SetName(L"SkeletonBang");
 
+		m_Bang->AddComponent(new qMeshRender);
+		m_Bang->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+		m_Bang->MeshRender()->SetMaterial(pBangMtrl);
 
-		flag = true;
+		m_Bang->AddComponent(new qTransform);
+		m_Bang->Transform()->SetRelativePos(SkeletonPos.x, SkeletonPos.y + 150.f, 5.f);
+		m_Bang->Transform()->SetRelativeScale(25.f, 80.f, 1.f);
+
+		pCurLevel->AddObject(12, m_Bang);
+
+		Bangflag = true;
 	}
+
 
 
 	if (Dist < m_DetectRange)
@@ -53,6 +70,7 @@ void qSkeletonIdleState::FinalTick()
 		{
 			ChangeState(L"SkeletonAttack");
 		}
+
 	}
 
 
@@ -60,4 +78,5 @@ void qSkeletonIdleState::FinalTick()
 
 void qSkeletonIdleState::Exit()
 {
+	Bangflag = false;
 }

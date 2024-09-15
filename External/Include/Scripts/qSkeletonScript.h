@@ -40,5 +40,6 @@ private:
 	bool		m_DirChanged;
 
 	float		m_Dir;
+	float		m_BangTime;
 };
 
