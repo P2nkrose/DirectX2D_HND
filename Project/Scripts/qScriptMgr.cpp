@@ -1,9 +1,12 @@
 #include "pch.h"
 #include "qScriptMgr.h"
 
+#include "qBleedScript.h"
 #include "qBookScript_Left.h"
 #include "qBookScript_Right.h"
+#include "qBossScript.h"
 #include "qCameraMoveScript.h"
+#include "qClapScript.h"
 #include "qCollectScript.h"
 #include "qComboScript.h"
 #include "qCrashScript.h"
@@ -22,16 +25,21 @@
 #include "qPlayerScript.h"
 #include "qPortalScript.h"
 #include "qPostScript.h"
+#include "qPunchScript.h"
 #include "qRangeScript.h"
 #include "qSkeletonAttackScript.h"
 #include "qSkeletonScript.h"
+#include "qSlamScript.h"
 #include "qWallScript.h"
 
 void qScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 {
+	_vec.push_back(L"qBleedScript");
 	_vec.push_back(L"qBookScript_Left");
 	_vec.push_back(L"qBookScript_Right");
+	_vec.push_back(L"qBossScript");
 	_vec.push_back(L"qCameraMoveScript");
+	_vec.push_back(L"qClapScript");
 	_vec.push_back(L"qCollectScript");
 	_vec.push_back(L"qComboScript");
 	_vec.push_back(L"qCrashScript");
@@ -50,20 +58,28 @@ void qScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qPlayerScript");
 	_vec.push_back(L"qPortalScript");
 	_vec.push_back(L"qPostScript");
+	_vec.push_back(L"qPunchScript");
 	_vec.push_back(L"qRangeScript");
 	_vec.push_back(L"qSkeletonAttackScript");
 	_vec.push_back(L"qSkeletonScript");
+	_vec.push_back(L"qSlamScript");
 	_vec.push_back(L"qWallScript");
 }
 
 qScript * qScriptMgr::GetScript(const wstring& _strScriptName)
 {
+	if (L"qBleedScript" == _strScriptName)
+		return new qBleedScript;
 	if (L"qBookScript_Left" == _strScriptName)
 		return new qBookScript_Left;
 	if (L"qBookScript_Right" == _strScriptName)
 		return new qBookScript_Right;
+	if (L"qBossScript" == _strScriptName)
+		return new qBossScript;
 	if (L"qCameraMoveScript" == _strScriptName)
 		return new qCameraMoveScript;
+	if (L"qClapScript" == _strScriptName)
+		return new qClapScript;
 	if (L"qCollectScript" == _strScriptName)
 		return new qCollectScript;
 	if (L"qComboScript" == _strScriptName)
@@ -100,12 +116,16 @@ qScript * qScriptMgr::GetScript(const wstring& _strScriptName)
 		return new qPortalScript;
 	if (L"qPostScript" == _strScriptName)
 		return new qPostScript;
+	if (L"qPunchScript" == _strScriptName)
+		return new qPunchScript;
 	if (L"qRangeScript" == _strScriptName)
 		return new qRangeScript;
 	if (L"qSkeletonAttackScript" == _strScriptName)
 		return new qSkeletonAttackScript;
 	if (L"qSkeletonScript" == _strScriptName)
 		return new qSkeletonScript;
+	if (L"qSlamScript" == _strScriptName)
+		return new qSlamScript;
 	if (L"qWallScript" == _strScriptName)
 		return new qWallScript;
 	return nullptr;
@@ -115,14 +135,23 @@ qScript * qScriptMgr::GetScript(UINT _iScriptType)
 {
 	switch (_iScriptType)
 	{
+	case (UINT)SCRIPT_TYPE::BLEEDSCRIPT:
+		return new qBleedScript;
+		break;
 	case (UINT)SCRIPT_TYPE::BOOKSCRIPT_LEFT:
 		return new qBookScript_Left;
 		break;
 	case (UINT)SCRIPT_TYPE::BOOKSCRIPT_RIGHT:
 		return new qBookScript_Right;
 		break;
+	case (UINT)SCRIPT_TYPE::BOSSSCRIPT:
+		return new qBossScript;
+		break;
 	case (UINT)SCRIPT_TYPE::CAMERAMOVESCRIPT:
 		return new qCameraMoveScript;
+		break;
+	case (UINT)SCRIPT_TYPE::CLAPSCRIPT:
+		return new qClapScript;
 		break;
 	case (UINT)SCRIPT_TYPE::COLLECTSCRIPT:
 		return new qCollectScript;
@@ -178,6 +207,9 @@ qScript * qScriptMgr::GetScript(UINT _iScriptType)
 	case (UINT)SCRIPT_TYPE::POSTSCRIPT:
 		return new qPostScript;
 		break;
+	case (UINT)SCRIPT_TYPE::PUNCHSCRIPT:
+		return new qPunchScript;
+		break;
 	case (UINT)SCRIPT_TYPE::RANGESCRIPT:
 		return new qRangeScript;
 		break;
@@ -186,6 +218,9 @@ qScript * qScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::SKELETONSCRIPT:
 		return new qSkeletonScript;
+		break;
+	case (UINT)SCRIPT_TYPE::SLAMSCRIPT:
+		return new qSlamScript;
 		break;
 	case (UINT)SCRIPT_TYPE::WALLSCRIPT:
 		return new qWallScript;
@@ -198,6 +233,10 @@ const wchar_t * qScriptMgr::GetScriptName(qScript * _pScript)
 {
 	switch ((SCRIPT_TYPE)_pScript->GetScriptType())
 	{
+	case SCRIPT_TYPE::BLEEDSCRIPT:
+		return L"qBleedScript";
+		break;
+
 	case SCRIPT_TYPE::BOOKSCRIPT_LEFT:
 		return L"qBookScript_Left";
 		break;
@@ -206,8 +245,16 @@ const wchar_t * qScriptMgr::GetScriptName(qScript * _pScript)
 		return L"qBookScript_Right";
 		break;
 
+	case SCRIPT_TYPE::BOSSSCRIPT:
+		return L"qBossScript";
+		break;
+
 	case SCRIPT_TYPE::CAMERAMOVESCRIPT:
 		return L"qCameraMoveScript";
+		break;
+
+	case SCRIPT_TYPE::CLAPSCRIPT:
+		return L"qClapScript";
 		break;
 
 	case SCRIPT_TYPE::COLLECTSCRIPT:
@@ -282,6 +329,10 @@ const wchar_t * qScriptMgr::GetScriptName(qScript * _pScript)
 		return L"qPostScript";
 		break;
 
+	case SCRIPT_TYPE::PUNCHSCRIPT:
+		return L"qPunchScript";
+		break;
+
 	case SCRIPT_TYPE::RANGESCRIPT:
 		return L"qRangeScript";
 		break;
@@ -292,6 +343,10 @@ const wchar_t * qScriptMgr::GetScriptName(qScript * _pScript)
 
 	case SCRIPT_TYPE::SKELETONSCRIPT:
 		return L"qSkeletonScript";
+		break;
+
+	case SCRIPT_TYPE::SLAMSCRIPT:
+		return L"qSlamScript";
 		break;
 
 	case SCRIPT_TYPE::WALLSCRIPT:

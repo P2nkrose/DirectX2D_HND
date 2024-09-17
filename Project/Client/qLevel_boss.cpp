@@ -27,6 +27,11 @@
 #include <Scripts/qWallScript.h>
 #include <Scripts/qPostScript.h>
 
+#include <Scripts/qBossScript.h>
+#include <Scripts/qPunchScript.h>
+#include <Scripts/qSlamScript.h>
+#include <Scripts/qBleedScript.h>
+
 
 #include <Engine/qSetColorCS.h>
 #include <Engine/qStructuredBuffer.h>
@@ -62,6 +67,25 @@
 #include <States/qPlayerTeleportFinishState.h>	// 23
 #include <States/qPlayerBumpState.h>			// 24
 #include <States/qPlayerNullState.h>			// 25
+
+
+// ========================                    
+//        Boss State                           * INDEX *
+// ========================
+
+#include <States/qBossIntroState.h>				// 0
+#include <States/qBossIdleState.h>				// 1
+#include <States/qBossRunState.h>				// 2
+#include <States/qBossPunchState.h>				// 3
+#include <States/qBossSlamState.h>				// 4
+#include <States/qBossBleedState.h>				// 5
+#include <States/qBossHitState.h>				// 6
+#include <States/qBossDeathState.h>				// 7
+
+#include <States/qBossSlamFistState.h>			
+#include <States/qBossBleedWaveState.h>			
+
+
 
 
 // ========================                    
@@ -406,6 +430,72 @@ void qLevel_boss::CreateStageBoss()
 	pStageBoss->AddObject(3, pPlayer);
 
 
+
+	// ==============
+	//     BOSS
+	// ==============
+
+	qGameObject* pBoss = new qGameObject;
+	pBoss->SetName(L"Boss");
+	pBoss->AddComponent(new qBossScript);
+
+	pBoss->AddComponent(new qTransform);
+
+	pBoss->AddComponent(new qMeshRender);
+	pBoss->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pBoss->MeshRender()->SetMaterial(pMtrl);
+
+	pBoss->AddComponent(new qFlipBookComponent);
+
+	Ptr<qFlipBook> pBossIntro = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\boss_intro.flip");
+	pBoss->FlipBookComponent()->AddFlipBook(0, pBossIntro);
+
+	Ptr<qFlipBook> pBossIdle = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\boss_idle.flip");
+	pBoss->FlipBookComponent()->AddFlipBook(1, pBossIdle);
+
+	Ptr<qFlipBook> pBossRun = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\boss_run.flip");
+	pBoss->FlipBookComponent()->AddFlipBook(2, pBossRun);
+
+	Ptr<qFlipBook> pBossPunch = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\boss_punch.flip");
+	pBoss->FlipBookComponent()->AddFlipBook(3, pBossPunch);
+
+	Ptr<qFlipBook> pBossSlam = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\boss_slam.flip");
+	pBoss->FlipBookComponent()->AddFlipBook(4, pBossSlam);
+
+	Ptr<qFlipBook> pBossBleed = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\boss_bleed.flip");
+	pBoss->FlipBookComponent()->AddFlipBook(5, pBossBleed);
+
+	Ptr<qFlipBook> pBossHit = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\boss_hit.flip");
+	pBoss->FlipBookComponent()->AddFlipBook(6, pBossHit);
+
+	Ptr<qFlipBook> pBossDeath = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\boss_death.flip");
+	pBoss->FlipBookComponent()->AddFlipBook(7, pBossDeath);
+
+
+	pBoss->AddComponent(new qCollider2D);
+	pBoss->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pBoss->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+
+
+	// FSM
+	pBoss->AddComponent(new qFSM);
+
+	pBoss->FSM()->AddState(L"BossIntro", new qBossIntroState);			// 0
+	pBoss->FSM()->AddState(L"BossIdle", new qBossIdleState);			// 1
+	pBoss->FSM()->AddState(L"BossRun", new qBossRunState);				// 2
+	pBoss->FSM()->AddState(L"BossPunch", new qBossPunchState);			// 3
+	pBoss->FSM()->AddState(L"BossSlam", new qBossSlamState);			// 4
+	pBoss->FSM()->AddState(L"BossBleed", new qBossBleedState);			// 5
+	pBoss->FSM()->AddState(L"BossHit", new qBossHitState);				// 6
+	pBoss->FSM()->AddState(L"BossDeath", new qBossDeathState);			// 7
+
+
+	pStageBoss->AddObject(7, pBoss);
+
+
+
+
+
 	// 충돌 지정
 	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
 	qCollisionMgr::GetInst()->CollisionCheck(4, 5);		// PlayerSkill vs Monster
@@ -416,7 +506,6 @@ void qLevel_boss::CreateStageBoss()
 	qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
 	qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
 	qCollisionMgr::GetInst()->CollisionCheck(3, 7);		// Player vs Boss
-	
 	
 	ChangeLevel(pStageBoss, LEVEL_STATE::STOP);
 

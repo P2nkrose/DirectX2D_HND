@@ -2,6 +2,17 @@
 #include "qStateMgr.h"
 
 #include "qBookEffectState.h"
+#include "qBossBleedState.h"
+#include "qBossBleedWaveState.h"
+#include "qBossDeathState.h"
+#include "qBossHitState.h"
+#include "qBossIdleState.h"
+#include "qBossIntroState.h"
+#include "qBossPunchState.h"
+#include "qBossRunState.h"
+#include "qBossSlamFistState.h"
+#include "qBossSlamState.h"
+#include "qClapState.h"
 #include "qDeathSoulState.h"
 #include "qDoorCloseState.h"
 #include "qDoorOpenState.h"
@@ -57,6 +68,17 @@
 void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 {
 	_vec.push_back(L"qBookEffectState");
+	_vec.push_back(L"qBossBleedState");
+	_vec.push_back(L"qBossBleedWaveState");
+	_vec.push_back(L"qBossDeathState");
+	_vec.push_back(L"qBossHitState");
+	_vec.push_back(L"qBossIdleState");
+	_vec.push_back(L"qBossIntroState");
+	_vec.push_back(L"qBossPunchState");
+	_vec.push_back(L"qBossRunState");
+	_vec.push_back(L"qBossSlamFistState");
+	_vec.push_back(L"qBossSlamState");
+	_vec.push_back(L"qClapState");
 	_vec.push_back(L"qDeathSoulState");
 	_vec.push_back(L"qDoorCloseState");
 	_vec.push_back(L"qDoorOpenState");
@@ -114,6 +136,28 @@ qState * qStateMgr::GetState(const wstring& _strStateName)
 {
 	if (L"qBookEffectState" == _strStateName)
 		return new qBookEffectState;
+	if (L"qBossBleedState" == _strStateName)
+		return new qBossBleedState;
+	if (L"qBossBleedWaveState" == _strStateName)
+		return new qBossBleedWaveState;
+	if (L"qBossDeathState" == _strStateName)
+		return new qBossDeathState;
+	if (L"qBossHitState" == _strStateName)
+		return new qBossHitState;
+	if (L"qBossIdleState" == _strStateName)
+		return new qBossIdleState;
+	if (L"qBossIntroState" == _strStateName)
+		return new qBossIntroState;
+	if (L"qBossPunchState" == _strStateName)
+		return new qBossPunchState;
+	if (L"qBossRunState" == _strStateName)
+		return new qBossRunState;
+	if (L"qBossSlamFistState" == _strStateName)
+		return new qBossSlamFistState;
+	if (L"qBossSlamState" == _strStateName)
+		return new qBossSlamState;
+	if (L"qClapState" == _strStateName)
+		return new qClapState;
 	if (L"qDeathSoulState" == _strStateName)
 		return new qDeathSoulState;
 	if (L"qDoorCloseState" == _strStateName)
@@ -225,6 +269,39 @@ qState * qStateMgr::GetState(UINT _iStateType)
 	{
 	case (UINT)STATE_TYPE::BOOKEFFECTSTATE:
 		return new qBookEffectState;
+		break;
+	case (UINT)STATE_TYPE::BOSSBLEEDSTATE:
+		return new qBossBleedState;
+		break;
+	case (UINT)STATE_TYPE::BOSSBLEEDWAVESTATE:
+		return new qBossBleedWaveState;
+		break;
+	case (UINT)STATE_TYPE::BOSSDEATHSTATE:
+		return new qBossDeathState;
+		break;
+	case (UINT)STATE_TYPE::BOSSHITSTATE:
+		return new qBossHitState;
+		break;
+	case (UINT)STATE_TYPE::BOSSIDLESTATE:
+		return new qBossIdleState;
+		break;
+	case (UINT)STATE_TYPE::BOSSINTROSTATE:
+		return new qBossIntroState;
+		break;
+	case (UINT)STATE_TYPE::BOSSPUNCHSTATE:
+		return new qBossPunchState;
+		break;
+	case (UINT)STATE_TYPE::BOSSRUNSTATE:
+		return new qBossRunState;
+		break;
+	case (UINT)STATE_TYPE::BOSSSLAMFISTSTATE:
+		return new qBossSlamFistState;
+		break;
+	case (UINT)STATE_TYPE::BOSSSLAMSTATE:
+		return new qBossSlamState;
+		break;
+	case (UINT)STATE_TYPE::CLAPSTATE:
+		return new qClapState;
 		break;
 	case (UINT)STATE_TYPE::DEATHSOULSTATE:
 		return new qDeathSoulState;
@@ -389,6 +466,50 @@ const wchar_t * qStateMgr::GetStateName(qState * _pState)
 	{
 	case STATE_TYPE::BOOKEFFECTSTATE:
 		return L"qBookEffectState";
+		break;
+
+	case STATE_TYPE::BOSSBLEEDSTATE:
+		return L"qBossBleedState";
+		break;
+
+	case STATE_TYPE::BOSSBLEEDWAVESTATE:
+		return L"qBossBleedWaveState";
+		break;
+
+	case STATE_TYPE::BOSSDEATHSTATE:
+		return L"qBossDeathState";
+		break;
+
+	case STATE_TYPE::BOSSHITSTATE:
+		return L"qBossHitState";
+		break;
+
+	case STATE_TYPE::BOSSIDLESTATE:
+		return L"qBossIdleState";
+		break;
+
+	case STATE_TYPE::BOSSINTROSTATE:
+		return L"qBossIntroState";
+		break;
+
+	case STATE_TYPE::BOSSPUNCHSTATE:
+		return L"qBossPunchState";
+		break;
+
+	case STATE_TYPE::BOSSRUNSTATE:
+		return L"qBossRunState";
+		break;
+
+	case STATE_TYPE::BOSSSLAMFISTSTATE:
+		return L"qBossSlamFistState";
+		break;
+
+	case STATE_TYPE::BOSSSLAMSTATE:
+		return L"qBossSlamState";
+		break;
+
+	case STATE_TYPE::CLAPSTATE:
+		return L"qClapState";
 		break;
 
 	case STATE_TYPE::DEATHSOULSTATE:

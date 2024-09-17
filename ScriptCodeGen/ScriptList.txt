@@ -1,6 +1,9 @@
+qBleedScript
 qBookScript_Left
 qBookScript_Right
+qBossScript
 qCameraMoveScript
+qClapScript
 qCollectScript
 qComboScript
 qCrashScript
@@ -19,7 +22,9 @@ qPlayerHitboxScript
 qPlayerScript
 qPortalScript
 qPostScript
+qPunchScript
 qRangeScript
 qSkeletonAttackScript
 qSkeletonScript
+qSlamScript
 qWallScript

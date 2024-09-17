@@ -88,7 +88,19 @@
     <Filter Include="Scripts\1. UNIT\2. Monster\03. Ghost">
       <UniqueIdentifier>{b0f76843-bddd-4de8-9d4a-885ebd010d8c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripts\3. Transfer\04. Clap">
+    <Filter Include="Scripts\1. UNIT\3. Boss\BossSkill">
+      <UniqueIdentifier>{eb2741b5-c68f-4917-9896-2bee07cb54af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\1. UNIT\3. Boss\BossSkill\01. Punch">
+      <UniqueIdentifier>{3ce9e3f2-b666-4c92-a26a-ed753c8f069e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\1. UNIT\3. Boss\BossSkill\02. Slam">
+      <UniqueIdentifier>{8a5014db-e468-4358-9374-5c7807ad6367}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\1. UNIT\3. Boss\BossSkill\03. Bleed">
+      <UniqueIdentifier>{c1ba5f80-f454-4a00-9b69-ffa7d269df56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\1. UNIT\4. etc\03. Clap">
       <UniqueIdentifier>{c6122bc4-aa14-4a76-aaf6-7debde9c68fa}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -178,7 +190,19 @@
       <Filter>Scripts\1. UNIT\2. Monster\03. Ghost</Filter>
     </ClInclude>
     <ClInclude Include="qClapScript.h">
-      <Filter>Scripts\3. Transfer\04. Clap</Filter>
+      <Filter>Scripts\1. UNIT\4. etc\03. Clap</Filter>
+    </ClInclude>
+    <ClInclude Include="qBossScript.h">
+      <Filter>Scripts\1. UNIT\3. Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="qPunchScript.h">
+      <Filter>Scripts\1. UNIT\3. Boss\BossSkill\01. Punch</Filter>
+    </ClInclude>
+    <ClInclude Include="qSlamScript.h">
+      <Filter>Scripts\1. UNIT\3. Boss\BossSkill\02. Slam</Filter>
+    </ClInclude>
+    <ClInclude Include="qBleedScript.h">
+      <Filter>Scripts\1. UNIT\3. Boss\BossSkill\03. Bleed</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -267,7 +291,19 @@
       <Filter>Scripts\1. UNIT\2. Monster\03. Ghost</Filter>
     </ClCompile>
     <ClCompile Include="qClapScript.cpp">
-      <Filter>Scripts\3. Transfer\04. Clap</Filter>
+      <Filter>Scripts\1. UNIT\4. etc\03. Clap</Filter>
+    </ClCompile>
+    <ClCompile Include="qBossScript.cpp">
+      <Filter>Scripts\1. UNIT\3. Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="qPunchScript.cpp">
+      <Filter>Scripts\1. UNIT\3. Boss\BossSkill\01. Punch</Filter>
+    </ClCompile>
+    <ClCompile Include="qSlamScript.cpp">
+      <Filter>Scripts\1. UNIT\3. Boss\BossSkill\02. Slam</Filter>
+    </ClCompile>
+    <ClCompile Include="qBleedScript.cpp">
+      <Filter>Scripts\1. UNIT\3. Boss\BossSkill\03. Bleed</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

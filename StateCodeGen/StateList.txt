@@ -1,4 +1,15 @@
 qBookEffectState
+qBossBleedState
+qBossBleedWaveState
+qBossDeathState
+qBossHitState
+qBossIdleState
+qBossIntroState
+qBossPunchState
+qBossRunState
+qBossSlamFistState
+qBossSlamState
+qClapState
 qDeathSoulState
 qDoorCloseState
 qDoorOpenState

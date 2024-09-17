@@ -161,6 +161,16 @@ call CodeGen.exe</Command>
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="qBookEffectState.h" />
+    <ClInclude Include="qBossBleedState.h" />
+    <ClInclude Include="qBossBleedWaveState.h" />
+    <ClInclude Include="qBossDeathState.h" />
+    <ClInclude Include="qBossHitState.h" />
+    <ClInclude Include="qBossIdleState.h" />
+    <ClInclude Include="qBossIntroState.h" />
+    <ClInclude Include="qBossPunchState.h" />
+    <ClInclude Include="qBossRunState.h" />
+    <ClInclude Include="qBossSlamFistState.h" />
+    <ClInclude Include="qBossSlamState.h" />
     <ClInclude Include="qClapState.h" />
     <ClInclude Include="qDeathSoulState.h" />
     <ClInclude Include="qDoorCloseState.h" />
@@ -223,6 +233,16 @@ call CodeGen.exe</Command>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="qBookEffectState.cpp" />
+    <ClCompile Include="qBossBleedState.cpp" />
+    <ClCompile Include="qBossBleedWaveState.cpp" />
+    <ClCompile Include="qBossDeathState.cpp" />
+    <ClCompile Include="qBossHitState.cpp" />
+    <ClCompile Include="qBossIdleState.cpp" />
+    <ClCompile Include="qBossIntroState.cpp" />
+    <ClCompile Include="qBossPunchState.cpp" />
+    <ClCompile Include="qBossRunState.cpp" />
+    <ClCompile Include="qBossSlamFistState.cpp" />
+    <ClCompile Include="qBossSlamState.cpp" />
     <ClCompile Include="qClapState.cpp" />
     <ClCompile Include="qDeathSoulState.cpp" />
     <ClCompile Include="qDoorCloseState.cpp" />
