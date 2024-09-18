@@ -16,8 +16,9 @@ public:
 	virtual void LoadFromFile(FILE* _File) override;
 
 public:
-
 	void SetFollowObject(qGameObject* _Obj) { m_FollowObj = _Obj; }
+
+	void SetClap(bool _clap) { m_clap = _clap; }
 
 
 private:
@@ -28,5 +29,7 @@ private:
 private:
 	float				m_CamSpeed;
 	qGameObject*		m_FollowObj;
+
+	bool				m_clap;
 };
 

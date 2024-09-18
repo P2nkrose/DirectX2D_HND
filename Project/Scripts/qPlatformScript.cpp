@@ -48,8 +48,15 @@ void qPlatformScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _Othe
 			qPlayerScript* pPlayerScript = _OtherObject->GetScript<qPlayerScript>();
 			pPlayerScript->SetCurrentPlatformPos(PlatformPos);
 		}
-
 	}
+
+	//if (_OtherObject->GetName() == L"Boss")
+	//{
+	//	qRigidBody* pRB = _OtherObject->GetComponent(COMPONENT_TYPE::RIGIDBODY)->RigidBody();
+	//
+	//	pRB->SetGround(true);
+	//}
+
 }
 
 void qPlatformScript::Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)

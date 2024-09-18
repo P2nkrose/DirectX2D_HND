@@ -7,8 +7,8 @@
 
 qDrownedIdleState::qDrownedIdleState()
 	: qState((UINT)STATE_TYPE::DROWNEDIDLESTATE)
-	, m_DetectRange(600.f)
-	, m_AttackRange(200.f)
+	, m_DetectRange(800.f)
+	, m_AttackRange(400.f)
 	, m_Bang(nullptr)
 	, Bangflag(false)
 {

@@ -171,6 +171,8 @@ call CodeGen.exe</Command>
     <ClInclude Include="qBossRunState.h" />
     <ClInclude Include="qBossSlamFistState.h" />
     <ClInclude Include="qBossSlamState.h" />
+    <ClInclude Include="qBossStayState.h" />
+    <ClInclude Include="qBossUturnState.h" />
     <ClInclude Include="qClapState.h" />
     <ClInclude Include="qDeathSoulState.h" />
     <ClInclude Include="qDoorCloseState.h" />
@@ -243,6 +245,8 @@ call CodeGen.exe</Command>
     <ClCompile Include="qBossRunState.cpp" />
     <ClCompile Include="qBossSlamFistState.cpp" />
     <ClCompile Include="qBossSlamState.cpp" />
+    <ClCompile Include="qBossStayState.cpp" />
+    <ClCompile Include="qBossUturnState.cpp" />
     <ClCompile Include="qClapState.cpp" />
     <ClCompile Include="qDeathSoulState.cpp" />
     <ClCompile Include="qDoorCloseState.cpp" />

@@ -241,6 +241,18 @@
     <Filter Include="States\03. Boss\07. Death">
       <UniqueIdentifier>{c0c9e2fc-eccb-4045-abb9-d17c9ee7f30c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="States\03. Boss\08. Stay">
+      <UniqueIdentifier>{0d5be02b-9665-4f51-ae0b-5a9034858ae9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\03. Boss\09. Fist">
+      <UniqueIdentifier>{0dff0549-e40e-46f7-a01c-df28351fc294}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\03. Boss\10. Wave">
+      <UniqueIdentifier>{1cd8d786-11d6-4a8a-9897-41e702a11392}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\03. Boss\11. Uturn">
+      <UniqueIdentifier>{2beafd93-c8d1-4472-93c4-ec45f919306e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -441,6 +453,12 @@
     <ClInclude Include="qBossRunState.h">
       <Filter>States\03. Boss\02. Run</Filter>
     </ClInclude>
+    <ClInclude Include="qBossStayState.h">
+      <Filter>States\03. Boss\08. Stay</Filter>
+    </ClInclude>
+    <ClInclude Include="qBossUturnState.h">
+      <Filter>States\03. Boss\11. Uturn</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="States.cpp">
@@ -640,6 +658,12 @@
     </ClCompile>
     <ClCompile Include="qBossRunState.cpp">
       <Filter>States\03. Boss\02. Run</Filter>
+    </ClCompile>
+    <ClCompile Include="qBossStayState.cpp">
+      <Filter>States\03. Boss\08. Stay</Filter>
+    </ClCompile>
+    <ClCompile Include="qBossUturnState.cpp">
+      <Filter>States\03. Boss\11. Uturn</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

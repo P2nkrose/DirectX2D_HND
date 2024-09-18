@@ -12,6 +12,8 @@
 #include "qBossRunState.h"
 #include "qBossSlamFistState.h"
 #include "qBossSlamState.h"
+#include "qBossStayState.h"
+#include "qBossUturnState.h"
 #include "qClapState.h"
 #include "qDeathSoulState.h"
 #include "qDoorCloseState.h"
@@ -78,6 +80,8 @@ void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qBossRunState");
 	_vec.push_back(L"qBossSlamFistState");
 	_vec.push_back(L"qBossSlamState");
+	_vec.push_back(L"qBossStayState");
+	_vec.push_back(L"qBossUturnState");
 	_vec.push_back(L"qClapState");
 	_vec.push_back(L"qDeathSoulState");
 	_vec.push_back(L"qDoorCloseState");
@@ -156,6 +160,10 @@ qState * qStateMgr::GetState(const wstring& _strStateName)
 		return new qBossSlamFistState;
 	if (L"qBossSlamState" == _strStateName)
 		return new qBossSlamState;
+	if (L"qBossStayState" == _strStateName)
+		return new qBossStayState;
+	if (L"qBossUturnState" == _strStateName)
+		return new qBossUturnState;
 	if (L"qClapState" == _strStateName)
 		return new qClapState;
 	if (L"qDeathSoulState" == _strStateName)
@@ -299,6 +307,12 @@ qState * qStateMgr::GetState(UINT _iStateType)
 		break;
 	case (UINT)STATE_TYPE::BOSSSLAMSTATE:
 		return new qBossSlamState;
+		break;
+	case (UINT)STATE_TYPE::BOSSSTAYSTATE:
+		return new qBossStayState;
+		break;
+	case (UINT)STATE_TYPE::BOSSUTURNSTATE:
+		return new qBossUturnState;
 		break;
 	case (UINT)STATE_TYPE::CLAPSTATE:
 		return new qClapState;
@@ -506,6 +520,14 @@ const wchar_t * qStateMgr::GetStateName(qState * _pState)
 
 	case STATE_TYPE::BOSSSLAMSTATE:
 		return L"qBossSlamState";
+		break;
+
+	case STATE_TYPE::BOSSSTAYSTATE:
+		return L"qBossStayState";
+		break;
+
+	case STATE_TYPE::BOSSUTURNSTATE:
+		return L"qBossUturnState";
 		break;
 
 	case STATE_TYPE::CLAPSTATE:

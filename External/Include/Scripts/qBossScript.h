@@ -21,6 +21,8 @@ public:
 	virtual void SaveToFile(FILE* _File) override;
 	virtual void LoadFromFile(FILE* _File) override;
 
+	virtual void Hit(float _Damage) override;
+
 
 public:
 	void SetBossDir(DIRECTION _Dir) { m_CurUnitInfo.Dir = _Dir; }
@@ -41,6 +43,7 @@ private:
 	
 	bool				m_DirChanged;
 
+	float				m_BangTime;
 
 
 };

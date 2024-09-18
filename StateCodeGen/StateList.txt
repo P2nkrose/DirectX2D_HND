@@ -9,6 +9,8 @@ qBossPunchState
 qBossRunState
 qBossSlamFistState
 qBossSlamState
+qBossStayState
+qBossUturnState
 qClapState
 qDeathSoulState
 qDoorCloseState
