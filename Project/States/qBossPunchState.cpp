@@ -23,12 +23,21 @@ void qBossPunchState::Enter()
 	OGScale = GetOwner()->Transform()->GetRelativeScale();
 	OGColScale = GetOwner()->Collider2D()->GetScale();
 
-	GetOwner()->Transform()->SetRelativePos(OGPos.x, OGPos.y + 16.f, OGPos.z);
+	qBossScript* BossScript = GetOwner()->GetScript<qBossScript>();
+	if (BossScript->GetBossDir() == DIRECTION::LEFT)
+	{
+		GetOwner()->Transform()->SetRelativePos(OGPos.x - 70.f, OGPos.y + 16.f, OGPos.z);
+	}
+	else if (BossScript->GetBossDir() == DIRECTION::RIGHT)
+	{
+		GetOwner()->Transform()->SetRelativePos(OGPos.x + 70.f, OGPos.y + 16.f, OGPos.z);
+	}
+
 	GetOwner()->Transform()->SetRelativeScale(1500.f, 370.f, 10.f);
 	GetOwner()->Collider2D()->SetScale(Vec3(0.16f, 0.72f, 1.f));
 	GetOwner()->Collider2D()->SetOffset(Vec3(0.f, -0.09f, 0.f));
 
-	GetOwner()->FlipBookComponent()->Play(3, 20, true);
+	GetOwner()->FlipBookComponent()->Play(3, 25, true);
 }
 
 void qBossPunchState::FinalTick()

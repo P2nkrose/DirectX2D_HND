@@ -57,7 +57,7 @@ void qBossRunState::FinalTick()
 	
 	float Dist = Dir.Length();
 	
-	if (Dist < 500.f)
+	if (Dist < 700.f)
 	{
 		ChangeState(L"BossIdle");
 	}

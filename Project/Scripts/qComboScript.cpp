@@ -9,6 +9,7 @@
 #include "qSkeletonScript.h"
 #include "qDrownedScript.h"
 #include "qGhostScript.h"
+#include "qBossScript.h"
 #include "qPlayerEffectScript.h"
 #include <States/qPlayerEffectState.h>
 #include <States/qStateMgr.h>
@@ -103,13 +104,34 @@ void qComboScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherOb
 				GhostScript->Hit(m_ComboFinalDamage);
 			}
 		}
+		else if (_OtherObject->GetName() == L"Boss")
+		{
+			qBossScript* BossScript = _OtherObject->GetScript<qBossScript>();
+
+			if (BossScript == nullptr)
+				return;
+
+			wstring CurStateName = qStateMgr::GetStateName(Player->FSM()->GetCurState());
+
+			if (CurStateName == L"qPlayerCombo1State" || CurStateName == L"qPlayerCombo2State" || CurStateName == L"qPlayerCombo3State")
+			{
+				BossScript->Hit(m_ComboDamage);
+			}
+			else if (CurStateName == L"qPlayerCombo4State")
+			{
+				BossScript->Hit(m_ComboFinalDamage);
+			}
+		}
 
 
 
 
 
 		// ÀÌÆåÆ®
-		if (_OtherObject->GetName() == L"Skeleton" || _OtherObject->GetName() == L"Drowned" || _OtherObject->GetName() == L"Ghost")
+		if (_OtherObject->GetName() == L"Skeleton" ||
+			_OtherObject->GetName() == L"Drowned" ||
+			_OtherObject->GetName() == L"Ghost" || 
+			_OtherObject->GetName() == L"Boss")
 		{
 			qGameObject* Effect = new qGameObject;
 			Effect->SetName(L"effect");
@@ -139,6 +161,13 @@ void qComboScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherOb
 					Effect->Transform()->SetRelativePos(Vec3(MonsterPos.x + 30.f, MonsterPos.y - 30.f, 10.f));
 				else if (PlayerScript->GetPlayerDir() == DIRECTION::RIGHT)
 					Effect->Transform()->SetRelativePos(Vec3(MonsterPos.x - 30.f, MonsterPos.y - 30.f, 10.f));
+			}
+			else if (_OtherObject->GetName() == L"Boss")
+			{
+				if (PlayerScript->GetPlayerDir() == DIRECTION::LEFT)
+					Effect->Transform()->SetRelativePos(Vec3(MonsterPos.x + 180.f, MonsterPos.y - 100.f, 1.f));
+				else if (PlayerScript->GetPlayerDir() == DIRECTION::RIGHT)
+					Effect->Transform()->SetRelativePos(Vec3(MonsterPos.x - 180.f, MonsterPos.y - 100.f, 1.f));
 			}
 
 			Effect->Transform()->SetRelativeScale(180.f, 180.f, 1.f);

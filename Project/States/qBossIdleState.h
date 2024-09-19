@@ -25,5 +25,7 @@ private:
 	Vec3				OGScale;
 	Vec3				OGColScale;
 
+	bool				UturnFlag;
+
 };
 

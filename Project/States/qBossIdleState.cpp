@@ -8,7 +8,8 @@
 qBossIdleState::qBossIdleState()
 	: qState((UINT)STATE_TYPE::BOSSIDLESTATE)
 	, m_DetectRange(900.f)
-	, m_AttackRange(500.f)
+	, m_AttackRange(700.f)
+	, UturnFlag(false)
 {
 }
 
@@ -38,7 +39,7 @@ void qBossIdleState::FinalTick()
 	Vec3 Dir = PlayerPos - BossPos;
 	float Dist = Dir.Length();
 
-	m_Time += DT;
+	
 
 	if (Dist < m_DetectRange)
 	{
@@ -49,9 +50,11 @@ void qBossIdleState::FinalTick()
 		{
 			ChangeState(L"BossRun");
 		}
-		else
+		else if(Dir.x * (int)CurDir <= 0 && !UturnFlag)
 		{
 			ChangeState(L"BossUturn");
+
+			UturnFlag = true;
 		}
 	}
 
@@ -61,31 +64,29 @@ void qBossIdleState::FinalTick()
 	{
 		DIRECTION CurDir = GetOwner()->GetScript<qBossScript>()->GetBossDir();
 
+		//m_Time += DT;
+
 		// 같은 방향
 		if (Dir.x * (int)CurDir > 0)
 		{
-			//if (m_Time > 3.f)
-			//{
-			//	if (state == 0)
-			//	{
-					//ChangeState(L"BossPunch");
-			//	}
-			//	else if (state == 1)
-			//	{
-					ChangeState(L"BossSlam");
-			//	}
-			//	else if (state == 2)
-			//	{
-			//		ChangeState(L"BossBleed");
-			//	}
-			//}
-			//
-			//
-			
+			if (state == 0)
+			{
+				ChangeState(L"BossPunch");
+			}
+			else if (state == 1)
+			{
+				ChangeState(L"BossSlam");
+			}
+			else if (state == 2)
+			{
+				ChangeState(L"BossBleed");
+			}
 		}
-		else
+		else if (Dir.x * (int)CurDir <= 0 && !UturnFlag)
 		{
 			ChangeState(L"BossUturn");
+
+			UturnFlag = true;
 		}
 	}
 
@@ -114,4 +115,6 @@ void qBossIdleState::Exit()
 	GetOwner()->Collider2D()->SetScale(OGColScale);
 
 	m_Time = 0.f;
+
+	UturnFlag = false;
 }

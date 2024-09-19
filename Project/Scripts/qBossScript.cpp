@@ -26,7 +26,7 @@ void qBossScript::Begin()
 {
 	m_PrevUnitInfo = m_CurUnitInfo;
 
-	m_CurUnitInfo.HP = 1000.f;
+	m_CurUnitInfo.HP = 200.f;
 	m_CurUnitInfo.Dir = DIRECTION::LEFT;
 	SetBossDir(DIRECTION::LEFT);
 }
@@ -80,7 +80,15 @@ void qBossScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObj
 {
 	if (_OtherObject->GetName() == L"Player")
 	{
-		_OtherObject->FSM()->ChangeState(L"Bump");
+		wstring CurStateName = qStateMgr::GetStateName(_OtherObject->FSM()->GetCurState());
+		if (CurStateName == L"qPlayerDashState")
+		{
+
+		}
+		else
+		{
+			//_OtherObject->FSM()->ChangeState(L"Bump");
+		}
 	}
 
 	qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();

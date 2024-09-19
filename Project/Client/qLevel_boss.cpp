@@ -443,7 +443,7 @@ void qLevel_boss::CreateStageBoss()
 	pBoss->AddComponent(new qBossScript);
 
 	pBoss->AddComponent(new qTransform);
-	pBoss->Transform()->SetRelativePos(880.f, -186.f, 10.f);
+	pBoss->Transform()->SetRelativePos(880.f, -186.f, 30.f);
 	pBoss->Transform()->SetRelativeScale(500.f, 300.f, 1.f);
 
 	pBoss->AddComponent(new qMeshRender);
@@ -515,7 +515,7 @@ void qLevel_boss::CreateStageBoss()
 	pBoss->FSM()->AddState(L"BossStay", new qBossStayState);			// 8
 	pBoss->FSM()->AddState(L"BossUturn", new qBossUturnState);			// 11
 
-	//pBoss->FSM()->ChangeState(L"BossSlam");
+	//pBoss->FSM()->ChangeState(L"BossUturn");
 
 	pStageBoss->AddObject(7, pBoss);
 

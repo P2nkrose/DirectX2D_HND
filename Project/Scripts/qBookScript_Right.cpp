@@ -10,6 +10,7 @@
 #include "qSkeletonScript.h"
 #include "qDrownedScript.h"
 #include "qGhostScript.h"
+#include "qBossScript.h"
 #include "qPlayerEffectScript.h"
 #include <States/qPlayerEffectState.h>
 #include <States/qBookEffectState.h>
@@ -84,11 +85,25 @@ void qBookScript_Right::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _Ot
 
 			GetOwner()->Destroy();
 		}
+		else if (_OtherObject->GetName() == L"Boss")
+		{
+			qBossScript* BossScript = _OtherObject->GetScript<qBossScript>();
+
+			if (BossScript == nullptr)
+				return;
+
+			BossScript->Hit(m_BookDamage);
+
+			GetOwner()->Destroy();
+		}
 
 
 
 		// ÀÌÆåÆ®
-		if (_OtherObject->GetName() == L"Skeleton" || _OtherObject->GetName() == L"Drowned" || _OtherObject->GetName() == L"Ghost")
+		if (_OtherObject->GetName() == L"Skeleton" ||
+			_OtherObject->GetName() == L"Drowned" ||
+			_OtherObject->GetName() == L"Ghost" || 
+			_OtherObject->GetName() == L"Boss")
 		{
 			qGameObject* Effect = new qGameObject;
 			Effect->SetName(L"effect");
@@ -96,7 +111,20 @@ void qBookScript_Right::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _Ot
 			Effect->AddComponent(new qTransform);
 			Vec3 MonsterPos = _OtherObject->Transform()->GetRelativePos();
 			Vec3 MonsterScale = _OtherObject->Transform()->GetRelativeScale();
-			Effect->Transform()->SetRelativePos(Vec3(MonsterPos.x - 20.f, MonsterPos.y - 30.f, MonsterPos.z));
+			
+			if (_OtherObject->GetName() == L"Skeleton")
+			{
+				Effect->Transform()->SetRelativePos(Vec3(MonsterPos.x - 20.f, MonsterPos.y - 30.f, 1.f));
+			}
+			else if (_OtherObject->GetName() == L"Drowned" || _OtherObject->GetName() == L"Ghost")
+			{
+				Effect->Transform()->SetRelativePos(Vec3(MonsterPos.x - 20.f, MonsterPos.y - 30.f, 1.f));
+			}
+			else if (_OtherObject->GetName() == L"Boss")
+			{
+				Effect->Transform()->SetRelativePos(Vec3(MonsterPos.x - 180.f, MonsterPos.y - 100.f, 1.f));
+			}
+
 			Effect->Transform()->SetRelativeScale(90.f, 90.f, 1.f);
 
 			Effect->AddComponent(new qMeshRender);

@@ -99,7 +99,15 @@ void qDrownedScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _Other
 {
 	if (_OtherObject->GetName() == L"Player")
 	{
-		_OtherObject->FSM()->ChangeState(L"Bump");
+		wstring CurStateName = qStateMgr::GetStateName(_OtherObject->FSM()->GetCurState());
+		if (CurStateName == L"qPlayerDashState")
+		{
+
+		}
+		else
+		{
+			_OtherObject->FSM()->ChangeState(L"Bump");
+		}
 	}
 
 	qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
