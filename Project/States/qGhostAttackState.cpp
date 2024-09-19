@@ -24,7 +24,7 @@ void qGhostAttackState::Enter()
 	GetOwner()->FlipBookComponent()->Play(3, 12, false);
 
 
-	// Index 맞춰서 히트박스 생성
+	// 히트박스 (애니메이션) 생성
 	Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
 	Ptr<qMaterial> pAlphaBlendMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DAlphaBlendMtrl");
 
@@ -72,6 +72,7 @@ void qGhostAttackState::FinalTick()
 
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 
+	// Index 맞춰서 히트박스 생성
 	if (GetOwner()->FlipBookComponent()->GetCurFrmIdx() == 16 && !hitbox)
 	{
 		pCurLevel->AddObject(6, GhostAttackHitbox);

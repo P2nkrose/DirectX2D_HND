@@ -16,9 +16,11 @@ public:
 
 
 private:
-	qGameObject*		SlamHitbox;
+	qGameObject*		BleedHitbox;
 	Vec3				OGPos;
 	Vec3				OGScale;
 	Vec3				OGColScale;
+
+	bool				HitboxFlag;
 };
 

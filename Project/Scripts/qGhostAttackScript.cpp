@@ -4,6 +4,9 @@
 #include <Engine/qLevel.h>
 #include <Engine/qLevelMgr.h>
 
+#include <Engine/qState.h>
+#include <States/qStateMgr.h>
+
 #include "qPlayerScript.h"
 #include "qGhostScript.h"
 
@@ -29,17 +32,30 @@ void qGhostAttackScript::Tick()
 
 void qGhostAttackScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)
 {
-	if (_OtherObject->GetName() == L"Player")
+	if (GetOwner() != nullptr)
 	{
-		_OtherObject->FSM()->ChangeState(L"Bump");
+		if (_OtherObject->GetName() == L"Player")
+		{
+			wstring CurStateName = qStateMgr::GetStateName(_OtherObject->FSM()->GetCurState());
+			if (CurStateName == L"qPlayerDashState")
+			{
+
+			}
+			else
+			{
+				_OtherObject->FSM()->ChangeState(L"Bump");
+			}
+		}
+
+		qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
+
+		if (PlayerScript == nullptr)
+			return;
+
+		// 플레이어 피깎기
 	}
 
-	qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
-
-	if (PlayerScript == nullptr)
-		return;
-
-	// 플레이어 피깎기
+	
 }
 
 void qGhostAttackScript::Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)

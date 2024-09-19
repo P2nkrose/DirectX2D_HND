@@ -1,7 +1,11 @@
 #include "pch.h"
 #include "qBossIntroState.h"
 
+#include <Engine/qLevel.h>
+#include <Engine/qLevelMgr.h>
+
 #include <Scripts/qBossScript.h>
+#include <Scripts/qCameraMoveScript.h>
 
 qBossIntroState::qBossIntroState()
 	: qState((UINT)STATE_TYPE::BOSSINTROSTATE)
@@ -38,4 +42,10 @@ void qBossIntroState::Exit()
 	GetOwner()->Transform()->SetRelativePos(OGPos);
 	GetOwner()->Transform()->SetRelativeScale(OGScale);
 	GetOwner()->Collider2D()->SetScale(OGColScale);
+
+	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+	qGameObject* Camera = pCurLevel->FindObjectByName(L"MainCamera");
+
+	qCameraMoveScript* CameraScript = Camera->GetScript<qCameraMoveScript>();
+	CameraScript->SetClap(false);
 }

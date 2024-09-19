@@ -7,7 +7,7 @@
 
 qBossIdleState::qBossIdleState()
 	: qState((UINT)STATE_TYPE::BOSSIDLESTATE)
-	, m_DetectRange(900.f)
+	, m_DetectRange(1200.f)
 	, m_AttackRange(700.f)
 	, UturnFlag(false)
 {

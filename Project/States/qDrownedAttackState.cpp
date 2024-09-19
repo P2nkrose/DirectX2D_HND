@@ -28,7 +28,7 @@ void qDrownedAttackState::Enter()
 
 	GetOwner()->FlipBookComponent()->Play(3, 8, false);
 
-	// Index 맞춰서 생성하기
+	
 	// 히트박스 생성
 	Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
 	qDrownedScript* DrownedScript = GetOwner()->GetScript<qDrownedScript>();
@@ -61,6 +61,7 @@ void qDrownedAttackState::FinalTick()
 
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 
+	// Index 맞춰서 히트박스 생성하기
 	if (GetOwner()->FlipBookComponent()->GetCurFrmIdx() == 15 && !hitbox)
 	{
 		pCurLevel->AddObject(6, DrownedAttackHitbox);

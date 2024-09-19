@@ -22,7 +22,7 @@ void qBossUturnState::Enter()
 	GetOwner()->Collider2D()->SetScale(Vec3(0.5f, 0.9f, 0.f));
 	GetOwner()->Collider2D()->SetOffset(Vec3(0.f, -0.02f, 0.f));
 
-	GetOwner()->FlipBookComponent()->Play(11, 10, true);
+	GetOwner()->FlipBookComponent()->Play(9, 10, true);
 }
 
 void qBossUturnState::FinalTick()

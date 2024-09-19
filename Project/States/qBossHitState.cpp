@@ -39,6 +39,10 @@ void qBossHitState::Enter()
 	GetOwner()->Collider2D()->SetOffset(Vec3(0.08f, -0.09f, 0.f));
 
 	GetOwner()->FlipBookComponent()->Play(6, 10, false);
+
+
+	
+
 }
 
 void qBossHitState::FinalTick()

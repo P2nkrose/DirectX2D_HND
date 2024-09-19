@@ -165,9 +165,9 @@ void qComboScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherOb
 			else if (_OtherObject->GetName() == L"Boss")
 			{
 				if (PlayerScript->GetPlayerDir() == DIRECTION::LEFT)
-					Effect->Transform()->SetRelativePos(Vec3(MonsterPos.x + 180.f, MonsterPos.y - 100.f, 1.f));
+					Effect->Transform()->SetRelativePos(Vec3(MonsterPos.x + 180.f, MonsterPos.y - 100.f, 10.f));
 				else if (PlayerScript->GetPlayerDir() == DIRECTION::RIGHT)
-					Effect->Transform()->SetRelativePos(Vec3(MonsterPos.x - 180.f, MonsterPos.y - 100.f, 1.f));
+					Effect->Transform()->SetRelativePos(Vec3(MonsterPos.x - 180.f, MonsterPos.y - 100.f, 10.f));
 			}
 
 			Effect->Transform()->SetRelativeScale(180.f, 180.f, 1.f);

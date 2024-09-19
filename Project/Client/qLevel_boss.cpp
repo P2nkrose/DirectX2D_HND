@@ -464,7 +464,7 @@ void qLevel_boss::CreateStageBoss()
 	Ptr<qFlipBook> pBossPunch = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\boss_punch.flip");
 	pBoss->FlipBookComponent()->AddFlipBook(3, pBossPunch);
 
-	Ptr<qFlipBook> pBossSlam = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\boss_slam2.flip");
+	Ptr<qFlipBook> pBossSlam = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\boss_slam4.flip");
 	pBoss->FlipBookComponent()->AddFlipBook(4, pBossSlam);
 
 	Ptr<qFlipBook> pBossBleed = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\boss_bleed2.flip");
@@ -480,7 +480,7 @@ void qLevel_boss::CreateStageBoss()
 	pBoss->FlipBookComponent()->AddFlipBook(8, pBossStay);
 
 	Ptr<qFlipBook> pBossUturn = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\boss_uturn.flip");
-	pBoss->FlipBookComponent()->AddFlipBook(11, pBossUturn);
+	pBoss->FlipBookComponent()->AddFlipBook(9, pBossUturn);
 
 
 	pBoss->AddComponent(new qCollider2D);
@@ -513,9 +513,9 @@ void qLevel_boss::CreateStageBoss()
 	pBoss->FSM()->AddState(L"BossHit", new qBossHitState);				// 6
 	pBoss->FSM()->AddState(L"BossDeath", new qBossDeathState);			// 7
 	pBoss->FSM()->AddState(L"BossStay", new qBossStayState);			// 8
-	pBoss->FSM()->AddState(L"BossUturn", new qBossUturnState);			// 11
+	pBoss->FSM()->AddState(L"BossUturn", new qBossUturnState);			// 9
 
-	//pBoss->FSM()->ChangeState(L"BossUturn");
+	//pBoss->FSM()->ChangeState(L"BossIdle");
 
 	pStageBoss->AddObject(7, pBoss);
 
@@ -540,8 +540,6 @@ void qLevel_boss::CreateStageBoss()
 	// 충돌 지정
 	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
 	qCollisionMgr::GetInst()->CollisionCheck(2, 7);		// Platform vs Player
-
-
 	qCollisionMgr::GetInst()->CollisionCheck(4, 5);		// PlayerSkill vs Monster
 	qCollisionMgr::GetInst()->CollisionCheck(4, 7);		// PlayerSkill vs Boss
 	qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster

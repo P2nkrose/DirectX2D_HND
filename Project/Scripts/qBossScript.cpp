@@ -26,7 +26,7 @@ void qBossScript::Begin()
 {
 	m_PrevUnitInfo = m_CurUnitInfo;
 
-	m_CurUnitInfo.HP = 200.f;
+	m_CurUnitInfo.HP = 300.f;
 	m_CurUnitInfo.Dir = DIRECTION::LEFT;
 	SetBossDir(DIRECTION::LEFT);
 }
@@ -87,7 +87,7 @@ void qBossScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObj
 		}
 		else
 		{
-			//_OtherObject->FSM()->ChangeState(L"Bump");
+			_OtherObject->FSM()->ChangeState(L"Bump");
 		}
 	}
 
