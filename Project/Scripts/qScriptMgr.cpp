@@ -22,6 +22,7 @@
 #include "qPlatformScript.h"
 #include "qPlayerEffectScript.h"
 #include "qPlayerHitboxScript.h"
+#include "qPlayerHUDScript.h"
 #include "qPlayerScript.h"
 #include "qPortalScript.h"
 #include "qPostScript.h"
@@ -55,6 +56,7 @@ void qScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qPlatformScript");
 	_vec.push_back(L"qPlayerEffectScript");
 	_vec.push_back(L"qPlayerHitboxScript");
+	_vec.push_back(L"qPlayerHUDScript");
 	_vec.push_back(L"qPlayerScript");
 	_vec.push_back(L"qPortalScript");
 	_vec.push_back(L"qPostScript");
@@ -110,6 +112,8 @@ qScript * qScriptMgr::GetScript(const wstring& _strScriptName)
 		return new qPlayerEffectScript;
 	if (L"qPlayerHitboxScript" == _strScriptName)
 		return new qPlayerHitboxScript;
+	if (L"qPlayerHUDScript" == _strScriptName)
+		return new qPlayerHUDScript;
 	if (L"qPlayerScript" == _strScriptName)
 		return new qPlayerScript;
 	if (L"qPortalScript" == _strScriptName)
@@ -197,6 +201,9 @@ qScript * qScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::PLAYERHITBOXSCRIPT:
 		return new qPlayerHitboxScript;
+		break;
+	case (UINT)SCRIPT_TYPE::PLAYERHUDSCRIPT:
+		return new qPlayerHUDScript;
 		break;
 	case (UINT)SCRIPT_TYPE::PLAYERSCRIPT:
 		return new qPlayerScript;
@@ -315,6 +322,10 @@ const wchar_t * qScriptMgr::GetScriptName(qScript * _pScript)
 
 	case SCRIPT_TYPE::PLAYERHITBOXSCRIPT:
 		return L"qPlayerHitboxScript";
+		break;
+
+	case SCRIPT_TYPE::PLAYERHUDSCRIPT:
+		return L"qPlayerHUDScript";
 		break;
 
 	case SCRIPT_TYPE::PLAYERSCRIPT:

@@ -37,5 +37,7 @@ private:
 
 	float		m_BangTime;
 	bool		Deathflag;
+
+	float		m_DrownedCollisionDamage;
 };
 

@@ -68,8 +68,14 @@ void qRenderMgr::Tick()
 				continue;
 
 			m_vecCam[i]->Render();
+
+			if (0 == m_vecCam[i]->Camera()->GetPriority())
+			{
+				RenderDebugShape();
+			}
 		}
 	}
+
 
 	// Level 이 Stop 이나 Pause 인 경우, Editor 용 카메라 시점으로 렌더링 하기
 	else
@@ -81,7 +87,6 @@ void qRenderMgr::Tick()
 	}
 
 	// Debug Render
-	RenderDebugShape();
 
 	// Time 정보 출력
 	qTimeMgr::GetInst()->Render();

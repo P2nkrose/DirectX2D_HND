@@ -16,6 +16,7 @@ qGhostScript::qGhostScript()
 	, m_GhostDir(DIRECTION::END)
 	, m_BangTime(0.f)
 	, Deathflag(false)
+	, m_GhostCollisionDamage(5.f)
 {
 }
 
@@ -110,14 +111,16 @@ void qGhostScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherOb
 		{
 			_OtherObject->FSM()->ChangeState(L"Bump");
 		}
+
+
+		qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
+
+		if (PlayerScript == nullptr)
+			return;
+
+		// 플레이어 피깎기
+		PlayerScript->Hit(m_GhostCollisionDamage);
 	}
-
-	qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
-
-	if (PlayerScript == nullptr)
-		return;
-
-	// 플레이어 피깎기
 }
 
 void qGhostScript::Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)

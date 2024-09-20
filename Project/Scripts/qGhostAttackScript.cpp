@@ -12,6 +12,7 @@
 
 qGhostAttackScript::qGhostAttackScript()
 	: qScript((UINT)SCRIPT_TYPE::GHOSTATTACKSCRIPT)
+	, m_GhostAttackDamage(5.f)
 {
 
 }
@@ -45,17 +46,17 @@ void qGhostAttackScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _O
 			{
 				_OtherObject->FSM()->ChangeState(L"Bump");
 			}
+
+
+			qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
+
+			if (PlayerScript == nullptr)
+				return;
+
+			// 플레이어 피깎기
+			PlayerScript->Hit(m_GhostAttackDamage);
 		}
-
-		qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
-
-		if (PlayerScript == nullptr)
-			return;
-
-		// 플레이어 피깎기
 	}
-
-	
 }
 
 void qGhostAttackScript::Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)

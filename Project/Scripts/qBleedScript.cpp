@@ -8,6 +8,7 @@
 
 qBleedScript::qBleedScript()
 	: qScript((UINT)SCRIPT_TYPE::BLEEDSCRIPT)
+	, m_BleedDamage(10.f)
 {
 }
 
@@ -38,16 +39,16 @@ void qBleedScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherOb
 			{
 				_OtherObject->FSM()->ChangeState(L"Bump");
 			}
+
+			qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
+
+			if (PlayerScript == nullptr)
+				return;
+
+			// 플레이어 피깎기
+			PlayerScript->Hit(m_BleedDamage);
+
 		}
-
-		qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
-
-		if (PlayerScript == nullptr)
-			return;
-
-		// 플레이어 피깎기
-
-
 	}
 }
 

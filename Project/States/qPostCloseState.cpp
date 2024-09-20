@@ -35,13 +35,13 @@ void qPostCloseState::Enter()
 	}
 	if (pCurLevel->GetName() == L"stage1")
 	{
-		GetOwner()->Transform()->SetRelativePos(Vec3(474.f, -184.f, 10.f));
+		GetOwner()->Transform()->SetRelativePos(Vec3(474.f, -120.f, 10.f));
 		GetOwner()->Transform()->SetRelativeScale(Vec3(1600.f, 900.f, 0.f));
 	}
 	if (pCurLevel->GetName() == L"stage2")
 	{
 		// 레벨2 close시 위치 설정
-		GetOwner()->Transform()->SetRelativePos(Vec3(4926.f, -70.f, 10.f));
+		GetOwner()->Transform()->SetRelativePos(Vec3(4926.f, -120.f, 10.f));
 		GetOwner()->Transform()->SetRelativeScale(Vec3(1600.f, 900.f, 0.f));
 	}
 

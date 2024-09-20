@@ -8,6 +8,7 @@
 
 qPunchScript::qPunchScript()
 	: qScript((UINT)SCRIPT_TYPE::PUNCHSCRIPT)
+	, m_PunchDamage(10.f)
 {
 }
 
@@ -38,16 +39,16 @@ void qPunchScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherOb
 			{
 				_OtherObject->FSM()->ChangeState(L"Bump");
 			}
+
+
+			qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
+
+			if (PlayerScript == nullptr)
+				return;
+
+			// 플레이어 피깎기
+			PlayerScript->Hit(m_PunchDamage);
 		}
-
-		qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
-
-		if (PlayerScript == nullptr)
-			return;
-
-		// 플레이어 피깎기
-
-
 	}
 }
 

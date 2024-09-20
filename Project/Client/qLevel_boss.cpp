@@ -120,6 +120,10 @@ void qLevel_boss::CreateStageBoss()
 
 	Ptr<qMaterial> pMtrl2 = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\bossBack.mtrl");
 
+	Ptr<qMaterial> pUIMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
+	Ptr<qTexture> pUI = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\UI\\UI.png");
+	pUIMtrl->SetTexParam(TEX_0, pUI);
+
 
 	// Level
 	qLevel* pStageBoss = new qLevel;
@@ -145,6 +149,7 @@ void qLevel_boss::CreateStageBoss()
 	pStageBoss->GetLayer(31)->SetName(L"UI");
 
 
+
 	// Camera
 	qGameObject* CameraObject = new qGameObject;
 	CameraObject->SetName(L"MainCamera");
@@ -157,11 +162,62 @@ void qLevel_boss::CreateStageBoss()
 
 	// 카메라 레이어 설정
 	CameraObject->Camera()->SetLayerAll();
+	CameraObject->Camera()->SetLayer(31, false);
 	CameraObject->Camera()->SetFar(100000.f);
 	CameraObject->Camera()->SetScale(1.0f);
 	CameraObject->Camera()->SetProjType(ORTHOGRAPHIC);		// 직교 투영
 
 	pStageBoss->AddObject(0, CameraObject);
+
+
+	// UI 카메라
+	qGameObject* UICameraObject = new qGameObject;
+	UICameraObject->SetName(L"UICamera");
+	UICameraObject->AddComponent(new qCamera);
+	UICameraObject->AddComponent(new qTransform);
+	UICameraObject->Transform()->SetRelativePos(Vec3(0.f, -120.f, 0.f));
+	//UICameraObject->AddComponent(new qCameraMoveScript);
+
+	UICameraObject->Camera()->SetPriority(1);
+
+	UICameraObject->Camera()->SetLayer(31, true);
+	UICameraObject->Camera()->SetFar(100000.f);
+	UICameraObject->Camera()->SetScale(1.0f);
+	UICameraObject->Camera()->SetProjType(ORTHOGRAPHIC);		// 직교 투영
+
+	pStageBoss->AddObject(0, UICameraObject);
+
+
+	// 광원 오브젝트
+	qGameObject* pLightUI = new qGameObject;
+	pLightUI->SetName(L"LightUI");
+	pLightUI->AddComponent(new qTransform);
+	pLightUI->AddComponent(new qLight2D);
+
+	pLightUI->Light2D()->SetLightType(LIGHT_TYPE::POINT);
+	pLightUI->Light2D()->SetLightColor(Vec3(1.f, 1.f, 1.f));
+	pLightUI->Light2D()->SetRadius(1000.f);
+
+
+	// UI
+	qGameObject* UI = new qGameObject;
+	UI->SetName(L"UI");
+	//UI->AddChild(pLightUI);
+	UI->AddComponent(new qTransform);
+	UI->Transform()->SetRelativePos(0.f, -120.f, 1.f);
+	UI->Transform()->SetRelativeScale(1600.f, 900.f, 1.f);
+
+
+	UI->AddComponent(new qMeshRender);
+	UI->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	UI->MeshRender()->SetMaterial(pUIMtrl);
+
+
+	pStageBoss->AddObject(31, UI);
+
+
+
+
 
 
 
@@ -538,19 +594,19 @@ void qLevel_boss::CreateStageBoss()
 
 
 	// 충돌 지정
-	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
-	qCollisionMgr::GetInst()->CollisionCheck(2, 7);		// Platform vs Player
-	qCollisionMgr::GetInst()->CollisionCheck(4, 5);		// PlayerSkill vs Monster
-	qCollisionMgr::GetInst()->CollisionCheck(4, 7);		// PlayerSkill vs Boss
-	qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
-	qCollisionMgr::GetInst()->CollisionCheck(3, 6);		// Player vs Monster Skill
-	qCollisionMgr::GetInst()->CollisionCheck(3, 8);		// Player vs Boss Skill
-	qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
-	qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
-	qCollisionMgr::GetInst()->CollisionCheck(3, 12);	// Player vs Clap
-	qCollisionMgr::GetInst()->CollisionCheck(3, 7);		// Player vs Boss
-	
-	ChangeLevel(pStageBoss, LEVEL_STATE::STOP);
+	//qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
+	//qCollisionMgr::GetInst()->CollisionCheck(2, 7);		// Platform vs Player
+	//qCollisionMgr::GetInst()->CollisionCheck(4, 5);		// PlayerSkill vs Monster
+	//qCollisionMgr::GetInst()->CollisionCheck(4, 7);		// PlayerSkill vs Boss
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 6);		// Player vs Monster Skill
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 8);		// Player vs Boss Skill
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 12);	// Player vs Clap
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 7);		// Player vs Boss
+	//
+	//ChangeLevel(pStageBoss, LEVEL_STATE::STOP);
 
 
 }

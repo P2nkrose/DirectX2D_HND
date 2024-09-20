@@ -45,6 +45,6 @@ private:
 
 	float				m_BangTime;
 
-
+	float				m_BossColiisionDamage;
 };
 

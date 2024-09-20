@@ -7,6 +7,8 @@
 
 #include <Engine/qFSM.h>
 #include <Engine/qState.h>
+#include <Engine/qAsset.h>
+#include <Engine/qSprite.h>
 
 #include <Engine/qCollisionMgr.h>
 #include <Engine/qCollider2D.h>
@@ -27,6 +29,7 @@
 #include <Scripts/qPortalScript.h>
 #include <Scripts/qDoorScript.h>
 #include <Scripts/qPostScript.h>
+#include <Scripts/qPlayerHUDScript.h>
 
 #include <Engine/qSetColorCS.h>
 #include <Engine/qStructuredBuffer.h>
@@ -92,9 +95,15 @@ void qLevel_stage1::CreateStage1()
 	Ptr<qMaterial> pDebugShapeMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"DebugShapeMtrl");
 
 	Ptr<qMaterial> pMtrl2 = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\stage1.mtrl");
+	//Ptr<qMaterial> pPlayerHUDMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\playerHUD.mtrl");
+	//Ptr<qMaterial> pUIMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\UI.mtrl");
 
-	//Ptr<qTexture> pBackStage1 = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\map\\stage1");
-	//pMtrl->SetTexParam(TEX_0, pBackStage1);
+
+	Ptr<qMaterial> pUIMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DHUDMtrl");
+	Ptr<qTexture> pUI = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\UI\\UI.png");
+	pUIMtrl->SetTexParam(TEX_0, pUI);
+
+	
 
 	// Prefab
 	CreatePrefab();
@@ -116,11 +125,31 @@ void qLevel_stage1::CreateStage1()
 	pStage1->GetLayer(6)->SetName(L"MonsterSkill");
 	pStage1->GetLayer(7)->SetName(L"Boss");
 	pStage1->GetLayer(8)->SetName(L"BossSkill");
-	pStage1->GetLayer(9)->SetName(L"Transfer");
+	pStage1->GetLayer(9)->SetName(L"Portal");
 	pStage1->GetLayer(10)->SetName(L"Light");
 	pStage1->GetLayer(11)->SetName(L"Wall");
 	pStage1->GetLayer(12)->SetName(L"Effect");
+	pStage1->GetLayer(12)->SetName(L"Clap");
 	pStage1->GetLayer(31)->SetName(L"UI");
+
+
+	
+	// UI 카메라
+	qGameObject* UICameraObject = new qGameObject;
+	UICameraObject->SetName(L"UICamera");
+	UICameraObject->AddComponent(new qCamera);
+	UICameraObject->AddComponent(new qTransform);
+	UICameraObject->Transform()->SetRelativePos(Vec3(0.f, 0.f, 0.f));
+	//UICameraObject->AddComponent(new qCameraMoveScript);
+
+	UICameraObject->Camera()->SetPriority(1);
+
+	UICameraObject->Camera()->SetLayer(31, true);
+	UICameraObject->Camera()->SetFar(100000.f);
+	UICameraObject->Camera()->SetScale(1.0f);
+	UICameraObject->Camera()->SetProjType(ORTHOGRAPHIC);		// 직교 투영
+
+	pStage1->AddObject(0, UICameraObject);
 
 
 	// Camera
@@ -135,12 +164,70 @@ void qLevel_stage1::CreateStage1()
 
 	// 카메라 레이어 설정
 	CameraObject->Camera()->SetLayerAll();
+	CameraObject->Camera()->SetLayer(31, false);
 	CameraObject->Camera()->SetFar(100000.f);
 	CameraObject->Camera()->SetScale(1.0f);
 	CameraObject->Camera()->SetProjType(ORTHOGRAPHIC);		// 직교 투영
 
-
 	pStage1->AddObject(0, CameraObject);
+
+
+	// 광원 오브젝트
+	qGameObject* pLightUI = new qGameObject;
+	pLightUI->SetName(L"LightUI");
+	pLightUI->AddComponent(new qTransform);
+	pLightUI->AddComponent(new qLight2D);
+
+	pLightUI->Light2D()->SetLightType(LIGHT_TYPE::POINT);
+	pLightUI->Light2D()->SetLightColor(Vec3(1.f, 1.f, 1.f));
+	pLightUI->Light2D()->SetRadius(1000.f);
+
+	// UI
+	qGameObject* UI = new qGameObject;
+	UI->SetName(L"UI");
+	UI->AddChild(pLightUI);
+	UI->AddComponent(new qTransform);
+	UI->Transform()->SetRelativePos(0.f, -15.f, 30.f);
+	UI->Transform()->SetRelativeScale(1600.f, 900.f, 1.f);
+
+	UI->AddComponent(new qMeshRender);
+	UI->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	UI->MeshRender()->SetMaterial(pUIMtrl);
+
+	pStage1->AddObject(31, UI);
+
+
+	// Player HUD
+	qGameObject* PlayerHUD = new qGameObject;
+	PlayerHUD->SetName(L"PlayerHUD");
+	PlayerHUD->AddComponent(new qTransform);
+	//PlayerHUD->Transform()->SetRelativePos(-100.f, -100.f, 10.f);
+	//PlayerHUD->Transform()->SetRelativeScale(10.f, 10.f, 1.f);
+	
+	PlayerHUD->AddComponent(new qPlayerHUDScript);
+	PlayerHUD->AddComponent(new qMeshRender);
+	PlayerHUD->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	
+	// 텍스쳐가 Std2DMtrl로 들어간 Mtrl
+	Ptr<qMaterial> pPlayerHUDMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\playerHUD.mtrl");
+
+
+
+	//// 빈 Mtrl
+	//Ptr<qMaterial> test = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"test");
+
+	//Ptr<qSprite> PlayerHUDsprite = qAssetMgr::GetInst()->FindAsset<qSprite>(L"sprite\\playerHUD.sprite");
+	//Ptr<qTexture> PlayerHUDTexture = PlayerHUDsprite->GetAtlasTexture();
+	//
+	//test->SetTexParam(TEX_0, PlayerHUDTexture);
+	//PlayerHUD->MeshRender()->SetMaterial(test);
+	//
+	//PlayerHUDsprite->SetLeftTop(Vec2(0.f, 0.f));
+	//PlayerHUDsprite->SetSlice(Vec2(413.f, 10.f));
+	
+
+
+	//pStage1->AddObject(31, PlayerHUD);
 
 
 	// 배경
@@ -471,21 +558,21 @@ void qLevel_stage1::CreateStage1()
 
 
 	// Monster Object
-	qGameObject* pMonster = new qGameObject;
-	pMonster->SetName(L"Monster");
-
-	pMonster->AddComponent(new qTransform);
-	pMonster->AddComponent(new qMeshRender);
-	pMonster->AddComponent(new qCollider2D);
-
-	pMonster->Transform()->SetRelativePos(-400.f, -420.f, 9.f);
-	pMonster->Transform()->SetRelativeScale(170.f, 140.f, 1.f);
-
-	pMonster->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
-	pMonster->Collider2D()->SetScale(Vec3(1.2f, 1.2f, 1.f));
-
-	pMonster->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	pMonster->MeshRender()->SetMaterial(pMtrl);
+	//qGameObject* pMonster = new qGameObject;
+	//pMonster->SetName(L"Monster");
+	//
+	//pMonster->AddComponent(new qTransform);
+	//pMonster->AddComponent(new qMeshRender);
+	//pMonster->AddComponent(new qCollider2D);
+	//
+	//pMonster->Transform()->SetRelativePos(-400.f, -420.f, 9.f);
+	//pMonster->Transform()->SetRelativeScale(170.f, 140.f, 1.f);
+	//
+	//pMonster->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	//pMonster->Collider2D()->SetScale(Vec3(1.2f, 1.2f, 1.f));
+	//
+	//pMonster->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	//pMonster->MeshRender()->SetMaterial(pMtrl);
 
 	//pMonster->AddComponent(new qFlipBookComponent);
 	//
@@ -494,7 +581,7 @@ void qLevel_stage1::CreateStage1()
 	//
 	//pMonster->FlipBookComponent()->Play(0, 10, true);
 
-	pStage1->AddObject(5, pMonster);
+	//pStage1->AddObject(5, pMonster);
 
 
 	// Level Save
@@ -504,10 +591,11 @@ void qLevel_stage1::CreateStage1()
 	
 	// 레벨 시작
 	//ChangeLevel(pStage1, LEVEL_STATE::STOP);
-	//
-	//
+	////
+	////
 	//// 충돌 지정
 	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
+	qCollisionMgr::GetInst()->CollisionCheck(2, 7);		// Platform vs Player
 	qCollisionMgr::GetInst()->CollisionCheck(4, 5);		// PlayerSkill vs Monster
 	qCollisionMgr::GetInst()->CollisionCheck(4, 7);		// PlayerSkill vs Boss
 	qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
@@ -515,6 +603,7 @@ void qLevel_stage1::CreateStage1()
 	qCollisionMgr::GetInst()->CollisionCheck(3, 8);		// Player vs Boss Skill
 	qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
 	qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
+	qCollisionMgr::GetInst()->CollisionCheck(3, 12);	// Player vs Clap
 	qCollisionMgr::GetInst()->CollisionCheck(3, 7);		// Player vs Boss
 
 

@@ -19,35 +19,30 @@ public:
 	virtual void Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider) override;
 	virtual void EndOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider) override;
 
-public:
-	void SetPlayerDir(DIRECTION _Dir) { m_CurUnitInfo.Dir = _Dir; }
+	virtual void SaveToFile(FILE* _File) override;
+	virtual void LoadFromFile(FILE* _File) override;
 
+public:
+	DIRECTION GetPlayerDir() { return m_CurUnitInfo.Dir; }
+	tUnitInfo GetPrevInfo() { return m_PrevUnitInfo; }
+	tUnitInfo GetUnitInfo() { return m_CurUnitInfo; }
+	
+	void SetPlayerDir(DIRECTION _Dir) { m_CurUnitInfo.Dir = _Dir; }
 	bool IsDirChanged() { return m_DirChanged; }
 
 	bool IsDash() { return m_IsDash; }
 	bool IsDashCoolTime() { return m_IsDashCoolTime; }
-
 	void SetDash(bool _IsDash) { m_IsDash = _IsDash; m_IsDashCoolTime = _IsDash; }
 	void SetLock(bool _Lock) { m_DirLock = _Lock; }
 
 	void ResetCombo() { m_NextCombo = 1; }
-
-	DIRECTION GetPlayerDir() { return m_CurUnitInfo.Dir; }
-	tUnitInfo GetPrevInfo() { return m_PrevUnitInfo; }
-	tUnitInfo GetUnitInfo() { return m_CurUnitInfo; }
-
-
-public:
-	virtual void SaveToFile(FILE* _File) override;
-	virtual void LoadFromFile(FILE* _File) override;
 	void PlayCombo();
 
-	
 	void Jump();
-	void RestoreJumpCount()
-	{
-		m_CurJumpCount = 0;
-	}
+	void RestoreJumpCount()	{ m_CurJumpCount = 0; }
+	
+	virtual void Hit(float _Damage) override;
+
 
 public:
 	// ÇÃ·§Æû À§Ä¡¸¦ ¼³Á¤
@@ -84,6 +79,9 @@ private:
 
 	int					m_CurJumpCount;
 	int					m_DoubleJumpCount;
+
+	int					m_FiveDamageCount;
+	int					m_TenDamageCount;
 
 };
 

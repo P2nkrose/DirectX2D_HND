@@ -16,6 +16,7 @@ qDrownedScript::qDrownedScript()
 	, m_DirChanged(false)
 	, m_BangTime(0.f)
 	, Deathflag(false)
+	, m_DrownedCollisionDamage(5.f)
 {
 }
 
@@ -108,14 +109,16 @@ void qDrownedScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _Other
 		{
 			_OtherObject->FSM()->ChangeState(L"Bump");
 		}
+
+
+		qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
+
+		if (PlayerScript == nullptr)
+			return;
+
+		// 플레이어 피깎기
+		PlayerScript->Hit(m_DrownedCollisionDamage);
 	}
-
-	qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
-
-	if (PlayerScript == nullptr)
-		return;
-
-	// 플레이어 피깎기
 }
 
 void qDrownedScript::Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)

@@ -8,6 +8,7 @@
 
 qSlamScript::qSlamScript()
 	: qScript((UINT)SCRIPT_TYPE::SLAMSCRIPT)
+	, m_SlamDamage(10.f)
 {
 }
 
@@ -38,16 +39,16 @@ void qSlamScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObj
 			{
 				_OtherObject->FSM()->ChangeState(L"Bump");
 			}
+
+
+			qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
+
+			if (PlayerScript == nullptr)
+				return;
+
+			// 플레이어 피깎기
+			PlayerScript->Hit(m_SlamDamage);
 		}
-
-		qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
-
-		if (PlayerScript == nullptr)
-			return;
-
-		// 플레이어 피깎기
-
-
 	}
 }
 

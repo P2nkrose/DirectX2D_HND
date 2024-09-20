@@ -10,6 +10,7 @@
 
 qSkeletonAttackScript::qSkeletonAttackScript()
 	: qScript((UINT)SCRIPT_TYPE::SKELETONATTACKSCRIPT)
+	, m_SkeletonAttackDamage(5.f)
 {
 }
 
@@ -40,14 +41,17 @@ void qSkeletonAttackScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject*
 			{
 				_OtherObject->FSM()->ChangeState(L"Bump");
 			}
+
+
+			qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
+
+			if (PlayerScript == nullptr)
+				return;
+
+			// 플레이어 피깎기
+			PlayerScript->Hit(m_SkeletonAttackDamage);
 		}
 
-		qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
-
-		if (PlayerScript == nullptr)
-			return;
-
-		// 플레이어 피깎기
 
 
 	}

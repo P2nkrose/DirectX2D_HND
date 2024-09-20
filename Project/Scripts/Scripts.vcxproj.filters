@@ -103,6 +103,12 @@
     <Filter Include="Scripts\1. UNIT\4. etc\03. Clap">
       <UniqueIdentifier>{c6122bc4-aa14-4a76-aaf6-7debde9c68fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scripts\1. UNIT\4. etc\04. HUD">
+      <UniqueIdentifier>{95680565-35de-412c-bf50-295b4bf5647c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\1. UNIT\4. etc\04. HUD\01. PlayerHUD">
+      <UniqueIdentifier>{90bb84f0-8acb-40ac-b3a9-b99356af4016}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -204,6 +210,9 @@
     <ClInclude Include="qBleedScript.h">
       <Filter>Scripts\1. UNIT\3. Boss\BossSkill\03. Bleed</Filter>
     </ClInclude>
+    <ClInclude Include="qPlayerHUDScript.h">
+      <Filter>Scripts\1. UNIT\4. etc\04. HUD\01. PlayerHUD</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -304,6 +313,9 @@
     </ClCompile>
     <ClCompile Include="qBleedScript.cpp">
       <Filter>Scripts\1. UNIT\3. Boss\BossSkill\03. Bleed</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerHUDScript.cpp">
+      <Filter>Scripts\1. UNIT\4. etc\04. HUD\01. PlayerHUD</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

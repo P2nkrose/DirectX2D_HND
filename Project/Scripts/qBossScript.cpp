@@ -15,6 +15,7 @@ qBossScript::qBossScript()
 	, m_BossDir(DIRECTION::LEFT)
 	, m_DirChanged(false)
 	, m_Speed(200.f)
+	, m_BossColiisionDamage(5.f)
 {
 }
 
@@ -89,15 +90,15 @@ void qBossScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObj
 		{
 			_OtherObject->FSM()->ChangeState(L"Bump");
 		}
+
+		qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
+
+		if (PlayerScript == nullptr)
+			return;
+
+		// 플레이어 피깎기
+		PlayerScript->Hit(m_BossColiisionDamage);
 	}
-
-	qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
-
-	if (PlayerScript == nullptr)
-		return;
-
-	// 플레이어 피깎기
-
 
 }
 

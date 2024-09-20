@@ -19,6 +19,7 @@ qMissileScript
 qPlatformScript
 qPlayerEffectScript
 qPlayerHitboxScript
+qPlayerHUDScript
 qPlayerScript
 qPortalScript
 qPostScript

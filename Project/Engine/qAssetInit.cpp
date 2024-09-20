@@ -234,6 +234,35 @@ void qAssetMgr::CreateEngineGraphicShader()
 	AddAsset(L"Std2DAlphaBlendShader", pShader);
 
 
+	// Std2D UI Shader
+	pShader = new qGraphicShader;
+	pShader->CreateVertexShader(L"shader\\std2d.fx", "VS_Std2D");
+	pShader->CreatePixelShader(L"shader\\std2d.fx", "PS_Std2D_UI");
+
+	pShader->SetRSType(RS_TYPE::CULL_NONE);
+	pShader->SetDSType(DS_TYPE::LESS);
+	pShader->SetBSType(BS_TYPE::DEFAULT);
+
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_UI);
+
+	AddAsset(L"Std2DUIShader", pShader);
+
+
+	// Std2D HUD Shader
+	pShader = new qGraphicShader;
+	pShader->CreateVertexShader(L"shader\\std2d.fx", "VS_Std2D");
+	pShader->CreatePixelShader(L"shader\\std2d.fx", "PS_Std2D_HUD");
+
+	pShader->SetRSType(RS_TYPE::CULL_NONE);
+	pShader->SetDSType(DS_TYPE::LESS);
+	pShader->SetBSType(BS_TYPE::DEFAULT);
+
+	pShader->SetDomain(SHADER_DOMAIN::DOMAIN_UI);
+
+	AddAsset(L"Std2DHUDShader", pShader);
+
+
+
 	// DebugShapeShader
 	pShader = new qGraphicShader;
 	pShader->CreateVertexShader(L"shader\\debug.fx", "VS_DebugShape");
@@ -332,6 +361,17 @@ void qAssetMgr::CreateEngineMaterial()
 	pMtrl = new qMaterial(true);
 	pMtrl->SetShader(FindAsset<qGraphicShader>(L"Std2DAlphaBlendShader"));
 	AddAsset(L"Std2DAlphaBlendMtrl", pMtrl);
+
+	// Std2D UI Mtrl
+	pMtrl = new qMaterial(true);
+	pMtrl->SetShader(FindAsset<qGraphicShader>(L"Std2DUIShader"));
+	AddAsset(L"Std2DUIMtrl", pMtrl);
+
+	// Std2D HUD Mtrl
+	pMtrl = new qMaterial(true);
+	pMtrl->SetShader(FindAsset<qGraphicShader>(L"Std2DHUDShader"));
+	AddAsset(L"Std2DHUDMtrl", pMtrl);
+
 
 	// DebugShapeMtrl
 	pMtrl = new qMaterial(true);

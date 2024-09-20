@@ -187,6 +187,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="qPlatformScript.h" />
     <ClInclude Include="qPlayerEffectScript.h" />
     <ClInclude Include="qPlayerHitboxScript.h" />
+    <ClInclude Include="qPlayerHUDScript.h" />
     <ClInclude Include="qPlayerScript.h" />
     <ClInclude Include="qPortalScript.h" />
     <ClInclude Include="qPostScript.h" />
@@ -226,6 +227,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="qPlatformScript.cpp" />
     <ClCompile Include="qPlayerEffectScript.cpp" />
     <ClCompile Include="qPlayerHitboxScript.cpp" />
+    <ClCompile Include="qPlayerHUDScript.cpp" />
     <ClCompile Include="qPlayerScript.cpp" />
     <ClCompile Include="qPortalScript.cpp" />
     <ClCompile Include="qPostScript.cpp" />

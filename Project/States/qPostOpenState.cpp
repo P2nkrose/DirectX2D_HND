@@ -21,9 +21,11 @@ qPostOpenState::~qPostOpenState()
 void qPostOpenState::Enter()
 {
 	//qLevel* stage2 = qLevelMgr::GetInst()->GetLevelbyName(L"stage2");
+	//qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+
 	//qLevel* stageboss = qLevelMgr::GetInst()->GetLevelbyName(L"stageboss");
 	//
-	//if (stage2)
+	//if (pCurLevel == )
 	//{
 	//	GetOwner()->Transform()->SetRelativePos(Vec3(-4910.f, -40.f, 30.f));
 	//	GetOwner()->Transform()->SetRelativeScale(Vec3(1600.f, 900.f, 0.f));

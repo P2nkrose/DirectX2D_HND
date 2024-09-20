@@ -73,14 +73,22 @@ void qPlayerScript::Jump()
 }
 
 
+void qPlayerScript::Hit(float _Damage)
+{
+	m_CurUnitInfo.HP -= _Damage;
+
+	//GetOwner()->FSM()->ChangeState(L"Bump");
+}
+
+
 
 void qPlayerScript::Begin()
 {
 	m_PrevUnitInfo = m_CurUnitInfo;
 
-	GetRenderComponent()->GetDynamicMaterial();
+	m_CurUnitInfo.HP = 100.f;
 
-	//SetPlayerState(PLAYER_STATE::IDLE);
+	GetRenderComponent()->GetDynamicMaterial();
 	SetPlayerDir(DIRECTION::RIGHT);
 	SetDir(DIRECTION::RIGHT);
 

@@ -17,7 +17,7 @@ qSkeletonScript::qSkeletonScript()
 	, m_SkeletonDir(DIRECTION::LEFT)
 	, m_BangTime(0.f)
 	, Deathflag(false)
-
+	, m_SkeletonCollisionDamage(5.f)
 {
 }
 
@@ -101,8 +101,6 @@ void qSkeletonScript::Hit(float _Damage)
 
 void qSkeletonScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)
 {
-
-
 	if (_OtherObject->GetName() == L"Player")
 	{
 		wstring CurStateName = qStateMgr::GetStateName(_OtherObject->FSM()->GetCurState());
@@ -114,15 +112,16 @@ void qSkeletonScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _Othe
 		{
 			_OtherObject->FSM()->ChangeState(L"Bump");
 		}
+
+
+		qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
+
+		if (PlayerScript == nullptr)
+			return;
+
+		// 플레이어 피깎기
+		PlayerScript->Hit(m_SkeletonCollisionDamage);
 	}
-
-	qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
-
-	if (PlayerScript == nullptr)
-		return;
-
-	// 플레이어 피깎기
-
 }
 
 void qSkeletonScript::Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)
