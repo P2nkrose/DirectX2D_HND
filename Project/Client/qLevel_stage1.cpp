@@ -95,13 +95,6 @@ void qLevel_stage1::CreateStage1()
 	Ptr<qMaterial> pDebugShapeMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"DebugShapeMtrl");
 
 	Ptr<qMaterial> pMtrl2 = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\stage1.mtrl");
-	//Ptr<qMaterial> pPlayerHUDMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\playerHUD.mtrl");
-	//Ptr<qMaterial> pUIMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\UI.mtrl");
-
-
-	Ptr<qMaterial> pUIMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DUIMtrl");
-	Ptr<qTexture> pUI = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\UI\\UI.png");
-	pUIMtrl->SetTexParam(TEX_0, pUI);
 
 
 
@@ -185,7 +178,12 @@ void qLevel_stage1::CreateStage1()
 	pLightUI->Light2D()->SetLightColor(Vec3(1.f, 1.f, 1.f));
 	pLightUI->Light2D()->SetRadius(1000.f);
 
+
 	// UI
+	Ptr<qMaterial> pUIMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DUIMtrl");
+	Ptr<qTexture> pUI = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\UI\\UI.png");
+	pUIMtrl->SetTexParam(TEX_0, pUI);
+
 	qGameObject* UI = new qGameObject;
 	UI->SetName(L"UI");
 	UI->AddChild(pLightUI);
@@ -200,16 +198,18 @@ void qLevel_stage1::CreateStage1()
 	pStage1->AddObject(31, UI);
 
 
-	Ptr<qMaterial> pHUDMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DHUDMtrl");
-	Ptr<qTexture> pUI2 = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\UI\\playerHUD.png");
-	pHUDMtrl->SetTexParam(TEX_0, pUI2);
 
 
 	// Player HUD
+	Ptr<qMaterial> pHUDMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DHUDMtrl");
+	Ptr<qTexture> pPlayerHUDUI = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\UI\\playerHUD.png");
+	pHUDMtrl->SetTexParam(TEX_0, pPlayerHUDUI);
+
+
 	qGameObject* PlayerHUD = new qGameObject;
 	PlayerHUD->SetName(L"PlayerHUD");
 	PlayerHUD->AddComponent(new qTransform);
-	PlayerHUD->Transform()->SetRelativePos(-397.f, 357.f, 10.f);
+	PlayerHUD->Transform()->SetRelativePos(-427.f, 372.f, 10.f);
 	PlayerHUD->Transform()->SetRelativeScale(413.f, 10.f, 1.f);
 	
 	PlayerHUD->AddComponent(new qPlayerHUDScript);
@@ -218,28 +218,8 @@ void qLevel_stage1::CreateStage1()
 	
 	PlayerHUD->MeshRender()->SetMaterial(pHUDMtrl);
 
-	//Ptr<qMaterial> pPlayerHUDMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\playerHUD.mtrl");
-	//PlayerHUD->MeshRender()->SetMaterial(pPlayerHUDMtrl);
-
-	// 텍스쳐가 Std2DMtrl로 들어간 Mtrl
-
-
-
-	//// 빈 Mtrl
-	//Ptr<qMaterial> test = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"test");
-
-	//Ptr<qSprite> PlayerHUDsprite = qAssetMgr::GetInst()->FindAsset<qSprite>(L"sprite\\playerHUD.sprite");
-	//Ptr<qTexture> PlayerHUDTexture = PlayerHUDsprite->GetAtlasTexture();
-	//
-	//test->SetTexParam(TEX_0, PlayerHUDTexture);
-	//PlayerHUD->MeshRender()->SetMaterial(test);
-	//
-	//PlayerHUDsprite->SetLeftTop(Vec2(0.f, 0.f));
-	//PlayerHUDsprite->SetSlice(Vec2(413.f, 10.f));
-	
-
-
 	pStage1->AddObject(31, PlayerHUD);
+
 
 
 	// 배경
@@ -602,7 +582,7 @@ void qLevel_stage1::CreateStage1()
 	//qLevelSaveLoad::SaveLevel(strLevelPath, pStage1);
 	
 	// 레벨 시작
-	//ChangeLevel(pStage1, LEVEL_STATE::STOP);
+	ChangeLevel(pStage1, LEVEL_STATE::STOP);
 	////
 	////
 	//// 충돌 지정

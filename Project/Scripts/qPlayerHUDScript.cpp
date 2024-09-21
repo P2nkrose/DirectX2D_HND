@@ -2,19 +2,24 @@
 #include "qPlayerHUDScript.h"
 
 #include <Engine/qSprite.h>
-
 #include <Engine/qLevel.h>
 #include <Engine/qLevelMgr.h>
-
 #include <Engine/qDevice.h>
 #include <Engine/qConstBuffer.h>
+#include <Engine/qGameObject.h>
+
+#include <Scripts/qPlayerScript.h>
+
 
 
 qPlayerHUDScript::qPlayerHUDScript()
 	: qScript((UINT)SCRIPT_TYPE::PLAYERHUDSCRIPT)
-	, m_MaxPlayerHP(413.f)
+	, m_MaxPlayerHP(1.f)
+	, m_CurPlayerHP(1.f)
+	, m_DamageHP(0.f)
+	, m_FiveCount(0)
+	, m_TenCount(0)
 {
-
 }
 
 qPlayerHUDScript::~qPlayerHUDScript()
@@ -23,19 +28,23 @@ qPlayerHUDScript::~qPlayerHUDScript()
 
 void qPlayerHUDScript::Begin()
 {
-	
-
-	//GetOwner()->Transform()->SetRelativePos(-100.f, -100.f, 1.f);
-	//GetOwner()->Transform()->SetRelativeScale(10.f, 10.f, 1.f);
 
 }
 
 void qPlayerHUDScript::Tick()
 {
+	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+	qGameObject* Player = pCurLevel->FindObjectByName(L"Player");
+	qPlayerScript* PlayerScript = Player->GetScript<qPlayerScript>();
+
+	m_FiveCount = PlayerScript->GetFiveDamageCount();
+	m_TenCount = PlayerScript->GetTenDamageCount();
+
 	qConstBuffer* pCB = qDevice::GetInst()->GetConstBuffer(CB_TYPE::HUD);
 
-	float ratio = 0.7f;
-	pCB->SetData(&ratio);
+	m_CurPlayerHP = m_MaxPlayerHP - (m_FiveCount * 0.05f + m_TenCount * 0.1f);
+
+	pCB->SetData(&m_CurPlayerHP);
 
 	pCB->Binding();
 

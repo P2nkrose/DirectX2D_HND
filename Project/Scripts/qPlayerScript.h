@@ -49,6 +49,13 @@ public:
 	void SetCurrentPlatformPos(const Vec3& _PlatformPos) { m_CurrentPlatformPos = _PlatformPos; }
 	Vec3 GetCurrentPlatformPos() const { return m_CurrentPlatformPos; }
 
+public:
+	int GetFiveDamageCount() { return m_FiveDamageCount; }
+	int GetTenDamageCount() { return m_TenDamageCount; }
+
+	void PlusFiveDamageCount() { m_FiveDamageCount += 1; }
+	void PlusTenDamageCount() { m_TenDamageCount += 1; }
+
 
 private:
 	Vec3				m_CurrentPlatformPos;	// 현재 충돌한 플랫폼의 위치
@@ -82,6 +89,6 @@ private:
 
 	int					m_FiveDamageCount;
 	int					m_TenDamageCount;
-
 };
+
 

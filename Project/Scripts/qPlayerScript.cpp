@@ -29,6 +29,10 @@ qPlayerScript::qPlayerScript()
 	, m_DashCoolTime(0.f)
 	, m_IsDashCoolTime(false)
 	, m_NextCombo(1)
+	, LeftBook(nullptr)
+	, RightBook(nullptr)
+	, m_FiveDamageCount(0)
+	, m_TenDamageCount(0)
 {
 	AddScriptParam(SCRIPT_PARAM::FLOAT, "PlayerSpeed", &m_Speed);
 	AddScriptParam(SCRIPT_PARAM::TEXTURE, "Test", &m_Texture);
@@ -338,28 +342,33 @@ void qPlayerScript::Tick()
 
 void qPlayerScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)
 {
-	//if (_OtherObject->GetName() == L"Platform")
-	//{
-	//	qRigidBody* pRB = _OtherObject->GetComponent(COMPONENT_TYPE::RIGIDBODY)->RigidBody();
-	//
-	//	pRB->SetGround(true);
-	//
-	//
-	//}
-
-	//DeleteObject(_OtherObject);
-
-	//Vec3 vScale = Transform()->GetRelativeScale();
-	//
-	//vScale += Vec3(10.f, 10.f, 0.f);
-	//Collider2D()->SetScale(Collider2D()->GetScale() + Vec3(10.f, 10.f, 0.f));
-	//
-	//Transform()->SetRelativeScale(vScale);
-
 	if (_OtherObject->GetName() == L"Wall")
 	{
 		FSM()->ChangeState(L"Bump");
 	}
+
+
+	if (_OtherObject->GetName() == L"Skeleton" ||
+		_OtherObject->GetName() == L"Drowned" ||
+		_OtherObject->GetName() == L"Ghost" ||
+		_OtherObject->GetName() == L"Boss" ||
+		_OtherObject->GetName() == L"SkeletonAttack" ||
+		_OtherObject->GetName() == L"DrownedAttack" ||
+		_OtherObject->GetName() == L"GhostAttack")
+	{
+		PlusFiveDamageCount();
+	}
+
+	if (_OtherObject->GetName() == L"SkeletonAttackHitbox" ||
+		_OtherObject->GetName() == L"DrownedAttackHitbox" ||
+		_OtherObject->GetName() == L"GhostAttackHitbox" || 
+		_OtherObject->GetName() == L"PunchHitbox" || 
+		_OtherObject->GetName() == L"SlamHitbox" || 
+		_OtherObject->GetName() == L"BleedHitbox")
+	{
+		PlusTenDamageCount();
+	}
+
 }
 
 void qPlayerScript::Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)

@@ -51,9 +51,6 @@ void qSkeletonAttackScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject*
 			// 플레이어 피깎기
 			PlayerScript->Hit(m_SkeletonAttackDamage);
 		}
-
-
-
 	}
 }
 

@@ -20,6 +20,7 @@
 #include <Engine/components.h>
 
 #include <Scripts/qPlayerScript.h>
+#include <Scripts/qPlayerHUDScript.h>
 #include <Scripts/qBookScript_Left.h>
 #include <Scripts/qMissileScript.h>
 #include <Scripts/qCameraMoveScript.h>
@@ -117,12 +118,9 @@ void qLevel_boss::CreateStageBoss()
 	Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
 	Ptr<qMaterial> pAlphaBlendMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DAlphaBlendMtrl");
 	Ptr<qMaterial> pDebugShapeMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"DebugShapeMtrl");
-
 	Ptr<qMaterial> pMtrl2 = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\bossBack.mtrl");
 
-	Ptr<qMaterial> pUIMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
-	Ptr<qTexture> pUI = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\UI\\UI.png");
-	pUIMtrl->SetTexParam(TEX_0, pUI);
+
 
 
 	// Level
@@ -175,7 +173,7 @@ void qLevel_boss::CreateStageBoss()
 	UICameraObject->SetName(L"UICamera");
 	UICameraObject->AddComponent(new qCamera);
 	UICameraObject->AddComponent(new qTransform);
-	UICameraObject->Transform()->SetRelativePos(Vec3(0.f, -120.f, 0.f));
+	UICameraObject->Transform()->SetRelativePos(Vec3(0.f, 0.f, 0.f));
 	//UICameraObject->AddComponent(new qCameraMoveScript);
 
 	UICameraObject->Camera()->SetPriority(1);
@@ -200,11 +198,15 @@ void qLevel_boss::CreateStageBoss()
 
 
 	// UI
+	Ptr<qMaterial> pUIMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DUIMtrl");
+	Ptr<qTexture> pUI = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\UI\\UI.png");
+	pUIMtrl->SetTexParam(TEX_0, pUI);
+
 	qGameObject* UI = new qGameObject;
 	UI->SetName(L"UI");
 	//UI->AddChild(pLightUI);
 	UI->AddComponent(new qTransform);
-	UI->Transform()->SetRelativePos(0.f, -120.f, 1.f);
+	UI->Transform()->SetRelativePos(0.f, -15.f, 30.f);
 	UI->Transform()->SetRelativeScale(1600.f, 900.f, 1.f);
 
 
@@ -212,11 +214,28 @@ void qLevel_boss::CreateStageBoss()
 	UI->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
 	UI->MeshRender()->SetMaterial(pUIMtrl);
 
-
 	pStageBoss->AddObject(31, UI);
 
 
+	// Player HUD
+	Ptr<qMaterial> pHUDMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DHUDMtrl");
+	Ptr<qTexture> pPlayerHUDUI = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\UI\\playerHUD.png");
+	pHUDMtrl->SetTexParam(TEX_0, pPlayerHUDUI);
 
+
+	qGameObject* PlayerHUD = new qGameObject;
+	PlayerHUD->SetName(L"PlayerHUD");
+	PlayerHUD->AddComponent(new qTransform);
+	PlayerHUD->Transform()->SetRelativePos(-427.f, 372.f, 10.f);
+	PlayerHUD->Transform()->SetRelativeScale(413.f, 10.f, 1.f);
+
+	PlayerHUD->AddComponent(new qPlayerHUDScript);
+	PlayerHUD->AddComponent(new qMeshRender);
+	PlayerHUD->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+
+	PlayerHUD->MeshRender()->SetMaterial(pHUDMtrl);
+
+	pStageBoss->AddObject(31, PlayerHUD);
 
 
 
@@ -251,9 +270,6 @@ void qLevel_boss::CreateStageBoss()
 	pPlatform->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
 
 	pStageBoss->AddObject(2, pPlatform);
-
-
-
 
 
 

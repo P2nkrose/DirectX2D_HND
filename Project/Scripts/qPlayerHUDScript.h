@@ -20,9 +20,17 @@ public:
 	virtual void LoadFromFile(FILE* _File) override;
 
 
+public:
+	float GetCurPlayerHP() { return m_CurPlayerHP; }
+	void SetCurPlayerHP(float _ratio) { m_CurPlayerHP = _ratio; }
+
 
 private:
 	float			m_MaxPlayerHP;
+	float			m_CurPlayerHP;
+	float			m_DamageHP;
 
+	int				m_FiveCount;
+	int				m_TenCount;
 };
 

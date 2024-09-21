@@ -20,6 +20,7 @@
 #include <Engine/components.h>
 
 #include <Scripts/qPlayerScript.h>
+#include <Scripts/qPlayerHUDScript.h>
 
 // Monster Script
 #include <Scripts/qSkeletonScript.h>
@@ -119,7 +120,7 @@ void qLevel_stage2::CreateStage2()
 
 	Ptr<qMaterial> pMtrl2 = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\stage2Back.mtrl");
 
-	Ptr<qMaterial> pUIMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
+	Ptr<qMaterial> pUIMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DUIMtrl");
 	Ptr<qTexture> pUI = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\UI\\UI.png");
 	pUIMtrl->SetTexParam(TEX_0, pUI);
 
@@ -172,7 +173,7 @@ void qLevel_stage2::CreateStage2()
 	UICameraObject->SetName(L"UICamera");
 	UICameraObject->AddComponent(new qCamera);
 	UICameraObject->AddComponent(new qTransform);
-	UICameraObject->Transform()->SetRelativePos(Vec3(0.f, -120.f, 0.f));
+	UICameraObject->Transform()->SetRelativePos(Vec3(0.f, 0.f, 0.f));
 	//UICameraObject->AddComponent(new qCameraMoveScript);
 
 	UICameraObject->Camera()->SetPriority(1);
@@ -202,7 +203,7 @@ void qLevel_stage2::CreateStage2()
 	UI->SetName(L"UI");
 	UI->AddChild(pLightUI);
 	UI->AddComponent(new qTransform);
-	UI->Transform()->SetRelativePos(0.f, -120.f, 1.f);
+	UI->Transform()->SetRelativePos(0.f, -15.f, 30.f);
 	UI->Transform()->SetRelativeScale(1600.f, 900.f, 1.f);
 
 
@@ -210,10 +211,28 @@ void qLevel_stage2::CreateStage2()
 	UI->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
 	UI->MeshRender()->SetMaterial(pUIMtrl);
 
-
 	pStage2->AddObject(31, UI);
 
 
+	// Player HUD
+	Ptr<qMaterial> pHUDMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DHUDMtrl");
+	Ptr<qTexture> pPlayerHUDUI = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\UI\\playerHUD.png");
+	pHUDMtrl->SetTexParam(TEX_0, pPlayerHUDUI);
+
+
+	qGameObject* PlayerHUD = new qGameObject;
+	PlayerHUD->SetName(L"PlayerHUD");
+	PlayerHUD->AddComponent(new qTransform);
+	PlayerHUD->Transform()->SetRelativePos(-427.f, 372.f, 10.f);
+	PlayerHUD->Transform()->SetRelativeScale(413.f, 10.f, 1.f);
+
+	PlayerHUD->AddComponent(new qPlayerHUDScript);
+	PlayerHUD->AddComponent(new qMeshRender);
+	PlayerHUD->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+
+	PlayerHUD->MeshRender()->SetMaterial(pHUDMtrl);
+
+	pStage2->AddObject(31, PlayerHUD);
 
 
 
@@ -1317,6 +1336,12 @@ void qLevel_stage2::CreateStage2()
 	pGhost2->FSM()->ChangeState(L"GhostIdle");
 
 	pStage2->AddObject(5, pGhost2);
+
+
+
+	// ITEM
+	qGameObject* pItem = new qGameObject;
+
 
 
 
