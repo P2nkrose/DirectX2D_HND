@@ -1,6 +1,7 @@
 qBleedScript
 qBookScript_Left
 qBookScript_Right
+qBossHUDScript
 qBossScript
 qCameraMoveScript
 qClapScript

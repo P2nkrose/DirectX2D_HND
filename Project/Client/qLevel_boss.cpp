@@ -38,6 +38,8 @@
 #include <Engine/qSetColorCS.h>
 #include <Engine/qStructuredBuffer.h>
 
+#include <Scripts/qBossHUDScript.h>
+
 // ========================                    
 //      Player State                         * INDEX *
 // ========================
@@ -118,7 +120,7 @@ void qLevel_boss::CreateStageBoss()
 	Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
 	Ptr<qMaterial> pAlphaBlendMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DAlphaBlendMtrl");
 	Ptr<qMaterial> pDebugShapeMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"DebugShapeMtrl");
-	Ptr<qMaterial> pMtrl2 = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\bossBack.mtrl");
+	Ptr<qMaterial> pMtrl2 = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\bossBack2.mtrl");
 
 
 
@@ -144,6 +146,7 @@ void qLevel_boss::CreateStageBoss()
 	pStageBoss->GetLayer(11)->SetName(L"Wall");
 	pStageBoss->GetLayer(12)->SetName(L"Effect");
 	pStageBoss->GetLayer(12)->SetName(L"Clap");
+	pStageBoss->GetLayer(13)->SetName(L"Item");
 	pStageBoss->GetLayer(31)->SetName(L"UI");
 
 
@@ -197,6 +200,7 @@ void qLevel_boss::CreateStageBoss()
 	pLightUI->Light2D()->SetRadius(1000.f);
 
 
+
 	// UI
 	Ptr<qMaterial> pUIMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DUIMtrl");
 	Ptr<qTexture> pUI = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\UI\\UI.png");
@@ -215,6 +219,27 @@ void qLevel_boss::CreateStageBoss()
 	UI->MeshRender()->SetMaterial(pUIMtrl);
 
 	pStageBoss->AddObject(31, UI);
+
+
+	// BOSS UI
+	Ptr<qMaterial> pbossUIMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DBOSSUIMtrl");
+	Ptr<qTexture> pbossUI = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\UI\\bossUI.png");
+	pbossUIMtrl->SetTexParam(TEX_0, pbossUI);
+	
+	qGameObject* bossUI = new qGameObject;
+	bossUI->SetName(L"bossUI");
+	//UI->AddChild(pLightUI);
+	bossUI->AddComponent(new qTransform);
+	bossUI->Transform()->SetRelativePos(100.f, 687.f, 10.f);
+	//bossUI->Transform()->SetRelativeScale(1600.f, 900.f, 1.f);
+
+
+	bossUI->AddComponent(new qMeshRender);
+	bossUI->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	bossUI->MeshRender()->SetMaterial(pbossUIMtrl);
+	
+	pStageBoss->AddObject(31, bossUI);
+
 
 
 	// Player HUD
@@ -237,6 +262,26 @@ void qLevel_boss::CreateStageBoss()
 
 	pStageBoss->AddObject(31, PlayerHUD);
 
+
+	// Boss HUD
+	Ptr<qMaterial> pBOSSHUDMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DBOSSHUDMtrl");
+	Ptr<qTexture> pBossHUDUI = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\UI\\bossHUD.png");
+	pBOSSHUDMtrl->SetTexParam(TEX_0, pBossHUDUI);
+
+
+	qGameObject* BossHUD = new qGameObject;
+	BossHUD->SetName(L"BossHUD");
+	BossHUD->AddComponent(new qTransform);
+	BossHUD->Transform()->SetRelativePos(24.f, 293.f, 1.f);
+	//BossHUD->Transform()->SetRelativeScale(1127.f, 13.f, 1.f);
+
+	BossHUD->AddComponent(new qBossHUDScript);
+	BossHUD->AddComponent(new qMeshRender);
+	BossHUD->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+
+	BossHUD->MeshRender()->SetMaterial(pBOSSHUDMtrl);
+
+	pStageBoss->AddObject(31, BossHUD);
 
 
 
@@ -610,19 +655,20 @@ void qLevel_boss::CreateStageBoss()
 
 
 	// 충돌 지정
-	//qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
-	//qCollisionMgr::GetInst()->CollisionCheck(2, 7);		// Platform vs Player
-	//qCollisionMgr::GetInst()->CollisionCheck(4, 5);		// PlayerSkill vs Monster
-	//qCollisionMgr::GetInst()->CollisionCheck(4, 7);		// PlayerSkill vs Boss
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 6);		// Player vs Monster Skill
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 8);		// Player vs Boss Skill
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 12);	// Player vs Clap
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 7);		// Player vs Boss
-	//
-	//ChangeLevel(pStageBoss, LEVEL_STATE::STOP);
+	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
+	qCollisionMgr::GetInst()->CollisionCheck(2, 7);		// Platform vs Player
+	qCollisionMgr::GetInst()->CollisionCheck(4, 5);		// PlayerSkill vs Monster
+	qCollisionMgr::GetInst()->CollisionCheck(4, 7);		// PlayerSkill vs Boss
+	qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
+	qCollisionMgr::GetInst()->CollisionCheck(3, 6);		// Player vs Monster Skill
+	qCollisionMgr::GetInst()->CollisionCheck(3, 8);		// Player vs Boss Skill
+	qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
+	qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
+	qCollisionMgr::GetInst()->CollisionCheck(3, 12);	// Player vs Clap
+	qCollisionMgr::GetInst()->CollisionCheck(3, 13);	// Player vs Item
+	qCollisionMgr::GetInst()->CollisionCheck(3, 7);		// Player vs Boss
+	
+	ChangeLevel(pStageBoss, LEVEL_STATE::STOP);
 
 
 }

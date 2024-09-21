@@ -189,6 +189,14 @@ struct tHUD
 	float	padding3;
 };
 
+struct tBOSSHUD
+{
+	float	BOSSHPRatio;
+	float	padding1;
+	float	padding2;
+	float	padding3;
+};
+
 
 
 struct tGlobalData

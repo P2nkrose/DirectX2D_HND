@@ -27,7 +27,7 @@ void qBossScript::Begin()
 {
 	m_PrevUnitInfo = m_CurUnitInfo;
 
-	m_CurUnitInfo.HP = 300.f;
+	m_CurUnitInfo.HP = 200.f;
 	m_CurUnitInfo.Dir = DIRECTION::LEFT;
 	SetBossDir(DIRECTION::LEFT);
 }
@@ -98,6 +98,34 @@ void qBossScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObj
 
 		// 플레이어 피깎기
 		PlayerScript->Hit(m_BossColiisionDamage);
+	}
+
+
+	if (_OtherObject->GetName() == L"Combo1HitBox" ||
+		_OtherObject->GetName() == L"Combo2HitBox" ||
+		_OtherObject->GetName() == L"Combo3HitBox")
+	{
+		Plus10DamageCount();
+	}
+
+	if (_OtherObject->GetName() == L"Combo4HitBox")
+	{
+		Plus20DamageCount();
+	}
+
+	if (_OtherObject->GetName() == L"Book")
+	{
+		Plus30DamageCount();
+	}
+
+	if (_OtherObject->GetName() == L"CrashHitBox")
+	{
+		Plus40DamageCount();
+	}
+
+	if (_OtherObject->GetName() == L"RangeHitBox")
+	{
+		Plus50DamageCount();
 	}
 
 }

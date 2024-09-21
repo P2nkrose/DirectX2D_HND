@@ -169,6 +169,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="qBleedScript.h" />
     <ClInclude Include="qBookScript_Left.h" />
     <ClInclude Include="qBookScript_Right.h" />
+    <ClInclude Include="qBossHUDScript.h" />
     <ClInclude Include="qBossScript.h" />
     <ClInclude Include="qCameraMoveScript.h" />
     <ClInclude Include="qClapScript.h" />
@@ -209,6 +210,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="qBleedScript.cpp" />
     <ClCompile Include="qBookScript_Left.cpp" />
     <ClCompile Include="qBookScript_Right.cpp" />
+    <ClCompile Include="qBossHUDScript.cpp" />
     <ClCompile Include="qBossScript.cpp" />
     <ClCompile Include="qCameraMoveScript.cpp" />
     <ClCompile Include="qClapScript.cpp" />

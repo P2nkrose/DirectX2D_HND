@@ -126,6 +126,7 @@ void qLevel_stage1::CreateStage1()
 	pStage1->GetLayer(11)->SetName(L"Wall");
 	pStage1->GetLayer(12)->SetName(L"Effect");
 	pStage1->GetLayer(12)->SetName(L"Clap");
+	pStage1->GetLayer(13)->SetName(L"Item");
 	pStage1->GetLayer(31)->SetName(L"UI");
 
 
@@ -582,7 +583,7 @@ void qLevel_stage1::CreateStage1()
 	//qLevelSaveLoad::SaveLevel(strLevelPath, pStage1);
 	
 	// 레벨 시작
-	ChangeLevel(pStage1, LEVEL_STATE::STOP);
+	//ChangeLevel(pStage1, LEVEL_STATE::STOP);
 	////
 	////
 	//// 충돌 지정
@@ -596,6 +597,7 @@ void qLevel_stage1::CreateStage1()
 	qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
 	qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
 	qCollisionMgr::GetInst()->CollisionCheck(3, 12);	// Player vs Clap
+	qCollisionMgr::GetInst()->CollisionCheck(3, 13);	// Player vs Item
 	qCollisionMgr::GetInst()->CollisionCheck(3, 7);		// Player vs Boss
 
 

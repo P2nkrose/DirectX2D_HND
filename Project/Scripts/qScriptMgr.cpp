@@ -4,6 +4,7 @@
 #include "qBleedScript.h"
 #include "qBookScript_Left.h"
 #include "qBookScript_Right.h"
+#include "qBossHUDScript.h"
 #include "qBossScript.h"
 #include "qCameraMoveScript.h"
 #include "qClapScript.h"
@@ -38,6 +39,7 @@ void qScriptMgr::GetScriptInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qBleedScript");
 	_vec.push_back(L"qBookScript_Left");
 	_vec.push_back(L"qBookScript_Right");
+	_vec.push_back(L"qBossHUDScript");
 	_vec.push_back(L"qBossScript");
 	_vec.push_back(L"qCameraMoveScript");
 	_vec.push_back(L"qClapScript");
@@ -76,6 +78,8 @@ qScript * qScriptMgr::GetScript(const wstring& _strScriptName)
 		return new qBookScript_Left;
 	if (L"qBookScript_Right" == _strScriptName)
 		return new qBookScript_Right;
+	if (L"qBossHUDScript" == _strScriptName)
+		return new qBossHUDScript;
 	if (L"qBossScript" == _strScriptName)
 		return new qBossScript;
 	if (L"qCameraMoveScript" == _strScriptName)
@@ -147,6 +151,9 @@ qScript * qScriptMgr::GetScript(UINT _iScriptType)
 		break;
 	case (UINT)SCRIPT_TYPE::BOOKSCRIPT_RIGHT:
 		return new qBookScript_Right;
+		break;
+	case (UINT)SCRIPT_TYPE::BOSSHUDSCRIPT:
+		return new qBossHUDScript;
 		break;
 	case (UINT)SCRIPT_TYPE::BOSSSCRIPT:
 		return new qBossScript;
@@ -250,6 +257,10 @@ const wchar_t * qScriptMgr::GetScriptName(qScript * _pScript)
 
 	case SCRIPT_TYPE::BOOKSCRIPT_RIGHT:
 		return L"qBookScript_Right";
+		break;
+
+	case SCRIPT_TYPE::BOSSHUDSCRIPT:
+		return L"qBossHUDScript";
 		break;
 
 	case SCRIPT_TYPE::BOSSSCRIPT:

@@ -8,6 +8,7 @@ enum class CB_TYPE
 	SPRITE,
 	GLOBAL,			// 잡다한거 때려넣기
 	HUD,
+	BOSSHUD,
 	END,
 };
 

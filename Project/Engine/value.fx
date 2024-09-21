@@ -94,6 +94,14 @@ cbuffer HUD : register(b4)
     float   Padding3;
 }
 
+cbuffer BOSSHUD : register(b5)
+{
+    float   BOSSHPRatio;
+    float   bossPadding1;
+    float   bossPadding2;
+    float   bossPadding3;
+}
+
 
 
 SamplerState g_sam_0 : register(s0); // 이방성 필터 샘플러

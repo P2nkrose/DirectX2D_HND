@@ -32,6 +32,13 @@ void qClapScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObj
 	{
 		if (_OtherObject->GetName() == L"Player")
 		{
+			qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+			qGameObject* bossUI = pCurLevel->FindObjectByName(L"bossUI");
+			bossUI->Transform()->SetRelativeScale(1600.f, 900.f, 1.f);
+
+			qGameObject* bossHUD = pCurLevel->FindObjectByName(L"BossHUD");
+			bossHUD->Transform()->SetRelativeScale(1127.f, 13.f, 1.f);
+
 			qCameraMoveScript* CameraScript = Camera->GetScript<qCameraMoveScript>();
 			CameraScript->SetClap(true);
 

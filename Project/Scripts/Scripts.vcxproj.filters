@@ -109,6 +109,9 @@
     <Filter Include="Scripts\1. UNIT\4. etc\04. HUD\01. PlayerHUD">
       <UniqueIdentifier>{90bb84f0-8acb-40ac-b3a9-b99356af4016}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scripts\1. UNIT\4. etc\04. HUD\02. BossHUD">
+      <UniqueIdentifier>{dacae5d5-debd-40b8-9ada-ea1103397b1a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -213,6 +216,9 @@
     <ClInclude Include="qPlayerHUDScript.h">
       <Filter>Scripts\1. UNIT\4. etc\04. HUD\01. PlayerHUD</Filter>
     </ClInclude>
+    <ClInclude Include="qBossHUDScript.h">
+      <Filter>Scripts\1. UNIT\4. etc\04. HUD\02. BossHUD</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -316,6 +322,9 @@
     </ClCompile>
     <ClCompile Include="qPlayerHUDScript.cpp">
       <Filter>Scripts\1. UNIT\4. etc\04. HUD\01. PlayerHUD</Filter>
+    </ClCompile>
+    <ClCompile Include="qBossHUDScript.cpp">
+      <Filter>Scripts\1. UNIT\4. etc\04. HUD\02. BossHUD</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
