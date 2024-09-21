@@ -45,7 +45,7 @@ void qBossHUDScript::Tick()
 
 	qConstBuffer* pCB = qDevice::GetInst()->GetConstBuffer(CB_TYPE::BOSSHUD);
 
-	m_CurBossHP = m_MaxBossHP - (m_10Count * 0.05f + m_20Count * 0.1f + m_30Count * 0.15f + m_40Count * 0.2f + m_50Count * 0.25f);
+	m_CurBossHP = m_MaxBossHP - (m_10Count * 0.025f + m_20Count * 0.05f + m_30Count * 0.075f + m_40Count * 0.1f + m_50Count * 0.125f);
 	
 	pCB->SetData(&m_CurBossHP);
 

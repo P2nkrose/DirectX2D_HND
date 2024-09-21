@@ -27,7 +27,7 @@ void qBossScript::Begin()
 {
 	m_PrevUnitInfo = m_CurUnitInfo;
 
-	m_CurUnitInfo.HP = 200.f;
+	m_CurUnitInfo.HP = 400.f;
 	m_CurUnitInfo.Dir = DIRECTION::LEFT;
 	SetBossDir(DIRECTION::LEFT);
 }
