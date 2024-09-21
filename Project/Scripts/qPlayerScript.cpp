@@ -369,6 +369,15 @@ void qPlayerScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherO
 		PlusTenDamageCount();
 	}
 
+	if (_OtherObject->GetName() == L"Item")
+	{
+		SetCountZero();
+
+		FSM()->ChangeState(L"GetItem");
+
+		_OtherObject->Destroy();
+	}
+
 }
 
 void qPlayerScript::Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)
@@ -390,6 +399,8 @@ void qPlayerScript::Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject
 			FSM()->ChangeState(L"Teleport");
 		}
 	}
+
+
 }
 
 void qPlayerScript::EndOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)

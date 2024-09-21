@@ -47,6 +47,7 @@
 #include "qPlayerEffectState.h"
 #include "qPlayerElevatorOutState.h"
 #include "qPlayerFallingState.h"
+#include "qPlayerGetItemState.h"
 #include "qPlayerIdleState.h"
 #include "qPlayerIdleToRunState.h"
 #include "qPlayerIdleUTurnState.h"
@@ -115,6 +116,7 @@ void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qPlayerEffectState");
 	_vec.push_back(L"qPlayerElevatorOutState");
 	_vec.push_back(L"qPlayerFallingState");
+	_vec.push_back(L"qPlayerGetItemState");
 	_vec.push_back(L"qPlayerIdleState");
 	_vec.push_back(L"qPlayerIdleToRunState");
 	_vec.push_back(L"qPlayerIdleUTurnState");
@@ -230,6 +232,8 @@ qState * qStateMgr::GetState(const wstring& _strStateName)
 		return new qPlayerElevatorOutState;
 	if (L"qPlayerFallingState" == _strStateName)
 		return new qPlayerFallingState;
+	if (L"qPlayerGetItemState" == _strStateName)
+		return new qPlayerGetItemState;
 	if (L"qPlayerIdleState" == _strStateName)
 		return new qPlayerIdleState;
 	if (L"qPlayerIdleToRunState" == _strStateName)
@@ -412,6 +416,9 @@ qState * qStateMgr::GetState(UINT _iStateType)
 		break;
 	case (UINT)STATE_TYPE::PLAYERFALLINGSTATE:
 		return new qPlayerFallingState;
+		break;
+	case (UINT)STATE_TYPE::PLAYERGETITEMSTATE:
+		return new qPlayerGetItemState;
 		break;
 	case (UINT)STATE_TYPE::PLAYERIDLESTATE:
 		return new qPlayerIdleState;
@@ -660,6 +667,10 @@ const wchar_t * qStateMgr::GetStateName(qState * _pState)
 
 	case STATE_TYPE::PLAYERFALLINGSTATE:
 		return L"qPlayerFallingState";
+		break;
+
+	case STATE_TYPE::PLAYERGETITEMSTATE:
+		return L"qPlayerGetItemState";
 		break;
 
 	case STATE_TYPE::PLAYERIDLESTATE:

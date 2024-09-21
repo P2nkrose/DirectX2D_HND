@@ -206,6 +206,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="qPlayerEffectState.h" />
     <ClInclude Include="qPlayerElevatorOutState.h" />
     <ClInclude Include="qPlayerFallingState.h" />
+    <ClInclude Include="qPlayerGetItemState.h" />
     <ClInclude Include="qPlayerIdleState.h" />
     <ClInclude Include="qPlayerIdleToRunState.h" />
     <ClInclude Include="qPlayerIdleUTurnState.h" />
@@ -280,6 +281,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="qPlayerEffectState.cpp" />
     <ClCompile Include="qPlayerElevatorOutState.cpp" />
     <ClCompile Include="qPlayerFallingState.cpp" />
+    <ClCompile Include="qPlayerGetItemState.cpp" />
     <ClCompile Include="qPlayerIdleState.cpp" />
     <ClCompile Include="qPlayerIdleToRunState.cpp" />
     <ClCompile Include="qPlayerIdleUTurnState.cpp" />

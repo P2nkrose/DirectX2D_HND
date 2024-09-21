@@ -56,7 +56,7 @@
 #include <States/qPlayerLandingState.h>			// 9
 #include <States/qPlayerDashState.h>			// 10
 #include <States/qPlayerElevatorOutState.h>		// 11
-
+#include <States/qPlayerGetItemState.h>			// 12
 #include <States/qPlayerCombo1State.h>			// 13
 #include <States/qPlayerCombo2State.h>			// 14
 #include <States/qPlayerCombo3State.h>			// 15
@@ -118,7 +118,7 @@ void qLevel_stage2::CreateStage2()
 	Ptr<qMaterial> pAlphaBlendMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DAlphaBlendMtrl");
 	Ptr<qMaterial> pDebugShapeMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"DebugShapeMtrl");
 
-	Ptr<qMaterial> pMtrl2 = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\stage2Back.mtrl");
+	Ptr<qMaterial> pMtrl2 = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\stage2Back2.mtrl");
 
 	Ptr<qMaterial> pUIMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DUIMtrl");
 	Ptr<qTexture> pUI = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\UI\\UI.png");
@@ -146,6 +146,7 @@ void qLevel_stage2::CreateStage2()
 	pStage2->GetLayer(11)->SetName(L"Wall");
 	pStage2->GetLayer(12)->SetName(L"Effect");
 	pStage2->GetLayer(12)->SetName(L"Clap");
+	pStage2->GetLayer(13)->SetName(L"Item");
 	pStage2->GetLayer(31)->SetName(L"UI");
 
 	// Camera
@@ -876,6 +877,9 @@ void qLevel_stage2::CreateStage2()
 	Ptr<qFlipBook> pDeathElevatorOut = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\eleout1.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(11, pDeathElevatorOut);
 
+	Ptr<qFlipBook> pDeathGetItem = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\getitem_2.flip");
+	pPlayer->FlipBookComponent()->AddFlipBook(12, pDeathGetItem);
+
 	Ptr<qFlipBook> pDeathCombo1 = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\combo1_final.flip");
 	pPlayer->FlipBookComponent()->AddFlipBook(13, pDeathCombo1);
 
@@ -944,8 +948,7 @@ void qLevel_stage2::CreateStage2()
 	pPlayer->FSM()->AddState(L"Landing", new qPlayerLandingState);			// 9
 	pPlayer->FSM()->AddState(L"Dash", new qPlayerDashState);				// 10
 	pPlayer->FSM()->AddState(L"ElevatorOut", new qPlayerElevatorOutState);	// 11
-	
-
+	pPlayer->FSM()->AddState(L"GetItem", new qPlayerGetItemState);			// 12
 	pPlayer->FSM()->AddState(L"Combo1", new qPlayerCombo1State);			// 13
 	pPlayer->FSM()->AddState(L"Combo2", new qPlayerCombo2State);			// 14
 	pPlayer->FSM()->AddState(L"Combo3", new qPlayerCombo3State);			// 15
@@ -1341,23 +1344,46 @@ void qLevel_stage2::CreateStage2()
 
 	// ITEM
 	qGameObject* pItem = new qGameObject;
+	pItem->SetName(L"Item");
+	pItem->AddComponent(new qTransform);
 
+	pItem->Transform()->SetRelativePos(3978.f, 94.f, 30.f);
+	pItem->Transform()->SetRelativeScale(130.f, 130.f, 1.f);
+
+	pItem->AddComponent(new qMeshRender);
+	pItem->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pItem->MeshRender()->SetMaterial(pAlphaBlendMtrl);
+
+	pItem->AddComponent(new qFlipBookComponent);
+
+	Ptr<qFlipBook> pItemFlip = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\item.flip");
+	pItem->FlipBookComponent()->AddFlipBook(0, pItemFlip);
+
+	pItem->FlipBookComponent()->Play(0, 10, true);
+
+	pItem->AddComponent(new qCollider2D);
+	pItem->Collider2D()->SetIndependentScale(false);
+	pItem->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	pItem->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+
+	pStage2->AddObject(13, pItem);
 
 
 
 	// 충돌 지정
-	//qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
-	//qCollisionMgr::GetInst()->CollisionCheck(2, 7);		// Platform vs Player
-	//qCollisionMgr::GetInst()->CollisionCheck(4, 5);		// PlayerSkill vs Monster
-	//qCollisionMgr::GetInst()->CollisionCheck(4, 7);		// PlayerSkill vs Boss
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 6);		// Player vs Monster Skill
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 8);		// Player vs Boss Skill
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 12);	// Player vs Clap
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 7);		// Player vs Boss
-	//
-	//ChangeLevel(pStage2, LEVEL_STATE::STOP);
+	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
+	qCollisionMgr::GetInst()->CollisionCheck(2, 7);		// Platform vs Player
+	qCollisionMgr::GetInst()->CollisionCheck(4, 5);		// PlayerSkill vs Monster
+	qCollisionMgr::GetInst()->CollisionCheck(4, 7);		// PlayerSkill vs Boss
+	qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
+	qCollisionMgr::GetInst()->CollisionCheck(3, 6);		// Player vs Monster Skill
+	qCollisionMgr::GetInst()->CollisionCheck(3, 8);		// Player vs Boss Skill
+	qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
+	qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
+	qCollisionMgr::GetInst()->CollisionCheck(3, 12);	// Player vs Clap
+	qCollisionMgr::GetInst()->CollisionCheck(3, 13);	// Player vs Item
+	qCollisionMgr::GetInst()->CollisionCheck(3, 7);		// Player vs Boss
+	
+	ChangeLevel(pStage2, LEVEL_STATE::STOP);
 
 }

@@ -130,9 +130,6 @@
     <Filter Include="States\01. Player\11. ElevatorOut">
       <UniqueIdentifier>{7b9b8547-94b4-4823-a328-f87a2508b182}</UniqueIdentifier>
     </Filter>
-    <Filter Include="States\01. Player\12. Hit">
-      <UniqueIdentifier>{84c87e1e-f3e7-40d7-a402-03e2428f3dc7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="States\05. Effect">
       <UniqueIdentifier>{6bd98df2-468b-4aee-aba4-446ce2b36bfe}</UniqueIdentifier>
     </Filter>
@@ -246,6 +243,9 @@
     </Filter>
     <Filter Include="States\04. Transfer\05. Clap">
       <UniqueIdentifier>{a9ff4775-2b76-4698-a957-b8b5e910e631}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\01. Player\12. GetItem">
+      <UniqueIdentifier>{84c87e1e-f3e7-40d7-a402-03e2428f3dc7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -453,6 +453,9 @@
     <ClInclude Include="qClapState.h">
       <Filter>States\04. Transfer\05. Clap</Filter>
     </ClInclude>
+    <ClInclude Include="qPlayerGetItemState.h">
+      <Filter>States\01. Player\12. GetItem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="States.cpp">
@@ -658,6 +661,9 @@
     </ClCompile>
     <ClCompile Include="qClapState.cpp">
       <Filter>States\04. Transfer\05. Clap</Filter>
+    </ClCompile>
+    <ClCompile Include="qPlayerGetItemState.cpp">
+      <Filter>States\01. Player\12. GetItem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

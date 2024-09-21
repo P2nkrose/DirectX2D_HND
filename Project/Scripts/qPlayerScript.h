@@ -52,6 +52,8 @@ public:
 public:
 	int GetFiveDamageCount() { return m_FiveDamageCount; }
 	int GetTenDamageCount() { return m_TenDamageCount; }
+	
+	void SetCountZero() { m_FiveDamageCount = 0; m_TenDamageCount = 0; }
 
 	void PlusFiveDamageCount() { m_FiveDamageCount += 1; }
 	void PlusTenDamageCount() { m_TenDamageCount += 1; }
