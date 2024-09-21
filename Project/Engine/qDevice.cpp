@@ -213,6 +213,16 @@ int qDevice::CreateConstBuffer()
 
 
 	pCB = new qConstBuffer;
+	if (FAILED(pCB->Create(CB_TYPE::HUD, sizeof(tHUD))))
+	{
+		MessageBox(nullptr, L"상수버퍼 생성 실패", L"초기화 실패", MB_OK);
+		return E_FAIL;
+	}
+	m_arrCB[(UINT)CB_TYPE::HUD] = pCB;
+
+
+
+	pCB = new qConstBuffer;
 	if (FAILED(pCB->Create(CB_TYPE::GLOBAL, sizeof(tGlobalData))))
 	{
 		MessageBox(nullptr, L"상수버퍼 생성 실패", L"초기화 실패", MB_OK);

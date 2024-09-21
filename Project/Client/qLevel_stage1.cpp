@@ -99,9 +99,12 @@ void qLevel_stage1::CreateStage1()
 	//Ptr<qMaterial> pUIMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\UI.mtrl");
 
 
-	Ptr<qMaterial> pUIMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DHUDMtrl");
+	Ptr<qMaterial> pUIMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DUIMtrl");
 	Ptr<qTexture> pUI = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\UI\\UI.png");
 	pUIMtrl->SetTexParam(TEX_0, pUI);
+
+
+
 
 	
 
@@ -197,19 +200,28 @@ void qLevel_stage1::CreateStage1()
 	pStage1->AddObject(31, UI);
 
 
+	Ptr<qMaterial> pHUDMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DHUDMtrl");
+	Ptr<qTexture> pUI2 = qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\UI\\playerHUD.png");
+	pHUDMtrl->SetTexParam(TEX_0, pUI2);
+
+
 	// Player HUD
 	qGameObject* PlayerHUD = new qGameObject;
 	PlayerHUD->SetName(L"PlayerHUD");
 	PlayerHUD->AddComponent(new qTransform);
-	//PlayerHUD->Transform()->SetRelativePos(-100.f, -100.f, 10.f);
-	//PlayerHUD->Transform()->SetRelativeScale(10.f, 10.f, 1.f);
+	PlayerHUD->Transform()->SetRelativePos(-397.f, 357.f, 10.f);
+	PlayerHUD->Transform()->SetRelativeScale(413.f, 10.f, 1.f);
 	
 	PlayerHUD->AddComponent(new qPlayerHUDScript);
 	PlayerHUD->AddComponent(new qMeshRender);
 	PlayerHUD->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
 	
+	PlayerHUD->MeshRender()->SetMaterial(pHUDMtrl);
+
+	//Ptr<qMaterial> pPlayerHUDMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\playerHUD.mtrl");
+	//PlayerHUD->MeshRender()->SetMaterial(pPlayerHUDMtrl);
+
 	// 텍스쳐가 Std2DMtrl로 들어간 Mtrl
-	Ptr<qMaterial> pPlayerHUDMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\playerHUD.mtrl");
 
 
 
@@ -227,7 +239,7 @@ void qLevel_stage1::CreateStage1()
 	
 
 
-	//pStage1->AddObject(31, PlayerHUD);
+	pStage1->AddObject(31, PlayerHUD);
 
 
 	// 배경

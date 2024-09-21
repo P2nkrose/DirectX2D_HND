@@ -3,6 +3,13 @@
 
 #include <Engine/qSprite.h>
 
+#include <Engine/qLevel.h>
+#include <Engine/qLevelMgr.h>
+
+#include <Engine/qDevice.h>
+#include <Engine/qConstBuffer.h>
+
+
 qPlayerHUDScript::qPlayerHUDScript()
 	: qScript((UINT)SCRIPT_TYPE::PLAYERHUDSCRIPT)
 	, m_MaxPlayerHP(413.f)
@@ -25,13 +32,13 @@ void qPlayerHUDScript::Begin()
 
 void qPlayerHUDScript::Tick()
 {
+	qConstBuffer* pCB = qDevice::GetInst()->GetConstBuffer(CB_TYPE::HUD);
 
+	float ratio = 0.7f;
+	pCB->SetData(&ratio);
 
+	pCB->Binding();
 
-	Ptr<qMaterial> pPlayerHUDMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\playerHUD.mtrl");
-	GetOwner()->MeshRender()->SetMaterial(pPlayerHUDMtrl);
-
-	
 }
 
 void qPlayerHUDScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)

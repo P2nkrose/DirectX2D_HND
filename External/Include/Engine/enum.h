@@ -7,6 +7,7 @@ enum class CB_TYPE
 	MATERIAL,		// 재질
 	SPRITE,
 	GLOBAL,			// 잡다한거 때려넣기
+	HUD,
 	END,
 };
 

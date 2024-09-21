@@ -181,6 +181,16 @@ struct tSpriteInfo
 };
 
 
+struct tHUD
+{
+	float	HPRatio;
+	float	padding1;
+	float	padding2;
+	float	padding3;
+};
+
+
+
 struct tGlobalData
 {
 	// 시간 관련 정보

@@ -86,6 +86,15 @@ cbuffer GLOBAL_DATA : register(b3)
 }
 
 
+cbuffer HUD : register(b4)
+{
+    float   HPRatio;
+    float   Padding1;
+    float   Padding2;
+    float   Padding3;
+}
+
+
 
 SamplerState g_sam_0 : register(s0); // 이방성 필터 샘플러
 SamplerState g_sam_1 : register(s1); // 포인트 필터 샘플러
