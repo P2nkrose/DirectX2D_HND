@@ -161,9 +161,11 @@ void qRigidBody::jump()
 	if (L"Player" == GetOwner()->GetName())
 	{
 		m_VelocityByGravity += Vec3(0.f, 1.4f, 0.f) * m_JumpSpeed;
+
+		SetGround(false);
 	}
 
-	SetGround(false);
+	
 }
 
 void qRigidBody::doublejump()

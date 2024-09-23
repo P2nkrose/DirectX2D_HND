@@ -35,7 +35,7 @@ void qPlayerGetItemState::FinalTick()
 
 void qPlayerGetItemState::Exit()
 {
-	GetOwner()->Transform()->SetRelativePos(OGPos);
+	//GetOwner()->Transform()->SetRelativePos(OGPos);
 	GetOwner()->Transform()->SetRelativeScale(OGScale);
 	GetOwner()->Collider2D()->SetScale(OGColScale);
 }
