@@ -110,6 +110,11 @@ int qDevice::Init(HWND _hWnd, UINT _Width, UINT _Height)
 }
 
 
+void qDevice::ClearRenderTarget()
+{
+	CONTEXT->OMSetRenderTargets(0, nullptr, nullptr);
+}
+
 int qDevice::CreateSwapChain()
 {
 	// Swap Chain : 화면에 그림을 그리기 위한 버퍼를 관리하고,
@@ -442,6 +447,17 @@ int qDevice::CreateSamplerState()
 		return E_FAIL;
 	}
 
+	Desc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
+	Desc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
+	Desc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
+	Desc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR; // 포인트 필터링
+
+	if (FAILED(DEVICE->CreateSamplerState(&Desc, m_Sampler[2].GetAddressOf())))
+	{
+		return E_FAIL;
+	}
+
+
 	CONTEXT->VSSetSamplers(0, 1, m_Sampler[0].GetAddressOf());
 	CONTEXT->HSSetSamplers(0, 1, m_Sampler[0].GetAddressOf());
 	CONTEXT->DSSetSamplers(0, 1, m_Sampler[0].GetAddressOf());
@@ -455,6 +471,13 @@ int qDevice::CreateSamplerState()
 	CONTEXT->GSSetSamplers(1, 1, m_Sampler[1].GetAddressOf());
 	CONTEXT->PSSetSamplers(1, 1, m_Sampler[1].GetAddressOf());
 	CONTEXT->CSSetSamplers(1, 1, m_Sampler[1].GetAddressOf());
+
+	CONTEXT->VSSetSamplers(2, 1, m_Sampler[2].GetAddressOf());
+	CONTEXT->HSSetSamplers(2, 1, m_Sampler[2].GetAddressOf());
+	CONTEXT->DSSetSamplers(2, 1, m_Sampler[2].GetAddressOf());
+	CONTEXT->GSSetSamplers(2, 1, m_Sampler[2].GetAddressOf());
+	CONTEXT->PSSetSamplers(2, 1, m_Sampler[2].GetAddressOf());
+	CONTEXT->CSSetSamplers(2, 1, m_Sampler[2].GetAddressOf());
 
 	return S_OK;
 }

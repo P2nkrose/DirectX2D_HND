@@ -41,5 +41,8 @@ private:
 
 	// Post Process
 	Ptr<qTexture>				m_PostProcessTex;
+
+	// Down Scale
+	Ptr<qTexture>				m_DownScaleTex;
 };
 

@@ -167,6 +167,31 @@ void qLevel_title::CreateTitle()
 	//
 	//pTitle->AddObject(0, pLightCollect);
 
+
+
+	// Monster Object
+	//qGameObject* pMonster = new qGameObject;
+	//pMonster->SetName(L"Monster");
+	//
+	//pMonster->AddComponent(new qTransform);
+	//pMonster->AddComponent(new qCollider2D);
+	//
+	//pMonster->Transform()->SetRelativePos(-0.f, -0.f, 9.f);
+	//pMonster->Transform()->SetRelativeScale(170.f, 140.f, 1.f);
+	//
+	//pMonster->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	//pMonster->Collider2D()->SetScale(Vec3(1.2f, 1.2f, 1.f));
+	//
+	//pMonster->AddComponent(new qMeshRender);
+	//Ptr<qMaterial> pEffectMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"EffectMtrl");
+	//pMonster->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	//pMonster->MeshRender()->SetMaterial(pEffectMtrl);
+	//pMonster->MeshRender()->GetMaterial()->SetScalarParam(VEC4_0, Vec4(2.f, 10.f, 4.f, 1.f));
+	//pMonster->MeshRender()->GetMaterial()->SetTexParam(TEX_0, qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\fire_11.png"));
+	//
+	//pTitle->AddObject(5, pMonster);
+
+
 	// collect
 	qGameObject* pCollect = new qGameObject;
 	pCollect->SetName(L"collect");

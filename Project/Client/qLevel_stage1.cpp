@@ -550,31 +550,7 @@ void qLevel_stage1::CreateStage1()
 
 
 
-	// Monster Object
-	//qGameObject* pMonster = new qGameObject;
-	//pMonster->SetName(L"Monster");
-	//
-	//pMonster->AddComponent(new qTransform);
-	//pMonster->AddComponent(new qMeshRender);
-	//pMonster->AddComponent(new qCollider2D);
-	//
-	//pMonster->Transform()->SetRelativePos(-400.f, -420.f, 9.f);
-	//pMonster->Transform()->SetRelativeScale(170.f, 140.f, 1.f);
-	//
-	//pMonster->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
-	//pMonster->Collider2D()->SetScale(Vec3(1.2f, 1.2f, 1.f));
-	//
-	//pMonster->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	//pMonster->MeshRender()->SetMaterial(pMtrl);
-
-	//pMonster->AddComponent(new qFlipBookComponent);
-	//
-	//Ptr<qFlipBook> pTest = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\skeleton_idle.flip");
-	//pMonster->FlipBookComponent()->AddFlipBook(0, pTest);
-	//
-	//pMonster->FlipBookComponent()->Play(0, 10, true);
-
-	//pStage1->AddObject(5, pMonster);
+	
 
 
 	// Level Save

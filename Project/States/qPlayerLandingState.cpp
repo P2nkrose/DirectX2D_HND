@@ -15,6 +15,8 @@ qPlayerLandingState::~qPlayerLandingState()
 void qPlayerLandingState::Enter()
 {
 	GetOwner()->FlipBookComponent()->Play(9, 15, false);
+
+	//GetOwner()->RigidBody()->SetGround(true);
 }
 
 void qPlayerLandingState::FinalTick()

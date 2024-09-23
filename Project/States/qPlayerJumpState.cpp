@@ -21,6 +21,11 @@ void qPlayerJumpState::FinalTick()
 {
 	qPlayerScript* pPlayerScript = GetOwner()->GetScript<qPlayerScript>();
 
+	//if (GetOwner()->FlipBookComponent()->IsCurFlipBookFinished())
+	//{
+	//	ChangeState(L"Falling");
+	//}
+
 	if (KEY_RELEASED(KEY::SPACE))
 	{
 		ChangeState(L"Falling");

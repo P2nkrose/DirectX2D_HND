@@ -27,6 +27,9 @@ void qGhostAttackState::Enter()
 	// 히트박스 (애니메이션) 생성
 	Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
 	Ptr<qMaterial> pAlphaBlendMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DAlphaBlendMtrl");
+	
+	// 이펙트
+	Ptr<qMaterial> pEffectMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"EffectMtrl");
 
 	qGhostScript* GhostScript = GetOwner()->GetScript<qGhostScript>();
 	Vec3 GhostPos = GetOwner()->Transform()->GetRelativePos();
@@ -49,7 +52,10 @@ void qGhostAttackState::Enter()
 
 	GhostAttackHitbox->AddComponent(new qMeshRender);
 	GhostAttackHitbox->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	GhostAttackHitbox->MeshRender()->SetMaterial(pAlphaBlendMtrl);
+	GhostAttackHitbox->MeshRender()->SetMaterial(pEffectMtrl);
+
+	GhostAttackHitbox->MeshRender()->GetMaterial()->SetScalarParam(VEC4_0, Vec4(20.f, 3.f, 3.f, 1.f));
+
 
 	GhostAttackHitbox->AddComponent(new qCollider2D);
 	GhostAttackHitbox->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));

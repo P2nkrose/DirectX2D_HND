@@ -15,6 +15,8 @@
 #include "qKeyMgr.h"
 #include "qTransform.h"
 
+#include "qAssetMgr.h"
+
 
 qCamera::qCamera()
 	: qComponent(COMPONENT_TYPE::CAMERA)
@@ -132,7 +134,9 @@ void qCamera::SortGameObject()
 			case DOMAIN_PARTICLE:
 				m_vecParticles.push_back(vecObjects[j]);
 				break;
-			
+			case DOMAIN_EFFECT:
+				m_vecEffect.push_back(vecObjects[j]);
+				break;
 			// ÈÄÃ³¸®	
 			case DOMAIN_POSTPROCESS:
 				m_vecPostProcess.push_back(vecObjects[j]);
@@ -144,6 +148,66 @@ void qCamera::SortGameObject()
 			}
 		}
 	}
+}
+
+void qCamera::render_effect()
+{
+	//return;
+
+	// ·»´õÅ¸°Ù º¯°æ
+	Ptr<qTexture> pEffectTarget = qAssetMgr::GetInst()->FindAsset<qTexture>(L"EffectTargetTex");
+	Ptr<qTexture> pEffectDepth = qAssetMgr::GetInst()->FindAsset<qTexture>(L"EffectDepthStencilTex");
+
+	// Å¬¸®¾î
+	CONTEXT->ClearRenderTargetView(pEffectTarget->GetRTV().Get(), Vec4(0.f, 0.f, 0.f, 0.f));
+	CONTEXT->ClearDepthStencilView(pEffectDepth->GetDSV().Get(), D3D11_CLEAR_STENCIL | D3D11_CLEAR_DEPTH, 1.f, 0);
+
+	D3D11_VIEWPORT viewport = {};
+	viewport.Width = pEffectTarget->Width();
+	viewport.Height = pEffectTarget->Height();
+	viewport.MaxDepth = 1.f;
+
+	CONTEXT->RSSetViewports(1, &viewport);
+	CONTEXT->OMSetRenderTargets(1, pEffectTarget->GetRTV().GetAddressOf(), pEffectDepth->GetDSV().Get());
+
+	// Effect
+	for (size_t i = 0; i < m_vecEffect.size(); ++i)
+	{
+		m_vecEffect[i]->Render();
+	}
+
+	// BlurTarget À¸·Î º¯°æ
+	Ptr<qTexture> pEffectBlurTarget = qAssetMgr::GetInst()->FindAsset<qTexture>(L"EffectBlurTargetTex");
+	Ptr<qMaterial> pBlurMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"BlurMtrl");
+	Ptr<qMesh> pRectMesh = qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh");
+
+	CONTEXT->ClearRenderTargetView(pEffectBlurTarget->GetRTV().Get(), Vec4(0.f, 0.f, 0.f, 0.f));
+
+	CONTEXT->RSSetViewports(1, &viewport);
+	CONTEXT->OMSetRenderTargets(1, pEffectBlurTarget->GetRTV().GetAddressOf(), nullptr);
+
+	pBlurMtrl->SetTexParam(TEX_0, pEffectTarget);
+	pBlurMtrl->Binding();
+	pRectMesh->Render_Particle(2);
+
+
+	// ¿ø·¡ ·»´õÅ¸°ÙÀ¸·Î º¯°æ
+	Ptr<qTexture> pRTTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"RenderTargetTex");
+	Ptr<qTexture> pDSTex = qAssetMgr::GetInst()->FindAsset<qTexture>(L"DepthStencilTex");
+	Ptr<qMaterial> pEffectMergeMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"EffectMergeMtrl");
+
+	viewport.Width = pRTTex->Width();
+	viewport.Height = pRTTex->Height();
+	viewport.MinDepth = 0.f;
+	viewport.MaxDepth = 1.f;
+
+	CONTEXT->RSSetViewports(1, &viewport);
+	CONTEXT->OMSetRenderTargets(1, pRTTex->GetRTV().GetAddressOf(), pDSTex->GetDSV().Get());
+
+	pEffectMergeMtrl->SetTexParam(TEX_0, pEffectTarget);
+	pEffectMergeMtrl->SetTexParam(TEX_1, pEffectBlurTarget);
+	pEffectMergeMtrl->Binding();
+	pRectMesh->Render();
 }
 
 
@@ -169,6 +233,7 @@ void qCamera::Render()
 		m_vecMasked[i]->Render();
 	}
 
+
 	// Transparent
 	for (size_t i = 0; i < m_vecTransparent.size(); ++i)
 	{
@@ -181,6 +246,7 @@ void qCamera::Render()
 		m_vecParticles[i]->Render();
 	}
 
+	render_effect();
 
 	// Post Process
 	for (size_t i = 0; i < m_vecPostProcess.size(); ++i)
@@ -199,6 +265,7 @@ void qCamera::Render()
 	m_vecOpaque.clear();
 	m_vecMasked.clear();
 	m_vecTransparent.clear();
+	m_vecEffect.clear();
 	m_vecParticles.clear();
 	m_vecPostProcess.clear();
 	m_vecUI.clear();

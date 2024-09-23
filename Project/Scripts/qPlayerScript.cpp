@@ -165,7 +165,6 @@ void qPlayerScript::Tick()
 		if (m_DoubleJumpCount > m_CurJumpCount)
 		{
 			Jump();
-
 			m_CurJumpCount += 1;
 		}
 	}

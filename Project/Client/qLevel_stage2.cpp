@@ -1341,6 +1341,29 @@ void qLevel_stage2::CreateStage2()
 	pStage2->AddObject(5, pGhost2);
 
 
+	//qGameObject* pMonster = new qGameObject;
+	//pMonster->SetName(L"Monster");
+	//
+	//pMonster->AddComponent(new qTransform);
+	//pMonster->AddComponent(new qCollider2D);
+	//
+	//pMonster->Transform()->SetRelativePos(-400.f, -420.f, 9.f);
+	//pMonster->Transform()->SetRelativeScale(170.f, 140.f, 1.f);
+	//
+	//pMonster->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
+	//pMonster->Collider2D()->SetScale(Vec3(1.2f, 1.2f, 1.f));
+	//
+	//pMonster->AddComponent(new qMeshRender);
+	//Ptr<qMaterial> pEffectMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"EffectMtrl");
+	//pMonster->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	//pMonster->MeshRender()->SetMaterial(pEffectMtrl);
+	//pMonster->MeshRender()->GetMaterial()->SetScalarParam(VEC4_0, Vec4(2.f, 10.f, 4.f, 1.f));
+	//
+	//pMonster->MeshRender()->GetMaterial()->SetTexParam(TEX_0, qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\fire_11.png"));
+	//
+	//pStage2->AddObject(5, pMonster);
+
+
 
 	// ITEM
 	qGameObject* pItem = new qGameObject;
@@ -1371,19 +1394,19 @@ void qLevel_stage2::CreateStage2()
 
 
 	// 충돌 지정
-	//qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
-	//qCollisionMgr::GetInst()->CollisionCheck(2, 7);		// Platform vs Player
-	//qCollisionMgr::GetInst()->CollisionCheck(4, 5);		// PlayerSkill vs Monster
-	//qCollisionMgr::GetInst()->CollisionCheck(4, 7);		// PlayerSkill vs Boss
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 6);		// Player vs Monster Skill
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 8);		// Player vs Boss Skill
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 12);	// Player vs Clap
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 13);	// Player vs Item
-	//qCollisionMgr::GetInst()->CollisionCheck(3, 7);		// Player vs Boss
-	//
-	//ChangeLevel(pStage2, LEVEL_STATE::STOP);
+	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
+	qCollisionMgr::GetInst()->CollisionCheck(2, 7);		// Platform vs Player
+	qCollisionMgr::GetInst()->CollisionCheck(4, 5);		// PlayerSkill vs Monster
+	qCollisionMgr::GetInst()->CollisionCheck(4, 7);		// PlayerSkill vs Boss
+	qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
+	qCollisionMgr::GetInst()->CollisionCheck(3, 6);		// Player vs Monster Skill
+	qCollisionMgr::GetInst()->CollisionCheck(3, 8);		// Player vs Boss Skill
+	qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
+	qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
+	qCollisionMgr::GetInst()->CollisionCheck(3, 13);	// Player vs Clap
+	qCollisionMgr::GetInst()->CollisionCheck(3, 14);	// Player vs Item
+	qCollisionMgr::GetInst()->CollisionCheck(3, 7);		// Player vs Boss
+	
+	ChangeLevel(pStage2, LEVEL_STATE::STOP);
 
 }
