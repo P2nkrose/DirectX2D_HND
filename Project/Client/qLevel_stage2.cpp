@@ -145,8 +145,8 @@ void qLevel_stage2::CreateStage2()
 	pStage2->GetLayer(10)->SetName(L"Light");
 	pStage2->GetLayer(11)->SetName(L"Wall");
 	pStage2->GetLayer(12)->SetName(L"Effect");
-	pStage2->GetLayer(12)->SetName(L"Clap");
-	pStage2->GetLayer(13)->SetName(L"Item");
+	pStage2->GetLayer(13)->SetName(L"Clap");
+	pStage2->GetLayer(14)->SetName(L"Item");
 	pStage2->GetLayer(31)->SetName(L"UI");
 
 	// Camera
@@ -1366,7 +1366,7 @@ void qLevel_stage2::CreateStage2()
 	pItem->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
 	pItem->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
 
-	pStage2->AddObject(13, pItem);
+	pStage2->AddObject(14, pItem);
 
 
 

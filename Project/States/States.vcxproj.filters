@@ -247,6 +247,9 @@
     <Filter Include="States\01. Player\12. GetItem">
       <UniqueIdentifier>{84c87e1e-f3e7-40d7-a402-03e2428f3dc7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="States\05. Effect\04. Warning">
+      <UniqueIdentifier>{e8159030-fc88-45f0-976a-9aa02e0af4c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -456,6 +459,9 @@
     <ClInclude Include="qPlayerGetItemState.h">
       <Filter>States\01. Player\12. GetItem</Filter>
     </ClInclude>
+    <ClInclude Include="qWarningState.h">
+      <Filter>States\05. Effect\04. Warning</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="States.cpp">
@@ -664,6 +670,9 @@
     </ClCompile>
     <ClCompile Include="qPlayerGetItemState.cpp">
       <Filter>States\01. Player\12. GetItem</Filter>
+    </ClCompile>
+    <ClCompile Include="qWarningState.cpp">
+      <Filter>States\05. Effect\04. Warning</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

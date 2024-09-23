@@ -107,6 +107,7 @@
 #include <States/qElevatorOpenState.h>			// 7
 #include <States/qElevatorCloseState.h>			// 8
 
+#include <States/qWarningState.h>	
 
 #include "qLevelSaveLoad.h"
 
@@ -145,8 +146,8 @@ void qLevel_boss::CreateStageBoss()
 	pStageBoss->GetLayer(10)->SetName(L"Light");
 	pStageBoss->GetLayer(11)->SetName(L"Wall");
 	pStageBoss->GetLayer(12)->SetName(L"Effect");
-	pStageBoss->GetLayer(12)->SetName(L"Clap");
-	pStageBoss->GetLayer(13)->SetName(L"Item");
+	pStageBoss->GetLayer(13)->SetName(L"Clap");
+	pStageBoss->GetLayer(14)->SetName(L"Item");
 	pStageBoss->GetLayer(31)->SetName(L"UI");
 
 
@@ -371,6 +372,27 @@ void qLevel_boss::CreateStageBoss()
 
 
 
+	// WARNING EFFECT
+	qGameObject* pWarning = new qGameObject;
+	pWarning->SetName(L"Warning");
+
+	pWarning->AddComponent(new qTransform);
+	pWarning->Transform()->SetRelativePos(390.f, 0.f, 1.f);
+	//pWarning->Transform()->SetRelativeScale(Vec3(1600.f, 900.f, 0.f));
+
+	pWarning->AddComponent(new qMeshRender);
+	pWarning->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
+	pWarning->MeshRender()->SetMaterial(pAlphaBlendMtrl);
+
+	pWarning->AddComponent(new qFlipBookComponent);
+
+	Ptr<qFlipBook> pWarningFlip = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\warning.flip");
+	pWarning->FlipBookComponent()->AddFlipBook(0, pWarningFlip);
+
+	pWarning->AddComponent(new qFSM);
+	pWarning->FSM()->AddState(L"WarningFlip", new qWarningState);
+
+	pStageBoss->AddObject(12, pWarning);
 
 
 	// Post Process
@@ -388,13 +410,11 @@ void qLevel_boss::CreateStageBoss()
 	
 	pPostProcess1->AddComponent(new qFlipBookComponent);
 	
-	
 	Ptr<qFlipBook> pPostOpen = qAssetMgr::GetInst()->FindAsset<qFlipBook>(L"Animation\\postopen.flip");
 	pPostProcess1->FlipBookComponent()->AddFlipBook(5, pPostOpen);
 	
 	pPostProcess1->AddComponent(new qFSM);
 	pPostProcess1->FSM()->AddState(L"PostOpen", new qPostOpenState);
-	
 	
 	pPostProcess1->FSM()->ChangeState(L"PostOpen");
 	
@@ -648,7 +668,7 @@ void qLevel_boss::CreateStageBoss()
 	pClap->AddComponent(new qCollider2D);
 	pClap->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
 
-	pStageBoss->AddObject(12, pClap);
+	pStageBoss->AddObject(13, pClap);
 
 
 
@@ -664,8 +684,8 @@ void qLevel_boss::CreateStageBoss()
 	qCollisionMgr::GetInst()->CollisionCheck(3, 8);		// Player vs Boss Skill
 	qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
 	qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
-	qCollisionMgr::GetInst()->CollisionCheck(3, 12);	// Player vs Clap
-	qCollisionMgr::GetInst()->CollisionCheck(3, 13);	// Player vs Item
+	qCollisionMgr::GetInst()->CollisionCheck(3, 13);	// Player vs Clap
+	qCollisionMgr::GetInst()->CollisionCheck(3, 14);	// Player vs Item
 	qCollisionMgr::GetInst()->CollisionCheck(3, 7);		// Player vs Boss
 	
 	ChangeLevel(pStageBoss, LEVEL_STATE::STOP);

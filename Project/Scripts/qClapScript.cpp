@@ -33,6 +33,13 @@ void qClapScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObj
 		if (_OtherObject->GetName() == L"Player")
 		{
 			qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+
+			qGameObject* Warning = pCurLevel->FindObjectByName(L"Warning");
+			
+			Warning->Transform()->SetRelativeScale(1600.f, 900.f, 1.f);
+			Warning->FSM()->ChangeState(L"WarningFlip");
+
+
 			qGameObject* bossUI = pCurLevel->FindObjectByName(L"bossUI");
 			bossUI->Transform()->SetRelativeScale(1600.f, 900.f, 1.f);
 

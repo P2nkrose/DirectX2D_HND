@@ -227,6 +227,7 @@ call CodeGen.exe</Command>
     <ClInclude Include="qSkeletonDeathState.h" />
     <ClInclude Include="qSkeletonIdleState.h" />
     <ClInclude Include="qStateMgr.h" />
+    <ClInclude Include="qWarningState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -302,6 +303,7 @@ call CodeGen.exe</Command>
     <ClCompile Include="qSkeletonDeathState.cpp" />
     <ClCompile Include="qSkeletonIdleState.cpp" />
     <ClCompile Include="qStateMgr.cpp" />
+    <ClCompile Include="qWarningState.cpp" />
     <ClCompile Include="States.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

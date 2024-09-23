@@ -67,9 +67,6 @@
     <Filter Include="Scripts\3. Transfer\03. Post">
       <UniqueIdentifier>{0c47ea3f-bd8f-483a-94d2-93a9b12233d9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripts\1. UNIT\4. etc">
-      <UniqueIdentifier>{0d80d39b-e2b0-433f-900f-6f7353046f5d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scripts\1. UNIT\2. Monster\01. Skeleton">
       <UniqueIdentifier>{73bc1a57-0eb9-4423-a1ef-f25d2804d0f0}</UniqueIdentifier>
     </Filter>
@@ -78,12 +75,6 @@
     </Filter>
     <Filter Include="Scripts\1. UNIT\2. Monster\02. Drowned">
       <UniqueIdentifier>{f14dfa3b-b020-459c-9178-9033b43ff440}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\1. UNIT\4. etc\02. DeathSoul">
-      <UniqueIdentifier>{2bde85c0-30f7-4086-b6d9-91a968d00784}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Scripts\1. UNIT\4. etc\01. Collect">
-      <UniqueIdentifier>{f70d9014-68dc-437d-b1a2-e48a6d3ea599}</UniqueIdentifier>
     </Filter>
     <Filter Include="Scripts\1. UNIT\2. Monster\03. Ghost">
       <UniqueIdentifier>{b0f76843-bddd-4de8-9d4a-885ebd010d8c}</UniqueIdentifier>
@@ -100,16 +91,25 @@
     <Filter Include="Scripts\1. UNIT\3. Boss\BossSkill\03. Bleed">
       <UniqueIdentifier>{c1ba5f80-f454-4a00-9b69-ffa7d269df56}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripts\1. UNIT\4. etc\03. Clap">
+    <Filter Include="Scripts\4. ETC">
+      <UniqueIdentifier>{0d80d39b-e2b0-433f-900f-6f7353046f5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\4. ETC\02. DeathSoul">
+      <UniqueIdentifier>{2bde85c0-30f7-4086-b6d9-91a968d00784}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\4. ETC\01. Collect">
+      <UniqueIdentifier>{f70d9014-68dc-437d-b1a2-e48a6d3ea599}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scripts\4. ETC\03. Clap">
       <UniqueIdentifier>{c6122bc4-aa14-4a76-aaf6-7debde9c68fa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripts\1. UNIT\4. etc\04. HUD">
+    <Filter Include="Scripts\4. ETC\04. HUD">
       <UniqueIdentifier>{95680565-35de-412c-bf50-295b4bf5647c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripts\1. UNIT\4. etc\04. HUD\01. PlayerHUD">
+    <Filter Include="Scripts\4. ETC\04. HUD\01. PlayerHUD">
       <UniqueIdentifier>{90bb84f0-8acb-40ac-b3a9-b99356af4016}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scripts\1. UNIT\4. etc\04. HUD\02. BossHUD">
+    <Filter Include="Scripts\4. ETC\04. HUD\02. BossHUD">
       <UniqueIdentifier>{dacae5d5-debd-40b8-9ada-ea1103397b1a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -169,7 +169,7 @@
       <Filter>Scripts\3. Transfer\02. Elevator</Filter>
     </ClInclude>
     <ClInclude Include="qCollectScript.h">
-      <Filter>Scripts\1. UNIT\4. etc\01. Collect</Filter>
+      <Filter>Scripts\4. ETC\01. Collect</Filter>
     </ClInclude>
     <ClInclude Include="qSkeletonScript.h">
       <Filter>Scripts\1. UNIT\2. Monster\01. Skeleton</Filter>
@@ -184,7 +184,7 @@
       <Filter>Scripts\1. UNIT\2. Monster\02. Drowned</Filter>
     </ClInclude>
     <ClInclude Include="qDeathSoulScript.h">
-      <Filter>Scripts\1. UNIT\4. etc\02. DeathSoul</Filter>
+      <Filter>Scripts\4. ETC\02. DeathSoul</Filter>
     </ClInclude>
     <ClInclude Include="qSkeletonAttackScript.h">
       <Filter>Scripts\1. UNIT\2. Monster\01. Skeleton</Filter>
@@ -199,7 +199,7 @@
       <Filter>Scripts\1. UNIT\2. Monster\03. Ghost</Filter>
     </ClInclude>
     <ClInclude Include="qClapScript.h">
-      <Filter>Scripts\1. UNIT\4. etc\03. Clap</Filter>
+      <Filter>Scripts\4. ETC\03. Clap</Filter>
     </ClInclude>
     <ClInclude Include="qBossScript.h">
       <Filter>Scripts\1. UNIT\3. Boss</Filter>
@@ -214,10 +214,10 @@
       <Filter>Scripts\1. UNIT\3. Boss\BossSkill\03. Bleed</Filter>
     </ClInclude>
     <ClInclude Include="qPlayerHUDScript.h">
-      <Filter>Scripts\1. UNIT\4. etc\04. HUD\01. PlayerHUD</Filter>
+      <Filter>Scripts\4. ETC\04. HUD\01. PlayerHUD</Filter>
     </ClInclude>
     <ClInclude Include="qBossHUDScript.h">
-      <Filter>Scripts\1. UNIT\4. etc\04. HUD\02. BossHUD</Filter>
+      <Filter>Scripts\4. ETC\04. HUD\02. BossHUD</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -276,7 +276,7 @@
       <Filter>Scripts\3. Transfer\02. Elevator</Filter>
     </ClCompile>
     <ClCompile Include="qCollectScript.cpp">
-      <Filter>Scripts\1. UNIT\4. etc\01. Collect</Filter>
+      <Filter>Scripts\4. ETC\01. Collect</Filter>
     </ClCompile>
     <ClCompile Include="qSkeletonScript.cpp">
       <Filter>Scripts\1. UNIT\2. Monster\01. Skeleton</Filter>
@@ -291,7 +291,7 @@
       <Filter>Scripts\1. UNIT\2. Monster\02. Drowned</Filter>
     </ClCompile>
     <ClCompile Include="qDeathSoulScript.cpp">
-      <Filter>Scripts\1. UNIT\4. etc\02. DeathSoul</Filter>
+      <Filter>Scripts\4. ETC\02. DeathSoul</Filter>
     </ClCompile>
     <ClCompile Include="qSkeletonAttackScript.cpp">
       <Filter>Scripts\1. UNIT\2. Monster\01. Skeleton</Filter>
@@ -306,7 +306,7 @@
       <Filter>Scripts\1. UNIT\2. Monster\03. Ghost</Filter>
     </ClCompile>
     <ClCompile Include="qClapScript.cpp">
-      <Filter>Scripts\1. UNIT\4. etc\03. Clap</Filter>
+      <Filter>Scripts\4. ETC\03. Clap</Filter>
     </ClCompile>
     <ClCompile Include="qBossScript.cpp">
       <Filter>Scripts\1. UNIT\3. Boss</Filter>
@@ -321,10 +321,10 @@
       <Filter>Scripts\1. UNIT\3. Boss\BossSkill\03. Bleed</Filter>
     </ClCompile>
     <ClCompile Include="qPlayerHUDScript.cpp">
-      <Filter>Scripts\1. UNIT\4. etc\04. HUD\01. PlayerHUD</Filter>
+      <Filter>Scripts\4. ETC\04. HUD\01. PlayerHUD</Filter>
     </ClCompile>
     <ClCompile Include="qBossHUDScript.cpp">
-      <Filter>Scripts\1. UNIT\4. etc\04. HUD\02. BossHUD</Filter>
+      <Filter>Scripts\4. ETC\04. HUD\02. BossHUD</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

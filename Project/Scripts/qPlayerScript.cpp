@@ -347,27 +347,45 @@ void qPlayerScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherO
 		FSM()->ChangeState(L"Bump");
 	}
 
+	//qPlayerScript* PlayerScript = GetOwner()->GetScript<qPlayerScript>();
+	//
+	//if (PlayerScript == nullptr)
+	//	return;
 
-	if (_OtherObject->GetName() == L"Skeleton" ||
-		_OtherObject->GetName() == L"Drowned" ||
-		_OtherObject->GetName() == L"Ghost" ||
-		_OtherObject->GetName() == L"Boss" ||
-		_OtherObject->GetName() == L"SkeletonAttack" ||
-		_OtherObject->GetName() == L"DrownedAttack" ||
-		_OtherObject->GetName() == L"GhostAttack")
+	if (FSM()->GetCurState() == nullptr)
+		return;
+
+	wstring CurStateName = qStateMgr::GetStateName(FSM()->GetCurState());
+	
+	if (CurStateName == L"qPlayerDashState")
 	{
-		PlusFiveDamageCount();
+
+	}
+	else
+	{
+		if (_OtherObject->GetName() == L"Skeleton" ||
+			_OtherObject->GetName() == L"Drowned" ||
+			_OtherObject->GetName() == L"Ghost" ||
+			_OtherObject->GetName() == L"Boss" ||
+			_OtherObject->GetName() == L"SkeletonAttack" ||
+			_OtherObject->GetName() == L"DrownedAttack" ||
+			_OtherObject->GetName() == L"GhostAttack")
+		{
+			PlusFiveDamageCount();
+		}
+
+		if (_OtherObject->GetName() == L"SkeletonAttackHitbox" ||
+			_OtherObject->GetName() == L"DrownedAttackHitbox" ||
+			_OtherObject->GetName() == L"GhostAttackHitbox" ||
+			_OtherObject->GetName() == L"PunchHitbox" ||
+			_OtherObject->GetName() == L"SlamHitbox" ||
+			_OtherObject->GetName() == L"BleedHitbox")
+		{
+			PlusTenDamageCount();
+		}
 	}
 
-	if (_OtherObject->GetName() == L"SkeletonAttackHitbox" ||
-		_OtherObject->GetName() == L"DrownedAttackHitbox" ||
-		_OtherObject->GetName() == L"GhostAttackHitbox" || 
-		_OtherObject->GetName() == L"PunchHitbox" || 
-		_OtherObject->GetName() == L"SlamHitbox" || 
-		_OtherObject->GetName() == L"BleedHitbox")
-	{
-		PlusTenDamageCount();
-	}
+	
 
 	if (_OtherObject->GetName() == L"Item")
 	{

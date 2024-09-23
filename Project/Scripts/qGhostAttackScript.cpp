@@ -37,6 +37,11 @@ void qGhostAttackScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _O
 	{
 		if (_OtherObject->GetName() == L"Player")
 		{
+			qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
+
+			if (PlayerScript == nullptr)
+				return;
+
 			wstring CurStateName = qStateMgr::GetStateName(_OtherObject->FSM()->GetCurState());
 			if (CurStateName == L"qPlayerDashState")
 			{
@@ -44,17 +49,16 @@ void qGhostAttackScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _O
 			}
 			else
 			{
+				// 플레이어 피깎기
+				PlayerScript->Hit(m_GhostAttackDamage);
+
 				_OtherObject->FSM()->ChangeState(L"Bump");
 			}
 
 
-			qPlayerScript* PlayerScript = _OtherObject->GetScript<qPlayerScript>();
+			
 
-			if (PlayerScript == nullptr)
-				return;
-
-			// 플레이어 피깎기
-			PlayerScript->Hit(m_GhostAttackDamage);
+			
 		}
 	}
 }

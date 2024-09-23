@@ -67,6 +67,7 @@
 #include "qSkeletonAttackState.h"
 #include "qSkeletonDeathState.h"
 #include "qSkeletonIdleState.h"
+#include "qWarningState.h"
 
 void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 {
@@ -136,6 +137,7 @@ void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qSkeletonAttackState");
 	_vec.push_back(L"qSkeletonDeathState");
 	_vec.push_back(L"qSkeletonIdleState");
+	_vec.push_back(L"qWarningState");
 }
 
 qState * qStateMgr::GetState(const wstring& _strStateName)
@@ -272,6 +274,8 @@ qState * qStateMgr::GetState(const wstring& _strStateName)
 		return new qSkeletonDeathState;
 	if (L"qSkeletonIdleState" == _strStateName)
 		return new qSkeletonIdleState;
+	if (L"qWarningState" == _strStateName)
+		return new qWarningState;
 	return nullptr;
 }
 
@@ -476,6 +480,9 @@ qState * qStateMgr::GetState(UINT _iStateType)
 		break;
 	case (UINT)STATE_TYPE::SKELETONIDLESTATE:
 		return new qSkeletonIdleState;
+		break;
+	case (UINT)STATE_TYPE::WARNINGSTATE:
+		return new qWarningState;
 		break;
 	}
 	return nullptr;
@@ -747,6 +754,10 @@ const wchar_t * qStateMgr::GetStateName(qState * _pState)
 
 	case STATE_TYPE::SKELETONIDLESTATE:
 		return L"qSkeletonIdleState";
+		break;
+
+	case STATE_TYPE::WARNINGSTATE:
+		return L"qWarningState";
 		break;
 
 	}
