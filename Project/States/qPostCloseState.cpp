@@ -37,14 +37,20 @@ void qPostCloseState::Enter()
 	{
 		GetOwner()->Transform()->SetRelativePos(Vec3(474.f, -120.f, 10.f));
 		GetOwner()->Transform()->SetRelativeScale(Vec3(1600.f, 900.f, 0.f));
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\background\\stage1.wav", L"sound\\background\\stage1.wav");
+		pSound->Stop();
 	}
 	if (pCurLevel->GetName() == L"stage2")
 	{
 		// 레벨2 close시 위치 설정
-		GetOwner()->Transform()->SetRelativePos(Vec3(4926.f, -120.f, 10.f));
+		GetOwner()->Transform()->SetRelativePos(Vec3(4926.f, 100.f, 10.f));
 		GetOwner()->Transform()->SetRelativeScale(Vec3(1600.f, 900.f, 0.f));
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\background\\stage2.wav", L"sound\\background\\stage2.wav");
+		pSound->Stop();
 	}
 
+	Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\transfer\\postclose.wav", L"sound\\transfer\\postclose.wav");
+	pSound->Play(1, 0.8, true);
 
 	GetOwner()->FlipBookComponent()->Play(4, 15, false);
 }
@@ -69,9 +75,10 @@ void qPostCloseState::FinalTick()
 		{
 			ChangeLevel(pStage2, LEVEL_STATE::PLAY);
 		}
-		else if (pCurLevel->GetName() == L"stage2")
+		if (pCurLevel->GetName() == L"stage2")
 		{
 			ChangeLevel(pStageBoss, LEVEL_STATE::PLAY);
+
 		}
 	}
 

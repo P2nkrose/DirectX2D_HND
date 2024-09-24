@@ -31,5 +31,7 @@ private:
 	qGameObject*		m_FollowObj;
 
 	bool				m_clap;
+
+	Vec3				fixPos;
 };
 

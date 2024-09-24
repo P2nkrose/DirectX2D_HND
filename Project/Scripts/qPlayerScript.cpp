@@ -109,6 +109,9 @@ void qPlayerScript::Begin()
 	if (pCurLevel->GetName() == L"stage1")
 	{
 		FSM()->ChangeState(L"Idle");
+
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\transfer\\postopen.wav", L"sound\\transfer\\postopen.wav");
+		pSound->Play(1, 0.8, true);
 		//FlipBookComponent()->Play(0, 10, false);
 	}
 
@@ -117,6 +120,12 @@ void qPlayerScript::Begin()
 		//RigidBody()->SetGround(true);
 		//FlipBookComponent()->Play(25, 10, false);
 		FSM()->ChangeState(L"Null");
+
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\transfer\\postopen.wav", L"sound\\transfer\\postopen.wav");
+		pSound->Play(1, 0.8, true);
+
+		Ptr<qSound> pSoundStage2 = qAssetMgr::GetInst()->Load<qSound>(L"sound\\background\\stage2.wav", L"sound\\background\\stage2.wav");
+		pSoundStage2->Play(0, 0.5, true);
 	}
 
 	if (pCurLevel->GetName() == L"stageboss")
@@ -124,6 +133,12 @@ void qPlayerScript::Begin()
 		
 		//FlipBookComponent()->Play(0, 10, false);
 		FSM()->ChangeState(L"Null");
+
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\transfer\\postopen.wav", L"sound\\transfer\\postopen.wav");
+		pSound->Play(1, 0.8, true);
+
+		Ptr<qSound> pSoundboss = qAssetMgr::GetInst()->Load<qSound>(L"sound\\background\\boss.wav", L"sound\\background\\boss.wav");
+		pSoundboss->Play(0, 0.3, true);
 	}
 
 	

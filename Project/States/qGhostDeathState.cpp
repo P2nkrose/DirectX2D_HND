@@ -63,7 +63,7 @@ void qGhostDeathState::FinalTick()
 		Vec3 MonsterPos = GetOwner()->Transform()->GetRelativePos();
 		Vec3 MonsterScale = GetOwner()->Transform()->GetRelativeScale();
 
-		DeathSoul->Transform()->SetRelativePos(Vec3(MonsterPos.x, MonsterPos.y + 300.f/*(MonsterScale.y * 0.5f)*/, MonsterPos.z));
+		DeathSoul->Transform()->SetRelativePos(Vec3(MonsterPos.x, MonsterPos.y + 300.f/*(MonsterScale.y * 0.5f)*/, 30.f));
 		DeathSoul->Transform()->SetRelativeScale(800.f, 800.f, 1.f);
 
 		DeathSoul->AddComponent(new qMeshRender);

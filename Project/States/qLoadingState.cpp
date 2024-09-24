@@ -29,6 +29,10 @@ void qLoadingState::FinalTick()
 		qLevel* pStage1 = qLevelMgr::GetInst()->GetLevelbyName(L"stage1");
 		
 		ChangeLevel(pStage1, LEVEL_STATE::PLAY);
+
+		// Sound
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\background\\stage1.wav", L"sound\\background\\stage1.wav");
+		pSound->Play(0, 0.7, true);
 	}
 }
 

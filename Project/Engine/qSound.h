@@ -17,6 +17,8 @@ public:
 	void RemoveChannel(FMOD::Channel* _pTargetChannel);
 	void Stop();
 
+	bool IsSoundFinished();
+
 	// 0 ~ 1
 	void SetVolume(float _f, int _iChannelIdx);
 

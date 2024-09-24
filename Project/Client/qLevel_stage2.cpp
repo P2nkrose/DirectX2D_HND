@@ -111,7 +111,8 @@
 void qLevel_stage2::CreateStage2()
 {
 	// Sound
-
+	Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\background\\stage2.wav", L"sound\\background\\stage2.wav");
+	pSound->Play(0, 0.5, true);
 
 	// Material
 	Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
@@ -194,7 +195,7 @@ void qLevel_stage2::CreateStage2()
 	pLightUI->AddComponent(new qTransform);
 	pLightUI->AddComponent(new qLight2D);
 
-	pLightUI->Light2D()->SetLightType(LIGHT_TYPE::POINT);
+	pLightUI->Light2D()->SetLightType(LIGHT_TYPE::DIRECTIONAL);
 	pLightUI->Light2D()->SetLightColor(Vec3(1.f, 1.f, 1.f));
 	pLightUI->Light2D()->SetRadius(1000.f);
 
@@ -204,7 +205,7 @@ void qLevel_stage2::CreateStage2()
 	UI->SetName(L"UI");
 	UI->AddChild(pLightUI);
 	UI->AddComponent(new qTransform);
-	UI->Transform()->SetRelativePos(0.f, -15.f, 30.f);
+	UI->Transform()->SetRelativePos(0.f, -15.f, 10.f);
 	UI->Transform()->SetRelativeScale(1600.f, 900.f, 1.f);
 
 
@@ -224,7 +225,7 @@ void qLevel_stage2::CreateStage2()
 	qGameObject* PlayerHUD = new qGameObject;
 	PlayerHUD->SetName(L"PlayerHUD");
 	PlayerHUD->AddComponent(new qTransform);
-	PlayerHUD->Transform()->SetRelativePos(-427.f, 372.f, 10.f);
+	PlayerHUD->Transform()->SetRelativePos(-427.f, 372.f, 1.f);
 	PlayerHUD->Transform()->SetRelativeScale(413.f, 10.f, 1.f);
 
 	PlayerHUD->AddComponent(new qPlayerHUDScript);
@@ -775,7 +776,7 @@ void qLevel_stage2::CreateStage2()
 
 	pPostProcess1->AddComponent(new qPostScript);
 	pPostProcess1->AddComponent(new qTransform);
-	pPostProcess1->Transform()->SetRelativePos(Vec3(-4910.f, 0.f, 30.f));
+	pPostProcess1->Transform()->SetRelativePos(Vec3(-4910.f, 0.f, 1.f));
 	pPostProcess1->Transform()->SetRelativeScale(Vec3(1600.f, 900.f, 0.f));
 
 	pPostProcess1->AddComponent(new qMeshRender);
@@ -807,7 +808,7 @@ void qLevel_stage2::CreateStage2()
 
 	pPostProcess2->AddComponent(new qMeshRender);
 	pPostProcess2->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	pPostProcess2->MeshRender()->SetMaterial(pMtrl);
+	pPostProcess2->MeshRender()->SetMaterial(pAlphaBlendMtrl);
 
 	pPostProcess2->AddComponent(new qFlipBookComponent);
 
@@ -829,7 +830,7 @@ void qLevel_stage2::CreateStage2()
 	qGameObject* pPlayer = new qGameObject;
 	pPlayer->SetName(L"Player");
 	pPlayer->AddComponent(new qPlayerScript);
-	pPlayer->AddChild(pLightPlayer);
+	//pPlayer->AddChild(pLightPlayer);
 
 	pPlayer->AddComponent(new qTransform);
 	pPlayer->Transform()->SetRelativePos(-4910.f, -200.f, 10.f);

@@ -136,6 +136,15 @@ void qCameraMoveScript::OrthoGraphicMove()
 	{
 		Vec3 PlayerPos = m_FollowObj->Transform()->GetRelativePos();
 
+		static bool flag = false;
+
+		if (PlayerPos.x >= 4900.f && !flag)
+		{
+			fixPos = vPos;
+
+			flag = true;
+		}
+
 		if (PlayerPos.x <= -4937.f)
 		{
 			vPos.x = -4937.f;
@@ -153,10 +162,18 @@ void qCameraMoveScript::OrthoGraphicMove()
 		{
 			vPos.y = 456.f;
 		}
+		else if (PlayerPos.x >= 5000.f)
+		{
+			vPos.y = fixPos.y + 200.f;
+		}
 		else
 		{
 			vPos.y = PlayerPos.y + 200.f;
 		}
+
+
+
+
 
 
 		//vPos.y = -120.f;

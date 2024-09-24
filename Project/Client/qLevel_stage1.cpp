@@ -86,8 +86,8 @@
 void qLevel_stage1::CreateStage1()
 {
 	// Sound
-	Ptr<qSound> pSound = qAssetMgr::GetInst()->FindAsset<qSound>(L"sound\\background\\stage1.wav");
-	pSound->SetName(L"stage1sound");
+	Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\background\\stage1.wav", L"sound\\background\\stage1.wav");
+	pSound->Play(0, 0.5, true);
 
 	// Material
 	Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
@@ -340,7 +340,7 @@ void qLevel_stage1::CreateStage1()
 
 	pPostProcess1->AddComponent(new qMeshRender);
 	pPostProcess1->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	pPostProcess1->MeshRender()->SetMaterial(pMtrl);
+	pPostProcess1->MeshRender()->SetMaterial(pAlphaBlendMtrl);
 
 	pPostProcess1->AddComponent(new qFlipBookComponent);
 
@@ -367,7 +367,7 @@ void qLevel_stage1::CreateStage1()
 
 	pPostProcess->AddComponent(new qMeshRender);
 	pPostProcess->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	pPostProcess->MeshRender()->SetMaterial(pMtrl);
+	pPostProcess->MeshRender()->SetMaterial(pAlphaBlendMtrl);
 
 	pPostProcess->AddComponent(new qFlipBookComponent);
 

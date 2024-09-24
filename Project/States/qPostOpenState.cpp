@@ -36,7 +36,6 @@ void qPostOpenState::Enter()
 	//	GetOwner()->Transform()->SetRelativeScale(Vec3(1600.f, 900.f, 0.f));
 	//}
 
-	
 
 	GetOwner()->FlipBookComponent()->Play(5, 20, false);
 }
@@ -48,6 +47,7 @@ void qPostOpenState::FinalTick()
 	static bool flag2 = false;
 
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+
 
 	if (pCurLevel->GetName() == L"stage1" && GetOwner()->FlipBookComponent()->IsCurFlipBookFinished() && !flag0)
 	{
@@ -69,8 +69,12 @@ void qPostOpenState::FinalTick()
 
 		flag2 = true;
 	}
+
+
+	
 }
 
 void qPostOpenState::Exit()
 {
+
 }

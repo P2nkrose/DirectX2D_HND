@@ -83,8 +83,10 @@
 void qLevel_title::CreateTitle()
 {
 	// Sound
-	//Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\background\\title.wav", L"sound\\background\\title.wav");
-	//pSound->Play(0, 0.5, true);
+	Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\background\\title.wav", L"sound\\background\\title.wav");
+	pSound->Play(0, 0.5, true);
+
+
 
 
 	// Material
@@ -251,7 +253,7 @@ void qLevel_title::CreateTitle()
 
 	pPostProcess->AddComponent(new qMeshRender);
 	pPostProcess->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-	pPostProcess->MeshRender()->SetMaterial(pMtrl);
+	pPostProcess->MeshRender()->SetMaterial(pAlphaBlendMtrl);
 
 	pPostProcess->AddComponent(new qFlipBookComponent);
 

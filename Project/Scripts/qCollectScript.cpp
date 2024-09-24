@@ -32,6 +32,8 @@ void qCollectScript::Tick()
 		if (KEY_TAP(KEY::DOWN))
 		{
 			GetOwner()->Transform()->SetRelativePos(m_OptionPos);
+			Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\transfer\\menu.wav", L"sound\\transfer\\menu.wav");
+			pSound->Play(1, 0.8, true);
 		}
 	}
 
@@ -40,10 +42,14 @@ void qCollectScript::Tick()
 		if (KEY_TAP(KEY::UP))
 		{
 			GetOwner()->Transform()->SetRelativePos(m_PlayPos);
+			Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\transfer\\menu.wav", L"sound\\transfer\\menu.wav");
+			pSound->Play(1, 0.8, true);
 		}
 		else if (KEY_TAP(KEY::DOWN))
 		{
 			GetOwner()->Transform()->SetRelativePos(m_CreditPos);
+			Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\transfer\\menu.wav", L"sound\\transfer\\menu.wav");
+			pSound->Play(1, 0.8, true);
 		}
 	}
 
@@ -52,10 +58,14 @@ void qCollectScript::Tick()
 		if (KEY_TAP(KEY::UP))
 		{
 			GetOwner()->Transform()->SetRelativePos(m_OptionPos);
+			Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\transfer\\menu.wav", L"sound\\transfer\\menu.wav");
+			pSound->Play(1, 0.8, true);
 		}
 		else if (KEY_TAP(KEY::DOWN))
 		{
 			GetOwner()->Transform()->SetRelativePos(m_ExitPos);
+			Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\transfer\\menu.wav", L"sound\\transfer\\menu.wav");
+			pSound->Play(1, 0.8, true);
 		}
 	}
 
@@ -64,6 +74,8 @@ void qCollectScript::Tick()
 		if (KEY_TAP(KEY::UP))
 		{
 			GetOwner()->Transform()->SetRelativePos(m_CreditPos);
+			Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\transfer\\menu.wav", L"sound\\transfer\\menu.wav");
+			pSound->Play(1, 0.8, true);
 		}
 	}
 
@@ -72,6 +84,9 @@ void qCollectScript::Tick()
 	{
 		if (KEY_TAP(KEY::SPACE))
 		{
+			Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\transfer\\gameplay.wav", L"sound\\transfer\\gameplay.wav");
+			pSound->Play(1, 0.7, true);
+
 			qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 			qGameObject* pPostClose = pCurLevel->FindObjectByName(L"PostClose");
 

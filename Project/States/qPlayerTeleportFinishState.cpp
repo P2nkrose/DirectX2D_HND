@@ -29,12 +29,7 @@ void qPlayerTeleportFinishState::Enter()
 		GetOwner()->Transform()->SetRelativePos(875.f, -484.f, 10.f);
 		GetOwner()->Transform()->SetRelativeScale(0.01f, 0.01f, 0.f);
 	}
-	if (pCurLevel->GetName() == L"stage2")
-	{
-		GetOwner()->RigidBody()->SetGround(true);
-		GetOwner()->Transform()->SetRelativeScale(0.01f, 0.01f, 0.f);
-		GetOwner()->Transform()->SetRelativePos(5207.f, -227.f, 10.f);
-	}
+	
 	
 
 	
@@ -46,6 +41,20 @@ void qPlayerTeleportFinishState::Enter()
 
 void qPlayerTeleportFinishState::FinalTick()
 {
+	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
+
+	static bool flag = false;
+
+	if (pCurLevel->GetName() == L"stage2" && !flag)
+	{
+		GetOwner()->RigidBody()->SetGround(true);
+		GetOwner()->Transform()->SetRelativeScale(0.01f, 0.01f, 0.f);
+		GetOwner()->Transform()->SetRelativePos(5207.f, -227.f, 10.f);
+
+		flag = true;
+	}
+
+
 	//static bool flag = false;
 
 	//qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();

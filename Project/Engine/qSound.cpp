@@ -72,6 +72,31 @@ void qSound::Stop()
 	}
 }
 
+bool qSound::IsSoundFinished()
+{
+	bool isPlaying = false;
+	list<FMOD::Channel*>::iterator iter = m_listChannel.begin();
+
+	// 재생 중인 모든 채널을 확인
+	for (; iter != m_listChannel.end(); ++iter)
+	{
+		if (*iter != nullptr)
+		{
+			// 사운드가 재생 중인지 확인
+			(*iter)->isPlaying(&isPlaying);
+
+			// 만약 하나라도 재생 중이라면 false 반환
+			if (isPlaying)
+			{
+				return false;
+			}
+		}
+	}
+
+	// 모든 채널에서 사운드가 끝났다면 true 반환
+	return true;
+}
+
 
 void qSound::SetVolume(float _f, int _iChannelIdx)
 {
