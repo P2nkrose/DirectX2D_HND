@@ -224,9 +224,7 @@ struct tUnitInfo
 {
 	float		MaxHP;
 	float		HP;
-
 	float		Att;
-
 	float		Speed;
 
 	DIRECTION	Dir = DIRECTION::RIGHT;

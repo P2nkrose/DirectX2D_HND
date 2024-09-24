@@ -7,8 +7,8 @@
 
 qDrownedIdleState::qDrownedIdleState()
 	: qState((UINT)STATE_TYPE::DROWNEDIDLESTATE)
-	, m_DetectRange(800.f)
-	, m_AttackRange(400.f)
+	, m_DetectRange(600.f)
+	, m_AttackRange(200.f)
 	, m_Bang(nullptr)
 	, Bangflag(false)
 {
@@ -26,7 +26,8 @@ void qDrownedIdleState::Enter()
 
 void qDrownedIdleState::FinalTick()
 {
-	Ptr<qMaterial> pBangMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\bang.mtrl");
+	//Ptr<qMaterial> pBangMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\bang.mtrl");
+	Ptr<qMaterial> pEffectMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"EffectMtrl");
 
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 	qGameObject* Player = pCurLevel->FindObjectByName(L"Player");
@@ -42,13 +43,16 @@ void qDrownedIdleState::FinalTick()
 
 	if (Dist < m_DetectRange && !Bangflag)
 	{
+		
 		// ´À³¦Ç¥ »ý¼º
 		m_Bang = new qGameObject;
 		m_Bang->SetName(L"DrownedBang");
 
 		m_Bang->AddComponent(new qMeshRender);
 		m_Bang->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-		m_Bang->MeshRender()->SetMaterial(pBangMtrl);
+		m_Bang->MeshRender()->SetMaterial(pEffectMtrl);
+		m_Bang->MeshRender()->GetMaterial()->SetScalarParam(VEC4_0, Vec4(20.f, 3.f, 3.f, 1.f));
+		m_Bang->MeshRender()->GetMaterial()->SetTexParam(TEX_0, qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\monster\\bang.png"));
 
 		m_Bang->AddComponent(new qTransform);
 		m_Bang->Transform()->SetRelativeScale(25.f, 80.f, 1.f);

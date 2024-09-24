@@ -194,7 +194,9 @@ call CodeGen.exe</Command>
     <ClInclude Include="qGhostIdleState.h" />
     <ClInclude Include="qGhostRunState.h" />
     <ClInclude Include="qGhostUturnState.h" />
+    <ClInclude Include="qLoading1State.h" />
     <ClInclude Include="qLoadingState.h" />
+    <ClInclude Include="qLogoState.h" />
     <ClInclude Include="qPlayerBookShootState.h" />
     <ClInclude Include="qPlayerBumpState.h" />
     <ClInclude Include="qPlayerCombo1State.h" />
@@ -270,7 +272,9 @@ call CodeGen.exe</Command>
     <ClCompile Include="qGhostIdleState.cpp" />
     <ClCompile Include="qGhostRunState.cpp" />
     <ClCompile Include="qGhostUturnState.cpp" />
+    <ClCompile Include="qLoading1State.cpp" />
     <ClCompile Include="qLoadingState.cpp" />
+    <ClCompile Include="qLogoState.cpp" />
     <ClCompile Include="qPlayerBookShootState.cpp" />
     <ClCompile Include="qPlayerBumpState.cpp" />
     <ClCompile Include="qPlayerCombo1State.cpp" />

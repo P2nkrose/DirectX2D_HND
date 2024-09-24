@@ -395,6 +395,28 @@ void qPlayerScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherO
 		_OtherObject->Destroy();
 	}
 
+
+
+	//if (_OtherObject->GetName() == L"Platform")
+	//{
+	//	qRigidBody* pRB = GetOwner()->GetComponent(COMPONENT_TYPE::RIGIDBODY)->RigidBody();
+	//	Vec3 PlatformPos = _OtherObject->Transform()->GetRelativePos();
+	//
+	//	Vec3 PlayerPos = GetOwner()->Transform()->GetRelativePos();
+	//	Vec3 PlayerScale = GetOwner()->Transform()->GetRelativeScale();
+	//
+	//	if (PlatformPos.y <= PlayerPos.y - (PlayerScale.y * 0.5f))
+	//	{
+	//		GetOwner()->RigidBody()->SetGround(true);
+	//		SetCurrentPlatformPos(PlatformPos);
+	//	}
+	//	else
+	//	{
+	//		GetOwner()->RigidBody()->SetGround(true);
+	//	}
+	//
+	//}
+
 }
 
 void qPlayerScript::Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)
@@ -422,6 +444,10 @@ void qPlayerScript::Overlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject
 
 void qPlayerScript::EndOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherObject, qCollider2D* _OtherCollider)
 {
+	//if (_OtherObject->GetName() == L"Platform")
+	//{
+	//	GetOwner()->RigidBody()->SetGround(false);
+	//}
 }
 
 

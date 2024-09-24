@@ -32,7 +32,9 @@ qGhostHitState
 qGhostIdleState
 qGhostRunState
 qGhostUturnState
+qLoading1State
 qLoadingState
+qLogoState
 qPlayerBookShootState
 qPlayerBumpState
 qPlayerCombo1State

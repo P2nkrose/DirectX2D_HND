@@ -189,6 +189,8 @@
     <ClInclude Include="qLevelSaveLoad.h" />
     <ClInclude Include="qLevel_boss.h" />
     <ClInclude Include="qLevel_loading.h" />
+    <ClInclude Include="qLevel_loading1.h" />
+    <ClInclude Include="qLevel_logo.h" />
     <ClInclude Include="qLevel_stage1.h" />
     <ClInclude Include="qLevel_stage2.h" />
     <ClInclude Include="qLevel_title.h" />
@@ -257,6 +259,8 @@
     <ClCompile Include="qLevelSaveLoad.cpp" />
     <ClCompile Include="qLevel_boss.cpp" />
     <ClCompile Include="qLevel_loading.cpp" />
+    <ClCompile Include="qLevel_loading1.cpp" />
+    <ClCompile Include="qLevel_logo.cpp" />
     <ClCompile Include="qLevel_stage1.cpp" />
     <ClCompile Include="qLevel_stage2.cpp" />
     <ClCompile Include="qLevel_title.cpp" />

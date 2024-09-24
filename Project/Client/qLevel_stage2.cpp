@@ -275,7 +275,7 @@ void qLevel_stage2::CreateStage2()
 	pPlatform2->AddComponent(new qPlatformScript);
 	pPlatform2->AddComponent(new qTransform);
 	pPlatform2->Transform()->SetRelativePos(-5092.f, -615.f, 10.f);
-	pPlatform2->Transform()->SetRelativeScale(1302.f, 15.f, 1.f);
+	pPlatform2->Transform()->SetRelativeScale(1302.f, 5.f, 1.f);
 	pPlatform2->AddComponent(new qCollider2D);
 	pPlatform2->Collider2D()->SetIndependentScale(false);
 	pPlatform2->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -288,7 +288,7 @@ void qLevel_stage2::CreateStage2()
 	pPlatform3->AddComponent(new qPlatformScript);
 	pPlatform3->AddComponent(new qTransform);
 	pPlatform3->Transform()->SetRelativePos(-3920.f, -153.f, 10.f);
-	pPlatform3->Transform()->SetRelativeScale(502.f, 15.f, 1.f);
+	pPlatform3->Transform()->SetRelativeScale(502.f, 5.f, 1.f);
 	pPlatform3->AddComponent(new qCollider2D);
 	pPlatform3->Collider2D()->SetIndependentScale(false);
 	pPlatform3->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -301,7 +301,7 @@ void qLevel_stage2::CreateStage2()
 	pPlatform4->AddComponent(new qPlatformScript);
 	pPlatform4->AddComponent(new qTransform);
 	pPlatform4->Transform()->SetRelativePos(-4061.f, -667.f, 10.f);
-	pPlatform4->Transform()->SetRelativeScale(770.f, 15.f, 1.f);
+	pPlatform4->Transform()->SetRelativeScale(770.f, 5.f, 1.f);
 	pPlatform4->AddComponent(new qCollider2D);
 	pPlatform4->Collider2D()->SetIndependentScale(false);
 	pPlatform4->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -314,7 +314,7 @@ void qLevel_stage2::CreateStage2()
 	pPlatform5->AddComponent(new qPlatformScript);
 	pPlatform5->AddComponent(new qTransform);
 	pPlatform5->Transform()->SetRelativePos(-3385.f, -469.f, 10.f);
-	pPlatform5->Transform()->SetRelativeScale(698.f, 15.f, 1.f);
+	pPlatform5->Transform()->SetRelativeScale(698.f, 5.f, 1.f);
 	pPlatform5->AddComponent(new qCollider2D);
 	pPlatform5->Collider2D()->SetIndependentScale(false);
 	pPlatform5->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -327,7 +327,7 @@ void qLevel_stage2::CreateStage2()
 	pPlatform6->AddComponent(new qPlatformScript);
 	pPlatform6->AddComponent(new qTransform);
 	pPlatform6->Transform()->SetRelativePos(-2966.f, -153.f, 10.f);
-	pPlatform6->Transform()->SetRelativeScale(501.f, 15.f, 1.f);
+	pPlatform6->Transform()->SetRelativeScale(501.f, 5.f, 1.f);
 	pPlatform6->AddComponent(new qCollider2D);
 	pPlatform6->Collider2D()->SetIndependentScale(false);
 	pPlatform6->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -340,7 +340,7 @@ void qLevel_stage2::CreateStage2()
 	pPlatform7->AddComponent(new qPlatformScript);
 	pPlatform7->AddComponent(new qTransform);
 	pPlatform7->Transform()->SetRelativePos(-2266.f, 204.f, 10.f);
-	pPlatform7->Transform()->SetRelativeScale(1224.f, 15.f, 1.f);
+	pPlatform7->Transform()->SetRelativeScale(1224.f, 5.f, 1.f);
 	pPlatform7->AddComponent(new qCollider2D);
 	pPlatform7->Collider2D()->SetIndependentScale(false);
 	pPlatform7->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -353,7 +353,7 @@ void qLevel_stage2::CreateStage2()
 	pPlatform8->AddComponent(new qPlatformScript);
 	pPlatform8->AddComponent(new qTransform);
 	pPlatform8->Transform()->SetRelativePos(-1870.f, -156.f, 10.f);
-	pPlatform8->Transform()->SetRelativeScale(1427.f, 15.f, 1.f);
+	pPlatform8->Transform()->SetRelativeScale(1427.f, 5.f, 1.f);
 	pPlatform8->AddComponent(new qCollider2D);
 	pPlatform8->Collider2D()->SetIndependentScale(false);
 	pPlatform8->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -367,7 +367,7 @@ void qLevel_stage2::CreateStage2()
 	pPlatform9->AddComponent(new qPlatformScript);
 	pPlatform9->AddComponent(new qTransform);
 	pPlatform9->Transform()->SetRelativePos(-991.f, 64.f, 10.f);
-	pPlatform9->Transform()->SetRelativeScale(633.f, 15.f, 1.f);
+	pPlatform9->Transform()->SetRelativeScale(633.f, 5.f, 1.f);
 	pPlatform9->AddComponent(new qCollider2D);
 	pPlatform9->Collider2D()->SetIndependentScale(false);
 	pPlatform9->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -380,7 +380,7 @@ void qLevel_stage2::CreateStage2()
 	pPlatform10->AddComponent(new qPlatformScript);
 	pPlatform10->AddComponent(new qTransform);
 	pPlatform10->Transform()->SetRelativePos(-253.f, -70.f, 10.f);
-	pPlatform10->Transform()->SetRelativeScale(566.f, 15.f, 1.f);
+	pPlatform10->Transform()->SetRelativeScale(566.f, 5.f, 1.f);
 	pPlatform10->AddComponent(new qCollider2D);
 	pPlatform10->Collider2D()->SetIndependentScale(false);
 	pPlatform10->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -393,7 +393,7 @@ void qLevel_stage2::CreateStage2()
 	pPlatform11->AddComponent(new qPlatformScript);
 	pPlatform11->AddComponent(new qTransform);
 	pPlatform11->Transform()->SetRelativePos(-592.f, -434.f, 10.f);
-	pPlatform11->Transform()->SetRelativeScale(884.f, 15.f, 1.f);
+	pPlatform11->Transform()->SetRelativeScale(884.f, 5.f, 1.f);
 	pPlatform11->AddComponent(new qCollider2D);
 	pPlatform11->Collider2D()->SetIndependentScale(false);
 	pPlatform11->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -406,7 +406,7 @@ void qLevel_stage2::CreateStage2()
 	pPlatform12->AddComponent(new qPlatformScript);
 	pPlatform12->AddComponent(new qTransform);
 	pPlatform12->Transform()->SetRelativePos(70.f, -290.f, 10.f);
-	pPlatform12->Transform()->SetRelativeScale(499.f, 15.f, 1.f);
+	pPlatform12->Transform()->SetRelativeScale(499.f, 5.f, 1.f);
 	pPlatform12->AddComponent(new qCollider2D);
 	pPlatform12->Collider2D()->SetIndependentScale(false);
 	pPlatform12->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -419,7 +419,7 @@ void qLevel_stage2::CreateStage2()
 	pPlatform13->AddComponent(new qPlatformScript);
 	pPlatform13->AddComponent(new qTransform);
 	pPlatform13->Transform()->SetRelativePos(773.f, 32.f, 10.f);
-	pPlatform13->Transform()->SetRelativeScale(1276.f, 15.f, 1.f);
+	pPlatform13->Transform()->SetRelativeScale(1276.f, 5.f, 1.f);
 	pPlatform13->AddComponent(new qCollider2D);
 	pPlatform13->Collider2D()->SetIndependentScale(false);
 	pPlatform13->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -432,7 +432,7 @@ void qLevel_stage2::CreateStage2()
 	pPlatform14->AddComponent(new qPlatformScript);
 	pPlatform14->AddComponent(new qTransform);
 	pPlatform14->Transform()->SetRelativePos(894.f, -292.f, 10.f);
-	pPlatform14->Transform()->SetRelativeScale(861.f, 15.f, 1.f);
+	pPlatform14->Transform()->SetRelativeScale(861.f, 5.f, 1.f);
 	pPlatform14->AddComponent(new qCollider2D);
 	pPlatform14->Collider2D()->SetIndependentScale(false);
 	pPlatform14->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -446,7 +446,7 @@ void qLevel_stage2::CreateStage2()
 	pPlatform15->AddComponent(new qPlatformScript);
 	pPlatform15->AddComponent(new qTransform);
 	pPlatform15->Transform()->SetRelativePos(1596.f, -504.f, 10.f);
-	pPlatform15->Transform()->SetRelativeScale(557.f, 15.f, 1.f);
+	pPlatform15->Transform()->SetRelativeScale(557.f, 5.f, 1.f);
 	pPlatform15->AddComponent(new qCollider2D);
 	pPlatform15->Collider2D()->SetIndependentScale(false);
 	pPlatform15->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -459,7 +459,7 @@ void qLevel_stage2::CreateStage2()
 	pPlatform16->AddComponent(new qPlatformScript);
 	pPlatform16->AddComponent(new qTransform);
 	pPlatform16->Transform()->SetRelativePos(2982.f, -10.f, 10.f);
-	pPlatform16->Transform()->SetRelativeScale(605.f, 15.f, 1.f);
+	pPlatform16->Transform()->SetRelativeScale(605.f, 5.f, 1.f);
 	pPlatform16->AddComponent(new qCollider2D);
 	pPlatform16->Collider2D()->SetIndependentScale(false);
 	pPlatform16->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -472,7 +472,7 @@ void qLevel_stage2::CreateStage2()
 	pPlatform17->AddComponent(new qPlatformScript);
 	pPlatform17->AddComponent(new qTransform);
 	pPlatform17->Transform()->SetRelativePos(3848.f, -10.f, 10.f);
-	pPlatform17->Transform()->SetRelativeScale(605.f, 15.f, 1.f);
+	pPlatform17->Transform()->SetRelativeScale(605.f, 5.f, 1.f);
 	pPlatform17->AddComponent(new qCollider2D);
 	pPlatform17->Collider2D()->SetIndependentScale(false);
 	pPlatform17->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -485,7 +485,7 @@ void qLevel_stage2::CreateStage2()
 	pPlatform18->AddComponent(new qPlatformScript);
 	pPlatform18->AddComponent(new qTransform);
 	pPlatform18->Transform()->SetRelativePos(3810.f, -298.f, 10.f);
-	pPlatform18->Transform()->SetRelativeScale(3886.f, 15.f, 1.f);
+	pPlatform18->Transform()->SetRelativeScale(3886.f, 5.f, 1.f);
 	pPlatform18->AddComponent(new qCollider2D);
 	pPlatform18->Collider2D()->SetIndependentScale(false);
 	pPlatform18->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -503,8 +503,8 @@ void qLevel_stage2::CreateStage2()
 	pWall1->SetName(L"Wall");
 	pWall1->AddComponent(new qWallScript);
 	pWall1->AddComponent(new qTransform);
-	pWall1->Transform()->SetRelativePos(-4448.f, -642.f, 10.f);
-	pWall1->Transform()->SetRelativeScale(15.f, 52.f, 1.f);
+	pWall1->Transform()->SetRelativePos(-4448.f, -649.f, 10.f);
+	pWall1->Transform()->SetRelativeScale(15.f, 45.f, 1.f);
 	pWall1->AddComponent(new qCollider2D);
 	pWall1->Collider2D()->SetIndependentScale(false);
 	pWall1->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -516,8 +516,8 @@ void qLevel_stage2::CreateStage2()
 	pWall2->SetName(L"Wall");
 	pWall2->AddComponent(new qWallScript);
 	pWall2->AddComponent(new qTransform);
-	pWall2->Transform()->SetRelativePos(-3687.f, -567.f, 10.f);
-	pWall2->Transform()->SetRelativeScale(15.f, 197.f, 1.f);
+	pWall2->Transform()->SetRelativePos(-3687.f, -595.f, 10.f);
+	pWall2->Transform()->SetRelativeScale(15.f, 154.f, 1.f);
 	pWall2->AddComponent(new qCollider2D);
 	pWall2->Collider2D()->SetIndependentScale(false);
 	pWall2->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -529,8 +529,8 @@ void qLevel_stage2::CreateStage2()
 	pWall3->SetName(L"Wall");
 	pWall3->AddComponent(new qWallScript);
 	pWall3->AddComponent(new qTransform);
-	pWall3->Transform()->SetRelativePos(-3029.f, -310.f, 10.f);
-	pWall3->Transform()->SetRelativeScale(15.f, 308.f, 1.f);
+	pWall3->Transform()->SetRelativePos(-3029.f, -351.f, 10.f);
+	pWall3->Transform()->SetRelativeScale(15.f, 249.f, 1.f);
 	pWall3->AddComponent(new qCollider2D);
 	pWall3->Collider2D()->SetIndependentScale(false);
 	pWall3->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -542,8 +542,8 @@ void qLevel_stage2::CreateStage2()
 	pWall4->SetName(L"Wall");
 	pWall4->AddComponent(new qWallScript);
 	pWall4->AddComponent(new qTransform);
-	pWall4->Transform()->SetRelativePos(-2710.f, 27.f, 10.f);
-	pWall4->Transform()->SetRelativeScale(15.f, 343.f, 1.f);
+	pWall4->Transform()->SetRelativePos(-2710.f, 3.f, 10.f);
+	pWall4->Transform()->SetRelativeScale(15.f, 325.f, 1.f);
 	pWall4->AddComponent(new qCollider2D);
 	pWall4->Collider2D()->SetIndependentScale(false);
 	pWall4->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -555,8 +555,8 @@ void qLevel_stage2::CreateStage2()
 	pWall5->SetName(L"Wall");
 	pWall5->AddComponent(new qWallScript);
 	pWall5->AddComponent(new qTransform);
-	pWall5->Transform()->SetRelativePos(-2588.f, 24.f, 10.f);
-	pWall5->Transform()->SetRelativeScale(15.f, 343.f, 1.f);
+	pWall5->Transform()->SetRelativePos(-2588.f, 3.f, 10.f);
+	pWall5->Transform()->SetRelativeScale(15.f, 325.f, 1.f);
 	pWall5->AddComponent(new qCollider2D);
 	pWall5->Collider2D()->SetIndependentScale(false);
 	pWall5->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -568,8 +568,8 @@ void qLevel_stage2::CreateStage2()
 	pWall6->SetName(L"Wall");
 	pWall6->AddComponent(new qWallScript);
 	pWall6->AddComponent(new qTransform);
-	pWall6->Transform()->SetRelativePos(-1150.f, -50.f, 10.f);
-	pWall6->Transform()->SetRelativeScale(15.f, 207.f, 1.f);
+	pWall6->Transform()->SetRelativePos(-1150.f, -65.f, 10.f);
+	pWall6->Transform()->SetRelativeScale(15.f, 199.f, 1.f);
 	pWall6->AddComponent(new qCollider2D);
 	pWall6->Collider2D()->SetIndependentScale(false);
 	pWall6->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -581,8 +581,8 @@ void qLevel_stage2::CreateStage2()
 	pWall7->SetName(L"Wall");
 	pWall7->AddComponent(new qWallScript);
 	pWall7->AddComponent(new qTransform);
-	pWall7->Transform()->SetRelativePos(-1044.f, -184.f, 10.f);
-	pWall7->Transform()->SetRelativeScale(15.f, 479.f, 1.f);
+	pWall7->Transform()->SetRelativePos(-1044.f, -203.f, 10.f);
+	pWall7->Transform()->SetRelativeScale(15.f, 478.f, 1.f);
 	pWall7->AddComponent(new qCollider2D);
 	pWall7->Collider2D()->SetIndependentScale(false);
 	pWall7->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -594,8 +594,8 @@ void qLevel_stage2::CreateStage2()
 	pWall8->SetName(L"Wall");
 	pWall8->AddComponent(new qWallScript);
 	pWall8->AddComponent(new qTransform);
-	pWall8->Transform()->SetRelativePos(328.f, -130.f, 10.f);
-	pWall8->Transform()->SetRelativeScale(15.f, 307.f, 1.f);
+	pWall8->Transform()->SetRelativePos(328.f, -155.f, 10.f);
+	pWall8->Transform()->SetRelativeScale(15.f, 280.f, 1.f);
 	pWall8->AddComponent(new qCollider2D);
 	pWall8->Collider2D()->SetIndependentScale(false);
 	pWall8->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -607,8 +607,8 @@ void qLevel_stage2::CreateStage2()
 	pWall9->SetName(L"Wall");
 	pWall9->AddComponent(new qWallScript);
 	pWall9->AddComponent(new qTransform);
-	pWall9->Transform()->SetRelativePos(455.f, -130.f, 10.f);
-	pWall9->Transform()->SetRelativeScale(15.f, 307.f, 1.f);
+	pWall9->Transform()->SetRelativePos(455.f, -155.f, 10.f);
+	pWall9->Transform()->SetRelativeScale(15.f, 280.f, 1.f);
 	pWall9->AddComponent(new qCollider2D);
 	pWall9->Collider2D()->SetIndependentScale(false);
 	pWall9->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -620,8 +620,8 @@ void qLevel_stage2::CreateStage2()
 	pWall10->SetName(L"Wall");
 	pWall10->AddComponent(new qWallScript);
 	pWall10->AddComponent(new qTransform);
-	pWall10->Transform()->SetRelativePos(1308.f, -398.f, 10.f);
-	pWall10->Transform()->SetRelativeScale(15.f, 200.f, 1.f);
+	pWall10->Transform()->SetRelativePos(1308.f, -417.f, 10.f);
+	pWall10->Transform()->SetRelativeScale(15.f, 189.f, 1.f);
 	pWall10->AddComponent(new qCollider2D);
 	pWall10->Collider2D()->SetIndependentScale(false);
 	pWall10->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -633,8 +633,8 @@ void qLevel_stage2::CreateStage2()
 	pWall11->SetName(L"Wall");
 	pWall11->AddComponent(new qWallScript);
 	pWall11->AddComponent(new qTransform);
-	pWall11->Transform()->SetRelativePos(1883.f, -398.f, 10.f);
-	pWall11->Transform()->SetRelativeScale(15.f, 200.f, 1.f);
+	pWall11->Transform()->SetRelativePos(1883.f, -417.f, 10.f);
+	pWall11->Transform()->SetRelativeScale(15.f, 189.f, 1.f);
 	pWall11->AddComponent(new qCollider2D);
 	pWall11->Collider2D()->SetIndependentScale(false);
 	pWall11->Collider2D()->SetOffset(Vec3(0.f, 0.f, 0.f));
@@ -1394,19 +1394,19 @@ void qLevel_stage2::CreateStage2()
 
 
 	// 충돌 지정
-	qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
-	qCollisionMgr::GetInst()->CollisionCheck(2, 7);		// Platform vs Player
-	qCollisionMgr::GetInst()->CollisionCheck(4, 5);		// PlayerSkill vs Monster
-	qCollisionMgr::GetInst()->CollisionCheck(4, 7);		// PlayerSkill vs Boss
-	qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
-	qCollisionMgr::GetInst()->CollisionCheck(3, 6);		// Player vs Monster Skill
-	qCollisionMgr::GetInst()->CollisionCheck(3, 8);		// Player vs Boss Skill
-	qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
-	qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
-	qCollisionMgr::GetInst()->CollisionCheck(3, 13);	// Player vs Clap
-	qCollisionMgr::GetInst()->CollisionCheck(3, 14);	// Player vs Item
-	qCollisionMgr::GetInst()->CollisionCheck(3, 7);		// Player vs Boss
-	
-	ChangeLevel(pStage2, LEVEL_STATE::STOP);
+	//qCollisionMgr::GetInst()->CollisionCheck(2, 3);		// Platform vs Player
+	//qCollisionMgr::GetInst()->CollisionCheck(2, 7);		// Platform vs Player
+	//qCollisionMgr::GetInst()->CollisionCheck(4, 5);		// PlayerSkill vs Monster
+	//qCollisionMgr::GetInst()->CollisionCheck(4, 7);		// PlayerSkill vs Boss
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 5);		// Player vs Monster
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 6);		// Player vs Monster Skill
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 8);		// Player vs Boss Skill
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 9);		// Player vs Portal
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 11);	// Player vs Wall (Bump)
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 13);	// Player vs Clap
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 14);	// Player vs Item
+	//qCollisionMgr::GetInst()->CollisionCheck(3, 7);		// Player vs Boss
+	//
+	//ChangeLevel(pStage2, LEVEL_STATE::STOP);
 
 }

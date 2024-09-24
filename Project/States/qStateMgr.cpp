@@ -35,7 +35,9 @@
 #include "qGhostIdleState.h"
 #include "qGhostRunState.h"
 #include "qGhostUturnState.h"
+#include "qLoading1State.h"
 #include "qLoadingState.h"
+#include "qLogoState.h"
 #include "qPlayerBookShootState.h"
 #include "qPlayerBumpState.h"
 #include "qPlayerCombo1State.h"
@@ -105,7 +107,9 @@ void qStateMgr::GetStateInfo(vector<wstring>& _vec)
 	_vec.push_back(L"qGhostIdleState");
 	_vec.push_back(L"qGhostRunState");
 	_vec.push_back(L"qGhostUturnState");
+	_vec.push_back(L"qLoading1State");
 	_vec.push_back(L"qLoadingState");
+	_vec.push_back(L"qLogoState");
 	_vec.push_back(L"qPlayerBookShootState");
 	_vec.push_back(L"qPlayerBumpState");
 	_vec.push_back(L"qPlayerCombo1State");
@@ -210,8 +214,12 @@ qState * qStateMgr::GetState(const wstring& _strStateName)
 		return new qGhostRunState;
 	if (L"qGhostUturnState" == _strStateName)
 		return new qGhostUturnState;
+	if (L"qLoading1State" == _strStateName)
+		return new qLoading1State;
 	if (L"qLoadingState" == _strStateName)
 		return new qLoadingState;
+	if (L"qLogoState" == _strStateName)
+		return new qLogoState;
 	if (L"qPlayerBookShootState" == _strStateName)
 		return new qPlayerBookShootState;
 	if (L"qPlayerBumpState" == _strStateName)
@@ -385,8 +393,14 @@ qState * qStateMgr::GetState(UINT _iStateType)
 	case (UINT)STATE_TYPE::GHOSTUTURNSTATE:
 		return new qGhostUturnState;
 		break;
+	case (UINT)STATE_TYPE::LOADING1STATE:
+		return new qLoading1State;
+		break;
 	case (UINT)STATE_TYPE::LOADINGSTATE:
 		return new qLoadingState;
+		break;
+	case (UINT)STATE_TYPE::LOGOSTATE:
+		return new qLogoState;
 		break;
 	case (UINT)STATE_TYPE::PLAYERBOOKSHOOTSTATE:
 		return new qPlayerBookShootState;
@@ -628,8 +642,16 @@ const wchar_t * qStateMgr::GetStateName(qState * _pState)
 		return L"qGhostUturnState";
 		break;
 
+	case STATE_TYPE::LOADING1STATE:
+		return L"qLoading1State";
+		break;
+
 	case STATE_TYPE::LOADINGSTATE:
 		return L"qLoadingState";
+		break;
+
+	case STATE_TYPE::LOGOSTATE:
+		return L"qLogoState";
 		break;
 
 	case STATE_TYPE::PLAYERBOOKSHOOTSTATE:

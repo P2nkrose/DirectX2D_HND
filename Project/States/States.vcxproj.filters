@@ -250,6 +250,15 @@
     <Filter Include="States\05. Effect\04. Warning">
       <UniqueIdentifier>{e8159030-fc88-45f0-976a-9aa02e0af4c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="States\04. Transfer\06. Logo">
+      <UniqueIdentifier>{15305380-b771-4f96-968b-b2e1f833568b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\04. Transfer\04. Loading\01. Loading 1">
+      <UniqueIdentifier>{00822f4a-286f-43bc-a695-ab210827ee0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\04. Transfer\04. Loading\02. Loading 2">
+      <UniqueIdentifier>{904e4687-a0ca-4322-8a25-7a6f0224e789}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h">
@@ -450,9 +459,6 @@
     <ClInclude Include="qPostOpenState.h">
       <Filter>States\04. Transfer\03. Post\02. PostOpen</Filter>
     </ClInclude>
-    <ClInclude Include="qLoadingState.h">
-      <Filter>States\04. Transfer\04. Loading</Filter>
-    </ClInclude>
     <ClInclude Include="qClapState.h">
       <Filter>States\04. Transfer\05. Clap</Filter>
     </ClInclude>
@@ -461,6 +467,15 @@
     </ClInclude>
     <ClInclude Include="qWarningState.h">
       <Filter>States\05. Effect\04. Warning</Filter>
+    </ClInclude>
+    <ClInclude Include="qLogoState.h">
+      <Filter>States\04. Transfer\06. Logo</Filter>
+    </ClInclude>
+    <ClInclude Include="qLoadingState.h">
+      <Filter>States\04. Transfer\04. Loading\02. Loading 2</Filter>
+    </ClInclude>
+    <ClInclude Include="qLoading1State.h">
+      <Filter>States\04. Transfer\04. Loading\01. Loading 1</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -662,9 +677,6 @@
     <ClCompile Include="qPostOpenState.cpp">
       <Filter>States\04. Transfer\03. Post\02. PostOpen</Filter>
     </ClCompile>
-    <ClCompile Include="qLoadingState.cpp">
-      <Filter>States\04. Transfer\04. Loading</Filter>
-    </ClCompile>
     <ClCompile Include="qClapState.cpp">
       <Filter>States\04. Transfer\05. Clap</Filter>
     </ClCompile>
@@ -673,6 +685,15 @@
     </ClCompile>
     <ClCompile Include="qWarningState.cpp">
       <Filter>States\05. Effect\04. Warning</Filter>
+    </ClCompile>
+    <ClCompile Include="qLogoState.cpp">
+      <Filter>States\04. Transfer\06. Logo</Filter>
+    </ClCompile>
+    <ClCompile Include="qLoadingState.cpp">
+      <Filter>States\04. Transfer\04. Loading\02. Loading 2</Filter>
+    </ClCompile>
+    <ClCompile Include="qLoading1State.cpp">
+      <Filter>States\04. Transfer\04. Loading\01. Loading 1</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

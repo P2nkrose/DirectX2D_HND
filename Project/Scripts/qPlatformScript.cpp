@@ -42,7 +42,7 @@ void qPlatformScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _Othe
 		Vec3 PlayerPos = _OtherObject->Transform()->GetRelativePos();
 		Vec3 PlayerScale = _OtherObject->Transform()->GetRelativeScale();
 
-		if (PlatformPos.y <= PlayerPos.y - (PlayerScale.y * 0.5f))
+		if (PlatformPos.y <= PlayerPos.y/* - (PlayerScale.y * 0.5f)*/)
 		{
 			pRB->SetGround(true);
 			qPlayerScript* pPlayerScript = _OtherObject->GetScript<qPlayerScript>();

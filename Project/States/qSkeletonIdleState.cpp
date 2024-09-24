@@ -27,7 +27,8 @@ void qSkeletonIdleState::Enter()
 
 void qSkeletonIdleState::FinalTick()
 {
-	Ptr<qMaterial> pBangMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\bang.mtrl");
+	//Ptr<qMaterial> pBangMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"material\\bang.mtrl");
+
 
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 	qGameObject* Player = pCurLevel->FindObjectByName(L"Player");
@@ -44,12 +45,16 @@ void qSkeletonIdleState::FinalTick()
 	if (Dist < m_DetectRange && !Bangflag)
 	{
 		// ´À³¦Ç¥ »ý¼º
+		Ptr<qMaterial> pEffectMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"EffectMtrl");
+
 		m_Bang = new qGameObject;
 		m_Bang->SetName(L"SkeletonBang");
 
 		m_Bang->AddComponent(new qMeshRender);
 		m_Bang->MeshRender()->SetMesh(qAssetMgr::GetInst()->FindAsset<qMesh>(L"RectMesh"));
-		m_Bang->MeshRender()->SetMaterial(pBangMtrl);
+		m_Bang->MeshRender()->SetMaterial(pEffectMtrl);
+		m_Bang->MeshRender()->GetMaterial()->SetScalarParam(VEC4_0, Vec4(20.f, 3.f, 3.f, 1.f));
+		m_Bang->MeshRender()->GetMaterial()->SetTexParam(TEX_0, qAssetMgr::GetInst()->FindAsset<qTexture>(L"texture\\monster\\bang.png"));
 
 		m_Bang->AddComponent(new qTransform);
 		m_Bang->Transform()->SetRelativePos(SkeletonPos.x, SkeletonPos.y + 150.f, 5.f);

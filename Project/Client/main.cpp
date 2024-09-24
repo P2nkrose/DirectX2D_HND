@@ -8,6 +8,8 @@
 
 #include "qLevelSaveLoad.h"
 #include "qTestLevel.h"
+#include "qLevel_logo.h"
+#include "qLevel_loading1.h"
 #include "qLevel_title.h"
 #include "qLevel_loading.h"
 #include "qLevel_stage1.h"
@@ -72,11 +74,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // 테스트용 레벨 초기상태 만들기
     //qTestLevel::CreateTestLevel();
-    //qLevel_boss::CreateStageBoss();
+    qLevel_boss::CreateStageBoss();
     qLevel_stage2::CreateStage2();
-    //qLevel_stage1::CreateStage1();
-    //qLevel_loading::CreateLoading();
-    //qLevel_title::CreateTitle();
+    qLevel_stage1::CreateStage1();
+    qLevel_loading::CreateLoading();
+    qLevel_title::CreateTitle();
+    qLevel_loading1::CreateLoading1();
+    qLevel_logo::CreateLogo();
+    
     
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));

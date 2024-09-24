@@ -33,11 +33,11 @@ void qPlayerIdleState::FinalTick()
 
 	if (KEY_TAP(KEY::LEFT) || KEY_PRESSED(KEY::LEFT))
 	{
-		if (pPlayerScript->IsDirChanged())
+		if (pPlayerScript->IsDirChanged() && GetOwner()->RigidBody()->IsGround() == true)
 		{
 			ChangeState(L"IdleUTurn");
 		}
-		else
+		else if(!pPlayerScript->IsDirChanged() && GetOwner()->RigidBody()->IsGround() == true)
 		{
 			ChangeState(L"IdleToRun");
 		}
@@ -45,11 +45,11 @@ void qPlayerIdleState::FinalTick()
 
 	if (KEY_TAP(KEY::RIGHT) || KEY_PRESSED(KEY::RIGHT))
 	{
-		if (pPlayerScript->IsDirChanged())
+		if (pPlayerScript->IsDirChanged() && GetOwner()->RigidBody()->IsGround() == true)
 		{
 			ChangeState(L"IdleUTurn");
 		}
-		else
+		else if (!pPlayerScript->IsDirChanged() && GetOwner()->RigidBody()->IsGround() == true)
 		{
 			ChangeState(L"IdleToRun");
 		}
