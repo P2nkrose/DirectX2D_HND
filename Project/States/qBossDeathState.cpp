@@ -23,10 +23,24 @@ void qBossDeathState::Enter()
 	GetOwner()->Collider2D()->SetScale(Vec3(0.0f, 0.0f, 0.f));
 
 	GetOwner()->FlipBookComponent()->Play(7, 10, false);
+
+
+	soundflag = false;
+
 }
 
 void qBossDeathState::FinalTick()
 {
+	if (!soundflag)
+	{
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\boss\\death.wav", L"sound\\boss\\death.wav");
+		pSound->Play(1, 0.7, true);
+
+		soundflag = true;
+	}
+
+
+
 	static bool flag = false;
 
 	if (GetOwner()->FlipBookComponent()->IsCurFlipBookFinished() && !flag)
@@ -40,6 +54,8 @@ void qBossDeathState::FinalTick()
 
 void qBossDeathState::Exit()
 {
+	soundflag = false;
+
 	GetOwner()->Transform()->SetRelativePos(OGPos);
 	GetOwner()->Transform()->SetRelativeScale(OGScale);
 	GetOwner()->Collider2D()->SetScale(OGColScale);

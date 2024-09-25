@@ -21,7 +21,10 @@ private:
 	qGameObject*	m_Bang;
 	float			m_BangTime;
 	bool			Bangflag;
-
+	
 	float			m_DetectRange;
+	
+	float			m_SoundRange;
+	bool			soundflag;
 };
 

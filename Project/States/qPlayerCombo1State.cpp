@@ -10,6 +10,8 @@
 
 qPlayerCombo1State::qPlayerCombo1State()
 	: qState((UINT)STATE_TYPE::PLAYERCOMBO1STATE)
+	, Combo1HitBox(nullptr)
+
 {
 
 
@@ -64,10 +66,12 @@ void qPlayerCombo1State::Enter()
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 	pCurLevel->AddObject(4, Combo1HitBox);
 
+
 }
 
 void qPlayerCombo1State::FinalTick()
 {
+
 
 	if (GetOwner()->FlipBookComponent()->IsCurFlipBookFinished())
 	{
@@ -84,6 +88,7 @@ void qPlayerCombo1State::FinalTick()
 
 void qPlayerCombo1State::Exit()
 {
+
 	Combo1HitBox->Destroy();
 	GetOwner()->Transform()->SetRelativeScale(OGScale);
 	GetOwner()->Collider2D()->SetScale(OGColScale);

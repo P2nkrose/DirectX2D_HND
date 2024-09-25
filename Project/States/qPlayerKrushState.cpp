@@ -38,10 +38,20 @@ void qPlayerKrushState::Enter()
 	//	HitboxScript->On();
 	//}
 
+	soundflag = false;
+
 }
 
 void qPlayerKrushState::FinalTick()
 {
+	if (!soundflag)
+	{
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\player\\krush.wav", L"sound\\player\\krush.wav");
+		pSound->Play(1, 0.5, true);
+
+		soundflag = true;
+	}
+
 
 	qPlayerScript* pPlayerScript = GetOwner()->GetScript<qPlayerScript>();
 
@@ -194,6 +204,8 @@ void qPlayerKrushState::FinalTick()
 
 void qPlayerKrushState::Exit()
 {
+	soundflag = false;
+
 	GetOwner()->Transform()->SetRelativeScale(OGScale);
 	GetOwner()->Collider2D()->SetScale(OGColScale);
 }

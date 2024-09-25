@@ -37,10 +37,19 @@ void qGhostDeathState::Enter()
 
 	Destroyflag = false;
 	Soulflag = false;
+	soundflag = false;
 }
 
 void qGhostDeathState::FinalTick()
 {
+	if (!soundflag)
+	{
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\monster\\ghost\\death.wav", L"sound\\monster\\ghost\\death.wav");
+		pSound->Play(1, 0.7, true);
+
+		soundflag = true;
+	}
+
 	Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
 	Ptr<qMaterial> pAlphaBlendMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DAlphaBlendMtrl");
 
@@ -89,6 +98,8 @@ void qGhostDeathState::FinalTick()
 
 void qGhostDeathState::Exit()
 {
+	soundflag = false;
+
 	GetOwner()->Transform()->SetRelativeScale(OGScale);
 	GetOwner()->Collider2D()->SetScale(OGColScale);
 }

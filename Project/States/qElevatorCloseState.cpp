@@ -18,6 +18,7 @@ qElevatorCloseState::~qElevatorCloseState()
 
 void qElevatorCloseState::Enter()
 {
+
 	GetOwner()->FlipBookComponent()->Play(8, 15, false);
 }
 
@@ -36,9 +37,20 @@ void qElevatorCloseState::FinalTick()
 
 			flag = true;
 		}
-
-		
 	}
+
+
+
+	static bool flagclose = false;
+
+	if (GetOwner()->FlipBookComponent()->GetCurFrmIdx() == 26 && !flagclose)
+	{
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\transfer\\eleclosedown.wav", L"sound\\transfer\\eleclosedown.wav");
+		pSound->Play(1, 0.5, true);
+
+		flagclose = true;
+	}
+	
 }
 
 void qElevatorCloseState::Exit()

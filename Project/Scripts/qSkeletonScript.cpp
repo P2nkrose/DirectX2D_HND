@@ -120,11 +120,18 @@ void qSkeletonScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _Othe
 
 			_OtherObject->FSM()->ChangeState(L"Bump");
 		}
+	}
 
-
-		
-
-		
+	if (_OtherObject->GetName() == L"Combo1HitBox" ||
+		_OtherObject->GetName() == L"Combo2HitBox" ||
+		_OtherObject->GetName() == L"Combo3HitBox" ||
+		_OtherObject->GetName() == L"Combo4HitBox" ||
+		_OtherObject->GetName() == L"Book" ||
+		_OtherObject->GetName() == L"CrashHitBox" ||
+		_OtherObject->GetName() == L"RangeHitBox")
+	{
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\monster\\skeleton\\hit.wav", L"sound\\monster\\skeleton\\hit.wav");
+		pSound->Play(1, 0.5, true);
 	}
 }
 

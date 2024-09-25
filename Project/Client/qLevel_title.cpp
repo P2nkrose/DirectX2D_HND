@@ -199,7 +199,7 @@ void qLevel_title::CreateTitle()
 	pCollect->SetName(L"collect");
 	pCollect->AddComponent(new qCollectScript);
 	pCollect->AddComponent(new qTransform);
-	pCollect->Transform()->SetRelativePos(-732.f, -87.f, 10.f);
+	pCollect->Transform()->SetRelativePos(-732.f, -87.f, 30.f);
 	pCollect->Transform()->SetRelativeScale(69.f, 70.f, 1.f);
 
 	pCollect->AddComponent(new qMeshRender);
@@ -225,7 +225,7 @@ void qLevel_title::CreateTitle()
 	pSmoke->SetName(L"smoke");
 
 	pSmoke->AddComponent(new qTransform);
-	pSmoke->Transform()->SetRelativePos(472.f, -84.f, 10.f);
+	pSmoke->Transform()->SetRelativePos(472.f, -84.f, 30.f);
 	pSmoke->Transform()->SetRelativeScale(250.f, 200.f, 1.f);
 
 	pSmoke->AddComponent(new qMeshRender);

@@ -19,5 +19,7 @@ private:
 	Vec3				OGPos;
 	Vec3				OGScale;
 	Vec3				OGColScale;
+
+	bool				soundflag;
 };
 

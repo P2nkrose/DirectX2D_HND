@@ -67,10 +67,31 @@ void qBossPunchState::Enter()
 	PunchHitbox->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
 
 	HitboxFlag = false;
+
+
+	soundflag1 = false;
+	soundflag2 = false;
 }
 
 void qBossPunchState::FinalTick()
 {
+	if (GetOwner()->FlipBookComponent()->GetCurFrmIdx() == 5 && !soundflag1)
+	{
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\boss\\punch1.wav", L"sound\\boss\\punch1.wav");
+		pSound->Play(1, 0.5, true);
+
+		soundflag1 = true;
+	}
+
+	if (GetOwner()->FlipBookComponent()->GetCurFrmIdx() == 25 && !soundflag2)
+	{
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\boss\\punch2.wav", L"sound\\boss\\punch2.wav");
+		pSound->Play(1, 0.5, true);
+
+		soundflag2 = true;
+	}
+
+
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 
 	// Index 맞춰서 히트박스 생성하기
@@ -97,6 +118,10 @@ void qBossPunchState::FinalTick()
 
 void qBossPunchState::Exit()
 {
+	soundflag1 = false;
+	soundflag2 = false;
+
+
 	GetOwner()->Transform()->SetRelativePos(OGPos);
 	GetOwner()->Transform()->SetRelativeScale(OGScale);
 	GetOwner()->Collider2D()->SetScale(OGColScale);

@@ -87,10 +87,45 @@ void qBossBleedState::Enter()
 
 	HitboxFlag = false;
 
+	soundflag1 = false;
+	soundflag2 = false;
+	soundflag3 = false;
+	soundflag4 = false;
+
 }
 
 void qBossBleedState::FinalTick()
 {
+	if (GetOwner()->FlipBookComponent()->GetCurFrmIdx() == 0 && !soundflag1)
+	{
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\boss\\bleed1.wav", L"sound\\boss\\bleed1.wav");
+		pSound->Play(1, 0.4, true);
+
+		soundflag1 = true;
+	}
+	if (GetOwner()->FlipBookComponent()->GetCurFrmIdx() == 3 && !soundflag2)
+	{
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\boss\\bleedup.wav", L"sound\\boss\\bleedup.wav");
+		pSound->Play(1, 0.4, true);
+
+		soundflag2 = true;
+	}
+	if (GetOwner()->FlipBookComponent()->GetCurFrmIdx() == 8 && !soundflag3)
+	{
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\boss\\bleeddown.wav", L"sound\\boss\\bleeddown.wav");
+		pSound->Play(1, 0.4, true);
+
+		soundflag3 = true;
+	}
+	if (GetOwner()->FlipBookComponent()->GetCurFrmIdx() == 11 && !soundflag4)
+	{
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\boss\\wave.wav", L"sound\\boss\\wave.wav");
+		pSound->Play(1, 0.5, true);
+
+		soundflag4 = true;
+	}
+
+
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 
 
@@ -117,6 +152,11 @@ void qBossBleedState::FinalTick()
 
 void qBossBleedState::Exit()
 {
+	soundflag1 = false;
+	soundflag2 = false;
+	soundflag3 = false;
+	soundflag4 = false;
+
 	GetOwner()->Transform()->SetRelativePos(OGPos);
 	GetOwner()->Transform()->SetRelativeScale(OGScale);
 	GetOwner()->Collider2D()->SetScale(OGColScale);

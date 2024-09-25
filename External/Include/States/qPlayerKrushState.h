@@ -22,5 +22,7 @@ private:
 	Vec3			OGColScale;
 
 	float			m_KrushSpeed;
+
+	bool			soundflag;
 };
 

@@ -9,6 +9,7 @@
 qSkeletonIdleState::qSkeletonIdleState()
 	: qState((UINT)STATE_TYPE::SKELETONIDLESTATE)
 	, m_DetectRange(220.f)
+	, m_SoundRange(300.f)
 	, m_Bang(nullptr)
 	, m_BangTime(0.f)
 	, Bangflag(false)
@@ -23,6 +24,7 @@ void qSkeletonIdleState::Enter()
 {
 	GetOwner()->FlipBookComponent()->Play(0, 10, true);
 
+	soundflag = false;
 }
 
 void qSkeletonIdleState::FinalTick()
@@ -41,6 +43,16 @@ void qSkeletonIdleState::FinalTick()
 	float Dist = Dir.Length();
 
 	Bangflag = false;
+
+
+	if (Dist < m_SoundRange && !soundflag)
+	{
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\monster\\skeleton\\idle.wav", L"sound\\monster\\skeleton\\idle.wav");
+		pSound->Play(1, 0.5, true);
+
+		soundflag = true;
+	}
+
 
 	if (Dist < m_DetectRange && !Bangflag)
 	{
@@ -85,4 +97,5 @@ void qSkeletonIdleState::FinalTick()
 void qSkeletonIdleState::Exit()
 {
 	Bangflag = false;
+	soundflag = false;
 }

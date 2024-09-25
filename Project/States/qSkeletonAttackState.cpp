@@ -57,11 +57,19 @@ void qSkeletonAttackState::Enter()
 	SkeletonAttackHitBox->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
 
 
-
+	soundflag = false;
 }
 
 void qSkeletonAttackState::FinalTick()
 {
+	if (!soundflag)
+	{
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\monster\\skeleton\\attack.wav", L"sound\\monster\\skeleton\\attack.wav");
+		pSound->Play(1, 0.5, true);
+
+		soundflag = true;
+	}
+
 
 	static bool hitbox = false;
 
@@ -88,6 +96,8 @@ void qSkeletonAttackState::FinalTick()
 
 void qSkeletonAttackState::Exit()
 {
+	soundflag = false;
+
 	GetOwner()->Transform()->SetRelativePos(OGPos);
 	GetOwner()->Transform()->SetRelativeScale(OGScale);
 	GetOwner()->Collider2D()->SetScale(OGColScale);

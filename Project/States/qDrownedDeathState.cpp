@@ -35,11 +35,21 @@ void qDrownedDeathState::Enter()
 
 	Destroyflag = false;
 	Soulflag = false;
+	soundflag = false;
 
 }
 
 void qDrownedDeathState::FinalTick()
 {
+	if (!soundflag)
+	{
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\monster\\drowned\\death.wav", L"sound\\monster\\drowned\\death.wav");
+		pSound->Play(1, 0.5, true);
+
+		soundflag = true;
+	}
+
+
 	Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
 	Ptr<qMaterial> pAlphaBlendMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DAlphaBlendMtrl");
 
@@ -88,6 +98,8 @@ void qDrownedDeathState::FinalTick()
 
 void qDrownedDeathState::Exit()
 {
+	soundflag = false;
+
 	GetOwner()->Transform()->SetRelativeScale(OGScale);
 	GetOwner()->Collider2D()->SetScale(OGColScale);
 }

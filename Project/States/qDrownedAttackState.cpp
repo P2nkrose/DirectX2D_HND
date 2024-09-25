@@ -26,7 +26,7 @@ void qDrownedAttackState::Enter()
 	GetOwner()->Transform()->SetRelativeScale(350.f, 230.f, 10.f);
 	GetOwner()->Collider2D()->SetScale(Vec3(0.42f, 1.f, 1.f));
 
-	GetOwner()->FlipBookComponent()->Play(3, 8, false);
+	GetOwner()->FlipBookComponent()->Play(3, 10, false);
 
 	
 	// 히트박스 생성
@@ -66,6 +66,9 @@ void qDrownedAttackState::FinalTick()
 	{
 		pCurLevel->AddObject(6, DrownedAttackHitbox);
 		hitbox = true;
+
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\monster\\drowned\\attack.wav", L"sound\\monster\\drowned\\attack.wav");
+		pSound->Play(1, 0.5, true);
 	}
 
 	if (GetOwner()->FlipBookComponent()->IsCurFlipBookFinished())

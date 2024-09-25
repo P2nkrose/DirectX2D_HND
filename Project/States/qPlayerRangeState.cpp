@@ -51,10 +51,23 @@ void qPlayerRangeState::Enter()
 	
 	RangeHitBox->AddComponent(new qCollider2D);
 	RangeHitBox->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
+
+
+
+	soundflag = false;
 }
 
 void qPlayerRangeState::FinalTick()
 {
+	if (!soundflag)
+	{
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\player\\range3.wav", L"sound\\player\\range3.wav");
+		pSound->Play(1, 0.5, true);
+
+		soundflag = true;
+	}
+
+
 	static bool hitboxCreated = false; // 히트박스 생성 여부를 추적하는 플래그
 	
 	// 히트박스 생성
@@ -76,13 +89,15 @@ void qPlayerRangeState::FinalTick()
 			RangeHitBox = nullptr;
 			hitboxCreated = false;	// 다음 상태 전환 시를 위해 플래그 초기화
 		}
-
-		
 	}
+
+
 }
 
 void qPlayerRangeState::Exit()
 {
+	soundflag = false;
+
 	GetOwner()->Transform()->SetRelativeScale(OGScale);
 	GetOwner()->Collider2D()->SetScale(OGColScale);
 }

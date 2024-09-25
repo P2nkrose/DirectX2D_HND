@@ -10,6 +10,7 @@
 
 qPlayerCombo3State::qPlayerCombo3State()
 	: qState((UINT)STATE_TYPE::PLAYERCOMBO3STATE)
+
 {
 }
 
@@ -61,6 +62,7 @@ void qPlayerCombo3State::Enter()
 	
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 	pCurLevel->AddObject(4, Combo3HitBox);
+
 }
 
 void qPlayerCombo3State::FinalTick()
@@ -69,10 +71,13 @@ void qPlayerCombo3State::FinalTick()
 	{
 		ChangeState(L"Idle");
 	}
+
 }
 
 void qPlayerCombo3State::Exit()
 {
+
+
 	Combo3HitBox->Destroy();
 	GetOwner()->Transform()->SetRelativeScale(OGScale);
 	GetOwner()->Collider2D()->SetScale(OGColScale);

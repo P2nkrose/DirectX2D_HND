@@ -62,10 +62,22 @@ void qPlayerCrashState::Enter()
 	
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 	pCurLevel->AddObject(4, CrashHitBox);
+
+	soundflag = false;
 }
 
 void qPlayerCrashState::FinalTick()
 {
+	if (!soundflag)
+	{
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\player\\crash.wav", L"sound\\player\\crash.wav");
+		pSound->Play(1, 0.5, true);
+
+		soundflag = true;
+	}
+
+	
+
 
 
 	if (GetOwner()->FlipBookComponent()->IsCurFlipBookFinished())
@@ -76,6 +88,8 @@ void qPlayerCrashState::FinalTick()
 
 void qPlayerCrashState::Exit()
 {
+	soundflag = false;
+
 	CrashHitBox->Destroy();
 	GetOwner()->Transform()->SetRelativeScale(OGScale);
 	GetOwner()->Collider2D()->SetScale(OGColScale);

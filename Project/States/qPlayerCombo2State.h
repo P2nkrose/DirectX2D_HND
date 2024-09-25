@@ -20,5 +20,6 @@ private:
 	qGameObject*	Combo2HitBox;
 	Vec3			OGScale;
 	Vec3			OGColScale;
+
 };
 

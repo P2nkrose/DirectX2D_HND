@@ -11,6 +11,8 @@
 
 qPlayerCombo4State::qPlayerCombo4State()
 	: qState((UINT)STATE_TYPE::PLAYERCOMBO4STATE)
+	, Combo4HitBox(nullptr)
+
 {
 }
 
@@ -60,6 +62,7 @@ void qPlayerCombo4State::Enter()
 	Combo4HitBox->AddComponent(new qCollider2D);
 	Combo4HitBox->Collider2D()->SetScale(Vec3(1.f, 1.f, 1.f));
 
+
 }
 
 void qPlayerCombo4State::FinalTick()
@@ -87,10 +90,15 @@ void qPlayerCombo4State::FinalTick()
 		}
 
 	}
+
+
 }
 
 void qPlayerCombo4State::Exit()
 {
+
+
+
 	GetOwner()->Transform()->SetRelativeScale(OGScale);
 	GetOwner()->Collider2D()->SetScale(OGColScale);
 }

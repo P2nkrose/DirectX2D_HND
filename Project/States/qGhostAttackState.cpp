@@ -81,6 +81,9 @@ void qGhostAttackState::FinalTick()
 	// Index 맞춰서 히트박스 생성
 	if (GetOwner()->FlipBookComponent()->GetCurFrmIdx() == 16 && !hitbox)
 	{
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\monster\\ghost\\attack1.wav", L"sound\\monster\\ghost\\attack1.wav");
+		pSound->Play(1, 1.0, true);
+
 		pCurLevel->AddObject(6, GhostAttackHitbox);
 		hitbox = true;
 	}

@@ -21,5 +21,7 @@ private:
 
 	float		m_DashSpeed;
 	float		m_MaxRange;
+
+	bool		soundflag;
 };
 

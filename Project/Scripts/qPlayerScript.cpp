@@ -49,18 +49,30 @@ void qPlayerScript::PlayCombo()
 	if (m_NextCombo == 1)
 	{
 		FSM()->ChangeState(L"Combo1");
+
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\player\\combo1.wav", L"sound\\player\\combo1.wav");
+		pSound->Play(1, 0.5, true);
 	}
 	else if (m_NextCombo == 2)
 	{
 		FSM()->ChangeState(L"Combo2");
+
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\player\\combo2.wav", L"sound\\player\\combo2.wav");
+		pSound->Play(1, 0.5, true);
 	}
 	else if (m_NextCombo == 3)
 	{
 		FSM()->ChangeState(L"Combo3");
+
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\player\\combo3.wav", L"sound\\player\\combo3.wav");
+		pSound->Play(1, 0.5, true);
 	}
 	else if (m_NextCombo == 4)
 	{
 		FSM()->ChangeState(L"Combo4");
+
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\player\\combo4.wav", L"sound\\player\\combo4.wav");
+		pSound->Play(1, 0.5, true);
 	}
 	else
 	{
@@ -111,7 +123,7 @@ void qPlayerScript::Begin()
 		FSM()->ChangeState(L"Idle");
 
 		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\transfer\\postopen.wav", L"sound\\transfer\\postopen.wav");
-		pSound->Play(1, 0.8, true);
+		pSound->Play(1, 0.7, true);
 		//FlipBookComponent()->Play(0, 10, false);
 	}
 
@@ -122,10 +134,10 @@ void qPlayerScript::Begin()
 		FSM()->ChangeState(L"Null");
 
 		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\transfer\\postopen.wav", L"sound\\transfer\\postopen.wav");
-		pSound->Play(1, 0.8, true);
+		pSound->Play(1, 0.7, true);
 
 		Ptr<qSound> pSoundStage2 = qAssetMgr::GetInst()->Load<qSound>(L"sound\\background\\stage2.wav", L"sound\\background\\stage2.wav");
-		pSoundStage2->Play(0, 0.5, true);
+		pSoundStage2->Play(0, 0.4, true);
 	}
 
 	if (pCurLevel->GetName() == L"stageboss")
@@ -135,7 +147,7 @@ void qPlayerScript::Begin()
 		FSM()->ChangeState(L"Null");
 
 		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\transfer\\postopen.wav", L"sound\\transfer\\postopen.wav");
-		pSound->Play(1, 0.8, true);
+		pSound->Play(1, 0.7, true);
 
 		Ptr<qSound> pSoundboss = qAssetMgr::GetInst()->Load<qSound>(L"sound\\background\\boss.wav", L"sound\\background\\boss.wav");
 		pSoundboss->Play(0, 0.3, true);
@@ -177,6 +189,9 @@ void qPlayerScript::Tick()
 
 	if (KEY_TAP(KEY::SPACE))
 	{
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\player\\book.wav", L"sound\\player\\book.wav");
+		pSound->Play(1, 0.3, true);
+
 		if (m_DoubleJumpCount > m_CurJumpCount)
 		{
 			Jump();
@@ -191,6 +206,9 @@ void qPlayerScript::Tick()
 
 	if (KEY_TAP(KEY::S))
 	{
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\player\\book.wav", L"sound\\player\\book.wav");
+		pSound->Play(1, 0.5, true);
+
 		// ¿ÞÂÊ Ã¥ ¹ß»ç
 		if (GetPlayerDir() == DIRECTION::LEFT)
 		{
@@ -406,6 +424,9 @@ void qPlayerScript::BeginOverlap(qCollider2D* _OwnCollider, qGameObject* _OtherO
 		SetCountZero();
 
 		FSM()->ChangeState(L"GetItem");
+
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\player\\item.wav", L"sound\\player\\item.wav");
+		pSound->Play(1, 0.7, true);
 
 		_OtherObject->Destroy();
 	}

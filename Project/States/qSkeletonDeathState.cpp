@@ -42,10 +42,21 @@ void qSkeletonDeathState::Enter()
 
 	Destroyflag = false;
 	Soulflag = false;
+	soundflag = false;
 }
 
 void qSkeletonDeathState::FinalTick()
 {
+	if (!soundflag)
+	{
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\monster\\skeleton\\death.wav", L"sound\\monster\\skeleton\\death.wav");
+		pSound->Play(1, 0.5, true);
+
+		soundflag = true;
+	}
+
+
+
 	Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
 	Ptr<qMaterial> pAlphaBlendMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DAlphaBlendMtrl");
 
@@ -101,6 +112,8 @@ void qSkeletonDeathState::FinalTick()
 
 void qSkeletonDeathState::Exit()
 {
+	soundflag = false;
+
 	//GetOwner()->Transform()->SetRelativePos(OGPos);
 	//GetOwner()->Transform()->SetRelativeScale(OGScale);
 }

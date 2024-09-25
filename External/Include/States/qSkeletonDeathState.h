@@ -23,5 +23,7 @@ private:
 
 	bool			Destroyflag;
 	bool			Soulflag;
+
+	bool			soundflag;
 };
 

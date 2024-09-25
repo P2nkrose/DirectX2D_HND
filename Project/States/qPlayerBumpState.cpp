@@ -17,10 +17,21 @@ qPlayerBumpState::~qPlayerBumpState()
 void qPlayerBumpState::Enter()
 {
 	GetOwner()->FlipBookComponent()->Play(24, 15, false);
+
+	soundflag = false;
 }
 
 void qPlayerBumpState::FinalTick()
 {
+	if (!soundflag)
+	{
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\player\\bump.wav", L"sound\\player\\bump.wav");
+		pSound->Play(1, 0.5, true);
+
+		soundflag = true;
+	}
+
+
 	qPlayerScript* pPlayerScript = GetOwner()->GetScript<qPlayerScript>();
 	Vec3 PlayerPos = GetOwner()->Transform()->GetRelativePos();
 
@@ -56,4 +67,5 @@ void qPlayerBumpState::FinalTick()
 
 void qPlayerBumpState::Exit()
 {
+	soundflag = false;
 }

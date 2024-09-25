@@ -8,10 +8,10 @@
 qCollectScript::qCollectScript()
 	: qScript((UINT)SCRIPT_TYPE::COLLECTSCRIPT)
 {
-	m_PlayPos = Vec3(-732.f, -87.f, 10.f);
-	m_OptionPos = Vec3(-732.f, -151.f, 10.f);
-	m_CreditPos = Vec3(-732.f, -214.f, 10.f);
-	m_ExitPos = Vec3(-732.f, -278.f, 10.f);
+	m_PlayPos = Vec3(-732.f, -87.f, 30.f);
+	m_OptionPos = Vec3(-732.f, -151.f, 30.f);
+	m_CreditPos = Vec3(-732.f, -214.f, 30.f);
+	m_ExitPos = Vec3(-732.f, -278.f, 30.f);
 }
 
 qCollectScript::~qCollectScript()

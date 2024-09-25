@@ -18,6 +18,7 @@ qElevatorScript::~qElevatorScript()
 
 void qElevatorScript::Begin()
 {
+
 }
 
 void qElevatorScript::Tick()

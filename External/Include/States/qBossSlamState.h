@@ -24,5 +24,11 @@ private:
 	Vec3				OGColScale;
 
 	bool				HitboxFlag;
+
+	bool				soundflag1;
+	bool				soundflag2;
+	bool				soundflag3;
+	bool				soundflag4;
+	bool				soundflag5;
 };
 

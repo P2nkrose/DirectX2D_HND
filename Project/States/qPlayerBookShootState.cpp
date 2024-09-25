@@ -15,6 +15,8 @@ qPlayerBookShootState::~qPlayerBookShootState()
 void qPlayerBookShootState::Enter()
 {
 	GetOwner()->FlipBookComponent()->Play(17, 15, false);
+
+
 }
 
 void qPlayerBookShootState::FinalTick()
@@ -23,8 +25,12 @@ void qPlayerBookShootState::FinalTick()
 	{
 		ChangeState(L"Idle");
 	}
+
+
+
 }
 
 void qPlayerBookShootState::Exit()
 {
+
 }

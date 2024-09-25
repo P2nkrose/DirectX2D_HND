@@ -96,14 +96,14 @@ void qBossIdleState::FinalTick()
 	{
 		ChangeState(L"BossPunch");
 	}
-	//else if (KEY_TAP(KEY::W))
-	//{
-	//	ChangeState(L"BossSlam");
-	//}
-	//else if (KEY_TAP(KEY::E))
-	//{
-	//	ChangeState(L"BossBleed");
-	//}
+	else if (KEY_TAP(KEY::W))
+	{
+		ChangeState(L"BossSlam");
+	}
+	else if (KEY_TAP(KEY::E))
+	{
+		ChangeState(L"BossBleed");
+	}
 
 
 }

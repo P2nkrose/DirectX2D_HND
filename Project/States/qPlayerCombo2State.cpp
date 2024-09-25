@@ -10,6 +10,8 @@
 
 qPlayerCombo2State::qPlayerCombo2State()
 	: qState((UINT)STATE_TYPE::PLAYERCOMBO2STATE)
+	, Combo2HitBox(nullptr)
+
 {
 }
 
@@ -62,6 +64,8 @@ void qPlayerCombo2State::Enter()
 	
 	qLevel* pCurLevel = qLevelMgr::GetInst()->GetCurrentLevel();
 	pCurLevel->AddObject(4, Combo2HitBox);
+
+
 }
 
 void qPlayerCombo2State::FinalTick()
@@ -77,10 +81,13 @@ void qPlayerCombo2State::FinalTick()
 			ChangeState(L"Idle");
 		}
 	}
+
+
 }
 
 void qPlayerCombo2State::Exit()
 {
+
 	Combo2HitBox->Destroy();
 	GetOwner()->Transform()->SetRelativeScale(OGScale);
 	GetOwner()->Collider2D()->SetScale(OGColScale);

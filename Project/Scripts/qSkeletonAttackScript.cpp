@@ -20,6 +20,7 @@ qSkeletonAttackScript::~qSkeletonAttackScript()
 
 void qSkeletonAttackScript::Begin()
 {
+
 }
 
 void qSkeletonAttackScript::Tick()

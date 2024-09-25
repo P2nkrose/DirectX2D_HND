@@ -40,6 +40,13 @@ void qLevel_logo::CreateLogo()
 	Ptr<qSound> pSoundPostClose = qAssetMgr::GetInst()->Load<qSound>(L"sound\\transfer\\postclose.wav", L"sound\\transfer\\postclose.wav");
 	pSoundPostClose->Stop();
 
+	//Ptr<qSound> pSoundEleOpen = qAssetMgr::GetInst()->Load<qSound>(L"sound\\transfer\\eleopenup.wav", L"sound\\transfer\\eleopenup.wav");
+	//pSoundEleOpen->Stop();
+	//
+	//Ptr<qSound> pSoundEleClose = qAssetMgr::GetInst()->Load<qSound>(L"sound\\transfer\\eleclosedown.wav", L"sound\\transfer\\eleclosedown.wav");
+	//pSoundEleClose->Stop();
+
+
 	// Material
 	Ptr<qMaterial> pMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DMtrl");
 	Ptr<qMaterial> pAlphaBlendMtrl = qAssetMgr::GetInst()->FindAsset<qMaterial>(L"Std2DAlphaBlendMtrl");

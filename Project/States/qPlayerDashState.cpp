@@ -24,11 +24,22 @@ void qPlayerDashState::Enter()
 	GetOwner()->Collider2D()->SetScale(Vec3(0.375f, 0.375f, 0.f));
 
 	GetOwner()->FlipBookComponent()->Play(10, 15, false);
-	
+
+	soundflag = false;
+
 }
 
 void qPlayerDashState::FinalTick()
 {
+	if (!soundflag)
+	{
+		Ptr<qSound> pSound = qAssetMgr::GetInst()->Load<qSound>(L"sound\\player\\dash.wav", L"sound\\player\\dash.wav");
+		pSound->Play(1, 0.5, true);
+		
+		soundflag = true;
+	}
+
+
 	qPlayerScript* pPlayerScript = GetOwner()->GetScript<qPlayerScript>();
 	Vec3 PlayerPos = GetOwner()->Transform()->GetRelativePos();
 
@@ -81,6 +92,8 @@ void qPlayerDashState::FinalTick()
 
 void qPlayerDashState::Exit()
 {
+	soundflag = false;
+
 	GetOwner()->Transform()->SetRelativeScale(OGScale);
 	GetOwner()->Collider2D()->SetScale(OGColScale);
 }

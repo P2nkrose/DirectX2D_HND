@@ -18,5 +18,7 @@ public:
 private:
 	float		m_BumpSpeed;
 	float		m_MaxRange;
+
+	bool		soundflag;
 };
 
