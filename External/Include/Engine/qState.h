@@ -25,11 +25,6 @@ public:
 
 
 protected:
-	template<typename T>
-	T GetBlackboardData(const wstring& _DataName)
-	{
-		return m_Owner->GetBlackboardData<T>(_DataName);
-	}
 
 	qGameObject* GetOwner() { return m_Owner->GetOwner(); }
 	qFSM* GetFSM() { return m_Owner; }

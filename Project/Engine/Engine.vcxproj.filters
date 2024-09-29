@@ -151,9 +151,6 @@
     <Filter Include="Entity">
       <UniqueIdentifier>{a8492128-d24e-47d9-9a9f-48399b1ac70a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Module\Blackboard">
-      <UniqueIdentifier>{b7423915-d8ab-474e-a53f-9fc28311b5a6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="08. Component\10. RenderComponent">
       <UniqueIdentifier>{519d3178-2a7d-4e89-912e-dada15757b8f}</UniqueIdentifier>
     </Filter>
@@ -360,9 +357,6 @@
     <ClInclude Include="qEntity.h">
       <Filter>Entity</Filter>
     </ClInclude>
-    <ClInclude Include="qBlackboard.h">
-      <Filter>Module\Blackboard</Filter>
-    </ClInclude>
     <ClInclude Include="qState.h">
       <Filter>08. Component\00. FSM\State</Filter>
     </ClInclude>
@@ -514,9 +508,6 @@
     </ClCompile>
     <ClCompile Include="qEntity.cpp">
       <Filter>Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="qBlackboard.cpp">
-      <Filter>Module\Blackboard</Filter>
     </ClCompile>
     <ClCompile Include="qState.cpp">
       <Filter>08. Component\00. FSM\State</Filter>

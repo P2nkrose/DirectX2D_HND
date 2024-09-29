@@ -1,6 +1,6 @@
 #pragma once
 #include "qComponent.h"
-#include "qBlackboard.h"
+
 
 
 class qStateMachine;
@@ -38,9 +38,9 @@ public:
 	const map<wstring, qState*>& GetStates() { return m_mapState; }
 	void SetState(const wstring& _strState) { m_CurState = FindState(_strState); }
 
-public:
-	void SetBlackboardData(const wstring& _DataKey, BB_DATA _Type, void* _pData);
-	void* GetBlackboardData(const wstring& _strKey);
+//public:
+//	void SetBlackboardData(const wstring& _DataKey, BB_DATA _Type, void* _pData);
+//	void* GetBlackboardData(const wstring& _strKey);
 
 
 private:
@@ -48,8 +48,7 @@ private:
 
 private:
 	map<wstring, qState*>	m_mapState;
-	qBlackboard*			m_Blackboard;
-
+	
 	qState*					m_CurState;
 	qState*					m_PrevState;
 };

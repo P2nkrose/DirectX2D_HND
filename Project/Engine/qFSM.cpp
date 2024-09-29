@@ -6,13 +6,11 @@
 #include "qPathMgr.h"
 #include "qTaskMgr.h"
 
-#include "qBlackboard.h"
 
 #include "qState.h"
 
 qFSM::qFSM()
 	: qComponent(COMPONENT_TYPE::STATEMACHINE)
-	, m_Blackboard(nullptr)
 	, m_CurState(nullptr)
 	, m_PrevState(nullptr)
 {
@@ -21,7 +19,6 @@ qFSM::qFSM()
 
 qFSM::qFSM(const qFSM& _Other)
 	: qComponent(_Other)
-	, m_Blackboard(nullptr)
 	, m_CurState(nullptr)
 	, m_PrevState(nullptr)
 {
@@ -78,16 +75,16 @@ qState* qFSM::FindState(const wstring& _strStateName)
 }
 
 
-void qFSM::SetBlackboardData(const wstring& _DataKey, BB_DATA _Type, void* _pData)
-{
-	m_Blackboard->SetBlackboardData(_DataKey, _Type, _pData);
-}
-
-
-void* qFSM::GetBlackboardData(const wstring& _strKey)
-{
-	return m_Blackboard->GetBlackboardData(_strKey);
-}
+//void qFSM::SetBlackboardData(const wstring& _DataKey, BB_DATA _Type, void* _pData)
+//{
+//	m_Blackboard->SetBlackboardData(_DataKey, _Type, _pData);
+//}
+//
+//
+//void* qFSM::GetBlackboardData(const wstring& _strKey)
+//{
+//	return m_Blackboard->GetBlackboardData(_strKey);
+//}
 
 void qFSM::ChangeState_proc(qState* _pNextState)
 {
